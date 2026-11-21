@@ -12,6 +12,7 @@ function watchErrors(page: Page) {
 }
 
 async function start(page: Page, hash = '') {
+  await page.addInitScript(() => localStorage.setItem('hala-space:debug-surprises', 'never'))
   await page.goto(hash ? `./${hash}` : './')
   await page.getByRole('button', { name: 'يلا نبدأ!' }).click()
 }

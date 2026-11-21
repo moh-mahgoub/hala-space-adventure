@@ -5,6 +5,7 @@ import { react } from '../profile/reactions'
 import { surprises } from '../profile/surprises'
 import { PlanetArt } from '../components/PlanetArt'
 import { Stage, TapHint, type ActivityProps } from './common'
+import { useTimeouts } from '../hooks'
 
 /** Stage 1: drag up/down to view the rings from above and below. Stage 2: tap the rings to zoom in. */
 export function SaturnActivity({ onDone }: ActivityProps) {
@@ -12,6 +13,7 @@ export function SaturnActivity({ onDone }: ActivityProps) {
   const [seen, setSeen] = useState({ above: false, below: false })
   const [stage, setStage] = useState<'look' | 'tap' | 'zoom'>('look')
   const [upside, setUpside] = useState(false)
+  const later = useTimeouts()
   const drag = useRef<{ y: number; tilt: number } | null>(null)
   const box = useRef<HTMLDivElement>(null)
 
@@ -91,9 +93,12 @@ export function SaturnActivity({ onDone }: ActivityProps) {
               sfx('whoosh')
               onDone()
               // rare surprise: she drifts upside down — no "up" in floating space
+              // …but only after the mission's happy dance has had its moment
               if (surprises.maybe('upsideDown')) {
-                setUpside(true)
-                void narrator.say(react('upsideDown'), { mode: 'queue' })
+                later(() => {
+                  setUpside(true)
+                  void narrator.say(react('upsideDown'), { mode: 'queue' })
+                }, 4000)
               }
             }}
             className="absolute top-1/2 left-1/2 h-[30%] w-[96%] -translate-x-1/2 -translate-y-1/2 rounded-full"

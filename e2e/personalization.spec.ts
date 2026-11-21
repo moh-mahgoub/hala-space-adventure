@@ -14,7 +14,9 @@ function watchNetwork(page: Page) {
   return reqs
 }
 
-async function start(page: Page) {
+async function start(page: Page, surprises: 'never' | 'always' = 'never') {
+  // surprises are random by design; pin them so assertions are deterministic
+  await page.addInitScript((v) => localStorage.setItem('hala-space:debug-surprises', v), surprises)
   await page.goto('./')
   await page.getByRole('button', { name: 'يلا نبدأ!' }).click()
   await expect(page.getByTestId('home-screen')).toBeVisible()
@@ -194,8 +196,7 @@ test('moon landing: she plants a flag after one full orbit', async ({ page }) =>
 })
 
 test('surprises can appear (forced via the debug switch) and are friendly', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('hala-space:debug-surprises', 'always'))
-  await start(page)
+  await start(page, 'always')
   await page.evaluate(() => (location.hash = '#/space'))
   await expect(page.getByTestId('friendly-alien')).toBeVisible({ timeout: 10_000 })
   await page.getByTestId('friendly-alien').click()
@@ -226,4 +227,18 @@ test('rejects a non-image file gracefully', async ({ page }) => {
   await openAstronautPanel(page)
   await page.getByTestId('file-photo').setInputFiles({ name: 'notes.txt', mimeType: 'text/plain', buffer: Buffer.from('hello') })
   await expect(page.getByRole('alert')).toContainText('مش صورة')
+})
+
+test('a surprise never steals the mission celebration (dance first, then upside-down)', async ({ page }) => {
+  await start(page, 'always')
+  await page.evaluate(() => (location.hash = '#/planet/saturn'))
+  await page.getByRole('button', { name: 'من فوق' }).click()
+  for (let i = 0; i < 4; i++) await page.getByRole('button', { name: 'من تحت' }).click()
+  await page.getByTestId('saturn-rings').click()
+  const reaction = page.getByTestId('avatar-reaction')
+  await expect(reaction).toHaveAttribute('data-kind', 'mission')
+  await page.waitForTimeout(2500)
+  await expect(reaction).toHaveAttribute('data-kind', 'mission') // still dancing
+  await expect(page.getByTestId('avatar-reaction')).toHaveAttribute('data-kind', 'upsideDown', { timeout: 6000 })
+  await expect(page.getByTestId('saturn-astronaut').locator('.astro-upside')).toHaveCount(1)
 })
