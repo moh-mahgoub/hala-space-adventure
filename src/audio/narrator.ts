@@ -73,6 +73,7 @@ export class Narrator {
   private utterance: SpeechSynthesisUtterance | null = null
   private listeners = new Set<() => void>()
   private voice: SpeechSynthesisVoice | null = null
+  private lastCancel = -Infinity
   private state: NarratorState = { speaking: false, text: null, backend: null, voiceName: null, unlocked: false }
 
   constructor(deps: NarratorDeps) {
@@ -116,6 +117,14 @@ export class Narrator {
     return this.voice != null
   }
 
+  get voiceCount(): number {
+    try {
+      return this.deps.synth?.getVoices?.().length ?? 0
+    } catch {
+      return 0
+    }
+  }
+
   get speechSupported(): boolean {
     return this.deps.synth != null && this.deps.Utterance != null
   }
@@ -136,6 +145,12 @@ export class Narrator {
       }
     }
     this.refreshVoice()
+    // Safari may return an empty voice list at first and not fire 'voiceschanged'
+    for (const ms of [250, 750, 1500, 3000]) {
+      this.deps.setTimeout(() => {
+        if (!this.voice) this.refreshVoice()
+      }, ms)
+    }
   }
 
   say(line: Line | Line[], opts: { mode?: 'interrupt' | 'queue' } = {}): Promise<boolean> {
@@ -181,7 +196,7 @@ export class Narrator {
     if (this.state.voiceName !== (this.voice?.name ?? null)) this.setState({ voiceName: this.voice?.name ?? null })
   }
 
-  private haltPlayback() {
+  private haltPlayback(cancelSpeech = true) {
     this.timers.forEach((t) => this.deps.clearTimeout(t))
     this.timers = []
     if (this.audio) {
@@ -196,10 +211,13 @@ export class Narrator {
     if (this.utterance) {
       this.utterance.onend = this.utterance.onerror = null
       this.utterance = null
-      try {
-        this.deps.synth?.cancel()
-      } catch {
-        /* ignore */
+      if (cancelSpeech) {
+        try {
+          this.deps.synth?.cancel()
+          this.lastCancel = Date.now()
+        } catch {
+          /* ignore */
+        }
       }
     }
   }
@@ -239,7 +257,8 @@ export class Narrator {
   private finish(token: number, completed: boolean) {
     if (token !== this.token || !this.current) return
     const item = this.current
-    this.haltPlayback()
+    // a line that ended by itself needs no cancel() (which also upsets Safari)
+    this.haltPlayback(!completed)
     this.current = null
     item.resolve(completed)
     // small gap between queued lines feels more natural
@@ -261,6 +280,7 @@ export class Narrator {
   }
 
   private canSpeak(): boolean {
+    if (this.speechSupported && !this.voice) this.refreshVoice()
     return this.speechSupported && this.voice != null
   }
 
@@ -327,15 +347,21 @@ export class Narrator {
     }
     this.utterance = u
     this.setState({ speaking: true, text, backend: 'speech' })
-    try {
-      // Chrome can get stuck "paused"; resume() is harmless elsewhere
-      synth.resume?.()
-      synth.speak(u)
-    } catch {
-      this.utterance = null
-      this.captionOnly(text, cfg, done)
-      return
+    const start = () => {
+      if (token !== this.token) return
+      try {
+        // Chrome can get stuck "paused"; resume() is harmless elsewhere
+        synth.resume?.()
+        synth.speak(u)
+      } catch {
+        this.utterance = null
+        this.captionOnly(text, cfg, done)
+      }
     }
+    // Safari silently drops a speak() issued right after cancel(): wait a moment
+    const sinceCancel = Date.now() - this.lastCancel
+    if (sinceCancel < 150) this.timers.push(this.deps.setTimeout(start, 150 - sinceCancel))
+    else start()
     // Safety net: some engines never fire onend (or never start).
     const est = estimateDurationMs(text, cfg.rate)
     this.timers.push(

@@ -4,6 +4,7 @@ import { line, type Line, type Params } from '../content/lines'
 import { settingsStore } from '../state/settings'
 import { Narrator, type NarratorState } from './narrator'
 import { SoundEngine, type Sfx } from './sfx'
+import { enablePlaybackAudio } from './iosAudioSession'
 
 export const narrator = new Narrator({
   getConfig: () => {
@@ -30,6 +31,7 @@ settingsStore.subscribe(() => {
 
 /** Unlock all audio — call from the first user gesture. */
 export function unlockAudio() {
+  enablePlaybackAudio() // iPad: play even when the device is in silent mode
   narrator.unlock()
   sound.unlock()
 }
@@ -53,3 +55,4 @@ export function useNarrator(): NarratorState {
 }
 
 export { line }
+

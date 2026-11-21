@@ -5,6 +5,7 @@ import { resetProgress, useProgress } from '../state/progress'
 import { DEFAULT_SETTINGS, updateSettings, useSettings, type Settings } from '../state/settings'
 import { CloseIcon } from './Icons'
 import { PersonalizePanel } from './character/PersonalizePanel'
+import { SoundCheck } from './SoundCheck'
 
 function Row({ label, en, children }: { label: string; en: string; children: ReactNode }) {
   return (
@@ -182,6 +183,9 @@ export function SettingsPanel({ onClose, initialTab = 'settings' }: { onClose: (
               ▶︎ جرب
             </button>
           </Row>
+          <div className="py-3">
+            <SoundCheck />
+          </div>
           <Row label="الحركة" en="Motion">
             <Segmented
               label="Motion"

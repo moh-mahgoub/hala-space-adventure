@@ -28,6 +28,12 @@ export class SoundEngine {
     this.getConfig = getConfig
   }
 
+  /** 'running' | 'suspended' | 'interrupted' | 'closed' | 'not started' | 'unsupported' */
+  get state(): string {
+    if (!this.available) return 'unsupported'
+    return this.ctx?.state ?? 'not started'
+  }
+
   get available(): boolean {
     const g = globalThis as unknown as { AudioContext?: unknown; webkitAudioContext?: unknown }
     return !!(g.AudioContext || g.webkitAudioContext)

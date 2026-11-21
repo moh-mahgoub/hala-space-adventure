@@ -206,6 +206,39 @@ describe('Narrator', () => {
     await expect(p).resolves.toBe(true)
   })
 
+  it('finds an Arabic voice that loads late (Safari) instead of staying silent', async () => {
+    const voices: (typeof AR)[] = []
+    const { n, spoken } = make({ voices })
+    n.unlock()
+    expect(n.hasArabicVoice).toBe(false)
+    voices.push(AR) // the list fills in after a moment, with no 'voiceschanged' event
+    await vi.advanceTimersByTimeAsync(300)
+    expect(n.hasArabicVoice).toBe(true)
+    void n.say({ template: 'مرحبا' })
+    expect(spoken.filter((u) => u.text.trim()).map((u) => u.text)).toEqual(['مرحبا'])
+  })
+
+  it('waits briefly after cancel() before speaking again (Safari drops it otherwise)', async () => {
+    const { n, spoken } = make()
+    n.unlock()
+    void n.say({ template: 'واحد' })
+    void n.say({ template: 'اتنين' }) // interrupts → cancel()
+    const real = () => spoken.filter((u) => u.text.trim()).map((u) => u.text)
+    expect(real()).toEqual(['واحد'])
+    expect(n.getState().text).toBe('اتنين') // caption shows right away
+    await vi.advanceTimersByTimeAsync(200)
+    expect(real()).toEqual(['واحد', 'اتنين'])
+  })
+
+  it('does not call cancel() when a line ends by itself', async () => {
+    const { n, spoken, synth } = make()
+    n.unlock()
+    void n.say({ template: 'واحد' })
+    spoken.filter((u) => u.text.trim())[0].onend?.()
+    await vi.advanceTimersByTimeAsync(10)
+    expect(synth.cancel).not.toHaveBeenCalled()
+  })
+
   it('stop() clears everything', async () => {
     const { n } = make()
     n.unlock()

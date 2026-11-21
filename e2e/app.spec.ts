@@ -247,3 +247,17 @@ test('every planet activity can be completed', async ({ page }, info) => {
     await done()
   }
 })
+
+test('parent sound check reports the audio state and gives advice', async ({ page }) => {
+  const errors = watchErrors(page)
+  await start(page)
+  const gate = page.getByTestId('parent-gate')
+  await gate.dispatchEvent('pointerdown', { pointerId: 1 })
+  await page.waitForTimeout(3300)
+  await gate.dispatchEvent('pointerup', { pointerId: 1 })
+  await page.getByTestId('sound-check-run').click()
+  await expect(page.getByTestId('sound-report')).toContainText('Sound effects: running')
+  await expect(page.getByTestId('sound-report')).toContainText('Arabic voice:')
+  await expect(page.getByTestId('sound-tips')).toContainText('volume')
+  expect(errors).toEqual([])
+})
