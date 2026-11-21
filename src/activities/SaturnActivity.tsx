@@ -53,6 +53,8 @@ export function SaturnActivity({ onDone }: ActivityProps) {
           if (e.key === 'ArrowDown') update(tilt - 0.2)
         }}
         onPointerDown={(e) => {
+          // don't capture taps meant for the rings button (capture would swallow its click)
+          if ((e.target as Element).closest('button')) return
           e.currentTarget.setPointerCapture(e.pointerId)
           drag.current = { y: e.clientY, tilt }
         }}
