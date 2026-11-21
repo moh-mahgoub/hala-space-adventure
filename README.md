@@ -56,6 +56,37 @@ Eleven short narrated chapters (about 6–8 minutes). Hala and Nori fly from her
 ### Nori (نوري), the robot guide
 An original SVG character whose mouth moves while it talks. Captions (subtitles) with Nori's face show every spoken line, so the app still works with sound off or when there is no Arabic voice.
 
+### حلا — the captain of her own adventure (personalisation)
+In **Parent settings → 👩‍🚀 Astronaut & photo**, a parent can:
+- **Upload a photo** (iPad: the Photos picker or the camera), then **crop it**: drag with one finger, pinch with two, or use the zoom slider or arrow keys. A live preview shows the face inside a helmet.
+- **Replace**, **re-crop** or **delete** it at any time. Delete takes two taps to confirm.
+- **Import a cartoon portrait** made elsewhere (drawn by hand or made in an app you trust). The app does **not** turn photos into cartoons, and no CSS trick can.
+- **Choose a look:** 🧑‍🚀 illustrated astronaut (the default, no photo needed) · 📷 real photo in the helmet · 🌟 funny sticker (die-cut outline, antennae, stars) · 🎨 imported cartoon.
+
+Where her character appears: the welcome screen (waving), home (floating), the story (her face in the spaceship window, a wobbly takeoff, waving beside the planets, floating by Saturn's rings, a happy dance at the end), the **Moon** (she lands and plants a flag after the orbit), **Mars** (she drives the rover from a bubble cockpit), **Saturn** (peeking around and floating by the rings), the explorer game (pilot in the cockpit), day & night, game celebrations, and the **explorer badges** on the map.
+
+**Reactions to real actions** (spoken in Egyptian Arabic, with a pose and a speech bubble):
+
+| Action | Reaction |
+|---|---|
+| Tapping the Sun | «واو يا حلا! الشمس منورة قوي!» (waves) |
+| Discovering Saturn's rings (viewed from above and below) | «ياااه! بصي الحلقات دي!» (cheers) |
+| A correct answer | «برافو يا حلا! إنتي رائدة فضاء شاطرة!» (cheers; alternates with other praise) |
+| Completing a planet mission | happy dance + the mission's line |
+| Finishing the Moon orbit | she plants a flag: «كابتن حلا حطت العلم على القمر!» |
+| First drive on Mars | «يلا يا حلا، نسوق عربية المريخ!» |
+| Visiting all 8 planets / finishing the tour | «مبروك يا كابتن حلا! اكتشفتي المجموعة الشمسية كلها!» (dance) |
+
+**Surprises** are rare on purpose. Each eligible moment has about a 35% chance, there is a 90-second gap between any two surprises, and the same surprise waits even longer before it can repeat. The surprises are an oversized helmet, floating upside down near Saturn ("في الفضاء مفيش فوق ولا تحت"), a friendly alien peeking out to wave, and a face sticker after a mission. Takeoff always wobbles a little. To demo or test them, set `localStorage['hala-space:debug-surprises']` to `'always'` or `'never'`.
+
+#### Privacy
+- Photos are stored **only in this browser on this device** (IndexedDB, `hala-space-images`). The rest of the profile (look, crop numbers) is in localStorage.
+- **Nothing is uploaded.** The app contains no network-upload code (a unit test enforces this), uses no cloud AI and no face recognition, and has no tracking.
+- Uploads are downscaled and re-encoded, which strips metadata such as GPS location.
+- A different browser or device won't have the photo. Deleting it in the panel, or clearing the site's data, removes it.
+- Photos are never part of the repository or the build. A test checks that the only images in the repo are the app icons, docs screenshots and **synthetic** drawn test images; `.gitignore` also excludes `private/`, `photos/` and `*.personal.*`.
+- In private browsing, where IndexedDB may be blocked, the photo works until the tab closes and the panel says so.
+
 ### Parent settings (hidden)
 Press and **hold the small ⚙︎ on the home screen for 3 seconds**. A quick tap does nothing.
 - Child's name (default **حلا**; used in every line and title)
@@ -78,7 +109,7 @@ Press and **hold the small ⚙︎ on the home screen for 3 seconds**. A quick ta
 | Font | Baloo Bhaijaan 2 (OFL), bundled locally via `@fontsource` |
 | Storage | `localStorage` only (settings + progress) |
 | Offline | Small hand-written service worker plus a web-app manifest (Add to Home Screen gives full-screen on iPad) |
-| Tests | **Vitest** + Testing Library (64 tests), **Playwright** (iPad landscape, iPhone, desktop) |
+| Tests | **Vitest** + Testing Library, **Playwright** (iPad landscape, iPhone, desktop) |
 | Hosting | GitHub Pages via GitHub Actions |
 
 **Why not Three.js?** The scenes are 2D, stylized and touch-driven. SVG gives crisp art at any size, small bundles (~111 KB gzipped JS in total) and smooth performance on older iPads. Real 3D would add weight without adding much for preschoolers.
@@ -133,6 +164,10 @@ src/
     sfx.ts          Web Audio sound effects + ambient music
   state/            settings, progress, stars/badges (localStorage)
   components/       PlanetArt (procedural SVG planets), Nori, HalaAvatar, TopBar, Caption, ParentGate, SettingsPanel…
+    character/      ChildAvatar (face), AstronautCharacter, SpaceshipPilot, AvatarReaction, MissionBadge,
+                    PhotoCropEditor, PersonalizePanel, FriendlyAlien
+  profile/          child look: profile.ts (central store), imageStore.ts (IndexedDB), crop.ts,
+                    reactions.ts (real-action reactions), surprises.ts (rare, cooldown)
   screens/          Start, Home, SolarSystem, Planet, Games, Game, Story, Map
   activities/       one interactive discovery per body
   games/            logic.ts (pure, unit-tested) + ChoiceGame, OrderGame, DayNightGame, ExplorerGame
@@ -185,6 +220,9 @@ Recordings are used only for lines without dynamic placeholders. Lines that cont
 - The scripts use feminine address forms. A different child's name is supported, but masculine forms are not (yet).
 - Fullscreen: iPhone Safari has no Fullscreen API. Use "Add to Home Screen" instead.
 - Offline support kicks in after the first full online visit.
+- **The personalisation photo is per browser.** It does not sync between devices, and iPadOS may evict site data from a Safari tab that goes unused for a long time. "Add to Home Screen" makes that much less likely.
+- HEIC photos: iPad/iPhone Safari converts them when uploading. Some desktop browsers can't decode HEIC, so the panel asks for JPG or PNG instead.
+- Cartoon portraits must be created outside the app.
 
 ## Ideas for the future
 
