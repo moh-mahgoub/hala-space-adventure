@@ -163,7 +163,11 @@ test('story: start, continue, make a choice', async ({ page }) => {
   for (let i = 0; i < 3; i++) await press(page, page.getByTestId('story-next'))
   await press(page, page.getByTestId('story-target'))
   await expect(page.getByTestId('story-chapter-sun')).toBeVisible({ timeout: 15_000 })
-  for (let i = 0; i < 2; i++) await press(page, page.getByTestId('story-next'))
+  // tap "continue" through the narrated lines until the choice appears
+  for (let i = 0; i < 6 && !(await page.getByTestId('choices').isVisible()); i++) {
+    await press(page, page.getByTestId('story-next'))
+    await page.waitForTimeout(150)
+  }
   await expect(page.getByTestId('choices')).toBeVisible()
   await press(page, page.getByTestId('choice-0'))
   await expect(page.getByTestId('caption')).toContainText('فكرة حلوة')

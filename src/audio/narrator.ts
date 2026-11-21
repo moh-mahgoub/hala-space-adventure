@@ -340,7 +340,16 @@ export class Narrator {
     const est = estimateDurationMs(text, cfg.rate)
     this.timers.push(
       this.deps.setTimeout(() => {
-        if (token === this.token && !started) {
+        // Only give up if the engine is truly idle: slow devices (older iPads loading a
+        // voice) can take a few seconds to start but report speaking/pending meanwhile.
+        const busy = (() => {
+          try {
+            return !!(synth.speaking || synth.pending)
+          } catch {
+            return false
+          }
+        })()
+        if (token === this.token && !started && !busy) {
           // never started — engine is silent; degrade to captions for the remaining time
           this.utterance = null
           try {
@@ -350,7 +359,7 @@ export class Narrator {
           }
           this.captionOnly(text, cfg, done, est * 0.6)
         }
-      }, 2500),
+      }, 4000),
     )
     this.timers.push(this.deps.setTimeout(() => done(true), est * 2.5 + 4000))
   }

@@ -18,15 +18,21 @@ class FakeUtterance {
   }
 }
 
-function fakeSynth(voices: { lang: string; name: string; localService: boolean; default: boolean }[]) {
+function fakeSynth(
+  voices: { lang: string; name: string; localService: boolean; default: boolean }[],
+  behaviour: 'normal' | 'slow' | 'silent' = 'normal',
+) {
   const spoken: FakeUtterance[] = []
   return {
     spoken,
     synth: {
+      // 'slow': engine is busy loading but hasn't fired onstart yet; 'silent': engine is dead
+      speaking: behaviour === 'slow',
+      pending: false,
       getVoices: () => voices,
       speak: (u: FakeUtterance) => {
         spoken.push(u)
-        if (u.text.trim()) queueMicrotask(() => u.onstart?.())
+        if (u.text.trim() && behaviour === 'normal') queueMicrotask(() => u.onstart?.())
       },
       cancel: vi.fn(),
       resume: vi.fn(),
@@ -38,8 +44,16 @@ function fakeSynth(voices: { lang: string; name: string; localService: boolean; 
 const AR = { lang: 'ar-SA', name: 'Maged', localService: true, default: false }
 const cfg = (over: Partial<NarratorConfig> = {}): NarratorConfig => ({ enabled: true, volume: 1, rate: 1, childName: 'حلا', ...over })
 
-function make(opts: { voices?: (typeof AR)[]; config?: Partial<NarratorConfig>; recorded?: string[]; audioFails?: boolean } = {}) {
-  const f = fakeSynth(opts.voices ?? [AR])
+function make(
+  opts: {
+    voices?: (typeof AR)[]
+    config?: Partial<NarratorConfig>
+    recorded?: string[]
+    audioFails?: boolean
+    engine?: 'normal' | 'slow' | 'silent'
+  } = {},
+) {
+  const f = fakeSynth(opts.voices ?? [AR], opts.engine)
   const audios: { src: string; play: ReturnType<typeof vi.fn>; onended: Listener; onerror: Listener; pause: () => void; volume: number }[] = []
   const n = new Narrator({
     getConfig: () => cfg(opts.config),
@@ -171,6 +185,25 @@ describe('Narrator', () => {
     await vi.advanceTimersByTimeAsync(0)
     expect(spoken.filter((u) => u.text.trim()).map((u) => u.text)).toEqual(['سلام'])
     expect(n.getState().backend).toBe('speech')
+  })
+
+  it('keeps waiting for a slow engine that is busy (does not cut real speech)', async () => {
+    const { n, synth } = make({ engine: 'slow' })
+    n.unlock()
+    void n.say({ template: 'مرحبا' })
+    await vi.advanceTimersByTimeAsync(4500)
+    expect(n.getState().backend).toBe('speech')
+    expect(synth.cancel).not.toHaveBeenCalled()
+  })
+
+  it('degrades to captions if the engine never starts and is idle', async () => {
+    const { n } = make({ engine: 'silent' })
+    n.unlock()
+    const p = n.say({ template: 'مرحبا' })
+    await vi.advanceTimersByTimeAsync(4500)
+    expect(n.getState().backend).toBe('captions')
+    await vi.advanceTimersByTimeAsync(10_000)
+    await expect(p).resolves.toBe(true)
   })
 
   it('stop() clears everything', async () => {
