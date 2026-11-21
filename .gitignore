@@ -13,3 +13,8 @@ blob-report/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Personal photos must never be committed. Keep any local copies here (ignored):
+private/
+photos/
+*.personal.*

@@ -4,6 +4,7 @@ import { ILLUSTRATIVE_NOTE } from '../data/planets'
 import { resetProgress, useProgress } from '../state/progress'
 import { DEFAULT_SETTINGS, updateSettings, useSettings, type Settings } from '../state/settings'
 import { CloseIcon } from './Icons'
+import { PersonalizePanel } from './character/PersonalizePanel'
 
 function Row({ label, en, children }: { label: string; en: string; children: ReactNode }) {
   return (
@@ -69,7 +70,8 @@ function Segmented<T extends string>({
   )
 }
 
-export function SettingsPanel({ onClose }: { onClose: () => void }) {
+export function SettingsPanel({ onClose, initialTab = 'settings' }: { onClose: () => void; initialTab?: 'settings' | 'astronaut' }) {
+  const [tab, setTab] = useState<'settings' | 'astronaut'>(initialTab)
   const s = useSettings()
   const progress = useProgress()
   const { voiceName } = useNarrator()
@@ -102,6 +104,31 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             <CloseIcon />
           </button>
         </div>
+        <div role="tablist" className="flex gap-2 border-b border-white/10 px-5 pt-3">
+          {(
+            [
+              ['settings', '⚙︎ الإعدادات', 'Settings'],
+              ['astronaut', '👩‍🚀 رائدة الفضاء', 'Astronaut & photo'],
+            ] as const
+          ).map(([id, ar, en]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={tab === id}
+              data-testid={`tab-${id}`}
+              onClick={() => setTab(id)}
+              className={`rounded-t-2xl px-4 py-2 text-lg font-bold ${tab === id ? 'bg-violet-500' : 'bg-white/5'}`}
+            >
+              {ar} <span className="text-sm font-medium opacity-70">{en}</span>
+            </button>
+          ))}
+        </div>
+        {tab === 'astronaut' ? (
+          <div className="overflow-y-auto px-5 pb-6">
+            <PersonalizePanel />
+          </div>
+        ) : (
         <div className="overflow-y-auto px-5 pb-6">
           <Row label="اسم الطفل" en="Child's name">
             <input
@@ -225,6 +252,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             </p>
           </div>
         </div>
+        )}
       </div>
     </div>
   )

@@ -284,6 +284,20 @@ export const script = {
       allPlanets: 'زرتي كل الكواكب بالسفينة! رحلة جميلة!',
     },
   },
+  /** The child's own astronaut reacting to what she just did (see profile/reactions.ts) */
+  reactions: {
+    sun: 'واو يا {name}! الشمس منورة قوي!',
+    saturn: 'ياااه! بصي الحلقات دي!',
+    correct: 'برافو يا {name}! إنتي رائدة فضاء شاطرة!',
+    journey: 'مبروك يا كابتن {name}! اكتشفتي المجموعة الشمسية كلها!',
+    moonFlag: 'هيييه! كابتن {name} حطت العلم على القمر!',
+    rover: 'يلا يا {name}، نسوق عربية المريخ!',
+    mission: 'مهمة ناجحة يا كابتن {name}!',
+    alien: 'ده كائن فضائي لطيف بيقولك: أهلاً يا {name}!',
+    bigHelmet: 'هههه! الخوذة كبرت قوي!',
+    upsideDown: 'شوفي! {name} بتعوم بالمقلوب! في الفضاء مفيش فوق ولا تحت.',
+    sticker: 'استيكر جديد لكابتن {name}!',
+  },
   map: {
     intro: 'دي خريطتك يا {name}! الكواكب الملونة زرتيها، والتانية مستنياكي.',
     allVisited: 'هيييه! زرتي التمن كواكب كلهم! إنتي مستكشفة الكواكب!',

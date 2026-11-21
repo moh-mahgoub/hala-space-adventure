@@ -27,7 +27,7 @@ export function StartScreen({ onStart }: { onStart: () => void }) {
         <PlanetArt id="earth" spin />
       </div>
       <div className="relative flex items-end gap-2">
-        <HalaAvatar size={110} className="anim-float" />
+        <HalaAvatar size={120} pose="wave" className="anim-float" />
         <Nori size={110} className="anim-float" talking={false} />
       </div>
       <h1 className="relative text-5xl leading-tight font-extrabold text-yellow-200 text-shadow sm:text-7xl">

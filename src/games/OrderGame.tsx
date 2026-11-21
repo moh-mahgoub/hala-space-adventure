@@ -11,6 +11,7 @@ import { script } from '../content/script'
 import { ui } from '../content/ui'
 import { BODIES, PLANET_IDS, type PlanetId } from '../data/planets'
 import { earn } from '../state/rewards'
+import { react } from '../profile/reactions'
 import { correctSlotFor, isCorrectSlot, nearestSlot, nextEmptySlot, shuffle } from './logic'
 
 type Level = 'easy' | 'harder'
@@ -48,7 +49,9 @@ export function OrderGame() {
       setHintSlot(null)
       sfx('success')
       const ordinal = script.common.ordinals[slot]
-      const spoken = narrator.say(line('games.order.placed', { planet: BODIES[id].nameAr, ordinal }))
+      const placedLine = line('games.order.placed', { planet: BODIES[id].nameAr, ordinal })
+      react('correct', { line: placedLine, allowSurprise: next.every(Boolean) })
+      const spoken = narrator.say(placedLine)
       if (next.every(Boolean)) {
         void spoken.then(() => {
           setFinished(true)

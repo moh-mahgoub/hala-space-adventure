@@ -11,6 +11,8 @@ import { script } from '../content/script'
 import { BODIES, PLANET_IDS, displayRadius, type BodyId, type PlanetId } from '../data/planets'
 import { useSize } from '../hooks'
 import { earn } from '../state/rewards'
+import { react } from '../profile/reactions'
+import { ChildFace } from '../components/character/ChildAvatar'
 import { keepAway, scatterStars, stepToward, touching, type Point } from './logic'
 
 const STAR_COUNT = 12
@@ -23,8 +25,9 @@ function Ship() {
       <path d="M-28,-12 L-36,-20 L-18,-12 Z" fill="#ff6fae" />
       <path d="M-28,12 L-36,20 L-18,12 Z" fill="#ff6fae" />
       <path d="M-30,-12 C-10,-16 18,-12 34,0 C18,12 -10,16 -30,12 Z" fill="#f4f6ff" />
-      <circle cx={6} cy={0} r={8} fill="#5ecbff" stroke="#c9d1f3" strokeWidth={3} />
-      <circle cx={4} cy={-2} r={3} fill="#fff" opacity="0.8" />
+      <circle cx={6} cy={0} r={10} fill="#23286b" stroke="#c9d1f3" strokeWidth={3} />
+      {/* the pilot, kept upright-ish by the cockpit */}
+      <ChildFace cx={6} cy={0} r={8} />
     </g>
   )
 }
@@ -127,7 +130,7 @@ export function ExplorerGame() {
           state.current.collected = [...state.current.collected, i]
           setCollected(state.current.collected)
           sfx('star')
-          if (state.current.collected.length === stars.length) void say('games.explorer.allStars')
+          if (state.current.collected.length === stars.length) void narrator.say(react('mission', { line: line('games.explorer.allStars') }))
         }
       })
       // planets
@@ -148,9 +151,13 @@ export function ExplorerGame() {
           }
         }
       }
+      // Flying left: mirror the ship instead of turning it upside down, so the pilot stays upright
+      const deg = (heading.current * 180) / Math.PI
+      const left = Math.cos(heading.current) < 0
+      const orient = left ? `scale(-1,1) rotate(${(180 - deg).toFixed(1)})` : `rotate(${deg.toFixed(1)})`
       shipEl.current?.setAttribute(
         'transform',
-        `translate(${ship.current.x.toFixed(1)},${ship.current.y.toFixed(1)}) rotate(${((heading.current * 180) / Math.PI).toFixed(1)}) scale(${(shipR / 30).toFixed(3)})`,
+        `translate(${ship.current.x.toFixed(1)},${ship.current.y.toFixed(1)}) ${orient} scale(${(shipR / 30).toFixed(3)})`,
       )
       raf = requestAnimationFrame(tick)
     }

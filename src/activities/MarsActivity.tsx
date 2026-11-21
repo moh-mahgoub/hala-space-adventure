@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
-import { say, sfx } from '../audio'
+import { line, narrator, sfx } from '../audio'
+import { ChildFace } from '../components/character/ChildAvatar'
+import { react } from '../profile/reactions'
 import { useTimeouts } from '../hooks'
 import { ProgressDots, type ActivityProps } from './common'
 
@@ -12,7 +14,10 @@ const TARGETS = [
 
 function Rover({ scanning }: { scanning: boolean }) {
   return (
-    <svg viewBox="0 0 120 80" className="h-full w-full" aria-hidden>
+    <svg viewBox="0 -12 120 92" className="h-full w-full overflow-visible" aria-hidden>
+      {/* bubble cockpit with the driver */}
+      <circle cx="46" cy="8" r="17" fill="rgba(170,215,255,0.35)" stroke="#e8eeff" strokeWidth="3" />
+      <ChildFace cx={46} cy={8} r={13} />
       {/* mast + camera */}
       <rect x="78" y="4" width="6" height="30" rx="3" fill="#d9dde8" />
       <rect x="70" y="0" width="22" height="12" rx="4" fill="#f4f6ff" />
@@ -48,14 +53,17 @@ export function MarsActivity({ onDone }: ActivityProps) {
   const checkedRef = useRef<number[]>([])
   const later = useTimeouts()
 
+  const drives = useRef(0)
   const go = (i: number) => {
     if (busy) return
     setBusy(true)
     sfx('whoosh')
+    // first drive: she cheers from the driver's seat, then the rock is explained
+    const intro = drives.current++ === 0 ? narrator.say(react('rover')) : Promise.resolve(true)
     setRoverX(TARGETS[i].x - 9)
     later(() => {
       sfx('star')
-      const spoken = say(`planets.mars.activity.steps.${i}`)
+      const spoken = intro.then(() => narrator.say(line(`planets.mars.activity.steps.${i}`)))
       const c = checkedRef.current
       if (!c.includes(i)) {
         const next = [...c, i]
@@ -129,7 +137,7 @@ export function MarsActivity({ onDone }: ActivityProps) {
 
       <div
         className="pointer-events-none absolute bottom-[10%] transition-[left] duration-[1300ms] ease-in-out"
-        style={{ left: `${roverX}%`, width: '18%', aspectRatio: '1.5' }}
+        style={{ left: `${roverX}%`, width: '22%', aspectRatio: '1.5' }}
         data-testid="rover"
       >
         <Rover scanning={busy} />

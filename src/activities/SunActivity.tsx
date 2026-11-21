@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { say, sfx } from '../audio'
+import { narrator, say, sfx } from '../audio'
+import { react } from '../profile/reactions'
 import { PlanetArt } from '../components/PlanetArt'
 import { ProgressDots, Stage, TapHint, type ActivityProps } from './common'
 
@@ -17,7 +18,8 @@ export function SunActivity({ onDone }: ActivityProps) {
     const n = taps + 1
     setTaps(n)
     sfx('pop')
-    if (n < 3) void say(`planets.sun.activity.steps.${n - 1}`)
+    if (n === 1) void narrator.say(react('sun'))
+    else if (n < 3) void say(`planets.sun.activity.steps.${n - 1}`)
     else onDone()
   }
   const glow = Math.min(taps, 3)

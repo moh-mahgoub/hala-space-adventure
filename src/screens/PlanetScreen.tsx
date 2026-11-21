@@ -11,6 +11,7 @@ import { navigate } from '../router'
 import { markVisited, useProgress } from '../state/progress'
 import { earn } from '../state/rewards'
 import { useSettings } from '../state/settings'
+import { react } from '../profile/reactions'
 
 function KindBadge({ id }: { id: BodyId }) {
   const b = BODIES[id]
@@ -84,8 +85,10 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
     setDone(true)
     earn(`activity:${id}`)
     sfx('success')
-    const lines = [line(`planets.${id}.activity.done`)]
-    if (tour) lines.push(line(next ? 'space.tourNext' : 'space.tourEnd'))
+    const doneLine = line(`planets.${id}.activity.done`)
+    react('mission', { line: doneLine })
+    const lines = [doneLine]
+    if (tour) lines.push(next ? line('space.tourNext') : react('journey'))
     void narrator.say(lines)
   }
 

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { line, narrator, sfx } from '../audio'
 import { Celebration } from '../components/Celebration'
 import { HalaAvatar } from '../components/HalaAvatar'
+import { AstronautCharacter } from '../components/character/AstronautCharacter'
+import { SpaceshipPilot } from '../components/character/SpaceshipPilot'
 import { PlayIcon } from '../components/Icons'
 import { Nori } from '../components/Nori'
 import { PlanetArt } from '../components/PlanetArt'
@@ -16,31 +18,6 @@ import { earn } from '../state/rewards'
 import { useSettings } from '../state/settings'
 
 // ── scene pieces ──────────────────────────────────────────────────────────
-
-function Rocket({ launching, glow, onTap }: { launching?: boolean; glow?: boolean; onTap?: () => void }) {
-  const El = onTap ? 'button' : 'div'
-  return (
-    <El
-      {...(onTap ? { type: 'button' as const, onClick: onTap, 'aria-label': 'سفينة الفضاء', 'data-testid': 'story-target' } : {})}
-      className="relative h-full"
-      style={launching ? { animation: 'launch 2.2s ease-in forwards' } : undefined}
-    >
-      {glow && <span className="anim-pulse-glow absolute inset-[-8%] rounded-full border-4 border-yellow-300" aria-hidden />}
-      <svg viewBox="0 0 100 160" className="h-full" aria-hidden>
-        <path d="M50,4 C78,30 80,80 72,118 L28,118 C20,80 22,30 50,4 Z" fill="#f4f6ff" />
-        <path d="M50,4 C62,14 70,28 74,44 L26,44 C30,28 38,14 50,4 Z" fill="#ff6fae" />
-        <circle cx="50" cy="70" r="16" fill="#23286b" stroke="#c9d1f3" strokeWidth="5" />
-        <path d="M28,96 L8,128 L28,122 Z" fill="#8b5cf6" />
-        <path d="M72,96 L92,128 L72,122 Z" fill="#8b5cf6" />
-        <path d="M36,118 L64,118 L58,132 L42,132 Z" fill="#c9d1f3" />
-        {launching && <path d="M40,132 L50,158 L60,132 Z" fill="#ffb21f" className="anim-twinkle" />}
-      </svg>
-      <div className="absolute top-[34%] left-1/2 w-[30%] -translate-x-1/2" aria-hidden>
-        <HalaAvatar helmet={false} />
-      </div>
-    </El>
-  )
-}
 
 function Room({ night = true }: { night?: boolean }) {
   return (
@@ -230,16 +207,40 @@ function StoryPlayer({ index }: { index: number }) {
         {/* ship / characters */}
         {chapter.backdrop === 'space' && (
           <div className="anim-float absolute top-[14%] right-[4%] h-[46%]" aria-hidden>
-            <Rocket />
+            {/* she flies the ship — except at Saturn, where she floats outside by the rings */}
+            <SpaceshipPilot pilot={chapter.id !== 'saturn'} />
+            {effect === 'wave' && chapter.id !== 'saturn' && (
+              <div className="anim-pop absolute top-[30%] -left-[70%] w-[90%]" data-testid="story-astronaut-wave">
+                <AstronautCharacter size="100%" pose="wave" />
+              </div>
+            )}
+          </div>
+        )}
+        {chapter.id === 'saturn' && (
+          <div className="pointer-events-none absolute top-[8%] left-[44%] w-[13%]" aria-hidden data-testid="story-astronaut-float">
+            <AstronautCharacter size="100%" pose={phase === 'reply' ? 'cheer' : 'float'} />
           </div>
         )}
         {chapter.backdrop === 'room' && chapter.id === 'start' && (
           <div className="absolute right-[44%] bottom-[8%] h-[52%]">
-            <Rocket launching={effect === 'launch'} glow={waitingTap} onTap={waitingTap ? onTarget : undefined} />
+            {/* a gentle wobble at takeoff, then whoosh */}
+            <SpaceshipPilot
+              pilot={effect === 'launch'}
+              wobble={effect === 'launch'}
+              launching={effect === 'launch'}
+              glow={waitingTap}
+              onTap={waitingTap ? onTarget : undefined}
+            />
           </div>
         )}
         <div className="absolute right-[4%] bottom-[6%] flex items-end gap-1" aria-hidden>
-          {chapter.backdrop === 'room' && effect !== 'launch' && <HalaAvatar size={86} helmet={chapter.id !== 'home'} />}
+          {chapter.backdrop === 'room' && effect !== 'launch' && (
+            <HalaAvatar
+              size={86}
+              helmet={chapter.id !== 'home'}
+              pose={chapter.id === 'home' && (phase === 'reply' || step >= chapter.steps.length - 2) ? 'dance' : 'wave'}
+            />
+          )}
           <Nori size={chapter.backdrop === 'room' ? 86 : 70} wave={effect === 'wave'} mood={chapter.id === 'home' && step === chapter.steps.length - 1 ? 'sleepy' : 'happy'} />
         </div>
 

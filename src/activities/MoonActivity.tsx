@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
-import { say, sfx } from '../audio'
+import { narrator, say, sfx } from '../audio'
+import { AstronautCharacter } from '../components/character/AstronautCharacter'
+import { react } from '../profile/reactions'
 import { PlanetArt } from '../components/PlanetArt'
 import { Stage, type ActivityProps } from './common'
 
@@ -13,6 +15,7 @@ export function MoonActivity({ onDone }: ActivityProps) {
   const dragging = useRef(false)
   const half = useRef(false)
   const done = useRef(false)
+  const [landed, setLanded] = useState(false)
 
   const advance = (next: number) => {
     let d = next - angle
@@ -27,7 +30,10 @@ export function MoonActivity({ onDone }: ActivityProps) {
     }
     if (!done.current && t >= TAU * 0.95) {
       done.current = true
-      onDone()
+      setLanded(true)
+      sfx('success')
+      // she lands and plants a little flag, then the mission completes
+      void narrator.say(react('moonFlag')).then(() => onDone())
     }
   }
 
@@ -103,6 +109,17 @@ export function MoonActivity({ onDone }: ActivityProps) {
           </button>
         </div>
       </div>
+      {landed && (
+        <div className="anim-fade absolute inset-x-0 bottom-0 h-[46%] overflow-hidden" data-testid="moon-landing" aria-label="حلا حطت العلم على القمر" role="img">
+          {/* the Moon's surface */}
+          <div className="absolute -bottom-[60%] left-1/2 aspect-square w-[130%] -translate-x-1/2">
+            <PlanetArt id="moon" />
+          </div>
+          <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2" style={{ animation: 'flag-plant 1s ease-out both' }}>
+            <AstronautCharacter size={110} pose="flag" />
+          </div>
+        </div>
+      )}
     </Stage>
   )
 }

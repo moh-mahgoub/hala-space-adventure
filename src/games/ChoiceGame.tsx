@@ -14,6 +14,7 @@ import { script } from '../content/script'
 import { ui } from '../content/ui'
 import { BODIES, relativeToEarth, type BodyId } from '../data/planets'
 import { earn } from '../state/rewards'
+import { react } from '../profile/reactions'
 import { checkAnswer, makeChoiceRounds, makeSizeRounds, shouldHint, type ChoiceRound } from './logic'
 
 export type ChoiceKind = 'find' | 'shadow' | 'size'
@@ -58,10 +59,12 @@ export function ChoiceGame({ kind }: { kind: ChoiceKind }) {
     if (checkAnswer(round, id) === 'correct') {
       setSolved(true)
       sfx('success')
-      const praise = praiseIdx.current++ % script.common.praise.length
+      // alternate her catch-phrase with the other praise lines so it stays fresh
+      const n = praiseIdx.current++
+      const cheer = react('correct', n % 2 === 0 ? {} : { line: line(`common.praise.${(n >> 1) % script.common.praise.length}`) })
       void narrator
         .say([
-          line(`common.praise.${praise}`),
+          cheer,
           line(`games.${kind}.correct`, { planet: BODIES[round.target].nameAr }),
         ])
         .then((completed) => {

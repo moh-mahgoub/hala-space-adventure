@@ -1,5 +1,6 @@
 import { say } from '../audio'
 import { PlanetArt } from '../components/PlanetArt'
+import { MissionBadge } from '../components/character/MissionBadge'
 import { TopBar } from '../components/TopBar'
 import { STORY } from '../content/story'
 import { BODIES, TOUR_ORDER } from '../data/planets'
@@ -83,9 +84,7 @@ export function MapScreen() {
                     earned ? 'border-yellow-300 bg-yellow-300/15' : 'border-white/10 bg-white/5'
                   }`}
                 >
-                  <span className={`text-5xl ${earned ? '' : 'opacity-30 grayscale'}`} aria-hidden>
-                    {earned ? b.icon : '🔒'}
-                  </span>
+                  <MissionBadge icon={b.icon} title={b.title} earned={earned} size={76} />
                   <span className={`text-base font-bold ${earned ? '' : 'text-white/50'}`}>{b.title}</span>
                 </li>
               )

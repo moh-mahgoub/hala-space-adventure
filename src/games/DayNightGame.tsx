@@ -11,6 +11,8 @@ import { script } from '../content/script'
 import { ui } from '../content/ui'
 import { useReducedMotion } from '../hooks'
 import { earn } from '../state/rewards'
+import { react } from '../profile/reactions'
+import { line } from '../audio'
 import { isDaytime } from './logic'
 
 
@@ -72,6 +74,7 @@ export function DayNightGame() {
       if (n >= 3 && !explained) {
         setExplained(true)
         earn('game:dayNight')
+        react('mission', { line: line('games.dayNight.explain') })
         void say('games.dayNight.explain')
       } else if (!auto || n <= 2) {
         void say(day ? 'games.dayNight.day' : 'games.dayNight.night')
@@ -169,7 +172,7 @@ export function DayNightGame() {
           <span className="text-6xl" aria-hidden>
             {day ? '☀️' : '🌙'}
           </span>
-          <HalaAvatar size={64} helmet={false} />
+          <HalaAvatar size={64} pose={day ? 'wave' : 'stand'} />
           <span className={`text-4xl font-extrabold ${day ? 'text-night-900' : 'text-yellow-100'}`}>
             {day ? ui.day : ui.night}
           </span>

@@ -1,5 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
-import { say, sfx } from '../audio'
+import { line, narrator, sfx } from '../audio'
+import { AstronautCharacter } from '../components/character/AstronautCharacter'
+import { react } from '../profile/reactions'
+import { surprises } from '../profile/surprises'
 import { PlanetArt } from '../components/PlanetArt'
 import { Stage, TapHint, type ActivityProps } from './common'
 
@@ -8,6 +11,7 @@ export function SaturnActivity({ onDone }: ActivityProps) {
   const [tilt, setTilt] = useState(0.5)
   const [seen, setSeen] = useState({ above: false, below: false })
   const [stage, setStage] = useState<'look' | 'tap' | 'zoom'>('look')
+  const [upside, setUpside] = useState(false)
   const drag = useRef<{ y: number; tilt: number } | null>(null)
   const box = useRef<HTMLDivElement>(null)
 
@@ -19,7 +23,7 @@ export function SaturnActivity({ onDone }: ActivityProps) {
     if (stage === 'look' && next.above && next.below) {
       setStage('tap')
       sfx('success')
-      void say('planets.saturn.activity.steps.0')
+      void narrator.say([react('saturn'), line('planets.saturn.activity.steps.0')])
     }
   }
 
@@ -72,6 +76,10 @@ export function SaturnActivity({ onDone }: ActivityProps) {
           </span>
         )}
         <PlanetArt id="saturn" ringTilt={tilt} spin title="زحل" />
+        {/* she floats beside the rings, peeking around Saturn */}
+        <div className="pointer-events-none absolute -top-[2%] left-[2%] w-[22%]" data-testid="saturn-astronaut">
+          <AstronautCharacter size="100%" pose={stage === 'look' ? 'peek' : 'float'} upsideDown={upside} />
+        </div>
         {stage !== 'look' && (
           <button
             type="button"
@@ -82,6 +90,11 @@ export function SaturnActivity({ onDone }: ActivityProps) {
               setStage('zoom')
               sfx('whoosh')
               onDone()
+              // rare surprise: she drifts upside down — no "up" in floating space
+              if (surprises.maybe('upsideDown')) {
+                setUpside(true)
+                void narrator.say(react('upsideDown'), { mode: 'queue' })
+              }
             }}
             className="absolute top-1/2 left-1/2 h-[30%] w-[96%] -translate-x-1/2 -translate-y-1/2 rounded-full"
           >

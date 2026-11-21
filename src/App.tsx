@@ -6,7 +6,6 @@ import { Starfield } from './components/Starfield'
 import { useReducedMotion } from './hooks'
 import { useRoute, type Route } from './router'
 import { progressStore, useProgress, visitedAllPlanets } from './state/progress'
-import { say } from './audio'
 import { StartScreen } from './screens/StartScreen'
 import { HomeScreen } from './screens/HomeScreen'
 import { SolarSystemScreen } from './screens/SolarSystemScreen'
@@ -16,6 +15,11 @@ import { GameScreen } from './screens/GameScreen'
 import { StoryScreen } from './screens/StoryScreen'
 import { MapScreen } from './screens/MapScreen'
 import { useSettings } from './state/settings'
+import { loadProfileImages } from './profile/profile'
+import { AvatarReaction } from './components/character/AvatarReaction'
+import { react } from './profile/reactions'
+import { narrator } from './audio'
+import { AstronautCharacter } from './components/character/AstronautCharacter'
 
 function routeKey(r: Route): string {
   switch (r.name) {
@@ -61,6 +65,11 @@ export function App() {
     document.documentElement.dataset.motion = reduced ? 'reduce' : 'full'
   }, [reduced])
 
+  // load the child's locally stored face (IndexedDB) once
+  useEffect(() => {
+    void loadProfileImages()
+  }, [])
+
   useEffect(() => {
     document.title = `رحلة ${childName} في الفضاء`
   }, [childName])
@@ -71,7 +80,7 @@ export function App() {
       progressStore.set({ celebratedAll: true })
       const t = window.setTimeout(() => {
         setCelebrate(true)
-        void say('map.allVisited')
+        void narrator.say(react('journey'))
       }, 2500)
       return () => clearTimeout(t)
     }
@@ -89,9 +98,11 @@ export function App() {
       )}
       <Caption />
       <StarToast />
+      {started && <AvatarReaction />}
       {celebrate && (
-        <Celebration title="مستكشفة الكواكب!" icon="🪐" onClose={() => setCelebrate(false)}>
-          <p className="text-2xl font-bold">زرتي التمن كواكب كلهم!</p>
+        <Celebration title={`مبروك يا كابتن ${childName}!`} icon="🪐" onClose={() => setCelebrate(false)}>
+          <AstronautCharacter size={120} pose="dance" />
+          <p className="text-2xl font-bold">اكتشفتي المجموعة الشمسية كلها!</p>
         </Celebration>
       )}
     </div>

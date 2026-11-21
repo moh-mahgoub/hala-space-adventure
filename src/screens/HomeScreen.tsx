@@ -101,7 +101,7 @@ export function HomeScreen() {
           onClick={() => void say('home.hello')}
           className="btn-pop flex items-end gap-1"
         >
-          <HalaAvatar size={70} className="anim-float" />
+          <HalaAvatar size={74} pose="float" />
           <Nori size={74} className="anim-float" />
         </button>
         <h1 className="text-4xl font-extrabold text-yellow-200 text-shadow sm:text-6xl">رحلة {childName} في الفضاء</h1>

@@ -9,6 +9,10 @@ import { useOnce, useReducedMotion, useSize } from '../hooks'
 import { navigate } from '../router'
 import { useProgress } from '../state/progress'
 import { useSettings } from '../state/settings'
+import { FriendlyAlien } from '../components/character/FriendlyAlien'
+import { surprises } from '../profile/surprises'
+import { react } from '../profile/reactions'
+import { narrator } from '../audio'
 
 /** Pleasant starting angles so planets don't line up */
 const START_ANGLE: Record<PlanetId, number> = {
@@ -118,6 +122,17 @@ export function SolarSystemScreen() {
   const labels = useRef<Partial<Record<BodyId, SVGTextElement | null>>>({})
   const paused = useRef(false)
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null)
+  // rare surprise: a friendly alien peeks out and waves
+  const [alien, setAlien] = useState<'hidden' | 'peek' | 'waved'>('hidden')
+  useEffect(() => {
+    if (!surprises.maybe('alien')) return
+    const show = window.setTimeout(() => setAlien('peek'), 6000)
+    const hide = window.setTimeout(() => setAlien((a) => (a === 'peek' ? 'hidden' : a)), 20000)
+    return () => {
+      clearTimeout(show)
+      clearTimeout(hide)
+    }
+  }, [])
   const layout = useMemo(() => (size.width ? computeLayout(size.width, size.height) : null), [size.width, size.height])
 
   const suggestion: BodyId | undefined =
@@ -280,6 +295,25 @@ export function SolarSystemScreen() {
                 </text>
               ))}
           </svg>
+        )}
+        {alien !== 'hidden' && (
+          <button
+            type="button"
+            data-testid="friendly-alien"
+            aria-label="كائن فضائي لطيف"
+            onClick={() => {
+              sfx('pop')
+              setAlien('waved')
+              void narrator.say(react('alien'))
+              window.setTimeout(() => setAlien('hidden'), 4000)
+            }}
+            className="absolute top-[38%] -left-2"
+            style={{ animation: alien === 'peek' ? 'slide-up 0.6s ease both' : undefined }}
+          >
+            <span className={`block ${alien === 'waved' ? 'anim-bounce' : ''}`}>
+              <FriendlyAlien size={70} />
+            </span>
+          </button>
         )}
         <p className="pointer-events-none absolute bottom-1 left-2 text-xs text-white/45" dir="ltr">
           Illustration — sizes & distances not to scale
