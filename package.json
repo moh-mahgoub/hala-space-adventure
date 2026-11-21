@@ -14,7 +14,12 @@
     "test:e2e": "playwright test --trace off",
     "test:all": "npm run test && npm run build && npm run test:e2e",
     "list-lines": "node --no-warnings scripts/list-lines.mjs",
-    "icons": "node scripts/make-icons.mjs"
+    "icons": "node scripts/make-icons.mjs",
+    "audio:audition": "node audio-pipeline/audition.mjs",
+    "audio:audition:dry": "node audio-pipeline/audition.mjs --dry-run",
+    "audio:audition:serve": "node audio-pipeline/serve.mjs",
+    "audio:voices": "node audio-pipeline/voices.mjs",
+    "audio:manifest:draft": "node --no-warnings audio-pipeline/build-manifest.mjs"
   },
   "dependencies": {
     "@fontsource/baloo-bhaijaan-2": "^5.3.0",

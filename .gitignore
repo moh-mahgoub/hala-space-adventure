@@ -18,3 +18,9 @@ blob-report/
 private/
 photos/
 *.personal.*
+
+# Audio pipeline: credentials and private audition recordings stay local
+.env.local
+.env
+audition/out/
+audio-pipeline/.cache/

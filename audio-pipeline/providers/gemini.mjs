@@ -1,0 +1,43 @@
+// Google Gemini TTS (Gemini API). Style is steered with a natural-language
+// direction; output is raw 16-bit PCM (usually 24 kHz mono).
+import { env } from '../lib/env.mjs'
+import { pcmToWav } from '../lib/audio.mjs'
+
+export const id = 'gemini'
+export const label = 'Google Gemini TTS'
+export const credentials = ['GEMINI_API_KEY']
+export const defaultModel = 'gemini-3.1-flash-tts-preview'
+
+export function available() {
+  return !!env('GEMINI_API_KEY')
+}
+
+/** English direction + Arabic line: the model performs the line, it doesn't read the direction. */
+export function buildPrompt(text, style) {
+  return style ? `${style}\n\n${text}` : text
+}
+
+export async function synthesize({ text, voice, style, model }) {
+  const key = env('GEMINI_API_KEY')
+  if (!key) throw new Error('GEMINI_API_KEY is not set')
+  const m = model || env('GEMINI_TTS_MODEL') || defaultModel
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-goog-api-key': key },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: buildPrompt(text, style) }] }],
+      generationConfig: {
+        responseModalities: ['AUDIO'],
+        speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } },
+      },
+    }),
+  })
+  if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 400)}`)
+  const json = await res.json()
+  const part = json?.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)
+  if (!part) throw new Error(`Gemini returned no audio: ${JSON.stringify(json).slice(0, 300)}`)
+  const mime = part.inlineData.mimeType || ''
+  const rate = Number(mime.match(/rate=(\d+)/)?.[1] || 24000)
+  const pcm = Buffer.from(part.inlineData.data, 'base64')
+  return { audio: mime.includes('wav') ? pcm : pcmToWav(pcm, rate), model: m, usage: json.usageMetadata ?? null }
+}
