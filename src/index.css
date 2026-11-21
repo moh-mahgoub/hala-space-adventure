@@ -1,0 +1,322 @@
+@import 'tailwindcss';
+@import '@fontsource/baloo-bhaijaan-2/arabic-500.css';
+@import '@fontsource/baloo-bhaijaan-2/arabic-700.css';
+@import '@fontsource/baloo-bhaijaan-2/arabic-800.css';
+@import '@fontsource/baloo-bhaijaan-2/latin-500.css';
+@import '@fontsource/baloo-bhaijaan-2/latin-700.css';
+
+@theme {
+  --font-sans: 'Baloo Bhaijaan 2', 'Geeza Pro', 'Noto Sans Arabic', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --color-night-950: #070821;
+  --color-night-900: #0d1036;
+  --color-night-800: #171a52;
+  --color-night-700: #24296e;
+  --color-violet-glow: #8b5cf6;
+  --color-sun: #ffc93c;
+  --color-candy: #ff6fae;
+  --color-mint: #4ee6b4;
+  --color-sky: #5ecbff;
+}
+
+:root {
+  color-scheme: dark;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: #070821;
+  color: #f8f7ff;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.app-bg {
+  background:
+    radial-gradient(1200px 700px at 85% 10%, rgba(139, 92, 246, 0.35), transparent 60%),
+    radial-gradient(900px 600px at 10% 90%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(800px 500px at 50% 50%, rgba(36, 41, 110, 0.6), transparent 70%),
+    linear-gradient(180deg, #0d1036 0%, #070821 100%);
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  padding: calc(var(--safe-top) + 0.5rem) calc(var(--safe-right) + 0.75rem) calc(var(--safe-bottom) + 0.5rem)
+    calc(var(--safe-left) + 0.75rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Big friendly focus ring for keyboard users */
+:focus-visible {
+  outline: 4px solid #ffe066;
+  outline-offset: 3px;
+  border-radius: 1.25rem;
+}
+svg :focus-visible {
+  outline: none;
+}
+svg [role='button']:focus-visible > .focus-ring {
+  opacity: 1;
+}
+.focus-ring {
+  opacity: 0;
+}
+
+.btn-pop {
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+.btn-pop:active {
+  transform: scale(0.94);
+  filter: brightness(1.15);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.text-shadow {
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ── keyframes ─────────────────────────────────────────── */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+@keyframes pop-in {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-16px);
+  }
+}
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--dx, 0), 105vh, 0) rotate(720deg);
+    opacity: 0.9;
+  }
+}
+@keyframes zoom-in {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes ray-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+@keyframes talk {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes launch {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  20% {
+    transform: translateY(6px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(-120vh) rotate(0);
+  }
+}
+@keyframes wind {
+  from {
+    transform: translateX(60%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-160%);
+    opacity: 0;
+  }
+}
+@keyframes hold-fill {
+  from {
+    stroke-dashoffset: 126;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.anim-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+.anim-float {
+  animation: float 4s ease-in-out infinite;
+}
+.anim-pop {
+  animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.anim-fade {
+  animation: fade-in 0.4s ease both;
+}
+.anim-slide-up {
+  animation: slide-up 0.45s ease both;
+}
+.anim-wiggle {
+  animation: wiggle 0.5s ease-in-out 2;
+}
+.anim-bounce {
+  animation: bounce-soft 1.2s ease-in-out infinite;
+}
+.anim-pulse-glow {
+  animation: pulse-glow 1.6s ease-in-out infinite;
+}
+.anim-zoom {
+  animation: zoom-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.anim-spin-slow {
+  animation: spin 40s linear infinite;
+}
+
+/* ── Reduced motion: honour system setting or parent override ── */
+html[data-motion='reduce'] *,
+html[data-motion='reduce'] *::before,
+html[data-motion='reduce'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@keyframes tex-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200px);
+  }
+}

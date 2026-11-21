@@ -1,0 +1,40 @@
+{
+  "name": "hala-space-adventure",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "رحلة حلا في الفضاء — Hala's Space Adventure: an Arabic interactive solar system for preschoolers",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --trace off",
+    "test:all": "npm run test && npm run build && npm run test:e2e",
+    "list-lines": "node --no-warnings scripts/list-lines.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "dependencies": {
+    "@fontsource/baloo-bhaijaan-2": "^5.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "jsdom": "^31.0.1",
+    "tailwindcss": "^4.3.5",
+    "typescript": "5.9",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}
