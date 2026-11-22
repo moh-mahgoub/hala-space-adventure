@@ -48,7 +48,11 @@ async function resolveVoices(provider, cand, dryRun) {
   if (dryRun) return Array.from({ length: cand.pick }, (_, i) => ({ ...cand, voice: `<egyptian-${cand.search.gender}-${i + 1}>` }))
   const found = await elevenlabs.searchVoices({ ...cand.search, language: 'ar' })
   const preferred = found.filter((v) => cand.prefer.some((p) => v.name.toLowerCase().includes(p.toLowerCase())))
-  const ordered = [...preferred, ...found.filter((v) => !preferred.includes(v))].slice(0, cand.pick)
+  // keep the order of `prefer`; with `only`, never fall back to other voices
+  preferred.sort((a, b) => cand.prefer.findIndex((p) => a.name.includes(p)) - cand.prefer.findIndex((p) => b.name.includes(p)))
+  const pool = cand.only ? preferred : [...preferred, ...found.filter((v) => !preferred.includes(v))]
+  if (cand.only && preferred.length < cand.pick) console.log(`  ! only found ${preferred.length}/${cand.pick} of: ${cand.prefer.join(', ')}`)
+  const ordered = pool.slice(0, cand.pick)
   const out = []
   for (const v of ordered) {
     const voiceId = await elevenlabs.ensureVoice(v)

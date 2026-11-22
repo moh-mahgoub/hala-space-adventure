@@ -44,10 +44,14 @@ export const CANDIDATES = {
   },
   elevenlabs: {
     // resolved from the shared Voice Library at run time (Egyptian accent)
-    narrator: [{ search: { gender: 'female', accent: 'egyptian' }, pick: 3, prefer: ['Hoda', 'Yasmine', 'Fatima'] }],
+    // Hand-picked from the library listing (npm run audio:voices): warm, young, story-oriented
+    narrator: [
+      { search: { gender: 'female', accent: 'egyptian' }, pick: 3, only: true, prefer: ['Fatima - Smooth Audiobook', 'Asmaa - Natural', 'Nadia - Sweet'] },
+    ],
+    // young, bright, playful male voices
     zizo: [
-      { search: { gender: 'male', accent: 'egyptian' }, pick: 2, prefer: [] },
-      { search: { gender: 'male', accent: 'egyptian' }, pick: 1, fx: 'zizo-light', prefer: [] },
+      { search: { gender: 'male', accent: 'egyptian' }, pick: 3, only: true, prefer: ['Ziad - Dynamic', 'Mostafa - Bold', 'Mawardy'] },
+      { search: { gender: 'male', accent: 'egyptian' }, pick: 1, only: true, fx: 'zizo-light', prefer: ['Ziad - Dynamic'] },
     ],
   },
   azure: {

@@ -20,7 +20,7 @@ function headers() {
 }
 
 /** Search the shared voice library, e.g. { language: 'ar', accent: 'egyptian', gender: 'female' }. */
-export async function searchVoices({ language = 'ar', accent = 'egyptian', gender, search, pageSize = 30 } = {}) {
+export async function searchVoices({ language = 'ar', accent = 'egyptian', gender, search, pageSize = 60 } = {}) {
   const q = new URLSearchParams({ page_size: String(pageSize), language })
   if (accent) q.set('accent', accent)
   if (gender) q.set('gender', gender)
