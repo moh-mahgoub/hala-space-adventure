@@ -63,7 +63,7 @@ test('a game answer is narrated from composed clips', async ({ page }) => {
   await start(page)
   await page.evaluate(() => (location.hash = '#/game/find'))
   await page.locator('[data-target=no]').first().click()
-  await expect(page.getByTestId('caption')).toContainText(/^(ده|دي) /)
+  await expect(page.getByTestId('caption')).toContainText(/(^|: )(ده|دي) /)
   await expect.poll(() => audio.some((a) => /\/common\/common\.thisIs\.\w+\.mp3$/.test(a.url)), { timeout: 10_000 }).toBe(true)
   await expect(page.getByTestId('caption')).toContainText('يلا ندور تاني', { timeout: 15_000 })
   expect(audio.filter((a) => a.status >= 400)).toEqual([])
