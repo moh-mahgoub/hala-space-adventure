@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url'
 import { finishClip, hasFfmpeg } from './lib/audio.mjs'
 import { estimate, PRICING } from './lib/cost.mjs'
 import { loadEnv } from './lib/env.mjs'
-import { splitTake } from './lib/split.mjs'
+import { plausibleDuration, splitTake } from './lib/split.mjs'
 import { PROVIDERS, batchDirectionFor, directionFor, suspiciousDuration, withRetries } from './audition.mjs'
 import { buildManifest, MANIFEST } from './build-manifest.mjs'
 import { VOICES } from './voices.config.mjs'
@@ -27,7 +27,7 @@ const MAX_BATCH_LINES = 8
 const MAX_BATCH_CHARS = 520
 
 function parseArgs(argv) {
-  const a = { dryRun: false, force: false, only: null, budget: 5, limit: Infinity, speaker: null }
+  const a = { dryRun: false, force: false, only: null, budget: 5, limit: Infinity, speaker: null, single: false, repair: false }
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i]
     if (k === '--dry-run') a.dryRun = true
@@ -36,8 +36,18 @@ function parseArgs(argv) {
     else if (k === '--budget') a.budget = Number(argv[++i])
     else if (k === '--limit') a.limit = Number(argv[++i])
     else if (k === '--speaker') a.speaker = argv[++i]
+    else if (k === '--single') a.single = true // one request per line (no batching)
+    else if (k === '--repair') a.repair = true // re-record implausible clips and their take-neighbours
   }
   return a
+}
+
+/** Duration (s) of a WAV buffer, from its header. */
+function probeWav(buf) {
+  const byteRate = buf.readUInt32LE(28)
+  const dataIdx = buf.indexOf('data')
+  const dataLen = dataIdx > 0 ? buf.readUInt32LE(dataIdx + 4) : buf.length - 44
+  return byteRate ? dataLen / byteRate : null
 }
 
 /** USD for one Gemini response, from its reported token usage. */
@@ -70,6 +80,17 @@ async function main() {
   loadEnv(ROOT)
   const args = parseArgs(process.argv.slice(2))
   const manifest = buildManifest()
+  if (args.repair) {
+    // a bad cut damages BOTH sides of it: redo each implausible clip and its neighbours (same speaker)
+    const bad = new Set()
+    manifest.forEach((e, i) => {
+      if (!e.duration || plausibleDuration(e.duration, e.text.length)) return
+      for (const j of [i - 1, i, i + 1]) if (manifest[j]?.speaker === e.speaker) bad.add(manifest[j].id)
+    })
+    args.only = bad
+    args.single = true
+    console.log(`Repair: ${bad.size} clips (implausible + neighbours)`)
+  }
   const todo = manifest
     .filter((e) => !args.speaker || e.speaker === args.speaker)
     .filter((e) => (args.only ? args.only.has(e.id) : args.force || !e.duration || !existsSync(path.join(ROOT, 'public', e.file))))
@@ -107,16 +128,20 @@ async function main() {
     const mod = PROVIDERS[v.provider]
     const lines = batch.map((e) => ({ id: e.id, speaker: e.speaker, emotion: e.emotion, text: e.text }))
     const raw = new Map()
-    if (batch.length > 1 && mod.batchTakes) {
+    if (batch.length > 1 && mod.batchTakes && !args.single) {
       try {
         const r = await withRetries(
           () => paced(mod, () => mod.synthesize({ text: mod.batchText(lines.map((l) => l.text)), voice: v.voice, model: v.model, style: batchDirectionFor(v.provider, lines) })),
           `take ${batch[0].id}…`,
         )
         spent += usageCost(r.usage)
-        const parts = splitTake(r.audio, lines.length)
-        if (parts) lines.forEach((l, i) => raw.set(l.id, parts[i]))
-        else console.log(`  ! take ${batch[0].id}…: pauses unclear → one request per line`)
+        const parts = splitTake(r.audio, lines.length, lines.map((l) => l.text.length))
+        if (parts) {
+          // every piece must be believable for its text; one bad cut spoils its neighbours too
+          const durations = parts.map((p) => probeWav(p))
+          if (durations.every((d, i) => plausibleDuration(d, lines[i].text.length))) lines.forEach((l, i) => raw.set(l.id, parts[i]))
+          else console.log(`  ! take ${batch[0].id}…: a cut looks wrong → one request per line`)
+        } else console.log(`  ! take ${batch[0].id}…: pauses unclear → one request per line`)
       } catch (e) {
         console.log(`  ! take ${batch[0].id}… failed: ${String(e.message).slice(0, 140)}`)
         if (/per day/i.test(e.message)) break
@@ -129,7 +154,8 @@ async function main() {
         let audio = raw.get(l.id)
         const checkAndFinish = (buf) => {
           const { duration } = finishClip(buf, out, { fx: v.fx })
-          if (suspiciousDuration(duration, l.text.length)) throw new Error(`suspicious length ${duration}s for ${l.text.length} chars`)
+          if (suspiciousDuration(duration, l.text.length) || !plausibleDuration(duration, l.text.length))
+            throw new Error(`suspicious length ${duration}s for ${l.text.length} chars`)
           return duration
         }
         let duration

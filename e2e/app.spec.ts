@@ -258,7 +258,7 @@ test('parent sound check reports the audio state and gives advice', async ({ pag
   await gate.dispatchEvent('pointerup', { pointerId: 1 })
   await page.getByTestId('sound-check-run').click()
   await expect(page.getByTestId('sound-report')).toContainText('Sound effects: running')
-  await expect(page.getByTestId('sound-report')).toContainText('Arabic voice:')
+  await expect(page.getByTestId('sound-report')).toContainText('recorded clips:')
   await expect(page.getByTestId('sound-tips')).toContainText('volume')
   expect(errors).toEqual([])
 })

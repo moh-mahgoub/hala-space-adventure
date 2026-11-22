@@ -10,7 +10,7 @@ import { pcmToWav, FX } from './lib/audio.mjs'
 // @ts-expect-error plain JS modules
 import { estimate } from './lib/cost.mjs'
 // @ts-expect-error plain JS modules
-import { chooseCuts, parseSilences, splitTake } from './lib/split.mjs'
+import { chooseCuts, parseSilences, plausibleDuration, splitTake } from './lib/split.mjs'
 import { execFileSync, spawnSync } from 'node:child_process'
 // @ts-expect-error plain JS modules
 import { AUDITION_LINES, AUDITION_DIALOGUE, CANDIDATES } from './auditions.mjs'
@@ -91,6 +91,25 @@ describe('splitting one take into clips', () => {
     expect(s).toHaveLength(4)
     expect(chooseCuts(s, 3, 12)).toEqual([3, 8]) // the two 2-second pauses, not the short breath
     expect(chooseCuts(s, 6, 12)).toBeNull() // not enough pauses → caller falls back
+  })
+
+  it('with line lengths, cuts at the pause nearest each expected boundary (not a long mid-sentence pause)', () => {
+    // 3 lines of equal length over 12 s → boundaries expected near 4 s and 8 s.
+    // A LONG pause at 2 s (inside line 1) must not be chosen over the shorter one at 4 s.
+    const silences = [
+      { start: 1.5, end: 2.5 }, // 1.0 s pause inside a sentence
+      { start: 3.8, end: 4.4 }, // real boundary
+      { start: 7.7, end: 8.3 }, // real boundary
+    ]
+    expect(chooseCuts(silences, 3, 12, [40, 40, 40])).toEqual([4.1, 8])
+    expect(chooseCuts(silences, 3, 12)).toEqual([2, 4.1]) // unweighted picks the long wrong one
+  })
+
+  it('judges clip length against its text', () => {
+    expect(plausibleDuration(1.0, 4)).toBe(true) // «واحد»
+    expect(plausibleDuration(4.0, 10)).toBe(false) // «دي الزهرة.» with a neighbour's words
+    expect(plausibleDuration(2.69, 106)).toBe(false) // cut-off sentence
+    expect(plausibleDuration(10, 106)).toBe(true)
   })
 
   const hasFfmpeg = spawnSync('ffmpeg', ['-version']).status === 0
