@@ -157,7 +157,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.star.mp3",
   "hash": "1acb79dcf9b8",
-  "duration": 1.31
+  "duration": 1.44
  },
  {
   "id": "start.welcome",
@@ -167,7 +167,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/welcome/start.welcome.mp3",
   "hash": "2f633e0629dd",
-  "duration": 3.84
+  "duration": 7.16
  },
  {
   "id": "zizo.intro",
@@ -176,7 +176,8 @@
   "text": "أهلاً يا كابتن حلا! أنا زيزو الروبوت! اربطي الحزام، إحنا طايرين!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/zizo.intro.mp3",
-  "hash": "6fab671ef536"
+  "hash": "6fab671ef536",
+  "duration": 5.33
  },
  {
   "id": "zizo.planets.sun",
@@ -185,7 +186,8 @@
   "text": "إيه ده كله نور؟! أنا محتاج نضارة شمس روبوتي!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.sun.mp3",
-  "hash": "df379ae5e5f6"
+  "hash": "df379ae5e5f6",
+  "duration": 3.92
  },
  {
   "id": "zizo.planets.mercury",
@@ -194,7 +196,8 @@
   "text": "عطارد صغنن وسريع… زيي أنا بالظبط!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.mercury.mp3",
-  "hash": "6abd56a518df"
+  "hash": "6abd56a518df",
+  "duration": 3.45
  },
  {
   "id": "zizo.planets.venus",
@@ -203,7 +206,8 @@
   "text": "أوووف! الزهرة سخنة أوي، أنا خايف أسيح!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.venus.mp3",
-  "hash": "86ac036d9006"
+  "hash": "86ac036d9006",
+  "duration": 3.42
  },
  {
   "id": "zizo.planets.earth",
@@ -212,7 +216,8 @@
   "text": "دي الأرض! سلّمي على ماما وبابا يا حلا!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.earth.mp3",
-  "hash": "d118d9f56703"
+  "hash": "d118d9f56703",
+  "duration": 2.98
  },
  {
   "id": "zizo.planets.moon",
@@ -221,7 +226,8 @@
   "text": "القمر صاحب الأرض؟ وأنا صاحب مين؟ آه، صاحبك إنتي يا كابتن!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.moon.mp3",
-  "hash": "54cf37c15173"
+  "hash": "54cf37c15173",
+  "duration": 5.07
  },
  {
   "id": "zizo.planets.mars",
@@ -230,7 +236,8 @@
   "text": "المريخ أحمر خالص! هو مكسوف ولا إيه؟",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.mars.mp3",
-  "hash": "97ce82486071"
+  "hash": "97ce82486071",
+  "duration": 3.29
  },
  {
   "id": "zizo.planets.jupiter",
@@ -239,7 +246,8 @@
   "text": "إيه ده يا حلا؟! ده كبيييير أوي! أنا محتاج أكبّر النضارة بتاعتي!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.jupiter.mp3",
-  "hash": "fefccb50375f"
+  "hash": "fefccb50375f",
+  "duration": 4.44
  },
  {
   "id": "zizo.planets.saturn",
@@ -248,7 +256,8 @@
   "text": "يا نهار أبيض! هو زحل لابس حلقات ولا إيه؟!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.saturn.mp3",
-  "hash": "663e5e46dc70"
+  "hash": "663e5e46dc70",
+  "duration": 3.92
  },
  {
   "id": "zizo.planets.uranus",
@@ -257,7 +266,8 @@
   "text": "أورانوس نايم على جنبه؟ أكيد تعبان من كتر اللف!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.uranus.mp3",
-  "hash": "35423cce8bc8"
+  "hash": "35423cce8bc8",
+  "duration": 4.15
  },
  {
   "id": "zizo.planets.neptune",
@@ -266,7 +276,8 @@
   "text": "برررر! نبتون ساقع أوي، هاتولي بطانية!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.neptune.mp3",
-  "hash": "f92cab2ae557"
+  "hash": "f92cab2ae557",
+  "duration": 3.76
  },
  {
   "id": "zizo.celebrate.0",
@@ -275,7 +286,8 @@
   "text": "برافووو يا كابتن حلا!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.0.mp3",
-  "hash": "6e21478c912e"
+  "hash": "6e21478c912e",
+  "duration": 2.38
  },
  {
   "id": "zizo.celebrate.1",
@@ -284,7 +296,8 @@
   "text": "هييييه! المهمة نجحت!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.1.mp3",
-  "hash": "d54479c456f2"
+  "hash": "d54479c456f2",
+  "duration": 3.06
  },
  {
   "id": "zizo.celebrate.2",
@@ -293,7 +306,8 @@
   "text": "أنا هرقص من الفرحة!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.2.mp3",
-  "hash": "12fbb98aa6e0"
+  "hash": "12fbb98aa6e0",
+  "duration": 1.78
  },
  {
   "id": "zizo.neverMind",
@@ -302,7 +316,8 @@
   "text": "ولا يهمك يا كابتن، أنا كمان ساعات بتلخبط!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/hints/zizo.neverMind.mp3",
-  "hash": "3a5aa717a011"
+  "hash": "3a5aa717a011",
+  "duration": 3.11
  },
  {
   "id": "home.hello",
@@ -352,7 +367,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.map.mp3",
   "hash": "f46435ddd412",
-  "duration": 7.24
+  "duration": 4
  },
  {
   "id": "space.intro",
@@ -362,7 +377,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.intro.mp3",
   "hash": "3c1c5404873d",
-  "duration": 2.69
+  "duration": 8.91
  },
  {
   "id": "space.tour",
@@ -372,7 +387,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.tour.mp3",
   "hash": "0b70f8e94c94",
-  "duration": 5.56
+  "duration": 5.64
  },
  {
   "id": "space.suggest.sun",
@@ -492,7 +507,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/welcome/space.tourEnd.mp3",
   "hash": "6f29a6c56446",
-  "duration": 12.2
+  "duration": 7.44
  },
  {
   "id": "planets.sun.intro",
@@ -502,7 +517,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.intro.mp3",
   "hash": "e24ec8f59152",
-  "duration": 4.68
+  "duration": 11.23
  },
  {
   "id": "planets.sun.facts.0",
@@ -512,7 +527,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.0.mp3",
   "hash": "aa8913f43c14",
-  "duration": 1.96
+  "duration": 5.07
  },
  {
   "id": "planets.sun.facts.1",
@@ -522,7 +537,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.1.mp3",
   "hash": "a14c8e481689",
-  "duration": 8.67
+  "duration": 7
  },
  {
   "id": "planets.sun.facts.2",
@@ -1261,7 +1276,8 @@
   "text": "ده نبتون! أبعد كوكب عن الشمس، ولونه أزرق غامق جميل.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.intro.mp3",
-  "hash": "99453cc3a1c3"
+  "hash": "99453cc3a1c3",
+  "duration": 6.45
  },
  {
   "id": "planets.neptune.facts.0",
@@ -1270,7 +1286,8 @@
   "text": "على نبتون أقوى رياح في المجموعة الشمسية، أسرع من الطيارة بكتير!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.0.mp3",
-  "hash": "9af0aab3cdf5"
+  "hash": "9af0aab3cdf5",
+  "duration": 5.41
  },
  {
   "id": "planets.neptune.facts.1",
@@ -1279,7 +1296,8 @@
   "text": "نبتون بعيد قوي عن الشمس، عشان كده هو ساقع ومضلم.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.1.mp3",
-  "hash": "517d8320a552"
+  "hash": "517d8320a552",
+  "duration": 4.7
  },
  {
   "id": "planets.neptune.facts.2",
@@ -1288,7 +1306,8 @@
   "text": "نبتون بياخد أكتر من مية وستين سنة، عشان يلف لفّة واحدة حوالين الشمس!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.2.mp3",
-  "hash": "0d670299676d"
+  "hash": "0d670299676d",
+  "duration": 5.98
  },
  {
   "id": "planets.neptune.short",
@@ -1297,7 +1316,8 @@
   "text": "ده نبتون، أبعد كوكب عن الشمس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.short.mp3",
-  "hash": "805c268955e1"
+  "hash": "805c268955e1",
+  "duration": 3.11
  },
  {
   "id": "planets.neptune.activity.prompt",
@@ -1306,7 +1326,8 @@
   "text": "دوسي على نبتون، عشان نشوف الرياح القوية!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.prompt.mp3",
-  "hash": "b3c86ba95222"
+  "hash": "b3c86ba95222",
+  "duration": 3.06
  },
  {
   "id": "planets.neptune.activity.steps.0",
@@ -1315,7 +1336,8 @@
   "text": "ووووش!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.steps.0.mp3",
-  "hash": "cdad34487f7c"
+  "hash": "cdad34487f7c",
+  "duration": 1.7
  },
  {
   "id": "planets.neptune.activity.steps.1",
@@ -1324,7 +1346,8 @@
   "text": "كمان ريح!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.steps.1.mp3",
-  "hash": "4b33e86fed3f"
+  "hash": "4b33e86fed3f",
+  "duration": 1.07
  },
  {
   "id": "planets.neptune.activity.done",
@@ -1333,7 +1356,8 @@
   "text": "رياح نبتون قوية قوي! وبعد نبتون، بعيد بعيد، فيه كوكب قزم صغير اسمه بلوتو.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.done.mp3",
-  "hash": "c2db087e5bb6"
+  "hash": "c2db087e5bb6",
+  "duration": 8.7
  },
  {
   "id": "games.hub",
@@ -1342,7 +1366,8 @@
   "text": "اختاري لعبة! كل الألعاب حلوة، والعبي قد ما تحبي.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.hub.mp3",
-  "hash": "8a99a19006cc"
+  "hash": "8a99a19006cc",
+  "duration": 4.73
  },
  {
   "id": "games.find.intro",
@@ -1351,7 +1376,8 @@
   "text": "يلا نلعب فين الكوكب! أنا هسألك عن كوكب، وإنتي تدوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.intro.mp3",
-  "hash": "c89d0bb02037"
+  "hash": "c89d0bb02037",
+  "duration": 5.22
  },
  {
   "id": "games.find.question.mercury",
@@ -1360,7 +1386,8 @@
   "text": "يا حلا، فين كوكب عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.mercury.mp3",
-  "hash": "c49764b8f954"
+  "hash": "c49764b8f954",
+  "duration": 2.53
  },
  {
   "id": "games.find.question.venus",
@@ -1369,7 +1396,8 @@
   "text": "يا حلا، فين كوكب الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.venus.mp3",
-  "hash": "c6edee87dc7e"
+  "hash": "c6edee87dc7e",
+  "duration": 2.35
  },
  {
   "id": "games.find.question.earth",
@@ -1378,7 +1406,8 @@
   "text": "يا حلا، فين كوكب الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.earth.mp3",
-  "hash": "74789f30c4ef"
+  "hash": "74789f30c4ef",
+  "duration": 2.27
  },
  {
   "id": "games.find.question.mars",
@@ -1387,7 +1416,8 @@
   "text": "يا حلا، فين كوكب المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.mars.mp3",
-  "hash": "89ecfc20b447"
+  "hash": "89ecfc20b447",
+  "duration": 2.51
  },
  {
   "id": "games.find.question.jupiter",
@@ -1396,7 +1426,8 @@
   "text": "يا حلا، فين كوكب المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.jupiter.mp3",
-  "hash": "c295cc67daad"
+  "hash": "c295cc67daad",
+  "duration": 2.38
  },
  {
   "id": "games.find.question.saturn",
@@ -1405,7 +1436,8 @@
   "text": "يا حلا، فين كوكب زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.saturn.mp3",
-  "hash": "1d5bc3d9eadc"
+  "hash": "1d5bc3d9eadc",
+  "duration": 2.82
  },
  {
   "id": "games.find.question.uranus",
@@ -1414,7 +1446,8 @@
   "text": "يا حلا، فين كوكب أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.uranus.mp3",
-  "hash": "ce7fe2148f3b"
+  "hash": "ce7fe2148f3b",
+  "duration": 2.98
  },
  {
   "id": "games.find.question.neptune",
@@ -1423,7 +1456,8 @@
   "text": "يا حلا، فين كوكب نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.neptune.mp3",
-  "hash": "14876ca0c5ba"
+  "hash": "14876ca0c5ba",
+  "duration": 2.85
  },
  {
   "id": "games.find.tryAgain.mercury",
@@ -1432,7 +1466,8 @@
   "text": "يلا ندور تاني على عطارد!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.mercury.mp3",
-  "hash": "8ecbc584d90b"
+  "hash": "8ecbc584d90b",
+  "duration": 2.38
  },
  {
   "id": "games.find.tryAgain.venus",
@@ -1441,7 +1476,8 @@
   "text": "يلا ندور تاني على الزهرة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.venus.mp3",
-  "hash": "4384d8f5274c"
+  "hash": "4384d8f5274c",
+  "duration": 2.17
  },
  {
   "id": "games.find.tryAgain.earth",
@@ -1450,7 +1486,8 @@
   "text": "يلا ندور تاني على الأرض!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.earth.mp3",
-  "hash": "37a7f90f2000"
+  "hash": "37a7f90f2000",
+  "duration": 2.22
  },
  {
   "id": "games.find.tryAgain.mars",
@@ -1459,7 +1496,8 @@
   "text": "يلا ندور تاني على المريخ!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.mars.mp3",
-  "hash": "82bf256c251c"
+  "hash": "82bf256c251c",
+  "duration": 2.3
  },
  {
   "id": "games.find.tryAgain.jupiter",
@@ -1468,7 +1506,8 @@
   "text": "يلا ندور تاني على المشتري!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.jupiter.mp3",
-  "hash": "3402ae5d6d41"
+  "hash": "3402ae5d6d41",
+  "duration": 2.27
  },
  {
   "id": "games.find.tryAgain.saturn",
@@ -1477,7 +1516,8 @@
   "text": "يلا ندور تاني على زحل!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.saturn.mp3",
-  "hash": "4a6957d5e345"
+  "hash": "4a6957d5e345",
+  "duration": 2.14
  },
  {
   "id": "games.find.tryAgain.uranus",
@@ -1486,7 +1526,8 @@
   "text": "يلا ندور تاني على أورانوس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.uranus.mp3",
-  "hash": "831fbd90e8e6"
+  "hash": "831fbd90e8e6",
+  "duration": 2.4
  },
  {
   "id": "games.find.tryAgain.neptune",
@@ -1495,7 +1536,8 @@
   "text": "يلا ندور تاني على نبتون!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.neptune.mp3",
-  "hash": "c454a5bc41dc"
+  "hash": "c454a5bc41dc",
+  "duration": 2.27
  },
  {
   "id": "games.find.hint.mercury",
@@ -1504,7 +1546,8 @@
   "text": "بصي، عطارد بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.mercury.mp3",
-  "hash": "a7ec123fe3bc"
+  "hash": "a7ec123fe3bc",
+  "duration": 3.16
  },
  {
   "id": "games.find.hint.venus",
@@ -1513,7 +1556,8 @@
   "text": "بصي، الزهرة بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.venus.mp3",
-  "hash": "8b1b6999cbc7"
+  "hash": "8b1b6999cbc7",
+  "duration": 3.11
  },
  {
   "id": "games.find.hint.earth",
@@ -1522,7 +1566,8 @@
   "text": "بصي، الأرض بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.earth.mp3",
-  "hash": "ef15a5879ba0"
+  "hash": "ef15a5879ba0",
+  "duration": 3.11
  },
  {
   "id": "games.find.hint.mars",
@@ -1531,7 +1576,8 @@
   "text": "بصي، المريخ بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.mars.mp3",
-  "hash": "bc68954beac1"
+  "hash": "bc68954beac1",
+  "duration": 3.16
  },
  {
   "id": "games.find.hint.jupiter",
@@ -1540,7 +1586,8 @@
   "text": "بصي، المشتري بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.jupiter.mp3",
-  "hash": "cb232838d728"
+  "hash": "cb232838d728",
+  "duration": 3.16
  },
  {
   "id": "games.find.hint.saturn",
@@ -1549,7 +1596,8 @@
   "text": "بصي، زحل بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.saturn.mp3",
-  "hash": "160a80d74e5c"
+  "hash": "160a80d74e5c",
+  "duration": 3.45
  },
  {
   "id": "games.find.hint.uranus",
@@ -1558,7 +1606,8 @@
   "text": "بصي، أورانوس بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.uranus.mp3",
-  "hash": "c45786ec1254"
+  "hash": "c45786ec1254",
+  "duration": 3.24
  },
  {
   "id": "games.find.hint.neptune",
@@ -1567,7 +1616,8 @@
   "text": "بصي، نبتون بينوّر! دوسي عليه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.neptune.mp3",
-  "hash": "3de7f60ef3b1"
+  "hash": "3de7f60ef3b1",
+  "duration": 3.11
  },
  {
   "id": "games.find.correct.mercury",
@@ -1576,7 +1626,8 @@
   "text": "ده عطارد فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.mercury.mp3",
-  "hash": "4e4882d067f4"
+  "hash": "4e4882d067f4",
+  "duration": 1.44
  },
  {
   "id": "games.find.correct.venus",
@@ -1585,7 +1636,8 @@
   "text": "ده الزهرة فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.venus.mp3",
-  "hash": "36d8b937b9e3"
+  "hash": "36d8b937b9e3",
+  "duration": 1.62
  },
  {
   "id": "games.find.correct.earth",
@@ -1594,7 +1646,8 @@
   "text": "ده الأرض فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.earth.mp3",
-  "hash": "bbd34c730fac"
+  "hash": "bbd34c730fac",
+  "duration": 1.7
  },
  {
   "id": "games.find.correct.mars",
@@ -1603,7 +1656,8 @@
   "text": "ده المريخ فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.mars.mp3",
-  "hash": "44f4c49e70b0"
+  "hash": "44f4c49e70b0",
+  "duration": 1.62
  },
  {
   "id": "games.find.correct.jupiter",
@@ -1612,7 +1666,8 @@
   "text": "ده المشتري فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.jupiter.mp3",
-  "hash": "0aa3bd4173bb"
+  "hash": "0aa3bd4173bb",
+  "duration": 3.53
  },
  {
   "id": "games.find.correct.saturn",
@@ -1621,7 +1676,8 @@
   "text": "ده زحل فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.saturn.mp3",
-  "hash": "a43b5b578aea"
+  "hash": "a43b5b578aea",
+  "duration": 1.49
  },
  {
   "id": "games.find.correct.uranus",
@@ -1630,7 +1686,8 @@
   "text": "ده أورانوس فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.uranus.mp3",
-  "hash": "886c7a456518"
+  "hash": "886c7a456518",
+  "duration": 1.59
  },
  {
   "id": "games.find.correct.neptune",
@@ -1639,7 +1696,8 @@
   "text": "ده نبتون فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.neptune.mp3",
-  "hash": "b96562d64b0e"
+  "hash": "b96562d64b0e",
+  "duration": 1.57
  },
  {
   "id": "games.find.end",
@@ -1648,7 +1706,8 @@
   "text": "خلصتي اللعبة! عرفتي الكواكب كلها. برافو!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.end.mp3",
-  "hash": "4fb7498ed6ae"
+  "hash": "4fb7498ed6ae",
+  "duration": 3.89
  },
  {
   "id": "games.shadow.intro",
@@ -1657,7 +1716,8 @@
   "text": "دي لعبة الضل! هوريكي ضل كوكب، وإنتي تعرفي ده ضل مين.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.intro.mp3",
-  "hash": "fad768dd115c"
+  "hash": "fad768dd115c",
+  "duration": 4.86
  },
  {
   "id": "games.shadow.question",
@@ -1666,7 +1726,8 @@
   "text": "ده ضل أنهي كوكب؟ دوسي على الكوكب اللي شبهه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.question.mp3",
-  "hash": "0ca45c19e0db"
+  "hash": "0ca45c19e0db",
+  "duration": 3.47
  },
  {
   "id": "games.shadow.wrongTail",
@@ -1675,7 +1736,8 @@
   "text": "بصي على شكل الضل تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.wrongTail.mp3",
-  "hash": "39551f93f538"
+  "hash": "39551f93f538",
+  "duration": 1.78
  },
  {
   "id": "games.shadow.hint",
@@ -1684,7 +1746,8 @@
   "text": "بصي، الكوكب الصح بينوّر!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.hint.mp3",
-  "hash": "cb2c4789c6c5"
+  "hash": "cb2c4789c6c5",
+  "duration": 2.72
  },
  {
   "id": "games.shadow.correct.mercury",
@@ -1693,7 +1756,8 @@
   "text": "صح! ده ضل عطارد!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.mercury.mp3",
-  "hash": "e8ce641582a9"
+  "hash": "e8ce641582a9",
+  "duration": 2.51
  },
  {
   "id": "games.shadow.correct.venus",
@@ -1702,7 +1766,8 @@
   "text": "صح! ده ضل الزهرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.venus.mp3",
-  "hash": "b87b484e38a7"
+  "hash": "b87b484e38a7",
+  "duration": 2.3
  },
  {
   "id": "games.shadow.correct.earth",
@@ -1711,7 +1776,8 @@
   "text": "صح! ده ضل الأرض!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.earth.mp3",
-  "hash": "f089a5c7dbc4"
+  "hash": "f089a5c7dbc4",
+  "duration": 2.25
  },
  {
   "id": "games.shadow.correct.mars",
@@ -1720,7 +1786,8 @@
   "text": "صح! ده ضل المريخ!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.mars.mp3",
-  "hash": "02868666771b"
+  "hash": "02868666771b",
+  "duration": 2.43
  },
  {
   "id": "games.shadow.correct.jupiter",
@@ -1729,7 +1796,8 @@
   "text": "صح! ده ضل المشتري!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.jupiter.mp3",
-  "hash": "980f89f0c260"
+  "hash": "980f89f0c260",
+  "duration": 2.25
  },
  {
   "id": "games.shadow.correct.saturn",
@@ -1738,7 +1806,8 @@
   "text": "صح! ده ضل زحل!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.saturn.mp3",
-  "hash": "ce27052c06b8"
+  "hash": "ce27052c06b8",
+  "duration": 2.14
  },
  {
   "id": "games.shadow.correct.uranus",
@@ -1747,7 +1816,8 @@
   "text": "صح! ده ضل أورانوس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.uranus.mp3",
-  "hash": "2f545a6cc7ef"
+  "hash": "2f545a6cc7ef",
+  "duration": 2.43
  },
  {
   "id": "games.shadow.correct.neptune",
@@ -1756,7 +1826,8 @@
   "text": "صح! ده ضل نبتون!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.neptune.mp3",
-  "hash": "cfc81ffbc990"
+  "hash": "cfc81ffbc990",
+  "duration": 2.17
  },
  {
   "id": "games.shadow.end",
@@ -1765,7 +1836,8 @@
   "text": "شطورة! عرفتي كل الضلال!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.end.mp3",
-  "hash": "23a8ede5f148"
+  "hash": "23a8ede5f148",
+  "duration": 3
  },
  {
   "id": "games.size.intro",
@@ -1774,7 +1846,8 @@
   "text": "مين الأكبر؟ هوريكي كوكبين، وإنتي تختاري الكوكب الأكبر في الحقيقة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.intro.mp3",
-  "hash": "098dd7886230"
+  "hash": "098dd7886230",
+  "duration": 5.17
  },
  {
   "id": "games.size.wrongTail",
@@ -1783,7 +1856,8 @@
   "text": "بصي على حجمهم الحقيقي!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.wrongTail.mp3",
-  "hash": "7a082dd744d8"
+  "hash": "7a082dd744d8",
+  "duration": 1.88
  },
  {
   "id": "games.size.hint",
@@ -1792,7 +1866,8 @@
   "text": "بصي، الكوكب الأكبر بينوّر!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.hint.mp3",
-  "hash": "e547da2986f0"
+  "hash": "e547da2986f0",
+  "duration": 2.46
  },
  {
   "id": "games.size.correct.mercury",
@@ -1801,7 +1876,8 @@
   "text": "صح! عطارد أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.mercury.mp3",
-  "hash": "fc51fad3d4a7"
+  "hash": "fc51fad3d4a7",
+  "duration": 3.94
  },
  {
   "id": "games.size.correct.venus",
@@ -1810,7 +1886,8 @@
   "text": "صح! الزهرة أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.venus.mp3",
-  "hash": "58dd92615b92"
+  "hash": "58dd92615b92",
+  "duration": 3.79
  },
  {
   "id": "games.size.correct.earth",
@@ -1819,7 +1896,8 @@
   "text": "صح! الأرض أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.earth.mp3",
-  "hash": "5c0e0dde9441"
+  "hash": "5c0e0dde9441",
+  "duration": 3.79
  },
  {
   "id": "games.size.correct.mars",
@@ -1828,7 +1906,8 @@
   "text": "صح! المريخ أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.mars.mp3",
-  "hash": "da8294a1c9e3"
+  "hash": "da8294a1c9e3",
+  "duration": 3.87
  },
  {
   "id": "games.size.correct.jupiter",
@@ -1837,7 +1916,8 @@
   "text": "صح! المشتري أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.jupiter.mp3",
-  "hash": "7c116c042f64"
+  "hash": "7c116c042f64",
+  "duration": 4.78
  },
  {
   "id": "games.size.correct.saturn",
@@ -1846,7 +1926,8 @@
   "text": "صح! زحل أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.saturn.mp3",
-  "hash": "3869abd05988"
+  "hash": "3869abd05988",
+  "duration": 4.18
  },
  {
   "id": "games.size.correct.uranus",
@@ -1855,7 +1936,8 @@
   "text": "صح! أورانوس أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.uranus.mp3",
-  "hash": "4549e4994872"
+  "hash": "4549e4994872",
+  "duration": 4.23
  },
  {
   "id": "games.size.correct.neptune",
@@ -1864,7 +1946,8 @@
   "text": "صح! نبتون أكبر! بصي على حجمهم الحقيقي.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.neptune.mp3",
-  "hash": "f8d0d122102c"
+  "hash": "f8d0d122102c",
+  "duration": 3.97
  },
  {
   "id": "games.size.end",
@@ -1873,7 +1956,8 @@
   "text": "برافو! بقيتي عارفة الكواكب الكبيرة والصغيرة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.end.mp3",
-  "hash": "2ec16737a994"
+  "hash": "2ec16737a994",
+  "duration": 4.78
  },
  {
   "id": "games.order.intro",
@@ -1882,7 +1966,8 @@
   "text": "يلا نرتب الكواكب! أول كوكب جنب الشمس هو عطارد. اسحبي كل كوكب لمكانه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.intro.mp3",
-  "hash": "82c6f26a5069"
+  "hash": "82c6f26a5069",
+  "duration": 8.1
  },
  {
   "id": "games.order.placed.mercury",
@@ -1891,7 +1976,8 @@
   "text": "عطارد، الكوكب الأول من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.mercury.mp3",
-  "hash": "a6540e1e449e"
+  "hash": "a6540e1e449e",
+  "duration": 3.34
  },
  {
   "id": "games.order.placed.venus",
@@ -1900,7 +1986,8 @@
   "text": "الزهرة، الكوكب التاني من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.venus.mp3",
-  "hash": "92a86246680c"
+  "hash": "92a86246680c",
+  "duration": 3.27
  },
  {
   "id": "games.order.placed.earth",
@@ -1909,7 +1996,8 @@
   "text": "الأرض، الكوكب التالت من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.earth.mp3",
-  "hash": "b6ad3eda2ec2"
+  "hash": "b6ad3eda2ec2",
+  "duration": 3.71
  },
  {
   "id": "games.order.placed.mars",
@@ -1918,7 +2006,8 @@
   "text": "المريخ، الكوكب الرابع من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.mars.mp3",
-  "hash": "5a07499d9af3"
+  "hash": "5a07499d9af3",
+  "duration": 3.92
  },
  {
   "id": "games.order.placed.jupiter",
@@ -1927,7 +2016,8 @@
   "text": "المشتري، الكوكب الخامس من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.jupiter.mp3",
-  "hash": "b6052fdd31c0"
+  "hash": "b6052fdd31c0",
+  "duration": 3.89
  },
  {
   "id": "games.order.placed.saturn",
@@ -1936,7 +2026,8 @@
   "text": "زحل، الكوكب السادس من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.saturn.mp3",
-  "hash": "e7f2b5887c9c"
+  "hash": "e7f2b5887c9c",
+  "duration": 3.58
  },
  {
   "id": "games.order.placed.uranus",
@@ -1945,7 +2036,8 @@
   "text": "أورانوس، الكوكب السابع من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.uranus.mp3",
-  "hash": "2a594e5cc27a"
+  "hash": "2a594e5cc27a",
+  "duration": 3.63
  },
  {
   "id": "games.order.placed.neptune",
@@ -1954,7 +2046,8 @@
   "text": "نبتون، الكوكب التامن من الشمس!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.neptune.mp3",
-  "hash": "88ae58573ce9"
+  "hash": "88ae58573ce9",
+  "duration": 3.6
  },
  {
   "id": "games.order.wrong.mercury",
@@ -1963,7 +2056,8 @@
   "text": "مش هنا. عطارد مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.mercury.mp3",
-  "hash": "af39819ff914"
+  "hash": "af39819ff914",
+  "duration": 4.55
  },
  {
   "id": "games.order.wrong.venus",
@@ -1972,7 +2066,8 @@
   "text": "مش هنا. الزهرة مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.venus.mp3",
-  "hash": "91530f3b9017"
+  "hash": "91530f3b9017",
+  "duration": 4.36
  },
  {
   "id": "games.order.wrong.earth",
@@ -1981,7 +2076,8 @@
   "text": "مش هنا. الأرض مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.earth.mp3",
-  "hash": "8b5407b4e364"
+  "hash": "8b5407b4e364",
+  "duration": 4.75
  },
  {
   "id": "games.order.wrong.mars",
@@ -1990,7 +2086,8 @@
   "text": "مش هنا. المريخ مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.mars.mp3",
-  "hash": "92d9d5a961ce"
+  "hash": "92d9d5a961ce",
+  "duration": 4.73
  },
  {
   "id": "games.order.wrong.jupiter",
@@ -1999,7 +2096,8 @@
   "text": "مش هنا. المشتري مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.jupiter.mp3",
-  "hash": "2c6e37906295"
+  "hash": "2c6e37906295",
+  "duration": 4.78
  },
  {
   "id": "games.order.wrong.saturn",
@@ -2008,7 +2106,8 @@
   "text": "مش هنا. زحل مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.saturn.mp3",
-  "hash": "097ed126c715"
+  "hash": "097ed126c715",
+  "duration": 4.65
  },
  {
   "id": "games.order.wrong.uranus",
@@ -2017,7 +2116,8 @@
   "text": "مش هنا. أورانوس مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.uranus.mp3",
-  "hash": "a71eacd8e643"
+  "hash": "a71eacd8e643",
+  "duration": 4.86
  },
  {
   "id": "games.order.wrong.neptune",
@@ -2026,7 +2126,8 @@
   "text": "مش هنا. نبتون مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.neptune.mp3",
-  "hash": "78356fd9f400"
+  "hash": "78356fd9f400",
+  "duration": 4.7
  },
  {
   "id": "games.order.hint",
@@ -2035,7 +2136,8 @@
   "text": "بصي على المكان اللي بينوّر!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.hint.mp3",
-  "hash": "12eea99df1eb"
+  "hash": "12eea99df1eb",
+  "duration": 2.53
  },
  {
   "id": "games.order.pick",
@@ -2044,7 +2146,8 @@
   "text": "دوسي على كوكب، وبعدين دوسي على مكانه.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.pick.mp3",
-  "hash": "492bcff18fe9"
+  "hash": "492bcff18fe9",
+  "duration": 3.84
  },
  {
   "id": "games.order.done",
@@ -2053,7 +2156,8 @@
   "text": "برافو! رتبتي الكواكب التمانية كلها!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.done.mp3",
-  "hash": "cfc09b8c476a"
+  "hash": "cfc09b8c476a",
+  "duration": 3.32
  },
  {
   "id": "games.dayNight.intro",
@@ -2062,7 +2166,8 @@
   "text": "دي الأرض والشمس. لفّي الأرض بصباعك، وشوفي البيت الصغير، هيبقى نهار ولا ليل!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.intro.mp3",
-  "hash": "21c80cee8ad3"
+  "hash": "21c80cee8ad3",
+  "duration": 7.63
  },
  {
   "id": "games.dayNight.day",
@@ -2071,7 +2176,8 @@
   "text": "دلوقتي نهار! البيت قدام الشمس، والدنيا منوّرة.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.day.mp3",
-  "hash": "0ea4a16c3ede"
+  "hash": "0ea4a16c3ede",
+  "duration": 4.13
  },
  {
   "id": "games.dayNight.night",
@@ -2080,7 +2186,8 @@
   "text": "دلوقتي ليل! البيت مش قدام الشمس، والدنيا ضلمة. وقت النوم!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.night.mp3",
-  "hash": "028ed34d625d"
+  "hash": "028ed34d625d",
+  "duration": 5.22
  },
  {
   "id": "games.dayNight.explain",
@@ -2089,7 +2196,8 @@
   "text": "الأرض بتلف حوالين نفسها كل يوم. الناحية اللي قدام الشمس بيبقى فيها نهار، والناحية التانية بيبقى فيها ليل.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/games/games.dayNight.explain.mp3",
-  "hash": "46f246c1814e"
+  "hash": "46f246c1814e",
+  "duration": 8.18
  },
  {
   "id": "games.explorer.intro",
@@ -2098,7 +2206,8 @@
   "text": "يلا نسوق سفينة الفضاء! دوسي في أي حتة والسفينة تروح هناك. لمّي النجوم، وزوري الكواكب!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.explorer.intro.mp3",
-  "hash": "e9ce0e780fc0"
+  "hash": "e9ce0e780fc0",
+  "duration": 7.24
  },
  {
   "id": "games.explorer.sun",
@@ -2107,7 +2216,8 @@
   "text": "الشمس سخنة قوي! نبص عليها من بعيد بس.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.explorer.sun.mp3",
-  "hash": "02a7485de368"
+  "hash": "02a7485de368",
+  "duration": 3.34
  },
  {
   "id": "games.explorer.allStars",
@@ -2116,7 +2226,8 @@
   "text": "جمعتي كل النجوم! إنتي رائدة فضاء شاطرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.explorer.allStars.mp3",
-  "hash": "461164c83627"
+  "hash": "461164c83627",
+  "duration": 3.47
  },
  {
   "id": "games.explorer.allPlanets",
@@ -2125,7 +2236,8 @@
   "text": "زرتي كل الكواكب بالسفينة! رحلة جميلة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.explorer.allPlanets.mp3",
-  "hash": "25b22b166786"
+  "hash": "25b22b166786",
+  "duration": 3.76
  },
  {
   "id": "reactions.sun",
@@ -2134,7 +2246,8 @@
   "text": "واو يا حلا! الشمس منورة قوي!",
   "emotion": "surprised",
   "file": "audio/ar-EG/zizo/reactions/reactions.sun.mp3",
-  "hash": "161c639f043f"
+  "hash": "161c639f043f",
+  "duration": 3.37
  },
  {
   "id": "reactions.saturn",
@@ -2143,7 +2256,8 @@
   "text": "ياااه! بصي الحلقات دي!",
   "emotion": "surprised",
   "file": "audio/ar-EG/zizo/reactions/reactions.saturn.mp3",
-  "hash": "87edb93ff51a"
+  "hash": "87edb93ff51a",
+  "duration": 2.12
  },
  {
   "id": "reactions.correct",
@@ -2152,7 +2266,8 @@
   "text": "برافو يا حلا! إنتي رائدة فضاء شاطرة!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.correct.mp3",
-  "hash": "2e6e3c7cecb4"
+  "hash": "2e6e3c7cecb4",
+  "duration": 2.85
  },
  {
   "id": "reactions.journey",
@@ -2161,7 +2276,8 @@
   "text": "مبروك يا كابتن حلا! اكتشفتي المجموعة الشمسية كلها!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.journey.mp3",
-  "hash": "91999c2addc7"
+  "hash": "91999c2addc7",
+  "duration": 3.68
  },
  {
   "id": "reactions.moonFlag",
@@ -2170,7 +2286,8 @@
   "text": "هيييه! كابتن حلا حطت العلم على القمر!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.moonFlag.mp3",
-  "hash": "4b0878a2524f"
+  "hash": "4b0878a2524f",
+  "duration": 3.06
  },
  {
   "id": "reactions.rover",
@@ -2179,7 +2296,8 @@
   "text": "يلا يا حلا، نسوق عربية المريخ!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/reactions.rover.mp3",
-  "hash": "b75c784e894e"
+  "hash": "b75c784e894e",
+  "duration": 2.43
  },
  {
   "id": "reactions.mission",
@@ -2188,7 +2306,8 @@
   "text": "مهمة ناجحة يا كابتن حلا!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.mission.mp3",
-  "hash": "779acd4a9a3d"
+  "hash": "779acd4a9a3d",
+  "duration": 1.93
  },
  {
   "id": "reactions.alien",
@@ -2197,7 +2316,8 @@
   "text": "ده كائن فضائي لطيف بيقولك: أهلاً يا حلا!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/reactions.alien.mp3",
-  "hash": "f4b877f46ff8"
+  "hash": "f4b877f46ff8",
+  "duration": 3.66
  },
  {
   "id": "reactions.bigHelmet",
@@ -2206,7 +2326,8 @@
   "text": "هههه! الخوذة كبرت قوي!",
   "emotion": "laughing",
   "file": "audio/ar-EG/zizo/reactions/reactions.bigHelmet.mp3",
-  "hash": "7ef775bd608d"
+  "hash": "7ef775bd608d",
+  "duration": 2.06
  },
  {
   "id": "reactions.upsideDown",
@@ -2215,7 +2336,8 @@
   "text": "شوفي! حلا بتعوم بالمقلوب! في الفضاء مفيش فوق ولا تحت.",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/reactions/reactions.upsideDown.mp3",
-  "hash": "1e836091990a"
+  "hash": "1e836091990a",
+  "duration": 5.28
  },
  {
   "id": "reactions.sticker",
@@ -2224,7 +2346,8 @@
   "text": "استيكر جديد لكابتن حلا!",
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.sticker.mp3",
-  "hash": "ea81294acdd4"
+  "hash": "ea81294acdd4",
+  "duration": 2.19
  },
  {
   "id": "map.intro",
@@ -2233,7 +2356,8 @@
   "text": "دي خريطتك يا حلا! الكواكب الملونة زرتيها، والتانية مستنياكي.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/rewards/map.intro.mp3",
-  "hash": "b8ec3c8e3c72"
+  "hash": "b8ec3c8e3c72",
+  "duration": 5.56
  },
  {
   "id": "map.allVisited",
@@ -2242,7 +2366,8 @@
   "text": "هيييه! زرتي التمن كواكب كلهم! إنتي مستكشفة الكواكب!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/map.allVisited.mp3",
-  "hash": "0ba1e5b4e9c0"
+  "hash": "0ba1e5b4e9c0",
+  "duration": 5.77
  },
  {
   "id": "map.badge",
@@ -2251,7 +2376,8 @@
   "text": "كسبتي وسام جديد!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/rewards/map.badge.mp3",
-  "hash": "bd38415315b0"
+  "hash": "bd38415315b0",
+  "duration": 1.59
  },
  {
   "id": "story.start.0",
@@ -2260,7 +2386,8 @@
   "text": "كان ياما كان، كان فيه بنوتة شاطرة اسمها حلا، بتحب تبص على النجوم من الشباك.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.0.mp3",
-  "hash": "e82b4009b700"
+  "hash": "e82b4009b700",
+  "duration": 6.61
  },
  {
   "id": "story.start.1",
@@ -2269,7 +2396,8 @@
   "text": "وفي ليلة جميلة، نزلت سفينة فضاء صغيرة قدام البيت، وخرج منها روبوت لطيف ومضحك اسمه زيزو!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.1.mp3",
-  "hash": "c7af27ea4c74"
+  "hash": "c7af27ea4c74",
+  "duration": 7.94
  },
  {
   "id": "story.start.2",
@@ -2278,7 +2406,8 @@
   "text": "أهلاً يا حلا! تيجي معايا نزور الكواكب التمانية؟",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.start.2.mp3",
-  "hash": "0cdad02cc93d"
+  "hash": "0cdad02cc93d",
+  "duration": 3.19
  },
  {
   "id": "story.start.3",
@@ -2287,7 +2416,8 @@
   "text": "دوسي على السفينة عشان نركب!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.3.mp3",
-  "hash": "598a52c56bea"
+  "hash": "598a52c56bea",
+  "duration": 2.04
  },
  {
   "id": "story.start.3.done",
@@ -2296,7 +2426,8 @@
   "text": "يلا! تلاتة، اتنين، واحد... انطلاق!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.start.3.done.mp3",
-  "hash": "65f2bdf90fb6"
+  "hash": "65f2bdf90fb6",
+  "duration": 5.02
  },
  {
   "id": "story.sun.0",
@@ -2305,7 +2436,8 @@
   "text": "أول حاجة شافتها حلا في الفضاء كانت الشمس! كبيرة ومنوّرة قوي.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.0.mp3",
-  "hash": "fa0b541ea1d1"
+  "hash": "fa0b541ea1d1",
+  "duration": 7.44
  },
  {
   "id": "story.sun.1",
@@ -2314,7 +2446,8 @@
   "text": "الشمس دي نجمة، وكل الكواكب بتلف حواليها.",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.sun.1.mp3",
-  "hash": "8ab4ae098f7b"
+  "hash": "8ab4ae098f7b",
+  "duration": 4.23
  },
  {
   "id": "story.sun.2",
@@ -2323,7 +2456,8 @@
   "text": "والشمس بتدفي الأرض، وبتخلي الزرع يكبر، وبتنورلنا النهار.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.2.mp3",
-  "hash": "5bd246e9448d"
+  "hash": "5bd246e9448d",
+  "duration": 5.85
  },
  {
   "id": "story.sun.3",
@@ -2332,7 +2466,8 @@
   "text": "نور الشمس قوي! نعمل إيه عشان نحمي عينينا؟",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.mp3",
-  "hash": "59953f412872"
+  "hash": "59953f412872",
+  "duration": 3.97
  },
  {
   "id": "story.sun.3.reply0",
@@ -2341,7 +2476,8 @@
   "text": "فكرة حلوة! وكمان مبنبصش للشمس أبداً بعينينا.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.reply0.mp3",
-  "hash": "512ed885a14d"
+  "hash": "512ed885a14d",
+  "duration": 4.86
  },
  {
   "id": "story.sun.3.reply1",
@@ -2350,7 +2486,8 @@
   "text": "شطورة! مبنبصش للشمس أبداً، عشان نحافظ على عينينا.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.reply1.mp3",
-  "hash": "d11e2c39b32f"
+  "hash": "d11e2c39b32f",
+  "duration": 5.17
  },
  {
   "id": "story.mercury.0",
@@ -2359,7 +2496,8 @@
   "text": "السفينة طارت لأقرب كوكب للشمس: عطارد! صغنن ورمادي، ومليان حفر.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.0.mp3",
-  "hash": "21c27b68c4cb"
+  "hash": "21c27b68c4cb",
+  "duration": 7.73
  },
  {
   "id": "story.mercury.1",
@@ -2368,7 +2506,8 @@
   "text": "وعطارد بيجري حوالين الشمس بسرعة كبيرة، أسرع من كل الكواكب!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.1.mp3",
-  "hash": "1b46add8fd90"
+  "hash": "1b46add8fd90",
+  "duration": 5.77
  },
  {
   "id": "story.mercury.2",
@@ -2377,7 +2516,8 @@
   "text": "دوسي على عطارد عشان نقوله أهلاً!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.2.mp3",
-  "hash": "ae5fb9e2e4d6"
+  "hash": "ae5fb9e2e4d6",
+  "duration": 2.48
  },
  {
   "id": "story.mercury.2.done",
@@ -2386,7 +2526,8 @@
   "text": "عطارد بيقول: أهلاً يا حلا! أنا أصغر كوكب، وأسرع كوكب كمان!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.mercury.2.done.mp3",
-  "hash": "1572096d7b37"
+  "hash": "1572096d7b37",
+  "duration": 6.92
  },
  {
   "id": "story.venus.0",
@@ -2395,7 +2536,8 @@
   "text": "وبعدين وصلوا للزهرة. الزهرة ملفوفة بسحاب أصفر تقيل.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.venus.0.mp3",
-  "hash": "b81e2d491910"
+  "hash": "b81e2d491910",
+  "duration": 6.01
  },
  {
   "id": "story.venus.1",
@@ -2404,7 +2546,8 @@
   "text": "الزهرة أسخن كوكب، حتى أسخن من عطارد!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.venus.1.mp3",
-  "hash": "8986063bce79"
+  "hash": "8986063bce79",
+  "duration": 3.89
  },
  {
   "id": "story.venus.2",
@@ -2413,7 +2556,8 @@
   "text": "الزهرة سخنة قوي قوي! ننزل عليها، ولا نبص عليها من السفينة؟",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.mp3",
-  "hash": "04a86d3501b1"
+  "hash": "04a86d3501b1",
+  "duration": 6.16
  },
  {
   "id": "story.venus.2.reply0",
@@ -2422,7 +2566,8 @@
   "text": "اختيار ذكي! الزهرة أسخن كوكب، فنتفرج عليها من بعيد.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.reply0.mp3",
-  "hash": "a35522563569"
+  "hash": "a35522563569",
+  "duration": 5.75
  },
  {
   "id": "story.venus.2.reply1",
@@ -2431,7 +2576,8 @@
   "text": "لأ يا حلا، الزهرة سخنة قوي! خلينا نتفرج عليها من السفينة أحسن.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.reply1.mp3",
-  "hash": "a3090e42f875"
+  "hash": "a3090e42f875",
+  "duration": 5.93
  },
  {
   "id": "story.earth.0",
@@ -2440,7 +2586,8 @@
   "text": "وبعدين شافت حلا كوكب أزرق جميل... ده كوكب الأرض! بيتنا!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.0.mp3",
-  "hash": "07faaba0fa61"
+  "hash": "07faaba0fa61",
+  "duration": 6.24
  },
  {
   "id": "story.earth.1",
@@ -2449,7 +2596,8 @@
   "text": "دوسي على الأرض، ونسلّم على بابا وماما وكل الناس!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.1.mp3",
-  "hash": "34249ab55cbe"
+  "hash": "34249ab55cbe",
+  "duration": 4.31
  },
  {
   "id": "story.earth.1.done",
@@ -2458,7 +2606,8 @@
   "text": "سلام يا أرض! فيكي بحر وشجر وحيوانات وكل حبايبنا.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.earth.1.done.mp3",
-  "hash": "c6593a24cbdf"
+  "hash": "c6593a24cbdf",
+  "duration": 5.96
  },
  {
   "id": "story.earth.2",
@@ -2467,7 +2616,8 @@
   "text": "وجنب الأرض كان فيه القمر، صاحبها اللي بيلف حواليها كل شهر.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.2.mp3",
-  "hash": "5ad841e3a482"
+  "hash": "5ad841e3a482",
+  "duration": 6.95
  },
  {
   "id": "story.mars.0",
@@ -2476,7 +2626,8 @@
   "text": "وبعد الأرض، وصلوا للكوكب الأحمر: المريخ!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.0.mp3",
-  "hash": "6c8ade6bc824"
+  "hash": "6c8ade6bc824",
+  "duration": 5.15
  },
  {
   "id": "story.mars.1",
@@ -2485,7 +2636,8 @@
   "text": "المريخ لونه أحمر، عشان ترابه فيه صدا زي الحديد القديم.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.1.mp3",
-  "hash": "556fde95cd28"
+  "hash": "556fde95cd28",
+  "duration": 5.22
  },
  {
   "id": "story.mars.2",
@@ -2494,7 +2646,8 @@
   "text": "وعلى المريخ، كان فيه عربية روبوت صغيرة بتستكشف الصخور.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.2.mp3",
-  "hash": "d4de02399dcb"
+  "hash": "d4de02399dcb",
+  "duration": 5.51
  },
  {
   "id": "story.mars.3",
@@ -2503,7 +2656,8 @@
   "text": "دوسي على المريخ، نسلم على العربية الروبوت!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.3.mp3",
-  "hash": "460391196265"
+  "hash": "460391196265",
+  "duration": 3.37
  },
  {
   "id": "story.mars.3.done",
@@ -2512,7 +2666,8 @@
   "text": "العربية رفعت دراعها وقالت: أهلاً يا حلا! أنا بدرس صخور المريخ.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.mars.3.done.mp3",
-  "hash": "36518ac5491c"
+  "hash": "36518ac5491c",
+  "duration": 6.56
  },
  {
   "id": "story.jupiter.0",
@@ -2521,7 +2676,8 @@
   "text": "واو! قدامهم كوكب ضخم ضخم... ده المشتري، أكبر كوكب في المجموعة الشمسية!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.0.mp3",
-  "hash": "de49f543085d"
+  "hash": "de49f543085d",
+  "duration": 7.99
  },
  {
   "id": "story.jupiter.1",
@@ -2530,7 +2686,8 @@
   "text": "المشتري كبير قوي، ممكن يساع جواه أكتر من ألف أرض!",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.jupiter.1.mp3",
-  "hash": "e994aacfd65b"
+  "hash": "e994aacfd65b",
+  "duration": 4.57
  },
  {
   "id": "story.jupiter.2",
@@ -2539,7 +2696,8 @@
   "text": "شايفة البقعة الحمرا؟ دوسي على المشتري!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.2.mp3",
-  "hash": "6631aa91a9f8"
+  "hash": "6631aa91a9f8",
+  "duration": 3.34
  },
  {
   "id": "story.jupiter.2.done",
@@ -2548,7 +2706,8 @@
   "text": "البقعة دي عاصفة كبيرة قوي بتلف وتلف، أكبر من الأرض كلها!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.2.done.mp3",
-  "hash": "87aad67a5f6b"
+  "hash": "87aad67a5f6b",
+  "duration": 7.37
  },
  {
   "id": "story.saturn.0",
@@ -2557,7 +2716,8 @@
   "text": "وبعدين شافوا أحلى كوكب بحلقات: زحل!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.0.mp3",
-  "hash": "c79aba2619b8"
+  "hash": "c79aba2619b8",
+  "duration": 6.16
  },
  {
   "id": "story.saturn.1",
@@ -2566,7 +2726,8 @@
   "text": "الحلقات دي معمولة من حتت تلج وصخور كتير، بتلف وتلف حوالين زحل.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.1.mp3",
-  "hash": "7c668eed1ac4"
+  "hash": "7c668eed1ac4",
+  "duration": 4.08
  },
  {
   "id": "story.saturn.2",
@@ -2575,7 +2736,8 @@
   "text": "نلف بالسفينة حوالين الحلقات من فوق، ولا من تحت؟",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.mp3",
-  "hash": "8c4fb8a458f1"
+  "hash": "8c4fb8a458f1",
+  "duration": 4.7
  },
  {
   "id": "story.saturn.2.reply0",
@@ -2584,7 +2746,8 @@
   "text": "ووووه! من فوق الحلقات شكلها زي طبق كبير بيلمع!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.reply0.mp3",
-  "hash": "f880a70803ea"
+  "hash": "f880a70803ea",
+  "duration": 5.88
  },
  {
   "id": "story.saturn.2.reply1",
@@ -2593,7 +2756,8 @@
   "text": "ووووه! من تحت شايفين حتت التلج والصخور بتلمع!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.reply1.mp3",
-  "hash": "25c1d40f85c1"
+  "hash": "25c1d40f85c1",
+  "duration": 5.46
  },
  {
   "id": "story.uranus.0",
@@ -2602,7 +2766,8 @@
   "text": "وبعد زحل، قابلوا أورانوس. كوكب أزرق مخضر، وساقع قوي.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.0.mp3",
-  "hash": "433b7c6ce581"
+  "hash": "433b7c6ce581",
+  "duration": 9.01
  },
  {
   "id": "story.uranus.1",
@@ -2611,7 +2776,8 @@
   "text": "وكان أورانوس غريب شوية... كان نايم على جنبه!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.1.mp3",
-  "hash": "6afe5a4dd812"
+  "hash": "6afe5a4dd812",
+  "duration": 3.68
  },
  {
   "id": "story.uranus.2",
@@ -2620,7 +2786,8 @@
   "text": "أورانوس نايم على جنبه! دوسي عليه، نشوفه بيتدحرج.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.2.mp3",
-  "hash": "3a1b359faeaa"
+  "hash": "3a1b359faeaa",
+  "duration": 6.32
  },
  {
   "id": "story.uranus.2.done",
@@ -2629,7 +2796,8 @@
   "text": "هيييه! أورانوس بيتدحرج زي الكورة وهو بيلف حوالين الشمس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.uranus.2.done.mp3",
-  "hash": "4cfa03dde633"
+  "hash": "4cfa03dde633",
+  "duration": 6.32
  },
  {
   "id": "story.neptune.0",
@@ -2638,7 +2806,8 @@
   "text": "وأخيراً، وصلوا لأبعد كوكب: نبتون، الكوكب الأزرق الغامق.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.0.mp3",
-  "hash": "edcacc5c259b"
+  "hash": "edcacc5c259b",
+  "duration": 8.25
  },
  {
   "id": "story.neptune.1",
@@ -2647,7 +2816,8 @@
   "text": "نبتون بعيد قوي قوي عن الشمس، عشان كده هو ساقع ومضلم.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.1.mp3",
-  "hash": "c92c068cda50"
+  "hash": "c92c068cda50",
+  "duration": 6.35
  },
  {
   "id": "story.neptune.2",
@@ -2656,7 +2826,8 @@
   "text": "دوسي على نبتون، ونسمع صوت الرياح!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.2.mp3",
-  "hash": "e84c7cf11ac9"
+  "hash": "e84c7cf11ac9",
+  "duration": 3.94
  },
  {
   "id": "story.neptune.2.done",
@@ -2665,7 +2836,8 @@
   "text": "ووووش! رياح نبتون أقوى رياح في المجموعة الشمسية!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.neptune.2.done.mp3",
-  "hash": "76d453e432a7"
+  "hash": "76d453e432a7",
+  "duration": 5.72
  },
  {
   "id": "story.home.0",
@@ -2674,7 +2846,8 @@
   "text": "وبعد الرحلة الحلوة دي، رجعت السفينة لبيت حلا.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.0.mp3",
-  "hash": "16497c03c7f6"
+  "hash": "16497c03c7f6",
+  "duration": 4.73
  },
  {
   "id": "story.home.1",
@@ -2683,7 +2856,8 @@
   "text": "تعالي نعد الكواكب اللي زرناها! دوسي على كل كوكب.",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.1.mp3",
-  "hash": "2aed2f22fe69"
+  "hash": "2aed2f22fe69",
+  "duration": 4.96
  },
  {
   "id": "story.home.1.done",
@@ -2692,7 +2866,8 @@
   "text": "تمانية! زرنا تمن كواكب، بيلفوا كلهم حوالين الشمس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.home.1.done.mp3",
-  "hash": "f470c0060fb0"
+  "hash": "f470c0060fb0",
+  "duration": 6.35
  },
  {
   "id": "story.home.2",
@@ -2701,7 +2876,8 @@
   "text": "شكراً يا حلا، كانت أحلى رحلة! نتقابل تاني قريب.",
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.home.2.mp3",
-  "hash": "52c1043fd608"
+  "hash": "52c1043fd608",
+  "duration": 4.08
  },
  {
   "id": "story.home.3",
@@ -2710,7 +2886,8 @@
   "text": "ونامت حلا وهي بتحلم بالنجوم والكواكب. تصبحي على خير يا حلا!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.3.mp3",
-  "hash": "6d8431586cba"
+  "hash": "6d8431586cba",
+  "duration": 4.52
  },
  {
   "id": "common.thisIs.sun",
@@ -2719,7 +2896,8 @@
   "text": "دي الشمس.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.sun.mp3",
-  "hash": "78e81fb2ab1b"
+  "hash": "78e81fb2ab1b",
+  "duration": 1.65
  },
  {
   "id": "common.thisIs.mercury",
@@ -2728,7 +2906,8 @@
   "text": "ده عطارد.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.mercury.mp3",
-  "hash": "078c362d9986"
+  "hash": "078c362d9986",
+  "duration": 1.41
  },
  {
   "id": "common.thisIs.venus",
@@ -2737,7 +2916,8 @@
   "text": "دي الزهرة.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.venus.mp3",
-  "hash": "610a456407ae"
+  "hash": "610a456407ae",
+  "duration": 1.7
  },
  {
   "id": "common.thisIs.earth",
@@ -2746,7 +2926,8 @@
   "text": "دي الأرض.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.earth.mp3",
-  "hash": "ee6ec350a819"
+  "hash": "ee6ec350a819",
+  "duration": 1.04
  },
  {
   "id": "common.thisIs.moon",
@@ -2755,7 +2936,8 @@
   "text": "ده القمر.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.moon.mp3",
-  "hash": "39cdf4b78a0f"
+  "hash": "39cdf4b78a0f",
+  "duration": 1.93
  },
  {
   "id": "common.thisIs.mars",
@@ -2764,7 +2946,8 @@
   "text": "ده المريخ.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.mars.mp3",
-  "hash": "095319fb8f54"
+  "hash": "095319fb8f54",
+  "duration": 2.04
  },
  {
   "id": "common.thisIs.jupiter",
@@ -2773,7 +2956,8 @@
   "text": "ده المشتري.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.jupiter.mp3",
-  "hash": "a639866a7a61"
+  "hash": "a639866a7a61",
+  "duration": 1.25
  },
  {
   "id": "common.thisIs.saturn",
@@ -2782,7 +2966,8 @@
   "text": "ده زحل.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.saturn.mp3",
-  "hash": "e7d75523d4ee"
+  "hash": "e7d75523d4ee",
+  "duration": 1.12
  },
  {
   "id": "common.thisIs.uranus",
@@ -2791,7 +2976,8 @@
   "text": "ده أورانوس.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.uranus.mp3",
-  "hash": "671001fbd7bc"
+  "hash": "671001fbd7bc",
+  "duration": 1.33
  },
  {
   "id": "common.thisIs.neptune",
@@ -2800,7 +2986,8 @@
   "text": "ده نبتون.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.neptune.mp3",
-  "hash": "0ffa861e288d"
+  "hash": "0ffa861e288d",
+  "duration": 1.15
  },
  {
   "id": "common.names.sun",
@@ -2809,7 +2996,8 @@
   "text": "الشمس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.sun.mp3",
-  "hash": "230bbf4e7b39"
+  "hash": "230bbf4e7b39",
+  "duration": 1.1
  },
  {
   "id": "common.names.mercury",
@@ -2818,7 +3006,8 @@
   "text": "عطارد!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.mercury.mp3",
-  "hash": "d8e8ba5bff57"
+  "hash": "d8e8ba5bff57",
+  "duration": 1.18
  },
  {
   "id": "common.names.venus",
@@ -2827,7 +3016,8 @@
   "text": "الزهرة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.venus.mp3",
-  "hash": "9802aaac601f"
+  "hash": "9802aaac601f",
+  "duration": 0.97
  },
  {
   "id": "common.names.earth",
@@ -2836,7 +3026,8 @@
   "text": "الأرض!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.earth.mp3",
-  "hash": "b331baa38435"
+  "hash": "b331baa38435",
+  "duration": 1.1
  },
  {
   "id": "common.names.moon",
@@ -2845,7 +3036,8 @@
   "text": "القمر!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.moon.mp3",
-  "hash": "b65ace15875f"
+  "hash": "b65ace15875f",
+  "duration": 1.2
  },
  {
   "id": "common.names.mars",
@@ -2854,7 +3046,8 @@
   "text": "المريخ!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.mars.mp3",
-  "hash": "e786a0c65683"
+  "hash": "e786a0c65683",
+  "duration": 1.54
  },
  {
   "id": "common.names.jupiter",
@@ -2863,7 +3056,8 @@
   "text": "المشتري!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.jupiter.mp3",
-  "hash": "0443ded85a3c"
+  "hash": "0443ded85a3c",
+  "duration": 1.25
  },
  {
   "id": "common.names.saturn",
@@ -2872,7 +3066,8 @@
   "text": "زحل!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.saturn.mp3",
-  "hash": "00c840611544"
+  "hash": "00c840611544",
+  "duration": 0.99
  },
  {
   "id": "common.names.uranus",
@@ -2881,7 +3076,8 @@
   "text": "أورانوس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.uranus.mp3",
-  "hash": "906e78d26459"
+  "hash": "906e78d26459",
+  "duration": 1.28
  },
  {
   "id": "common.names.neptune",
@@ -2890,7 +3086,8 @@
   "text": "نبتون!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.neptune.mp3",
-  "hash": "5407e66861f9"
+  "hash": "5407e66861f9",
+  "duration": 1.1
  },
  {
   "id": "games.size.question.mercury.venus",
@@ -2899,7 +3096,8 @@
   "text": "مين أكبر: عطارد ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.venus.mp3",
-  "hash": "95189a9e9500"
+  "hash": "95189a9e9500",
+  "duration": 3.87
  },
  {
   "id": "games.size.question.mercury.earth",
@@ -2908,7 +3106,8 @@
   "text": "مين أكبر: عطارد ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.earth.mp3",
-  "hash": "8f8b0303544b"
+  "hash": "8f8b0303544b",
+  "duration": 3.32
  },
  {
   "id": "games.size.question.mercury.jupiter",
@@ -2917,7 +3116,8 @@
   "text": "مين أكبر: عطارد ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.jupiter.mp3",
-  "hash": "c6eab3c1b6ed"
+  "hash": "c6eab3c1b6ed",
+  "duration": 3.19
  },
  {
   "id": "games.size.question.mercury.saturn",
@@ -2926,7 +3126,8 @@
   "text": "مين أكبر: عطارد ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.saturn.mp3",
-  "hash": "e9e9fb959f86"
+  "hash": "e9e9fb959f86",
+  "duration": 3.27
  },
  {
   "id": "games.size.question.mercury.uranus",
@@ -2935,7 +3136,8 @@
   "text": "مين أكبر: عطارد ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.uranus.mp3",
-  "hash": "b37a16647cb9"
+  "hash": "b37a16647cb9",
+  "duration": 3.4
  },
  {
   "id": "games.size.question.mercury.neptune",
@@ -2944,7 +3146,8 @@
   "text": "مين أكبر: عطارد ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.neptune.mp3",
-  "hash": "8c3d9c6c137d"
+  "hash": "8c3d9c6c137d",
+  "duration": 3.19
  },
  {
   "id": "games.size.question.venus.mercury",
@@ -2953,7 +3156,8 @@
   "text": "مين أكبر: الزهرة ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.mercury.mp3",
-  "hash": "b5dacae99d8f"
+  "hash": "b5dacae99d8f",
+  "duration": 3.42
  },
  {
   "id": "games.size.question.venus.mars",
@@ -2962,7 +3166,8 @@
   "text": "مين أكبر: الزهرة ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.mars.mp3",
-  "hash": "94d9ea146a11"
+  "hash": "94d9ea146a11",
+  "duration": 3.42
  },
  {
   "id": "games.size.question.venus.jupiter",
@@ -2971,7 +3176,8 @@
   "text": "مين أكبر: الزهرة ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.jupiter.mp3",
-  "hash": "cb3e01c3a65a"
+  "hash": "cb3e01c3a65a",
+  "duration": 3.29
  },
  {
   "id": "games.size.question.venus.saturn",
@@ -2980,7 +3186,8 @@
   "text": "مين أكبر: الزهرة ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.saturn.mp3",
-  "hash": "79591aa6cf42"
+  "hash": "79591aa6cf42",
+  "duration": 3.16
  },
  {
   "id": "games.size.question.venus.uranus",
@@ -2989,7 +3196,8 @@
   "text": "مين أكبر: الزهرة ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.uranus.mp3",
-  "hash": "11dc422e9360"
+  "hash": "11dc422e9360",
+  "duration": 3.37
  },
  {
   "id": "games.size.question.venus.neptune",
@@ -2998,7 +3206,8 @@
   "text": "مين أكبر: الزهرة ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.neptune.mp3",
-  "hash": "63642aad9bf2"
+  "hash": "63642aad9bf2",
+  "duration": 3.19
  },
  {
   "id": "games.size.question.earth.mercury",
@@ -3007,7 +3216,8 @@
   "text": "مين أكبر: الأرض ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.mercury.mp3",
-  "hash": "3ff2d26f2336"
+  "hash": "3ff2d26f2336",
+  "duration": 3.34
  },
  {
   "id": "games.size.question.earth.mars",
@@ -3016,7 +3226,8 @@
   "text": "مين أكبر: الأرض ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.mars.mp3",
-  "hash": "eba5bbd696ef"
+  "hash": "eba5bbd696ef",
+  "duration": 3.34
  },
  {
   "id": "games.size.question.earth.jupiter",
@@ -3025,7 +3236,8 @@
   "text": "مين أكبر: الأرض ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.jupiter.mp3",
-  "hash": "d563fda0a2d5"
+  "hash": "d563fda0a2d5",
+  "duration": 3.24
  },
  {
   "id": "games.size.question.earth.saturn",
@@ -3034,7 +3246,8 @@
   "text": "مين أكبر: الأرض ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.saturn.mp3",
-  "hash": "7b4f3c030bba"
+  "hash": "7b4f3c030bba",
+  "duration": 3.11
  },
  {
   "id": "games.size.question.earth.uranus",
@@ -3043,7 +3256,8 @@
   "text": "مين أكبر: الأرض ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.uranus.mp3",
-  "hash": "9500c1da1222"
+  "hash": "9500c1da1222",
+  "duration": 3.32
  },
  {
   "id": "games.size.question.earth.neptune",
@@ -3052,7 +3266,8 @@
   "text": "مين أكبر: الأرض ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.neptune.mp3",
-  "hash": "3dab2235230f"
+  "hash": "3dab2235230f",
+  "duration": 3.16
  },
  {
   "id": "games.size.question.mars.venus",
@@ -3061,7 +3276,8 @@
   "text": "مين أكبر: المريخ ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.venus.mp3",
-  "hash": "252fba2d5e44"
+  "hash": "252fba2d5e44",
+  "duration": 3.45
  },
  {
   "id": "games.size.question.mars.earth",
@@ -3070,7 +3286,8 @@
   "text": "مين أكبر: المريخ ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.earth.mp3",
-  "hash": "4303e087313f"
+  "hash": "4303e087313f",
+  "duration": 3.13
  },
  {
   "id": "games.size.question.mars.jupiter",
@@ -3079,7 +3296,8 @@
   "text": "مين أكبر: المريخ ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.jupiter.mp3",
-  "hash": "a0e3ac86c552"
+  "hash": "a0e3ac86c552",
+  "duration": 3.11
  },
  {
   "id": "games.size.question.mars.saturn",
@@ -3088,7 +3306,8 @@
   "text": "مين أكبر: المريخ ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.saturn.mp3",
-  "hash": "2e63b0c5cdd0"
+  "hash": "2e63b0c5cdd0",
+  "duration": 2.82
  },
  {
   "id": "games.size.question.mars.uranus",
@@ -3097,7 +3316,8 @@
   "text": "مين أكبر: المريخ ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.uranus.mp3",
-  "hash": "0b3fd360401f"
+  "hash": "0b3fd360401f",
+  "duration": 3.24
  },
  {
   "id": "games.size.question.mars.neptune",
@@ -3106,7 +3326,8 @@
   "text": "مين أكبر: المريخ ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.neptune.mp3",
-  "hash": "908e3fa3c5b6"
+  "hash": "908e3fa3c5b6",
+  "duration": 2.77
  },
  {
   "id": "games.size.question.jupiter.mercury",
@@ -3115,7 +3336,8 @@
   "text": "مين أكبر: المشتري ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.mercury.mp3",
-  "hash": "814e4418f8dd"
+  "hash": "814e4418f8dd",
+  "duration": 3.29
  },
  {
   "id": "games.size.question.jupiter.venus",
@@ -3124,7 +3346,8 @@
   "text": "مين أكبر: المشتري ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.venus.mp3",
-  "hash": "273e214fbabb"
+  "hash": "273e214fbabb",
+  "duration": 3
  },
  {
   "id": "games.size.question.jupiter.earth",
@@ -3133,7 +3356,8 @@
   "text": "مين أكبر: المشتري ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.earth.mp3",
-  "hash": "9c5dee7ab5f9"
+  "hash": "9c5dee7ab5f9",
+  "duration": 3.79
  },
  {
   "id": "games.size.question.jupiter.mars",
@@ -3142,7 +3366,8 @@
   "text": "مين أكبر: المشتري ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.mars.mp3",
-  "hash": "2c6e57c1be88"
+  "hash": "2c6e57c1be88",
+  "duration": 3.79
  },
  {
   "id": "games.size.question.jupiter.uranus",
@@ -3151,7 +3376,8 @@
   "text": "مين أكبر: المشتري ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.uranus.mp3",
-  "hash": "018f5c40b0f8"
+  "hash": "018f5c40b0f8",
+  "duration": 3.76
  },
  {
   "id": "games.size.question.jupiter.neptune",
@@ -3160,7 +3386,8 @@
   "text": "مين أكبر: المشتري ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.neptune.mp3",
-  "hash": "0b6922636075"
+  "hash": "0b6922636075",
+  "duration": 3.58
  },
  {
   "id": "games.size.question.saturn.mercury",
@@ -3169,7 +3396,8 @@
   "text": "مين أكبر: زحل ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.mercury.mp3",
-  "hash": "d92e00ddbaf3"
+  "hash": "d92e00ddbaf3",
+  "duration": 3.37
  },
  {
   "id": "games.size.question.saturn.venus",
@@ -3178,7 +3406,8 @@
   "text": "مين أكبر: زحل ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.venus.mp3",
-  "hash": "a10f73c61c1b"
+  "hash": "a10f73c61c1b",
+  "duration": 3.13
  },
  {
   "id": "games.size.question.saturn.earth",
@@ -3187,7 +3416,8 @@
   "text": "مين أكبر: زحل ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.earth.mp3",
-  "hash": "3fd3018eec25"
+  "hash": "3fd3018eec25",
+  "duration": 3.24
  },
  {
   "id": "games.size.question.saturn.mars",
@@ -3196,7 +3426,8 @@
   "text": "مين أكبر: زحل ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.mars.mp3",
-  "hash": "02b824d5bdd8"
+  "hash": "02b824d5bdd8",
+  "duration": 3.42
  },
  {
   "id": "games.size.question.saturn.uranus",
@@ -3205,7 +3436,8 @@
   "text": "مين أكبر: زحل ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.uranus.mp3",
-  "hash": "f2283983bbad"
+  "hash": "f2283983bbad",
+  "duration": 3.42
  },
  {
   "id": "games.size.question.saturn.neptune",
@@ -3214,7 +3446,8 @@
   "text": "مين أكبر: زحل ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.neptune.mp3",
-  "hash": "458e19f82de0"
+  "hash": "458e19f82de0",
+  "duration": 3.32
  },
  {
   "id": "games.size.question.uranus.mercury",
@@ -3223,7 +3456,8 @@
   "text": "مين أكبر: أورانوس ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.mercury.mp3",
-  "hash": "49dc111c95c6"
+  "hash": "49dc111c95c6",
+  "duration": 3.47
  },
  {
   "id": "games.size.question.uranus.venus",
@@ -3232,7 +3466,8 @@
   "text": "مين أكبر: أورانوس ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.venus.mp3",
-  "hash": "66cf7dc15ef7"
+  "hash": "66cf7dc15ef7",
+  "duration": 3.32
  },
  {
   "id": "games.size.question.uranus.earth",
@@ -3241,7 +3476,8 @@
   "text": "مين أكبر: أورانوس ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.earth.mp3",
-  "hash": "17728b6f2790"
+  "hash": "17728b6f2790",
+  "duration": 3.37
  },
  {
   "id": "games.size.question.uranus.mars",
@@ -3250,7 +3486,8 @@
   "text": "مين أكبر: أورانوس ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.mars.mp3",
-  "hash": "20b4016e8e03"
+  "hash": "20b4016e8e03",
+  "duration": 3.47
  },
  {
   "id": "games.size.question.uranus.jupiter",
@@ -3259,7 +3496,8 @@
   "text": "مين أكبر: أورانوس ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.jupiter.mp3",
-  "hash": "a89bd6e4e6da"
+  "hash": "a89bd6e4e6da",
+  "duration": 3.42
  },
  {
   "id": "games.size.question.uranus.saturn",
@@ -3268,7 +3506,8 @@
   "text": "مين أكبر: أورانوس ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.saturn.mp3",
-  "hash": "1cb6bf93622f"
+  "hash": "1cb6bf93622f",
+  "duration": 3.29
  },
  {
   "id": "games.size.question.neptune.mercury",
@@ -3277,7 +3516,8 @@
   "text": "مين أكبر: نبتون ولا عطارد؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.mercury.mp3",
-  "hash": "2bb06880b03d"
+  "hash": "2bb06880b03d",
+  "duration": 3.5
  },
  {
   "id": "games.size.question.neptune.venus",
@@ -3286,7 +3526,8 @@
   "text": "مين أكبر: نبتون ولا الزهرة؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.venus.mp3",
-  "hash": "b5d083a9945e"
+  "hash": "b5d083a9945e",
+  "duration": 3.29
  },
  {
   "id": "games.size.question.neptune.earth",
@@ -3295,7 +3536,8 @@
   "text": "مين أكبر: نبتون ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.earth.mp3",
-  "hash": "f588dbc42ac6"
+  "hash": "f588dbc42ac6",
+  "duration": 3.27
  },
  {
   "id": "games.size.question.neptune.mars",
@@ -3304,7 +3546,8 @@
   "text": "مين أكبر: نبتون ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.mars.mp3",
-  "hash": "aa19f29eb38b"
+  "hash": "aa19f29eb38b",
+  "duration": 3.4
  },
  {
   "id": "games.size.question.neptune.jupiter",
@@ -3313,7 +3556,8 @@
   "text": "مين أكبر: نبتون ولا المشتري؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.jupiter.mp3",
-  "hash": "700b047b70d9"
+  "hash": "700b047b70d9",
+  "duration": 3.21
  },
  {
   "id": "games.size.question.neptune.saturn",
@@ -3322,6 +3566,7 @@
   "text": "مين أكبر: نبتون ولا زحل؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.saturn.mp3",
-  "hash": "9986562bc6df"
+  "hash": "9986562bc6df",
+  "duration": 3.19
  }
 ]
