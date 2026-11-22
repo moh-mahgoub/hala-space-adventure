@@ -5,6 +5,10 @@ import { PlanetArt } from '../components/PlanetArt'
 import { TopBar } from '../components/TopBar'
 import { ui } from '../content/ui'
 import { BODIES, PLANET_IDS, TOUR_ORDER, displayRadius, type BodyId, type PlanetId } from '../data/planets'
+
+/** Everything that circles the Sun on screen: the 8 planets, then the dwarf planet Pluto. */
+type Orbiter = PlanetId | 'pluto'
+const ORBITERS: Orbiter[] = [...PLANET_IDS, 'pluto']
 import { useOnce, useReducedMotion, useSize } from '../hooks'
 import { navigate } from '../router'
 import { useProgress } from '../state/progress'
@@ -15,7 +19,7 @@ import { react } from '../profile/reactions'
 import { narrator } from '../audio'
 
 /** Pleasant starting angles so planets don't line up */
-const START_ANGLE: Record<PlanetId, number> = {
+const START_ANGLE: Record<Orbiter, number> = {
   mercury: 0.4,
   venus: 2.6,
   earth: 4.4,
@@ -24,10 +28,11 @@ const START_ANGLE: Record<PlanetId, number> = {
   saturn: 5.6,
   uranus: 0.9,
   neptune: 2.9,
+  pluto: 4.9,
 }
 
 /** Seconds per orbit on screen (illustrative, gentle — not to scale) */
-function orbitSeconds(id: PlanetId): number {
+function orbitSeconds(id: Orbiter): number {
   return 46 * Math.pow((BODIES[id].orbitDays ?? 365) / 88, 0.33)
 }
 
@@ -35,7 +40,7 @@ interface Layout {
   cx: number
   cy: number
   sunR: number
-  orbits: Record<PlanetId, { rx: number; ry: number; r: number }>
+  orbits: Record<Orbiter, { rx: number; ry: number; r: number }>
   moonOrbit: number
   moonR: number
 }
@@ -51,8 +56,8 @@ export function computeLayout(w: number, h: number): Layout {
   const startRy = sunR * 1.5
   const orbits = {} as Layout['orbits']
   const base = Math.max(9, minDim * 0.028)
-  PLANET_IDS.forEach((id, i) => {
-    const t = (i + 1) / PLANET_IDS.length
+  ORBITERS.forEach((id, i) => {
+    const t = (i + 1) / ORBITERS.length
     orbits[id] = {
       rx: startRx + (maxRx - startRx) * t,
       ry: startRy + (maxRy - startRy) * t,
@@ -152,7 +157,7 @@ export function SolarSystemScreen() {
     let last = performance.now()
     let raf = 0
     const place = () => {
-      for (const id of PLANET_IDS) {
+      for (const id of ORBITERS) {
         const o = layout.orbits[id]
         const x = layout.cx + Math.cos(angles[id]) * o.rx
         const y = layout.cy + Math.sin(angles[id]) * o.ry
@@ -169,7 +174,7 @@ export function SolarSystemScreen() {
       const dt = Math.min(0.1, (now - last) / 1000)
       last = now
       if (!paused.current) {
-        for (const id of PLANET_IDS) angles[id] += (dt * 2 * Math.PI) / orbitSeconds(id)
+        for (const id of ORBITERS) angles[id] += (dt * 2 * Math.PI) / orbitSeconds(id)
         moonAngle += (dt * 2 * Math.PI) / 9
       }
       place()
@@ -231,7 +236,7 @@ export function SolarSystemScreen() {
             role="group"
             aria-label="المجموعة الشمسية: الشمس والكواكب التمانية"
           >
-            {PLANET_IDS.map((id) => (
+            {ORBITERS.map((id) => (
               <ellipse
                 key={id}
                 cx={layout.cx}
@@ -254,7 +259,7 @@ export function SolarSystemScreen() {
                 onPress={() => (paused.current = true)}
               />
             </g>
-            {PLANET_IDS.map((id) => (
+            {ORBITERS.map((id) => (
               <g key={id} ref={(el) => void (groups.current[id] = el)}>
                 <BodyHit
                   id={id}
@@ -277,7 +282,7 @@ export function SolarSystemScreen() {
               />
             </g>
             {size.width > 500 &&
-              PLANET_IDS.map((id) => (
+              ORBITERS.map((id) => (
                 <text
                   key={id}
                   ref={(el) => void (labels.current[id] = el)}

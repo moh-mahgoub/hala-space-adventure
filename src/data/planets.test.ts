@@ -6,6 +6,14 @@ describe('scientific planet data', () => {
     PLANET_IDS.forEach((id, i) => expect(BODIES[id].order).toBe(i + 1))
   })
 
+  it('Pluto is a dwarf planet, never counted among the eight planets', () => {
+    expect(BODIES.pluto.kind).toBe('dwarf')
+    expect(PLANET_IDS).not.toContain('pluto')
+    expect(isPlanetId('pluto')).toBe(false)
+    expect(BODIES.pluto.diameterKm).toBeLessThan(BODIES.moon.diameterKm) // smaller than our Moon
+    expect(Math.round(BODIES.pluto.orbitDays! / 365.25)).toBe(248)
+  })
+
   it('distinguishes star, planets and moon', () => {
     expect(BODIES.sun.kind).toBe('star')
     expect(BODIES.moon.kind).toBe('moon')
@@ -38,7 +46,7 @@ describe('scientific planet data', () => {
 
   it('uses the familiar Arabic names', () => {
     expect(TOUR_ORDER.map((id) => BODIES[id].nameAr)).toEqual([
-      'الشمس', 'عطارد', 'الزهرة', 'الأرض', 'القمر', 'المريخ', 'المشتري', 'زحل', 'أورانوس', 'نبتون',
+      'الشمس', 'عطارد', 'الزهرة', 'الأرض', 'القمر', 'المريخ', 'المشتري', 'زحل', 'أورانوس', 'نبتون', 'بلوتو',
     ])
   })
 
@@ -46,6 +54,7 @@ describe('scientific planet data', () => {
     expect(neighbours('earth').next).toBe('moon')
     expect(neighbours('moon').next).toBe('mars')
     expect(neighbours('sun').prev).toBeUndefined()
-    expect(neighbours('neptune').next).toBeUndefined()
+    expect(neighbours('neptune').next).toBe('pluto') // the dwarf planet comes last
+    expect(neighbours('pluto').next).toBeUndefined()
   })
 })

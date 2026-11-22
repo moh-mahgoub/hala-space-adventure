@@ -11,6 +11,7 @@ import { JupiterActivity } from './JupiterActivity'
 import { SaturnActivity } from './SaturnActivity'
 import { UranusActivity } from './UranusActivity'
 import { NeptuneActivity } from './NeptuneActivity'
+import { PlutoActivity } from './PlutoActivity'
 
 /** One interactive discovery per body. */
 export const ACTIVITIES: Record<BodyId, ComponentType<ActivityProps>> = {
@@ -24,4 +25,5 @@ export const ACTIVITIES: Record<BodyId, ComponentType<ActivityProps>> = {
   saturn: SaturnActivity,
   uranus: UranusActivity,
   neptune: NeptuneActivity,
+  pluto: PlutoActivity,
 }

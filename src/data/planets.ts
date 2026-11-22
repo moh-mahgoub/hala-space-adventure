@@ -17,10 +17,12 @@ export type BodyId =
   | 'saturn'
   | 'uranus'
   | 'neptune'
+  | 'pluto'
 
-export type PlanetId = Exclude<BodyId, 'sun' | 'moon'>
+/** The eight planets (Pluto is a dwarf planet, not one of them). */
+export type PlanetId = Exclude<BodyId, 'sun' | 'moon' | 'pluto'>
 
-export type BodyKind = 'star' | 'planet' | 'moon'
+export type BodyKind = 'star' | 'planet' | 'moon' | 'dwarf'
 export type PlanetClass = 'rocky' | 'gas-giant' | 'ice-giant'
 
 export interface Body {
@@ -188,6 +190,18 @@ export const BODIES: Record<BodyId, Body> = {
     colorAr: 'أزرق غامق',
     rings: 'faint',
   },
+  pluto: {
+    id: 'pluto',
+    nameAr: 'بلوتو',
+    genderAr: 'm',
+    nameEn: 'Pluto',
+    kind: 'dwarf', // a dwarf planet since 2006 — never counted as a 9th planet
+    diameterKm: 2_377, // smaller than our Moon (3,475 km)
+    distance: 5_906.4,
+    orbitDays: 90_560, // ≈ 248 years
+    color: '#d9c3a5',
+    colorAr: 'بيج',
+  },
 }
 
 /** The eight planets, in order from the Sun. */
@@ -196,7 +210,11 @@ export const PLANET_IDS: PlanetId[] = (Object.values(BODIES) as Body[])
   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
   .map((b) => b.id as PlanetId)
 
-/** Order used for exploring / guided tour: Sun, then planets, Moon right after Earth. */
+/**
+ * Every body shown in the app, in exploring / guided-tour order: the Sun, the
+ * planets (Moon right after Earth), then the dwarf planet Pluto beyond Neptune.
+ * Each one must have a full scene and recordings (enforced by tests).
+ */
 export const TOUR_ORDER: BodyId[] = [
   'sun',
   'mercury',
@@ -208,6 +226,7 @@ export const TOUR_ORDER: BodyId[] = [
   'saturn',
   'uranus',
   'neptune',
+  'pluto',
 ]
 
 export const ALL_BODY_IDS = TOUR_ORDER

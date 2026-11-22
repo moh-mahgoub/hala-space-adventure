@@ -18,7 +18,8 @@ describe('hash router', () => {
 
   it('falls back safely on bad input', () => {
     expect(parseHash('')).toEqual({ name: 'home' })
-    expect(parseHash('#/planet/pluto')).toEqual({ name: 'space' })
+    expect(parseHash('#/planet/vulcan')).toEqual({ name: 'space' })
+    expect(parseHash('#/planet/pluto')).toEqual({ name: 'planet', id: 'pluto', tour: false })
     expect(parseHash('#/game/chess')).toEqual({ name: 'games' })
     expect(parseHash('#/story/-1')).toEqual({ name: 'story', chapter: null })
     expect(parseHash('#/nonsense')).toEqual({ name: 'home' })

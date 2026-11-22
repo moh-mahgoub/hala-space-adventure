@@ -68,3 +68,33 @@ test('a game answer is narrated from composed clips', async ({ page }) => {
   await expect(page.getByTestId('caption')).toContainText('يلا ندور تاني', { timeout: 15_000 })
   expect(audio.filter((a) => a.status >= 400)).toEqual([])
 })
+
+test('every body in the app has a working scene with its recorded intro', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'one full walkthrough is enough')
+  test.setTimeout(120_000)
+  const audio = await instrument(page)
+  await start(page)
+  const bodies = ['sun', 'mercury', 'venus', 'earth', 'moon', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+  for (const id of bodies) {
+    await page.evaluate((h) => (location.hash = h), `#/planet/${id}`)
+    await expect(page.getByTestId(`planet-screen-${id}`)).toBeVisible()
+    await expect(page.getByTestId('kind-badge')).toBeVisible()
+    if (id === 'pluto') await expect(page.getByTestId('kind-badge')).toContainText('كوكب قزم')
+    expect(await page.getByTestId(/^fact-\d$/).count(), id).toBeGreaterThanOrEqual(2)
+    await expect(page.getByRole('region', { name: /نشاط/ })).toBeVisible()
+    await expect.poll(() => audio.some((a) => a.url.endsWith(`/planets.${id}.intro.mp3`) && a.status < 400), { timeout: 8000 }).toBe(true)
+  }
+  // Pluto is visible in the solar system and the strip too
+  await page.evaluate(() => (location.hash = '#/space'))
+  await expect(page.getByTestId('body-pluto')).toBeAttached()
+  await expect(page.getByTestId('strip-pluto')).toBeVisible()
+})
+
+test('Pluto activity: find the heart, then compare with the Moon', async ({ page }) => {
+  await instrument(page)
+  await start(page)
+  await page.evaluate(() => (location.hash = '#/planet/pluto'))
+  await page.getByTestId('pluto-heart').click()
+  await expect(page.getByTestId('pluto-moon-compare')).toBeVisible()
+  await expect(page.getByText('خلصتي!')).toBeVisible({ timeout: 20_000 })
+})

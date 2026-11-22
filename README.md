@@ -21,7 +21,7 @@ An interactive, Arabic-language (friendly Egyptian dialect) solar-system adventu
 ### Explore the solar system
 - **Animated orbit view**: the Sun, the 8 planets and the Moon orbit gently. Planets stop moving while a finger is on them, so they're easy to tap, and the tap targets are generous. A planet strip at the bottom also lists everything in order from the Sun (right to left, RTL).
 - **Guided mode** (default): the app highlights the next place to visit. A **guided tour** (🚀 جولة مع زيزو) goes from the Sun to Neptune with narration.
-- **Ten discovery scenes** (Sun, 8 planets, Moon). Each one has a big animated body, its Arabic name, a "star / planet #N / moon" badge, 3 tappable spoken facts, an interactive activity, replay narration, and next/previous navigation (also swipeable).
+- **Eleven discovery scenes** (the Sun, 8 planets, the Moon, and the dwarf planet Pluto). Each one has a big animated body, its Arabic name, a "star / planet #N / moon / dwarf planet" badge, 3 tappable spoken facts, an interactive activity, replay narration, and next/previous navigation (also swipeable).
 
 | Body | Activity |
 |---|---|
@@ -34,7 +34,8 @@ An interactive, Arabic-language (friendly Egyptian dialect) solar-system adventu
 | المشتري | Drop Earths into Jupiter. Earth is drawn at the **true size ratio** (≈1:11), and more than 1,000 Earths would fit inside |
 | زحل | Drag up/down to view the **rings** from above and below, then tap to zoom in on the ice and rock pieces |
 | أورانوس | Tap to make it **roll on its side** |
-| نبتون | Tap for the strongest winds. The faraway Sun is just a dot. Mentions Pluto as a *dwarf planet* |
+| نبتون | Tap for the strongest winds. The faraway Sun is just a dot. Points onward to Pluto |
+| بلوتو | A **dwarf planet** (labelled «كوكب قزم», never a 9th planet): find its heart-shaped icy plain, then see it next to our Moon at true size, smaller than the Moon |
 
 ### Games (all replayable, no timers, no penalties)
 1. **فين الكوكب؟ (Find the planet)**: "يا حلا، فين كوكب زحل؟" with 3 big choices. A wrong answer gets a gentle hint, and after 2 tries the right planet glows.
@@ -211,7 +212,7 @@ The full workflow (voices, costs, redoing one phrase, adding a character) is in 
 
 ## Scientific notes
 
-- Facts were checked against NASA fact sheets. The app distinguishes star, planet and moon, uses 8 planets, and calls Pluto a dwarf planet.
+- Facts were checked against NASA fact sheets. The app distinguishes star, planet, moon and dwarf planet: it teaches 8 planets, and Pluto has its own scene clearly labelled as a dwarf planet (the games use only the 8 planets). A test makes sure every solar-system object the narration mentions has a scene of its own.
 - **Pictures are not to scale** (sizes, distances and orbital speeds). This is stated in the solar-system view and in parent settings. The Jupiter activity and the "which is bigger?" reveal use **true** size ratios.
 
 ## Known limitations

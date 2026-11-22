@@ -24,8 +24,10 @@ function KindBadge({ id }: { id: BodyId }) {
       ? 'نجمة'
       : b.kind === 'moon'
         ? 'قمر الأرض'
-        : `كوكب رقم ${(b.order ?? 0).toLocaleString('ar-EG')}`
-  const icon = b.kind === 'star' ? '⭐' : b.kind === 'moon' ? '🌙' : '🪐'
+        : b.kind === 'dwarf'
+          ? 'كوكب قزم'
+          : `كوكب رقم ${(b.order ?? 0).toLocaleString('ar-EG')}`
+  const icon = b.kind === 'star' ? '⭐' : b.kind === 'moon' ? '🌙' : b.kind === 'dwarf' ? '✨' : '🪐'
   return (
     <span
       data-testid="kind-badge"

@@ -67,7 +67,7 @@ describe('progress', () => {
   })
 
   it('ignores corrupt stored data', () => {
-    expect(sanitizeProgress({ visited: ['pluto', 'earth', 'earth'] as never, stars: [1, 'a'] as never })).toEqual({
+    expect(sanitizeProgress({ visited: ['vulcan', 'earth', 'earth'] as never, stars: [1, 'a'] as never })).toEqual({
       visited: ['earth'],
       stars: ['a'],
       celebratedAll: false,

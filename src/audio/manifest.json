@@ -308,6 +308,15 @@
   "duration": 3.76
  },
  {
+  "id": "zizo.planets.pluto",
+  "speaker": "zizo",
+  "category": "jokes",
+  "text": "بلوتو صغنن قوي… بس عنده قلب كبير! زيك يا كابتن حلا!",
+  "emotion": "silly",
+  "file": "audio/ar-EG/zizo/jokes/zizo.planets.pluto.mp3",
+  "hash": "43ec1bc0a650"
+ },
+ {
   "id": "zizo.celebrate.0",
   "speaker": "zizo",
   "category": "celebrations",
@@ -539,6 +548,15 @@
   "duration": 2.74
  },
  {
+  "id": "space.suggest.pluto",
+  "speaker": "narrator",
+  "category": "welcome",
+  "text": "تعالي نزور بلوتو! دوسي عليه.",
+  "emotion": "excited",
+  "file": "audio/ar-EG/narrator/welcome/space.suggest.pluto.mp3",
+  "hash": "e173ac926339"
+ },
+ {
   "id": "space.tourNext",
   "speaker": "narrator",
   "category": "welcome",
@@ -553,12 +571,11 @@
   "id": "space.tourEnd",
   "speaker": "narrator",
   "category": "welcome",
-  "text": "خلصنا الجولة! زرنا الشمس والكواكب التمانية والقمر. إنتي مستكشفة شاطرة!",
+  "text": "خلصنا الجولة! زرنا الشمس والكواكب التمانية والقمر، وكمان بلوتو الكوكب القزم. إنتي مستكشفة شاطرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/welcome/space.tourEnd.mp3",
-  "hash": "6f29a6c56446",
-  "take": 1,
-  "duration": 7.44
+  "hash": "cd0de3195937",
+  "take": 1
  },
  {
   "id": "planets.sun.intro",
@@ -1494,6 +1511,78 @@
   "hash": "c2db087e5bb6",
   "take": 1,
   "duration": 8.7
+ },
+ {
+  "id": "planets.pluto.intro",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "ده بلوتو! بلوتو مش واحد من الكواكب التمانية، ده كوكب قزم، صغنن خالص وبعيد بعيد بعد نبتون.",
+  "emotion": "excited",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.intro.mp3",
+  "hash": "f98ac46e3881"
+ },
+ {
+  "id": "planets.pluto.facts.0",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "بلوتو صغنن قوي، أصغر من قمرنا كمان!",
+  "emotion": "explaining",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.facts.0.mp3",
+  "hash": "78b16577f7b8"
+ },
+ {
+  "id": "planets.pluto.facts.1",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "على بلوتو فيه شكل قلب كبير، معمول من التلج!",
+  "emotion": "explaining",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.facts.1.mp3",
+  "hash": "288ac0a41bd9"
+ },
+ {
+  "id": "planets.pluto.facts.2",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "بلوتو بياخد حوالي ميتين وخمسين سنة، عشان يلف لفّة واحدة حوالين الشمس!",
+  "emotion": "explaining",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.facts.2.mp3",
+  "hash": "1ba809fd20fa"
+ },
+ {
+  "id": "planets.pluto.short",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "ده بلوتو، كوكب قزم صغنن بعيد خالص!",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.short.mp3",
+  "hash": "29bf46014ceb"
+ },
+ {
+  "id": "planets.pluto.activity.prompt",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "على بلوتو فيه قلب مستخبي! دوسي على القلب عشان نلاقيه.",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.activity.prompt.mp3",
+  "hash": "7d9268b68fe3"
+ },
+ {
+  "id": "planets.pluto.activity.steps.0",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "لقيتي القلب! ده قلب كبير من التلج.",
+  "emotion": "excited",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.activity.steps.0.mp3",
+  "hash": "a568ecf54ceb"
+ },
+ {
+  "id": "planets.pluto.activity.done",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "برافو! وبصي، بلوتو جنب قمرنا… أصغر منه! عشان كده العلماء بيسموه كوكب قزم.",
+  "emotion": "proud",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.activity.done.mp3",
+  "hash": "aa3277a89d89"
  },
  {
   "id": "games.hub",
@@ -3288,6 +3377,15 @@
   "duration": 1.15
  },
  {
+  "id": "common.thisIs.pluto",
+  "speaker": "narrator",
+  "category": "common",
+  "text": "ده بلوتو.",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/common/common.thisIs.pluto.mp3",
+  "hash": "92be710771bd"
+ },
+ {
   "id": "common.names.sun",
   "speaker": "narrator",
   "category": "common",
@@ -3396,6 +3494,15 @@
   "hash": "5407e66861f9",
   "take": 1,
   "duration": 1.1
+ },
+ {
+  "id": "common.names.pluto",
+  "speaker": "narrator",
+  "category": "common",
+  "text": "بلوتو!",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/common/common.names.pluto.mp3",
+  "hash": "efbc18bd79f7"
  },
  {
   "id": "games.size.question.mercury.venus",
