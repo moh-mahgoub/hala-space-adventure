@@ -87,7 +87,7 @@ select { font: inherit; padding: 8px; border-radius: 10px; border: 1px solid var
 <div class="wrap">
   <header>
     <h1>Hala Voice Casting</h1>
-    <p class="lede">Gemini TTS auditions for رحلة حلا في الفضاء. Same script for every voice. Tap a take to play it, use “Play all” to hear a voice's full set, and star the voices you like (stars are saved on this device). Only one clip plays at a time.</p>
+    <p class="lede">Voice auditions for رحلة حلا في الفضاء from Google Gemini TTS and ElevenLabs. Same script for every voice. Tap a take to play it, use “Play all” to hear a voice's full set, and star the voices you like (stars are saved on this device). Only one clip plays at a time.</p>
   </header>
   <div class="picks" id="picks"></div>
   <div id="sections"></div>
@@ -113,7 +113,8 @@ async function sequence(srcs) { const my = ++chain; for (const s of srcs) { if (
 let stars = {}; try { stars = JSON.parse(localStorage.getItem('hala-casting-stars') || '{}'); } catch {}
 const saveStars = () => { try { localStorage.setItem('hala-casting-stars', JSON.stringify(stars)); } catch {} };
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const label = (v) => v.voice + (v.fx && v.fx !== 'none' ? ' + robot fx' : '');
+const PROV = { gemini: 'Gemini', elevenlabs: 'ElevenLabs', azure: 'Azure' };
+const label = (v) => (PROV[v.provider] || v.provider) + ' · ' + v.voice.replace(/ - .*/, '') + (v.fx && v.fx !== 'none' ? ' + robot fx' : '');
 const CH = { narrator: { title: 'Narrator', ar: 'الحكّاءة' }, zizo: { title: 'Zizo the robot', ar: 'زيزو' } };
 
 function renderPicks() {
@@ -131,7 +132,7 @@ for (const ch of ['narrator', 'zizo']) {
   const vs = D.voices.filter((v) => v.character === ch);
   html += '<section class="' + ch + '"><h2>' + CH[ch].title + ' <span class="ar">' + CH[ch].ar + '</span> <small>' + vs.length + ' voices</small></h2>';
   if (!vs.length) { html += '<p class="meta">No takes yet.</p></section>'; continue; }
-  html += '<div class="voices">' + vs.map((v) => '<div class="voice" data-key="' + v.key + '"><div class="vname">' + esc(label(v)) + '</div><div class="meta">' + esc(v.note || '') + '<br>' + esc(v.model) + '</div><div class="row"><button data-all="' + v.key + '">▶ Play all</button><button class="ghost star" data-key="' + v.key + '" aria-pressed="false">★ Star</button></div></div>').join('') + '</div>';
+  html += '<div class="voices">' + vs.map((v) => '<div class="voice" data-key="' + v.key + '"><div class="vname">' + esc(label(v)) + '</div><div class="meta">' + esc(v.provider === 'elevenlabs' ? v.voice : (v.note || '')) + '<br>' + esc(v.model) + '</div><div class="row"><button data-all="' + v.key + '">▶ Play all</button><button class="ghost star" data-key="' + v.key + '" aria-pressed="false">★ Star</button></div></div>').join('') + '</div>';
   for (const line of D.lines.filter((l) => l.speaker === ch && !l.id.startsWith('d'))) {
     html += '<div class="line"><div class="ar">' + esc(line.text) + '</div><div class="id">' + esc(line.id) + ' · ' + esc(line.emotion) + '</div><div class="takes">';
     for (const v of vs) {
