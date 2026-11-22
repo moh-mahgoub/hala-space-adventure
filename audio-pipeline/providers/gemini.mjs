@@ -6,16 +6,20 @@ import { pcmToWav } from '../lib/audio.mjs'
 export const id = 'gemini'
 export const label = 'Google Gemini TTS'
 export const credentials = ['GEMINI_API_KEY']
-export const defaultModel = 'gemini-3.1-flash-tts-preview'
+export const defaultModel = 'gemini-3.8-flash-tts'
 
 export function available() {
   return !!env('GEMINI_API_KEY')
 }
 
-/** English direction + Arabic line: the model performs the line, it doesn't read the direction. */
+/** English direction + Arabic line, clearly separated so the model performs ONLY the transcript. */
 export function buildPrompt(text, style) {
-  return style ? `${style}\n\n${text}` : text
+  if (!style) return text
+  return `${style}\n\nSpeak only the transcript below — do not read these directions aloud.\n\nTRANSCRIPT:\n${text}`
 }
+
+/** Free tier: 3 requests/minute per model → one request every ~21 s. */
+export const minIntervalMs = Number(process.env.GEMINI_MIN_INTERVAL_MS || 21000)
 
 export async function synthesize({ text, voice, style, model }) {
   const key = env('GEMINI_API_KEY')

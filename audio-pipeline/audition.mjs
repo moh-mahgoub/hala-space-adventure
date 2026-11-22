@@ -68,6 +68,32 @@ export function directionFor(provider, line) {
   return null
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+/** A clip much longer than its text could take means the model rambled or read the direction aloud. */
+export function suspiciousDuration(duration, chars) {
+  if (duration == null) return false
+  const expected = chars / 12
+  return duration > Math.max(expected * 3, expected + 8)
+}
+
+/** Retry rate limits (429) and overload (503) with the server's suggested delay. */
+async function withRetries(fn, label, tries = 6) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn()
+    } catch (e) {
+      const msg = String(e.message)
+      const retryable = /\b(429|503)\b/.test(msg) || /suspicious/.test(msg)
+      if (!retryable || attempt >= tries) throw e
+      const hinted = Number(msg.match(/retry in ([\d.]+)s/i)?.[1] ?? msg.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0)
+      const wait = Math.max(hinted * 1000 + 1500, 5000 * attempt)
+      console.log(`  … ${label}: ${msg.match(/\b(429|503)\b/)?.[1] ?? 'retake'}; waiting ${Math.round(wait / 1000)}s (attempt ${attempt + 1}/${tries})`)
+      await sleep(wait)
+    }
+  }
+}
+
 export function clipKey(provider, cand) {
   return `${provider}-${slug(cand.voiceName ?? cand.voice)}${cand.fx && cand.fx !== 'none' ? `-${cand.fx}` : ''}`
 }
@@ -128,24 +154,31 @@ async function main() {
     return
   }
 
-  // ── generate (sequential: kind to rate limits) ──
+  // ── generate (sequential, paced per provider) ──
   let made = 0
   let failed = 0
+  const lastCall = {}
   for (const j of plan) {
     const key = clipKey(j.provider, j.cand)
     const rel = path.join(j.character, key, `${j.line.id}.mp3`)
     const file = path.join(OUT, rel)
     const id = `${key}/${j.line.id}`
-    if (existsSync(file) && !args.force) continue
     const text = j.line.synthText ?? j.line.text
+    const prev = results.clips[id]
+    const suspect = prev?.status === 'ok' && suspiciousDuration(prev.duration, text.length)
+    if (existsSync(file) && !args.force && !suspect) continue
+    if (suspect) console.log(`  ↻ ${id}: previous take was ${prev.duration}s — suspicious, redoing`)
     try {
-      const r = await PROVIDERS[j.provider].synthesize({
-        text,
-        voice: j.cand.voice,
-        style: directionFor(j.provider, j.line),
-        prosody: j.cand.prosody,
-      })
-      const { duration } = finishClip(r.audio, file, { fx: j.cand.fx ?? 'none' })
+      const mod = PROVIDERS[j.provider]
+      const { r, duration } = await withRetries(async () => {
+        const gap = (mod.minIntervalMs ?? 0) - (Date.now() - (lastCall[j.provider] ?? 0))
+        if (gap > 0) await sleep(gap)
+        lastCall[j.provider] = Date.now()
+        const r = await mod.synthesize({ text, voice: j.cand.voice, style: directionFor(j.provider, j.line), prosody: j.cand.prosody })
+        const { duration } = finishClip(r.audio, file, { fx: j.cand.fx ?? 'none' })
+        if (suspiciousDuration(duration, text.length)) throw new Error(`suspicious length ${duration}s for ${text.length} chars`)
+        return { r, duration }
+      }, id)
       results.clips[id] = {
         status: 'ok',
         provider: j.provider,

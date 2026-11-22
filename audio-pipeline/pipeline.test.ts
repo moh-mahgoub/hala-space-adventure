@@ -12,7 +12,7 @@ import { estimate } from './lib/cost.mjs'
 // @ts-expect-error plain JS modules
 import { AUDITION_LINES, AUDITION_DIALOGUE, CANDIDATES } from './auditions.mjs'
 // @ts-expect-error plain JS modules
-import { clipKey, directionFor, slug } from './audition.mjs'
+import { clipKey, directionFor, slug, suspiciousDuration } from './audition.mjs'
 
 describe('audio manifest helpers', () => {
   it('builds stable file paths per speaker and category', () => {
@@ -43,9 +43,18 @@ describe('providers', () => {
     expect(ssml).toContain('&lt;يا&gt; حلا &amp; زيزو')
   })
 
-  it('Gemini prompt puts the English direction before the Arabic line', () => {
-    expect(buildPrompt('أهلاً يا حلا', 'Warmly:')).toBe('Warmly:\n\nأهلاً يا حلا')
+  it('Gemini prompt separates the English direction from the Arabic transcript', () => {
+    const p = buildPrompt('أهلاً يا حلا', 'Warmly.')
+    expect(p.startsWith('Warmly.')).toBe(true)
+    expect(p).toMatch(/TRANSCRIPT:\nأهلاً يا حلا$/)
+    expect(p).toMatch(/do not read these directions aloud/)
     expect(buildPrompt('أهلاً', null)).toBe('أهلاً')
+  })
+
+  it('flags takes that are far too long for their text', () => {
+    expect(suspiciousDuration(5, 60)).toBe(false) // ~5 s expected
+    expect(suspiciousDuration(25, 40)).toBe(true) // the model rambled / read the direction
+    expect(suspiciousDuration(null, 40)).toBe(false)
   })
 
   it('wraps raw PCM in a valid WAV header', () => {
