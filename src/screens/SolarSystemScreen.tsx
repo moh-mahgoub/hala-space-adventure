@@ -244,9 +244,13 @@ export function SolarSystemScreen() {
                 rx={layout.orbits[id].rx}
                 ry={layout.orbits[id].ry}
                 fill="none"
-                stroke="rgba(190,200,255,0.18)"
-                strokeWidth={1.5}
-                strokeDasharray="4 6"
+                // the dwarf planet's path is fainter and dotted — it isn't one of the eight
+                stroke={BODIES[id].kind === 'dwarf' ? 'rgba(190,220,255,0.12)' : 'rgba(190,200,255,0.18)'}
+                strokeWidth={BODIES[id].kind === 'dwarf' ? 1.2 : 1.5}
+                strokeDasharray={BODIES[id].kind === 'dwarf' ? '1 7' : '4 6'}
+                strokeLinecap="round"
+                data-testid={`orbit-${id}`}
+                data-kind={BODIES[id].kind}
               />
             ))}
             <g transform={`translate(${layout.cx},${layout.cy})`}>
@@ -330,11 +334,23 @@ export function SolarSystemScreen() {
         <ol className="mx-auto flex max-w-5xl justify-between gap-1 overflow-x-auto px-1 py-1">
           {TOUR_ORDER.map((id) => {
             const visited = progress.visited.includes(id)
+            const dwarf = BODIES[id].kind === 'dwarf'
             return (
-              <li key={id}>
+              <li key={id} className={dwarf ? 'flex items-stretch gap-1' : undefined}>
+                {dwarf && (
+                  // the eight planets end here; what follows is a dwarf planet
+                  <span
+                    data-testid="strip-dwarf-divider"
+                    aria-hidden
+                    className="flex w-6 flex-col items-center justify-center border-r-2 border-dashed border-white/30 text-[0.65rem] leading-tight font-bold text-sky-200/80 sm:w-8 sm:text-xs"
+                    style={{ writingMode: 'vertical-rl' }}
+                  >
+                    كوكب قزم
+                  </span>
+                )}
                 <button
                   type="button"
-                  aria-label={BODIES[id].nameAr}
+                  aria-label={dwarf ? `${BODIES[id].nameAr}، كوكب قزم` : BODIES[id].nameAr}
                   data-testid={`strip-${id}`}
                   onClick={() => open(id)}
                   className={`btn-pop relative flex w-16 flex-col items-center rounded-2xl p-1 sm:w-20 ${

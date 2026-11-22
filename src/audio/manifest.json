@@ -311,10 +311,10 @@
   "id": "zizo.planets.pluto",
   "speaker": "zizo",
   "category": "jokes",
-  "text": "بلوتو صغنن قوي… بس عنده قلب كبير! زيك يا كابتن حلا!",
+  "text": "ياااه! ده صغير وساقع! بس استني... هو عنده قلب على وشّه ولا أنا بتخيّل؟!",
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.pluto.mp3",
-  "hash": "43ec1bc0a650"
+  "hash": "366eb7567890"
  },
  {
   "id": "zizo.celebrate.0",
@@ -359,6 +359,24 @@
   "hash": "3a5aa717a011",
   "take": 1,
   "duration": 3.11
+ },
+ {
+  "id": "zizo.pluto.jacket",
+  "speaker": "zizo",
+  "category": "reactions",
+  "text": "بلوتو؟! أنا سمعت إن الدنيا ساقعة أوي هناك! استني ألبس الجاكت بتاعي!",
+  "emotion": "silly",
+  "file": "audio/ar-EG/zizo/reactions/zizo.pluto.jacket.mp3",
+  "hash": "194255f54e86"
+ },
+ {
+  "id": "zizo.pluto.heartFound",
+  "speaker": "zizo",
+  "category": "reactions",
+  "text": "برافو يا كابتن حلا! أنا كمان عندي قلب... بس معمول من مسامير!",
+  "emotion": "laughing",
+  "file": "audio/ar-EG/zizo/reactions/zizo.pluto.heartFound.mp3",
+  "hash": "2db3924d732d"
  },
  {
   "id": "home.hello",
@@ -1513,6 +1531,15 @@
   "duration": 8.7
  },
  {
+  "id": "planets.neptune.invite",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "نبتون ده آخر كوكب من الكواكب التمانية! بس بعده، بعيد أوي، فيه عالم صغير اسمه بلوتو. تحبي نروحه؟",
+  "emotion": "excited",
+  "file": "audio/ar-EG/narrator/planets/planets.neptune.invite.mp3",
+  "hash": "5aa5cc7df673"
+ },
+ {
   "id": "planets.pluto.intro",
   "speaker": "narrator",
   "category": "planets",
@@ -1543,10 +1570,10 @@
   "id": "planets.pluto.facts.2",
   "speaker": "narrator",
   "category": "planets",
-  "text": "بلوتو بياخد حوالي ميتين وخمسين سنة، عشان يلف لفّة واحدة حوالين الشمس!",
+  "text": "بلوتو ساقع ساقع خالص، أبرد من أي تلج على الأرض!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.pluto.facts.2.mp3",
-  "hash": "1ba809fd20fa"
+  "hash": "649fa67a05bb"
  },
  {
   "id": "planets.pluto.short",
@@ -1570,10 +1597,10 @@
   "id": "planets.pluto.activity.steps.0",
   "speaker": "narrator",
   "category": "planets",
-  "text": "لقيتي القلب! ده قلب كبير من التلج.",
+  "text": "شطورة يا حلا! لقيتي الشكل اللي شبه القلب! ده سهل كبير من التلج.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.pluto.activity.steps.0.mp3",
-  "hash": "a568ecf54ceb"
+  "hash": "760942185f4c"
  },
  {
   "id": "planets.pluto.activity.done",
@@ -1583,6 +1610,24 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.pluto.activity.done.mp3",
   "hash": "aa3277a89d89"
+ },
+ {
+  "id": "planets.pluto.hints.0",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "دوّري على الحتة الفاتحة اللي شبه القلب!",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.hints.0.mp3",
+  "hash": "c92918b28dd8"
+ },
+ {
+  "id": "planets.pluto.hints.1",
+  "speaker": "narrator",
+  "category": "planets",
+  "text": "بصي، القلب بينوّر! دوسي عليه.",
+  "emotion": "warm",
+  "file": "audio/ar-EG/narrator/planets/planets.pluto.hints.1.mp3",
+  "hash": "ecc43d8a393f"
  },
  {
   "id": "games.hub",
@@ -2706,6 +2751,15 @@
   "hash": "bd38415315b0",
   "take": 1,
   "duration": 1.59
+ },
+ {
+  "id": "map.badgePluto",
+  "speaker": "narrator",
+  "category": "rewards",
+  "text": "كسبتي شارة مستكشفة بلوتو!",
+  "emotion": "proud",
+  "file": "audio/ar-EG/narrator/rewards/map.badgePluto.mp3",
+  "hash": "a0cdd5f8f960"
  },
  {
   "id": "story.start.0",

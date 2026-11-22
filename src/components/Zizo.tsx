@@ -4,6 +4,14 @@
  * (driven by the narrator's speaker state, not by guesswork).
  */
 import { useNarrator } from '../audio'
+import { useRoute } from '../router'
+
+export type ZizoOutfit = 'none' | 'winter'
+
+/** Cold places get Zizo's winter gear (scarf + earmuffs) — Pluto is very, very cold. */
+export function outfitForRoute(route: ReturnType<typeof useRoute>): ZizoOutfit {
+  return route.name === 'planet' && route.id === 'pluto' ? 'winter' : 'none'
+}
 
 export function Zizo({
   size = 96,
@@ -11,15 +19,20 @@ export function Zizo({
   mood = 'happy',
   className = '',
   wave = false,
+  outfit,
 }: {
   size?: number
   talking?: boolean
   mood?: 'happy' | 'wow' | 'sleepy'
   className?: string
   wave?: boolean
+  /** default: chosen by the current screen (winter on Pluto) */
+  outfit?: ZizoOutfit
 }) {
   const { speaking, speaker, paused } = useNarrator()
   const isTalking = talking ?? (speaking && !paused && speaker === 'zizo')
+  const route = useRoute()
+  const wear = outfit ?? outfitForRoute(route)
   return (
     <svg
       viewBox="0 0 120 140"
@@ -29,6 +42,7 @@ export function Zizo({
       aria-hidden
       data-testid="zizo"
       data-talking={isTalking ? 'yes' : 'no'}
+      data-outfit={wear}
     >
       <defs>
         <linearGradient id="zizo-body" x1="0" y1="0" x2="0" y2="1">
@@ -89,6 +103,26 @@ export function Zizo({
       ) : (
         <path d="M50 59 q10 9 20 0" stroke="#7ef0ff" strokeWidth="4" fill="none" strokeLinecap="round" />
       )}
+      {wear === 'winter' && <WinterGear />}
     </svg>
+  )
+}
+
+/** An oversized striped scarf and fluffy earmuffs — pops on with a little bounce. */
+function WinterGear() {
+  return (
+    <g data-testid="zizo-winter" className="anim-pop" style={{ transformOrigin: '60px 80px' }}>
+      {/* earmuffs */}
+      <path d="M14 46 C14 4 106 4 106 46" stroke="#ff6fae" strokeWidth="6" fill="none" strokeLinecap="round" />
+      <circle cx="12" cy="50" r="12" fill="#fff" />
+      <circle cx="12" cy="50" r="8" fill="#ff8fc0" />
+      <circle cx="108" cy="50" r="12" fill="#fff" />
+      <circle cx="108" cy="50" r="8" fill="#ff8fc0" />
+      {/* scarf: wrap + a long tail */}
+      <rect x="70" y="82" width="15" height="34" rx="6" fill="#ff9a3d" transform="rotate(-8 77 82)" />
+      <path d="M72 108 l2 10 M78 108 l1 10 M84 107 l0 10" stroke="#ffd84a" strokeWidth="3" strokeLinecap="round" transform="rotate(-8 77 82)" />
+      <rect x="20" y="76" width="80" height="14" rx="7" fill="#ff9a3d" />
+      <path d="M36 77 v12 M52 77 v12 M68 77 v12 M84 77 v12" stroke="#ffd84a" strokeWidth="4" />
+    </g>
   )
 }

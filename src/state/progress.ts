@@ -75,4 +75,6 @@ export const BADGES: Badge[] = [
   { id: 'scientist', icon: '🔬', title: 'عالمة صغيرة', earned: (p) => p.stars.filter((s) => s.startsWith('activity:')).length >= 5 },
   { id: 'gamer', icon: '🎮', title: 'بطلة الألعاب', earned: (p) => GAME_IDS.every((g) => p.stars.includes(`game:${g}`)) },
   { id: 'story', icon: '📖', title: 'حكاية الكواكب', earned: (p) => p.stars.includes('story:home') },
+  /** the secret mission: found the heart on the dwarf planet Pluto */
+  { id: 'pluto', icon: '🤍', title: 'شارة مستكشفة بلوتو', earned: (p) => p.stars.includes('activity:pluto') },
 ]

@@ -248,8 +248,13 @@ function Texture({ id }: { id: BodyId }) {
             <path d="M-100,10 C-80,-5 -50,5 -35,25 C-45,45 -80,50 -100,40 Z" fill="#8f5f47" />
             <path d="M55,30 C70,20 95,28 100,40 L100,60 C80,62 62,55 55,30 Z" fill="#9b6b52" />
             <ellipse cx={-60} cy={-50} rx={22} ry={10} fill="#c4a785" />
-            {/* the "heart" — Tombaugh Regio, a plain of nitrogen ice */}
-            <path d="M20,40 C-15,15 -12,-25 8,-25 C16,-25 20,-18 20,-12 C20,-18 24,-25 32,-25 C52,-25 55,15 20,40 Z" fill="#f4eadb" />
+            {/* the "heart" — Tombaugh Regio. Like the real one it is lopsided: a big,
+                smooth, bright western lobe (Sputnik Planitia, nitrogen ice) and a
+                smaller, rougher eastern lobe. */}
+            <path d="M22,40 C10,33 -9,20 -8,-1 C-7,-19 6,-29 15,-23 C22,-18 24,-5 24,9 C24,22 24,32 22,40 Z" fill="#f7efe2" />
+            <path d="M23,8 C23,-8 28,-21 37,-22 C47,-23 53,-13 50,-2 C47,11 35,25 22,40 Z" fill="#e8d8c2" />
+            <ellipse cx={39} cy={-8} rx={4} ry={3} fill="#d6c2a6" />
+            <ellipse cx={33} cy={6} rx={3} ry={2} fill="#d6c2a6" />
             <Craters list={[[-20, -60, 6], [70, -30, 5], [-75, 70, 6]]} fill="rgba(0,0,0,0.12)" />
           </Repeat>
         </>

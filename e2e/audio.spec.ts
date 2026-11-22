@@ -90,11 +90,28 @@ test('every body in the app has a working scene with its recorded intro', async 
   await expect(page.getByTestId('strip-pluto')).toBeVisible()
 })
 
-test('Pluto activity: find the heart, then compare with the Moon', async ({ page }) => {
+test('secret mission: Neptune invites her to Pluto, she finds the heart and earns the badge', async ({ page }) => {
+  test.setTimeout(150_000)
   await instrument(page)
   await start(page)
-  await page.evaluate(() => (location.hash = '#/planet/pluto'))
+  await page.evaluate(() => (location.hash = '#/planet/neptune'))
+  for (let i = 0; i < 3; i++) await page.getByTestId('activity-target').click()
+  const invite = page.getByTestId('pluto-invite')
+  await expect(invite).toBeVisible()
+  await expect(page.getByTestId('caption')).toContainText('آخر كوكب من الكواكب التمانية', { timeout: 20_000 })
+  // Zizo puts his winter gear on when he says he's getting his jacket
+  await expect(invite.getByTestId('zizo-winter')).toBeAttached({ timeout: 20_000 })
+  await page.getByRole('button', { name: /يلا نكتشف بلوتو/ }).click()
+
+  await expect(page.getByTestId('planet-screen-pluto')).toBeVisible()
+  await expect(page.getByTestId('kind-badge')).toContainText('كوكب قزم')
+  // the heart isn't highlighted: she looks for it. If she waits, a gentle hint comes.
+  await expect(page.getByTestId('pluto-heart')).toHaveAttribute('data-hinted', 'no')
+  await expect(page.getByTestId('caption')).toContainText('شبه القلب', { timeout: 60_000 })
   await page.getByTestId('pluto-heart').click()
   await expect(page.getByTestId('pluto-moon-compare')).toBeVisible()
-  await expect(page.getByText('خلصتي!')).toBeVisible({ timeout: 20_000 })
+  await expect(page.getByTestId('pluto-badge-celebration')).toBeVisible({ timeout: 45_000 })
+  await page.getByRole('button', { name: /هيييه/ }).click()
+  await page.evaluate(() => (location.hash = '#/map'))
+  await expect(page.getByTestId('badge-pluto')).toHaveAttribute('data-earned', 'yes')
 })

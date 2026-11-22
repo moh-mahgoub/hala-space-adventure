@@ -34,8 +34,8 @@ An interactive, Arabic-language (friendly Egyptian dialect) solar-system adventu
 | المشتري | Drop Earths into Jupiter. Earth is drawn at the **true size ratio** (≈1:11), and more than 1,000 Earths would fit inside |
 | زحل | Drag up/down to view the **rings** from above and below, then tap to zoom in on the ice and rock pieces |
 | أورانوس | Tap to make it **roll on its side** |
-| نبتون | Tap for the strongest winds. The faraway Sun is just a dot. Points onward to Pluto |
-| بلوتو | A **dwarf planet** (labelled «كوكب قزم», never a 9th planet): find its heart-shaped icy plain, then see it next to our Moon at true size, smaller than the Moon |
+| نبتون | Tap for the strongest winds. The faraway Sun is just a dot. Then a **secret mission** card invites her on to Pluto: «المهمة السرية: اكتشفي قلب بلوتو!» (optional, every time; Zizo puts on his scarf and earmuffs) |
+| بلوتو | A **dwarf planet** (labelled «كوكب قزم», never a 9th planet; dotted fainter orbit, and set apart in the planet strip). She looks for the lopsided, heart-shaped icy plain (Tombaugh Regio) — not highlighted at first; waiting or tapping elsewhere brings gentle hints. Then Pluto sits next to our Moon at true size (smaller!). First time: the «شارة مستكشفة بلوتو» badge with her astronaut picture. Zizo wears winter gear here |
 
 ### Games (all replayable, no timers, no penalties)
 1. **فين الكوكب؟ (Find the planet)**: "يا حلا، فين كوكب زحل؟" with 3 big choices. A wrong answer gets a gentle hint, and after 2 tries the right planet glows.
@@ -230,7 +230,7 @@ The full workflow (voices, costs, redoing one phrase, adding a character) is in 
 
 - Record a full Egyptian-Arabic narration set (with a parent's voice).
 - A masculine/feminine address option for other children.
-- More bodies: Pluto and the dwarf planets, comets, the asteroid belt, Jupiter's and Saturn's moons.
+- More bodies: other dwarf planets, comets, the asteroid belt, Jupiter's and Saturn's moons.
 - Moon phases, seasons, and a "how big is the Sun?" activity.
 - A printable "space explorer" certificate.
 

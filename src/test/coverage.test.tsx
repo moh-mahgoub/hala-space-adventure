@@ -77,6 +77,8 @@ describe.each(TOUR_ORDER.map((id) => [id]))('%s: complete scene', (id: BodyId) =
       `planets.${id}.activity.prompt`,
       `planets.${id}.activity.done`,
       ...s.activity.steps.map((_, i) => `planets.${id}.activity.steps.${i}`),
+      ...(s.hints ?? []).map((_, i) => `planets.${id}.hints.${i}`),
+      ...(s.invite ? [`planets.${id}.invite`] : []),
       `zizo.planets.${id}`,
       `space.suggest.${id}`,
       `common.thisIs.${id}`,

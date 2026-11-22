@@ -72,7 +72,7 @@ export function MapScreen() {
 
         {/* badges */}
         <section aria-label="الأوسمة">
-          <ul className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+          <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-7">
             {BADGES.map((b) => {
               const earned = b.earned(progress)
               return (

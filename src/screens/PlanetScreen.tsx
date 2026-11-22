@@ -4,11 +4,14 @@ import { ACTIVITIES } from '../activities'
 import { CheckIcon, NextIcon, BackIcon } from '../components/Icons'
 import { PlanetArt } from '../components/PlanetArt'
 import { TopBar } from '../components/TopBar'
+import { PlutoInvite } from '../components/PlutoInvite'
+import { Celebration } from '../components/Celebration'
+import { MissionBadge } from '../components/character/MissionBadge'
 import { script } from '../content/script'
 import { ui } from '../content/ui'
 import { BODIES, neighbours, type BodyId } from '../data/planets'
 import { navigate } from '../router'
-import { markVisited, useProgress } from '../state/progress'
+import { BADGES, markVisited, useProgress } from '../state/progress'
 import { earn } from '../state/rewards'
 import { useSettings } from '../state/settings'
 import { react } from '../profile/reactions'
@@ -71,7 +74,16 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
   const [heard, setHeard] = useState<number[]>([])
   const [done, setDone] = useState(false)
   const [round, setRound] = useState(0)
+  /** Neptune → the secret mission to Pluto */
+  const [invite, setInvite] = useState(false)
+  /** first time Pluto's heart is found: the Pluto explorer badge */
+  const [plutoBadge, setPlutoBadge] = useState(false)
   const swipe = useRef<{ x: number; y: number } | null>(null)
+  const mounted = useRef(true)
+  useEffect(() => {
+    mounted.current = true
+    return () => void (mounted.current = false)
+  }, [])
   const activityDoneBefore = progress.stars.includes(`activity:${id}`)
 
   /** Storyteller introduces the planet; on the first visit Zizo chips in with a joke. */
@@ -96,12 +108,34 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
 
   const onDone = () => {
     setDone(true)
-    earn(`activity:${id}`)
+    const firstTime = earn(`activity:${id}`)
     sfx('success')
     const doneLine = line(`planets.${id}.activity.done`)
     react('mission', { line: doneLine })
+    const zizoCheer = line(`zizo.celebrate.${celebrateIdx++ % script.zizo.celebrate.length}`)
+
+    if (id === 'neptune') {
+      // the last planet: storyteller invites her onward, Zizo grabs his jacket
+      setInvite(true)
+      void narrator.say([doneLine, line('planets.neptune.invite'), line('zizo.pluto.jacket')])
+      return
+    }
+    if (id === 'pluto') {
+      // Zizo already cheered when she found the heart (see PlutoActivity)
+      const lines = [doneLine]
+      if (!firstTime) lines.push(zizoCheer)
+      if (tour) lines.push(react('journey'))
+      // the badge arrives after the Moon comparison — even if a line was skipped
+      void narrator.say(lines).then(() => {
+        if (firstTime && mounted.current) {
+          setPlutoBadge(true)
+          void narrator.say(line('map.badgePluto'))
+        }
+      })
+      return
+    }
     // storyteller celebrates, then Zizo cheers (rotating lines)
-    const lines = [doneLine, line(`zizo.celebrate.${celebrateIdx++ % script.zizo.celebrate.length}`)]
+    const lines = [doneLine, zizoCheer]
     if (tour) lines.push(next ? line('space.tourNext') : react('journey'))
     void narrator.say(lines)
   }
@@ -131,6 +165,7 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
           key={round}
         >
           <Activity onDone={onDone} />
+          {invite && <PlutoInvite tour={tour} onClose={() => setInvite(false)} />}
           {done && (
             <div className="anim-pop absolute top-3 right-3 flex items-center gap-2">
               <span className="flex items-center gap-1 rounded-full bg-emerald-400 px-4 py-2 text-xl font-extrabold text-night-900 shadow-lg">
@@ -141,6 +176,7 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
                 className="btn-pop rounded-full bg-white/15 px-4 py-2 text-xl font-bold"
                 onClick={() => {
                   setDone(false)
+                  setInvite(false)
                   setRound((r) => r + 1)
                   void say(`planets.${id}.activity.prompt`)
                 }}
@@ -202,6 +238,15 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
           </div>
         </aside>
       </div>
+      {plutoBadge && (
+        <Celebration title={PLUTO_BADGE.title} icon="✨" onClose={() => setPlutoBadge(false)}>
+          <div data-testid="pluto-badge-celebration">
+            <MissionBadge icon={PLUTO_BADGE.icon} title={PLUTO_BADGE.title} earned size={130} />
+          </div>
+        </Celebration>
+      )}
     </div>
   )
 }
+
+const PLUTO_BADGE = BADGES.find((b) => b.id === 'pluto')!

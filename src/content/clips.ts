@@ -77,6 +77,14 @@ const ZIZO_EMOTION: Record<string, string> = {
   'reactions.bigHelmet': 'laughing',
   'reactions.upsideDown': 'silly',
   'reactions.sticker': 'celebrating',
+  'zizo.pluto.jacket': 'silly',
+  'zizo.pluto.heartFound': 'laughing',
+}
+
+/** Narrator lines whose emotion isn't implied by their id pattern. */
+const NARRATOR_EMOTION: Record<string, string> = {
+  'planets.neptune.invite': 'excited',
+  'map.badgePluto': 'proud',
 }
 
 function storyStep(id: string) {
@@ -95,6 +103,7 @@ export function voiceOf(id: string): { speaker: Speaker; emotion: string } {
     if (isMain && step?.type === 'say' && step.speaker === 'zizo') return { speaker: 'zizo', emotion: 'playful' }
     return { speaker: 'narrator', emotion: isMain ? 'storytelling' : 'warm' }
   }
+  if (NARRATOR_EMOTION[id]) return { speaker: 'narrator', emotion: NARRATOR_EMOTION[id] }
   if (/\.intro$/.test(id) && id.startsWith('planets.')) return { speaker: 'narrator', emotion: 'excited' }
   if (/\.facts\./.test(id) || id.startsWith('common.numbers') || id === 'games.dayNight.explain') return { speaker: 'narrator', emotion: 'explaining' }
   if (/\.(done|correct|placed)(\.|$)/.test(id) || id.startsWith('common.praise') || /allVisited|allStars|allPlanets|tourEnd/.test(id))
