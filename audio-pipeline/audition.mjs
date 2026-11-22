@@ -86,9 +86,11 @@ async function withRetries(fn, label, tries = 6) {
       return await fn()
     } catch (e) {
       const msg = String(e.message)
-      const retryable = /\b(429|503)\b/.test(msg) || /suspicious/.test(msg)
+      // a daily quota won't reset within a retry window: give up at once
+      if (/per day/i.test(msg)) throw e
+      const retryable = /\b(429|503)\b/.test(msg) || /suspicious|\(SAFETY\)/.test(msg)
       if (!retryable || attempt >= tries) throw e
-      const hinted = Number(msg.match(/retry in ([\d.]+)s/i)?.[1] ?? msg.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0)
+      const hinted = Number(msg.match(/retry in ([\d.]+)s\b/i)?.[1] ?? msg.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0)
       const wait = Math.max(hinted * 1000 + 1500, 5000 * attempt)
       console.log(`  … ${label}: ${msg.match(/\b(429|503)\b/)?.[1] ?? 'retake'}; waiting ${Math.round(wait / 1000)}s (attempt ${attempt + 1}/${tries})`)
       await sleep(wait)

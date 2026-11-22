@@ -42,10 +42,24 @@ export async function synthesize({ text, voice, style, model }) {
       },
     }),
   })
-  if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 400)}`)
+  if (!res.ok) {
+    const body = await res.text()
+    // keep Google's own message (it says e.g. "Please retry in 24.9s") ahead of the JSON noise
+    let msg = body
+    try {
+      msg = JSON.parse(body).error?.message ?? body
+    } catch {
+      /* not JSON */
+    }
+    throw new Error(`Gemini ${res.status}: ${msg.slice(0, 900)}`)
+  }
   const json = await res.json()
   const part = json?.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)
-  if (!part) throw new Error(`Gemini returned no audio: ${JSON.stringify(json).slice(0, 300)}`)
+  if (!part) {
+    const reason = json?.candidates?.[0]?.finishReason
+    // SAFETY refusals on harmless lines are usually flukes: callers may retry
+    throw new Error(`Gemini returned no audio${reason ? ` (${reason})` : ''}: ${JSON.stringify(json).slice(0, 200)}`)
+  }
   const mime = part.inlineData.mimeType || ''
   const rate = Number(mime.match(/rate=(\d+)/)?.[1] || 24000)
   const pcm = Buffer.from(part.inlineData.data, 'base64')

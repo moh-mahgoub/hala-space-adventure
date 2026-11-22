@@ -44,9 +44,13 @@ export function splitTake(audio, n) {
   writeFileSync(src, audio)
   try {
     const total = duration(src)
-    // silencedetect reports on stderr
-    const det = spawnSync('ffmpeg', ['-hide_banner', '-i', src, '-af', 'silencedetect=noise=-38dB:d=0.6', '-f', 'null', '-'], { encoding: 'utf8' })
-    const cuts = chooseCuts(parseSilences(det.stderr || ''), n, total)
+    // silencedetect reports on stderr; try progressively more sensitive settings
+    let cuts = null
+    for (const [noise, d] of [['-38dB', 0.6], ['-38dB', 0.4], ['-34dB', 0.35], ['-30dB', 0.3]]) {
+      const det = spawnSync('ffmpeg', ['-hide_banner', '-i', src, '-af', `silencedetect=noise=${noise}:d=${d}`, '-f', 'null', '-'], { encoding: 'utf8' })
+      cuts = chooseCuts(parseSilences(det.stderr || ''), n, total)
+      if (cuts) break
+    }
     if (!cuts) return null
     const bounds = [0, ...cuts, total]
     const parts = []
