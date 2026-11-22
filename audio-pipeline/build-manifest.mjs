@@ -23,7 +23,9 @@ export function buildManifest() {
     const { category } = classify(c.id)
     const hash = clipHash(c)
     const entry = { id: c.id, speaker: c.speaker, category, text: c.text, emotion: c.emotion, file: audioFile(c.speaker, category, c.id), hash }
+    if (c.synthText) entry.synthText = c.synthText
     const prev = previous[c.id]
+    if (prev?.take) entry.take = prev.take // how many times this clip has been recorded
     if (prev && prev.hash === hash && prev.duration) entry.duration = prev.duration
     return entry
   })

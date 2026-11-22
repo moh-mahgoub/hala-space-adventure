@@ -32,7 +32,7 @@ for (const e of manifest) {
   const g = groups[GROUPS.findIndex(([, , test]) => test(e.id, e))] ?? groups[0]
   const ok = e.duration && existsSync(file)
   if (!ok) missing++
-  g.clips.push({ id: e.id, speaker: e.speaker, text: e.text, duration: e.duration ?? null, src: ok ? 'data:audio/mpeg;base64,' + preview(file) : null })
+  g.clips.push({ id: e.id, speaker: e.speaker, text: e.text, take: e.take ?? 1, duration: e.duration ?? null, src: ok ? 'data:audio/mpeg;base64,' + preview(file) : null })
 }
 const data = { groups, total: manifest.length, missing }
 
@@ -79,15 +79,21 @@ section { display: grid; gap: 8px; }
 .who.zizo { color: var(--zizo); }
 .flag[aria-pressed="true"] { background: var(--flag); color: #fff; border-color: var(--flag); }
 .missing { color: var(--flag); font-size: .85rem; }
-@media (max-width: 480px) { .clip { grid-template-columns: auto 1fr; } .clip .flag { grid-column: 1 / -1; } }
+.btns { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.new { display: inline-block; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); margin-inline-start: 6px; }
+label.chk { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
+.hide { display: none; }
+@media (max-width: 480px) { .clip { grid-template-columns: auto 1fr; } .clip .btns { grid-column: 1 / -1; justify-content: flex-start; } }
 </style>
 <div class="wrap">
   <header>
     <h1>Hala Narration Library</h1>
-    <p class="lede">Every recorded line in the app: the storyteller (Sulafat) and Zizo (Puck + light robot effect). Play any clip, mark the ones that sound wrong with “🔁 Redo”, then copy the list below and send it to Claude. Previews are slightly compressed; the app uses the full-quality files.</p>
+    <p class="lede">Every recorded line in the app: the storyteller (Sulafat) and Zizo (Puck + light robot effect). Play any clip, or use “▶▶ From here” to keep playing every clip after it automatically. Mark the ones that sound wrong with “🔁 Redo”, then copy the list below and send it to Claude. Re-recorded clips carry a “New take” badge; marks belong to a specific take. Previews are slightly compressed; the app uses the full-quality files.</p>
   </header>
   <div class="bar">
-    <div class="row"><b id="count"></b><button class="ghost" id="playall">▶ Play this page from the top</button><button class="ghost" id="stop">■ Stop</button></div>
+    <div class="row"><b id="count"></b><button class="ghost" id="playall">▶ Play this page from the top</button><button class="ghost" id="stop">■ Stop</button>
+      <label class="chk" for="onlynew"><input type="checkbox" id="onlynew"> Show only new takes</label></div>
+    <div class="meta" id="nowplaying" aria-live="polite"></div>
     <label for="out" class="meta">Clips marked for redo (send this to Claude):</label>
     <textarea id="out" readonly></textarea>
     <div class="row"><button id="copy">Copy list</button><span class="meta" id="copied"></span></div>
@@ -96,8 +102,9 @@ section { display: grid; gap: 8px; }
 </div>
 <script>
 const D = ${JSON.stringify(data)};
-let flags = {}; try { flags = JSON.parse(localStorage.getItem('hala-library-flags') || '{}'); } catch {}
-const save = () => { try { localStorage.setItem('hala-library-flags', JSON.stringify(flags)); } catch {} };
+let flags = {}; try { flags = JSON.parse(localStorage.getItem('hala-library-flags-v2') || '{}'); } catch {}
+const save = () => { try { localStorage.setItem('hala-library-flags-v2', JSON.stringify(flags)); } catch {} };
+const fkey = (c) => c.id + '@' + c.take; // a mark applies to one take only
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const all = D.groups.flatMap((g) => g.clips);
 const byId = Object.fromEntries(all.map((c) => [c.id, c]));
@@ -109,26 +116,45 @@ document.getElementById('groups').innerHTML = D.groups.filter((g) => g.clips.len
   '<section><h2>' + esc(g.title) + ' <span class="meta">' + g.clips.length + ' clips</span></h2>' +
   g.clips.map((c) => '<div class="clip" data-id="' + esc(c.id) + '">' +
     (c.src ? '<button class="play" data-play="' + esc(c.id) + '" aria-label="Play ' + esc(c.id) + '">▶</button>' : '<span class="missing">missing</span>') +
-    '<div class="txt"><div class="ar">' + esc(c.text) + '</div><div class="meta"><span class="who ' + c.speaker + '">' + (c.speaker === 'zizo' ? 'Zizo' : 'Storyteller') + '</span> · ' + esc(c.id) + (c.duration ? ' · ' + c.duration + 's' : '') + '</div></div>' +
-    '<button class="ghost flag" data-flag="' + esc(c.id) + '" aria-pressed="false">🔁 Redo</button></div>').join('') + '</section>').join('');
+    '<div class="txt"><div class="ar">' + esc(c.text) + (c.take > 1 ? '<span class="new">New take</span>' : '') + '</div><div class="meta"><span class="who ' + c.speaker + '">' + (c.speaker === 'zizo' ? 'Zizo' : 'Storyteller') + '</span> · ' + esc(c.id) + (c.duration ? ' · ' + c.duration + 's' : '') + ' · take ' + c.take + '</div></div>' +
+    '<div class="btns">' + (c.src ? '<button class="ghost" data-from="' + esc(c.id) + '" aria-label="Play from ' + esc(c.id) + ' onwards">▶▶ From here</button>' : '') +
+    '<button class="ghost flag" data-flag="' + esc(c.id) + '" aria-pressed="false">🔁 Redo</button></div></div>').join('') + '</section>').join('');
+const visible = () => all.filter((c) => c.src && (!document.getElementById('onlynew').checked || c.take > 1));
 function render() {
-  const ids = Object.keys(flags).filter((k) => flags[k]);
-  document.getElementById('count').textContent = (D.total - D.missing) + ' of ' + D.total + ' clips recorded · ' + ids.length + ' marked for redo';
+  const ids = all.filter((c) => flags[fkey(c)]).map((c) => c.id);
+  const newTakes = all.filter((c) => c.take > 1).length;
+  document.getElementById('count').textContent = (D.total - D.missing) + ' of ' + D.total + ' clips recorded · ' + newTakes + ' new takes · ' + ids.length + ' marked for redo';
   document.getElementById('out').value = ids.join(',');
-  document.querySelectorAll('[data-flag]').forEach((b) => { const on = !!flags[b.dataset.flag]; b.setAttribute('aria-pressed', String(on)); b.closest('.clip').classList.toggle('flagged', on); });
+  document.querySelectorAll('[data-flag]').forEach((b) => { const on = !!flags[fkey(byId[b.dataset.flag])]; b.setAttribute('aria-pressed', String(on)); b.closest('.clip').classList.toggle('flagged', on); });
+  const onlyNew = document.getElementById('onlynew').checked;
+  document.querySelectorAll('.clip').forEach((row) => row.classList.toggle('hide', onlyNew && !(byId[row.dataset.id].take > 1)));
+  document.querySelectorAll('section').forEach((sec) => sec.classList.toggle('hide', !sec.querySelector('.clip:not(.hide)')));
+}
+/** Play clips one after another, starting at position 'from' of the visible list. */
+async function playFrom(from) {
+  stop(); const my = chain; const list = visible();
+  for (let i = from; i < list.length; i++) {
+    if (my !== chain) break;
+    document.getElementById('nowplaying').textContent = 'Playing ' + (i + 1) + ' of ' + list.length + ': ' + list[i].id;
+    const row = document.querySelector('[data-id="' + CSS.escape(list[i].id) + '"]'); if (row) row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    await play(list[i]); await new Promise((r) => setTimeout(r, 300));
+  }
+  if (my === chain) document.getElementById('nowplaying').textContent = '';
 }
 document.addEventListener('click', async (e) => {
   const t = e.target.closest('button'); if (!t) return;
   if (t.dataset.play) { stop(); play(byId[t.dataset.play]); }
-  else if (t.dataset.flag) { flags[t.dataset.flag] = !flags[t.dataset.flag]; save(); render(); }
-  else if (t.id === 'stop') stop();
-  else if (t.id === 'playall') { stop(); const my = chain; for (const c of all) { if (my !== chain) break; await play(c); await new Promise((r) => setTimeout(r, 300)); } }
+  else if (t.dataset.flag) { const k = fkey(byId[t.dataset.flag]); flags[k] = !flags[k]; save(); render(); }
+  else if (t.dataset.from) { const i = visible().findIndex((c) => c.id === t.dataset.from); playFrom(Math.max(0, i)); }
+  else if (t.id === 'stop') { stop(); document.getElementById('nowplaying').textContent = ''; }
+  else if (t.id === 'playall') playFrom(0);
   else if (t.id === 'copy') {
     const box = document.getElementById('out');
     try { await navigator.clipboard.writeText(box.value); document.getElementById('copied').textContent = 'Copied.'; }
     catch { box.select(); document.getElementById('copied').textContent = 'Selected — copy it with your device’s Copy.'; }
   }
 });
+document.getElementById('onlynew').addEventListener('change', () => { stop(); render(); });
 render();
 </script>
 `

@@ -64,7 +64,13 @@ npm run audio:generate -- --budget 2       # hard stop at $2 (from the usage Goo
 
 - **Batching:** a voice's lines are recorded in batches of up to 8 as one take, split at the pauses (`lib/split.mjs`). Any doubtful cut is re-recorded on its own. A take far too long for its text (the model rambled) is rejected and retried.
 - **Post-processing** (`lib/audio.mjs`): trim silence, apply the voice's effect, loudness-normalise to −18 LUFS, MP3 mono 64 kbps.
-- **Reviewing:** `tsx audio-pipeline/build-library-review.mjs <out.html>` builds a single page with every clip and a "🔁 Redo" mark per clip. Send the marked ids back to `--only … --force`.
+- **Reviewing:** `tsx audio-pipeline/build-library-review.mjs <out.html>` builds a single page with every clip:
+  - play one clip, or **▶▶ From here** to keep playing every clip after it;
+  - re-recorded clips carry a **New take** badge, and a filter can show only those;
+  - a **🔁 Redo** mark belongs to a specific take, so old marks don't stick to new recordings.
+
+  Send the marked ids back with `--only … --force`; add `--single` to skip batching for redos.
+- **Pronunciation:** if the voice mispronounces a word, add a pronunciation spelling (e.g. with vowel marks: المُشْتَرِي) to `PRONUNCIATION` in `src/content/clips.ts`, listing the clip ids it applies to. Only the audio changes, not the text on screen.
 - **Adding a line:** add the text to the script and call it from the app with `say('your.id')`. Then run `npm run audio:generate`. Zizo's lines go under `script.zizo` or `reactions` (see `voiceOf` in `clips.ts`).
 - **Another character:** add a `Speaker` in `src/content/clips.ts` and `src/audio/manifest.ts`, a voice in `voices.config.mjs`, a direction in `characters.mjs`, and a caption avatar in `Caption.tsx`. The player itself needs no change.
 
@@ -85,7 +91,7 @@ npm run audio:generate -- --budget 2       # hard stop at $2 (from the usage Goo
 | A line shows only a caption | Its clip is missing. Run `npm run audio:generate` and check the console for `[narration] no recording for "…"` |
 | `ffmpeg not found` | `brew install ffmpeg` |
 | `prepayment credits are depleted` / `402` | Add credit in AI Studio → Billing |
-| `429 … per day` | Free-tier quota; enable billing or continue tomorrow (the run stops cleanly) |
+| `429 … per day` | Daily request cap: 10/day on the free tier, **100/day on paid Tier 1** for `gemini-3.1-flash-tts`. The run stops cleanly; re-run after the reset and it continues with what's missing |
 | `fetch failed … ENOTFOUND` in a cloud session | Run with `NODE_USE_ENV_PROXY=1` |
 | A phrase sounds wrong | Mark it on the review page and run `npm run audio:generate -- --only <ids> --force`. For a mispronounced word, change its spelling in the script |
 | No sound on iPad | Parent settings → Sound check. Silent Mode is overridden on iPadOS 17+; otherwise check the volume buttons |

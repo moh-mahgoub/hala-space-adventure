@@ -7,6 +7,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.0.mp3",
   "hash": "9764b18e5e36",
+  "take": 1,
   "duration": 1.12
  },
  {
@@ -17,6 +18,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.1.mp3",
   "hash": "5d32d7401c47",
+  "take": 1,
   "duration": 1.1
  },
  {
@@ -27,6 +29,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.2.mp3",
   "hash": "36a61066c0e4",
+  "take": 1,
   "duration": 0.97
  },
  {
@@ -37,6 +40,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.3.mp3",
   "hash": "bbbb1982c500",
+  "take": 1,
   "duration": 0.99
  },
  {
@@ -47,6 +51,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.4.mp3",
   "hash": "a8c4cfda9cbc",
+  "take": 1,
   "duration": 0.99
  },
  {
@@ -57,6 +62,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.5.mp3",
   "hash": "dcc0c09bdec9",
+  "take": 1,
   "duration": 0.86
  },
  {
@@ -67,6 +73,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.6.mp3",
   "hash": "1a843139ac78",
+  "take": 1,
   "duration": 0.89
  },
  {
@@ -77,6 +84,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.7.mp3",
   "hash": "3c01360968ec",
+  "take": 1,
   "duration": 0.86
  },
  {
@@ -87,6 +95,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.8.mp3",
   "hash": "8a2c54e92b3a",
+  "take": 1,
   "duration": 1.18
  },
  {
@@ -97,6 +106,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.9.mp3",
   "hash": "ad1f3eea52c8",
+  "take": 1,
   "duration": 1.33
  },
  {
@@ -107,6 +117,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.0.mp3",
   "hash": "ba9fe764de2b",
+  "take": 1,
   "duration": 1.78
  },
  {
@@ -117,6 +128,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.1.mp3",
   "hash": "d122b04e2d4b",
+  "take": 1,
   "duration": 1.59
  },
  {
@@ -127,6 +139,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.2.mp3",
   "hash": "6e93615c90fb",
+  "take": 1,
   "duration": 2.64
  },
  {
@@ -137,6 +150,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.3.mp3",
   "hash": "0bca86c91da4",
+  "take": 1,
   "duration": 1.99
  },
  {
@@ -147,6 +161,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.tryAgain.mp3",
   "hash": "59dbe38ce38d",
+  "take": 1,
   "duration": 2.59
  },
  {
@@ -157,6 +172,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.star.mp3",
   "hash": "1acb79dcf9b8",
+  "take": 1,
   "duration": 1.44
  },
  {
@@ -167,6 +183,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/welcome/start.welcome.mp3",
   "hash": "2f633e0629dd",
+  "take": 1,
   "duration": 7.16
  },
  {
@@ -177,6 +194,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/zizo.intro.mp3",
   "hash": "6fab671ef536",
+  "take": 1,
   "duration": 5.33
  },
  {
@@ -187,6 +205,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.sun.mp3",
   "hash": "df379ae5e5f6",
+  "take": 1,
   "duration": 3.92
  },
  {
@@ -197,6 +216,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.mercury.mp3",
   "hash": "6abd56a518df",
+  "take": 1,
   "duration": 3.45
  },
  {
@@ -207,6 +227,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.venus.mp3",
   "hash": "86ac036d9006",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -217,6 +238,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.earth.mp3",
   "hash": "d118d9f56703",
+  "take": 1,
   "duration": 2.98
  },
  {
@@ -227,6 +249,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.moon.mp3",
   "hash": "54cf37c15173",
+  "take": 1,
   "duration": 5.07
  },
  {
@@ -237,6 +260,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.mars.mp3",
   "hash": "97ce82486071",
+  "take": 1,
   "duration": 3.29
  },
  {
@@ -247,6 +271,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.jupiter.mp3",
   "hash": "fefccb50375f",
+  "take": 1,
   "duration": 4.44
  },
  {
@@ -257,6 +282,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.saturn.mp3",
   "hash": "663e5e46dc70",
+  "take": 1,
   "duration": 3.92
  },
  {
@@ -267,6 +293,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.uranus.mp3",
   "hash": "35423cce8bc8",
+  "take": 1,
   "duration": 4.15
  },
  {
@@ -277,6 +304,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/jokes/zizo.planets.neptune.mp3",
   "hash": "f92cab2ae557",
+  "take": 1,
   "duration": 3.76
  },
  {
@@ -287,6 +315,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.0.mp3",
   "hash": "6e21478c912e",
+  "take": 1,
   "duration": 2.38
  },
  {
@@ -297,6 +326,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.1.mp3",
   "hash": "d54479c456f2",
+  "take": 1,
   "duration": 3.06
  },
  {
@@ -307,6 +337,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/celebrations/zizo.celebrate.2.mp3",
   "hash": "12fbb98aa6e0",
+  "take": 1,
   "duration": 1.78
  },
  {
@@ -317,6 +348,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/hints/zizo.neverMind.mp3",
   "hash": "3a5aa717a011",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -327,7 +359,8 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.hello.mp3",
   "hash": "34953c473f2b",
-  "duration": 7.5
+  "take": 2,
+  "duration": 3.58
  },
  {
   "id": "home.explore",
@@ -337,7 +370,8 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.explore.mp3",
   "hash": "dff6c13bd8b1",
-  "duration": 5.46
+  "take": 2,
+  "duration": 2.48
  },
  {
   "id": "home.story",
@@ -347,7 +381,8 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.story.mp3",
   "hash": "56beaddd1bb3",
-  "duration": 2.04
+  "take": 2,
+  "duration": 2.77
  },
  {
   "id": "home.games",
@@ -357,7 +392,8 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.games.mp3",
   "hash": "8c4be45685af",
-  "duration": 3.21
+  "take": 2,
+  "duration": 2.25
  },
  {
   "id": "home.map",
@@ -367,6 +403,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.map.mp3",
   "hash": "f46435ddd412",
+  "take": 1,
   "duration": 4
  },
  {
@@ -377,6 +414,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.intro.mp3",
   "hash": "3c1c5404873d",
+  "take": 1,
   "duration": 8.91
  },
  {
@@ -387,6 +425,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.tour.mp3",
   "hash": "0b70f8e94c94",
+  "take": 1,
   "duration": 5.64
  },
  {
@@ -397,6 +436,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.sun.mp3",
   "hash": "5829e85cd319",
+  "take": 1,
   "duration": 2.98
  },
  {
@@ -407,6 +447,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.mercury.mp3",
   "hash": "1edb9f982b9c",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -417,6 +458,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.venus.mp3",
   "hash": "f3765be49bf0",
+  "take": 1,
   "duration": 2.95
  },
  {
@@ -427,6 +469,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.earth.mp3",
   "hash": "1c6ca58d4185",
+  "take": 1,
   "duration": 3.06
  },
  {
@@ -437,6 +480,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.moon.mp3",
   "hash": "8c8db4717821",
+  "take": 1,
   "duration": 2.9
  },
  {
@@ -447,6 +491,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.mars.mp3",
   "hash": "47bd7c131df9",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -457,6 +502,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.jupiter.mp3",
   "hash": "657b44f3759d",
+  "take": 1,
   "duration": 3.21
  },
  {
@@ -467,6 +513,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.saturn.mp3",
   "hash": "862814001a53",
+  "take": 1,
   "duration": 3
  },
  {
@@ -477,6 +524,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.uranus.mp3",
   "hash": "1c77ded98ec6",
+  "take": 1,
   "duration": 2.74
  },
  {
@@ -487,6 +535,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.neptune.mp3",
   "hash": "3a67f1f23833",
+  "take": 1,
   "duration": 2.74
  },
  {
@@ -497,6 +546,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.tourNext.mp3",
   "hash": "f360d0de4e7f",
+  "take": 1,
   "duration": 2.61
  },
  {
@@ -507,6 +557,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/welcome/space.tourEnd.mp3",
   "hash": "6f29a6c56446",
+  "take": 1,
   "duration": 7.44
  },
  {
@@ -517,6 +568,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.intro.mp3",
   "hash": "e24ec8f59152",
+  "take": 1,
   "duration": 11.23
  },
  {
@@ -527,6 +579,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.0.mp3",
   "hash": "aa8913f43c14",
+  "take": 1,
   "duration": 5.07
  },
  {
@@ -537,6 +590,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.1.mp3",
   "hash": "a14c8e481689",
+  "take": 1,
   "duration": 7
  },
  {
@@ -547,6 +601,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.2.mp3",
   "hash": "8e7c28f49efb",
+  "take": 1,
   "duration": 4.55
  },
  {
@@ -557,6 +612,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.sun.short.mp3",
   "hash": "70341481c2b6",
+  "take": 1,
   "duration": 5.83
  },
  {
@@ -567,6 +623,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.prompt.mp3",
   "hash": "7aade33e81f9",
+  "take": 1,
   "duration": 3.81
  },
  {
@@ -577,6 +634,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.steps.0.mp3",
   "hash": "e56b3526aae1",
+  "take": 1,
   "duration": 0.94
  },
  {
@@ -587,6 +645,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.steps.1.mp3",
   "hash": "b08f34239a00",
+  "take": 1,
   "duration": 1.36
  },
  {
@@ -597,6 +656,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.done.mp3",
   "hash": "959ffd5d2af4",
+  "take": 1,
   "duration": 5.07
  },
  {
@@ -607,6 +667,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.intro.mp3",
   "hash": "cb1bf76c2162",
+  "take": 1,
   "duration": 5.22
  },
  {
@@ -617,6 +678,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.0.mp3",
   "hash": "b57f0bc38ac1",
+  "take": 1,
   "duration": 4.31
  },
  {
@@ -627,6 +689,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.1.mp3",
   "hash": "da71b8176a60",
+  "take": 1,
   "duration": 3.68
  },
  {
@@ -637,7 +700,8 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.2.mp3",
   "hash": "c81f2e1ab162",
-  "duration": 4.41
+  "take": 2,
+  "duration": 5.38
  },
  {
   "id": "planets.mercury.short",
@@ -647,6 +711,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.short.mp3",
   "hash": "232d4324ea9a",
+  "take": 1,
   "duration": 4.26
  },
  {
@@ -657,6 +722,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.activity.prompt.mp3",
   "hash": "05e4adf33fa1",
+  "take": 1,
   "duration": 4.13
  },
  {
@@ -667,6 +733,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.activity.done.mp3",
   "hash": "3522da83fcfc",
+  "take": 1,
   "duration": 3.68
  },
  {
@@ -677,6 +744,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.venus.intro.mp3",
   "hash": "bba9c0238120",
+  "take": 1,
   "duration": 6.45
  },
  {
@@ -687,6 +755,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.0.mp3",
   "hash": "f50b5b183b84",
+  "take": 1,
   "duration": 5.8
  },
  {
@@ -697,6 +766,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.1.mp3",
   "hash": "a61c2561d164",
+  "take": 1,
   "duration": 5.75
  },
  {
@@ -707,6 +777,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.2.mp3",
   "hash": "5c5f2eb51a79",
+  "take": 1,
   "duration": 4.34
  },
  {
@@ -717,6 +788,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.venus.short.mp3",
   "hash": "ab43e443d13a",
+  "take": 1,
   "duration": 4.49
  },
  {
@@ -727,6 +799,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.venus.activity.prompt.mp3",
   "hash": "55b7a8d55236",
+  "take": 1,
   "duration": 4.88
  },
  {
@@ -737,6 +810,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.venus.activity.done.mp3",
   "hash": "e4f5cebd7239",
+  "take": 1,
   "duration": 4.96
  },
  {
@@ -747,6 +821,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.intro.mp3",
   "hash": "91833bb00019",
+  "take": 1,
   "duration": 7.24
  },
  {
@@ -757,6 +832,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.0.mp3",
   "hash": "32b49a32d8bd",
+  "take": 1,
   "duration": 5.02
  },
  {
@@ -767,6 +843,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.1.mp3",
   "hash": "51b1284d1250",
+  "take": 1,
   "duration": 4.62
  },
  {
@@ -777,6 +854,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.2.mp3",
   "hash": "093619b24565",
+  "take": 1,
   "duration": 5.9
  },
  {
@@ -787,6 +865,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.earth.short.mp3",
   "hash": "58f8f562457a",
+  "take": 1,
   "duration": 4.65
  },
  {
@@ -797,6 +876,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.prompt.mp3",
   "hash": "beaafb60c632",
+  "take": 1,
   "duration": 4.7
  },
  {
@@ -807,6 +887,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.0.mp3",
   "hash": "01cebb3fcd5b",
+  "take": 1,
   "duration": 3.47
  },
  {
@@ -817,6 +898,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.1.mp3",
   "hash": "214f9079ce42",
+  "take": 1,
   "duration": 4.44
  },
  {
@@ -827,6 +909,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.2.mp3",
   "hash": "28b4d877f914",
+  "take": 1,
   "duration": 3.6
  },
  {
@@ -837,6 +920,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.done.mp3",
   "hash": "33e260a41c09",
+  "take": 1,
   "duration": 7.63
  },
  {
@@ -847,6 +931,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.moon.intro.mp3",
   "hash": "3867b362a1d5",
+  "take": 1,
   "duration": 7.16
  },
  {
@@ -857,6 +942,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.0.mp3",
   "hash": "2bf0b6ea4c9f",
+  "take": 1,
   "duration": 6.5
  },
  {
@@ -867,6 +953,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.1.mp3",
   "hash": "2cfed222b153",
+  "take": 1,
   "duration": 4.73
  },
  {
@@ -877,6 +964,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.2.mp3",
   "hash": "96f1cd8c4e7a",
+  "take": 1,
   "duration": 5.3
  },
  {
@@ -887,6 +975,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.moon.short.mp3",
   "hash": "549b16eccfa9",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -897,6 +986,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.prompt.mp3",
   "hash": "327b43f64f07",
+  "take": 1,
   "duration": 3.84
  },
  {
@@ -907,6 +997,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.steps.0.mp3",
   "hash": "d6252394642c",
+  "take": 1,
   "duration": 2.72
  },
  {
@@ -917,6 +1008,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.done.mp3",
   "hash": "26cdb873b151",
+  "take": 1,
   "duration": 5.77
  },
  {
@@ -927,6 +1019,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.intro.mp3",
   "hash": "61919ff99295",
+  "take": 1,
   "duration": 5.8
  },
  {
@@ -937,6 +1030,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.0.mp3",
   "hash": "a953302ec434",
+  "take": 1,
   "duration": 5.15
  },
  {
@@ -947,6 +1041,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.1.mp3",
   "hash": "3ac27b34fdaa",
+  "take": 1,
   "duration": 5.07
  },
  {
@@ -957,6 +1052,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.2.mp3",
   "hash": "498a85be0feb",
+  "take": 1,
   "duration": 6.37
  },
  {
@@ -967,6 +1063,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mars.short.mp3",
   "hash": "dd1c22ceaa5c",
+  "take": 1,
   "duration": 2.74
  },
  {
@@ -977,6 +1074,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.prompt.mp3",
   "hash": "5c6f87ed0d0c",
+  "take": 1,
   "duration": 5.36
  },
  {
@@ -987,6 +1085,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.0.mp3",
   "hash": "4d74d89d8532",
+  "take": 1,
   "duration": 2.43
  },
  {
@@ -997,6 +1096,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.1.mp3",
   "hash": "c645f20106a8",
+  "take": 1,
   "duration": 4
  },
  {
@@ -1007,6 +1107,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.2.mp3",
   "hash": "a870c84e923c",
+  "take": 1,
   "duration": 2.82
  },
  {
@@ -1017,6 +1118,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.done.mp3",
   "hash": "22501d6c9c0c",
+  "take": 1,
   "duration": 5.15
  },
  {
@@ -1027,6 +1129,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.intro.mp3",
   "hash": "14864b576dc9",
+  "take": 1,
   "duration": 6.06
  },
  {
@@ -1037,6 +1140,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.0.mp3",
   "hash": "5cf162d2da0a",
+  "take": 1,
   "duration": 6.06
  },
  {
@@ -1047,6 +1151,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.1.mp3",
   "hash": "de945c001cff",
+  "take": 1,
   "duration": 3.87
  },
  {
@@ -1057,6 +1162,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.2.mp3",
   "hash": "e4d50af7db0a",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -1067,6 +1173,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.short.mp3",
   "hash": "fa90df98b37a",
+  "take": 1,
   "duration": 3.5
  },
  {
@@ -1077,6 +1184,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.prompt.mp3",
   "hash": "2378829df090",
+  "take": 1,
   "duration": 6.66
  },
  {
@@ -1087,6 +1195,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.steps.0.mp3",
   "hash": "4c9b686dabb9",
+  "take": 1,
   "duration": 0.99
  },
  {
@@ -1097,6 +1206,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.steps.1.mp3",
   "hash": "da39613d769a",
+  "take": 1,
   "duration": 1.65
  },
  {
@@ -1107,6 +1217,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.done.mp3",
   "hash": "6aef5e44775b",
+  "take": 1,
   "duration": 5.02
  },
  {
@@ -1117,6 +1228,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.intro.mp3",
   "hash": "1f622f3c4919",
+  "take": 1,
   "duration": 7.39
  },
  {
@@ -1127,6 +1239,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.0.mp3",
   "hash": "eb5d405a15c6",
+  "take": 1,
   "duration": 5.9
  },
  {
@@ -1137,6 +1250,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.1.mp3",
   "hash": "d248965122ea",
+  "take": 1,
   "duration": 6.37
  },
  {
@@ -1147,6 +1261,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.2.mp3",
   "hash": "a03ae9eed6bf",
+  "take": 1,
   "duration": 3.79
  },
  {
@@ -1157,6 +1272,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.short.mp3",
   "hash": "172cb0a98421",
+  "take": 1,
   "duration": 3.53
  },
  {
@@ -1167,6 +1283,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.prompt.mp3",
   "hash": "1391e4a7a387",
+  "take": 1,
   "duration": 5.88
  },
  {
@@ -1177,6 +1294,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.steps.0.mp3",
   "hash": "e3014181bced",
+  "take": 1,
   "duration": 4.83
  },
  {
@@ -1187,6 +1305,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.done.mp3",
   "hash": "46be3ac8be8e",
+  "take": 1,
   "duration": 4.99
  },
  {
@@ -1197,6 +1316,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.intro.mp3",
   "hash": "9d532a0efe79",
+  "take": 1,
   "duration": 5.88
  },
  {
@@ -1207,6 +1327,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.0.mp3",
   "hash": "a7ff6a8c2522",
+  "take": 1,
   "duration": 6.19
  },
  {
@@ -1217,6 +1338,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.1.mp3",
   "hash": "06fa71fe931c",
+  "take": 1,
   "duration": 5.72
  },
  {
@@ -1227,6 +1349,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.2.mp3",
   "hash": "dd5ab0e78fa6",
+  "take": 1,
   "duration": 4.26
  },
  {
@@ -1237,6 +1360,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.short.mp3",
   "hash": "493489cef42f",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -1247,6 +1371,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.prompt.mp3",
   "hash": "5fee92b8aaa8",
+  "take": 1,
   "duration": 3.13
  },
  {
@@ -1257,6 +1382,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.steps.0.mp3",
   "hash": "c9c5f51ffde6",
+  "take": 1,
   "duration": 1.85
  },
  {
@@ -1267,6 +1393,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.done.mp3",
   "hash": "df9ef8547727",
+  "take": 1,
   "duration": 5.51
  },
  {
@@ -1277,6 +1404,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.intro.mp3",
   "hash": "99453cc3a1c3",
+  "take": 1,
   "duration": 6.45
  },
  {
@@ -1287,6 +1415,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.0.mp3",
   "hash": "9af0aab3cdf5",
+  "take": 1,
   "duration": 5.41
  },
  {
@@ -1297,6 +1426,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.1.mp3",
   "hash": "517d8320a552",
+  "take": 1,
   "duration": 4.7
  },
  {
@@ -1307,6 +1437,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.facts.2.mp3",
   "hash": "0d670299676d",
+  "take": 1,
   "duration": 5.98
  },
  {
@@ -1317,6 +1448,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.short.mp3",
   "hash": "805c268955e1",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -1327,6 +1459,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.prompt.mp3",
   "hash": "b3c86ba95222",
+  "take": 1,
   "duration": 3.06
  },
  {
@@ -1337,6 +1470,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.steps.0.mp3",
   "hash": "cdad34487f7c",
+  "take": 1,
   "duration": 1.7
  },
  {
@@ -1347,6 +1481,7 @@
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.steps.1.mp3",
   "hash": "4b33e86fed3f",
+  "take": 1,
   "duration": 1.07
  },
  {
@@ -1357,6 +1492,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.neptune.activity.done.mp3",
   "hash": "c2db087e5bb6",
+  "take": 1,
   "duration": 8.7
  },
  {
@@ -1367,7 +1503,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.hub.mp3",
   "hash": "8a99a19006cc",
-  "duration": 4.73
+  "take": 1
  },
  {
   "id": "games.find.intro",
@@ -1377,6 +1513,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.intro.mp3",
   "hash": "c89d0bb02037",
+  "take": 1,
   "duration": 5.22
  },
  {
@@ -1387,6 +1524,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.mercury.mp3",
   "hash": "c49764b8f954",
+  "take": 1,
   "duration": 2.53
  },
  {
@@ -1397,6 +1535,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.venus.mp3",
   "hash": "c6edee87dc7e",
+  "take": 1,
   "duration": 2.35
  },
  {
@@ -1407,6 +1546,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.earth.mp3",
   "hash": "74789f30c4ef",
+  "take": 1,
   "duration": 2.27
  },
  {
@@ -1417,6 +1557,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.mars.mp3",
   "hash": "89ecfc20b447",
+  "take": 1,
   "duration": 2.51
  },
  {
@@ -1427,6 +1568,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.jupiter.mp3",
   "hash": "c295cc67daad",
+  "take": 1,
   "duration": 2.38
  },
  {
@@ -1437,6 +1579,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.saturn.mp3",
   "hash": "1d5bc3d9eadc",
+  "take": 1,
   "duration": 2.82
  },
  {
@@ -1447,6 +1590,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.uranus.mp3",
   "hash": "ce7fe2148f3b",
+  "take": 1,
   "duration": 2.98
  },
  {
@@ -1457,6 +1601,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.question.neptune.mp3",
   "hash": "14876ca0c5ba",
+  "take": 1,
   "duration": 2.85
  },
  {
@@ -1467,6 +1612,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.mercury.mp3",
   "hash": "8ecbc584d90b",
+  "take": 1,
   "duration": 2.38
  },
  {
@@ -1477,6 +1623,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.venus.mp3",
   "hash": "4384d8f5274c",
+  "take": 1,
   "duration": 2.17
  },
  {
@@ -1487,6 +1634,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.earth.mp3",
   "hash": "37a7f90f2000",
+  "take": 1,
   "duration": 2.22
  },
  {
@@ -1497,6 +1645,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.mars.mp3",
   "hash": "82bf256c251c",
+  "take": 1,
   "duration": 2.3
  },
  {
@@ -1507,6 +1656,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.jupiter.mp3",
   "hash": "3402ae5d6d41",
+  "take": 1,
   "duration": 2.27
  },
  {
@@ -1517,6 +1667,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.saturn.mp3",
   "hash": "4a6957d5e345",
+  "take": 1,
   "duration": 2.14
  },
  {
@@ -1527,6 +1678,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.uranus.mp3",
   "hash": "831fbd90e8e6",
+  "take": 1,
   "duration": 2.4
  },
  {
@@ -1537,6 +1689,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.tryAgain.neptune.mp3",
   "hash": "c454a5bc41dc",
+  "take": 1,
   "duration": 2.27
  },
  {
@@ -1547,6 +1700,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.mercury.mp3",
   "hash": "a7ec123fe3bc",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -1557,6 +1711,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.venus.mp3",
   "hash": "8b1b6999cbc7",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -1567,6 +1722,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.earth.mp3",
   "hash": "ef15a5879ba0",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -1577,6 +1733,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.mars.mp3",
   "hash": "bc68954beac1",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -1587,6 +1744,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.jupiter.mp3",
   "hash": "cb232838d728",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -1597,6 +1755,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.saturn.mp3",
   "hash": "160a80d74e5c",
+  "take": 1,
   "duration": 3.45
  },
  {
@@ -1607,6 +1766,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.uranus.mp3",
   "hash": "c45786ec1254",
+  "take": 1,
   "duration": 3.24
  },
  {
@@ -1617,6 +1777,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.hint.neptune.mp3",
   "hash": "3de7f60ef3b1",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -1627,6 +1788,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.mercury.mp3",
   "hash": "4e4882d067f4",
+  "take": 1,
   "duration": 1.44
  },
  {
@@ -1637,6 +1799,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.venus.mp3",
   "hash": "36d8b937b9e3",
+  "take": 1,
   "duration": 1.62
  },
  {
@@ -1647,6 +1810,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.earth.mp3",
   "hash": "bbd34c730fac",
+  "take": 1,
   "duration": 1.7
  },
  {
@@ -1657,6 +1821,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.mars.mp3",
   "hash": "44f4c49e70b0",
+  "take": 1,
   "duration": 1.62
  },
  {
@@ -1666,8 +1831,10 @@
   "text": "ده المشتري فعلاً!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.jupiter.mp3",
-  "hash": "0aa3bd4173bb",
-  "duration": 3.53
+  "hash": "dac40900859c",
+  "synthText": "ده المُشْتَرِي فعلاً!",
+  "take": 2,
+  "duration": 1.91
  },
  {
   "id": "games.find.correct.saturn",
@@ -1677,6 +1844,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.saturn.mp3",
   "hash": "a43b5b578aea",
+  "take": 1,
   "duration": 1.49
  },
  {
@@ -1687,6 +1855,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.uranus.mp3",
   "hash": "886c7a456518",
+  "take": 1,
   "duration": 1.59
  },
  {
@@ -1697,6 +1866,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.find.correct.neptune.mp3",
   "hash": "b96562d64b0e",
+  "take": 1,
   "duration": 1.57
  },
  {
@@ -1707,6 +1877,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.find.end.mp3",
   "hash": "4fb7498ed6ae",
+  "take": 1,
   "duration": 3.89
  },
  {
@@ -1717,6 +1888,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.intro.mp3",
   "hash": "fad768dd115c",
+  "take": 1,
   "duration": 4.86
  },
  {
@@ -1727,6 +1899,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.question.mp3",
   "hash": "0ca45c19e0db",
+  "take": 1,
   "duration": 3.47
  },
  {
@@ -1737,6 +1910,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.wrongTail.mp3",
   "hash": "39551f93f538",
+  "take": 1,
   "duration": 1.78
  },
  {
@@ -1747,6 +1921,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.hint.mp3",
   "hash": "cb2c4789c6c5",
+  "take": 1,
   "duration": 2.72
  },
  {
@@ -1757,6 +1932,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.mercury.mp3",
   "hash": "e8ce641582a9",
+  "take": 1,
   "duration": 2.51
  },
  {
@@ -1767,6 +1943,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.venus.mp3",
   "hash": "b87b484e38a7",
+  "take": 1,
   "duration": 2.3
  },
  {
@@ -1777,6 +1954,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.earth.mp3",
   "hash": "f089a5c7dbc4",
+  "take": 1,
   "duration": 2.25
  },
  {
@@ -1787,6 +1965,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.mars.mp3",
   "hash": "02868666771b",
+  "take": 1,
   "duration": 2.43
  },
  {
@@ -1797,6 +1976,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.jupiter.mp3",
   "hash": "980f89f0c260",
+  "take": 1,
   "duration": 2.25
  },
  {
@@ -1807,6 +1987,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.saturn.mp3",
   "hash": "ce27052c06b8",
+  "take": 1,
   "duration": 2.14
  },
  {
@@ -1817,6 +1998,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.uranus.mp3",
   "hash": "2f545a6cc7ef",
+  "take": 1,
   "duration": 2.43
  },
  {
@@ -1827,6 +2009,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.shadow.correct.neptune.mp3",
   "hash": "cfc81ffbc990",
+  "take": 1,
   "duration": 2.17
  },
  {
@@ -1837,6 +2020,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.shadow.end.mp3",
   "hash": "23a8ede5f148",
+  "take": 1,
   "duration": 3
  },
  {
@@ -1847,6 +2031,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.intro.mp3",
   "hash": "098dd7886230",
+  "take": 1,
   "duration": 5.17
  },
  {
@@ -1857,6 +2042,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.wrongTail.mp3",
   "hash": "7a082dd744d8",
+  "take": 1,
   "duration": 1.88
  },
  {
@@ -1867,6 +2053,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.hint.mp3",
   "hash": "e547da2986f0",
+  "take": 1,
   "duration": 2.46
  },
  {
@@ -1877,6 +2064,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.mercury.mp3",
   "hash": "fc51fad3d4a7",
+  "take": 1,
   "duration": 3.94
  },
  {
@@ -1887,6 +2075,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.venus.mp3",
   "hash": "58dd92615b92",
+  "take": 1,
   "duration": 3.79
  },
  {
@@ -1897,6 +2086,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.earth.mp3",
   "hash": "5c0e0dde9441",
+  "take": 1,
   "duration": 3.79
  },
  {
@@ -1907,6 +2097,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.mars.mp3",
   "hash": "da8294a1c9e3",
+  "take": 1,
   "duration": 3.87
  },
  {
@@ -1917,6 +2108,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.jupiter.mp3",
   "hash": "7c116c042f64",
+  "take": 1,
   "duration": 4.78
  },
  {
@@ -1927,6 +2119,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.saturn.mp3",
   "hash": "3869abd05988",
+  "take": 1,
   "duration": 4.18
  },
  {
@@ -1937,6 +2130,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.uranus.mp3",
   "hash": "4549e4994872",
+  "take": 1,
   "duration": 4.23
  },
  {
@@ -1947,6 +2141,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.size.correct.neptune.mp3",
   "hash": "f8d0d122102c",
+  "take": 1,
   "duration": 3.97
  },
  {
@@ -1957,6 +2152,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.end.mp3",
   "hash": "2ec16737a994",
+  "take": 1,
   "duration": 4.78
  },
  {
@@ -1967,6 +2163,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.intro.mp3",
   "hash": "82c6f26a5069",
+  "take": 1,
   "duration": 8.1
  },
  {
@@ -1977,6 +2174,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.mercury.mp3",
   "hash": "a6540e1e449e",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -1987,6 +2185,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.venus.mp3",
   "hash": "92a86246680c",
+  "take": 1,
   "duration": 3.27
  },
  {
@@ -1997,6 +2196,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.earth.mp3",
   "hash": "b6ad3eda2ec2",
+  "take": 1,
   "duration": 3.71
  },
  {
@@ -2007,6 +2207,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.mars.mp3",
   "hash": "5a07499d9af3",
+  "take": 1,
   "duration": 3.92
  },
  {
@@ -2017,6 +2218,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.jupiter.mp3",
   "hash": "b6052fdd31c0",
+  "take": 1,
   "duration": 3.89
  },
  {
@@ -2027,6 +2229,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.saturn.mp3",
   "hash": "e7f2b5887c9c",
+  "take": 1,
   "duration": 3.58
  },
  {
@@ -2037,6 +2240,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.uranus.mp3",
   "hash": "2a594e5cc27a",
+  "take": 1,
   "duration": 3.63
  },
  {
@@ -2047,6 +2251,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.placed.neptune.mp3",
   "hash": "88ae58573ce9",
+  "take": 1,
   "duration": 3.6
  },
  {
@@ -2057,6 +2262,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.mercury.mp3",
   "hash": "af39819ff914",
+  "take": 1,
   "duration": 4.55
  },
  {
@@ -2067,6 +2273,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.venus.mp3",
   "hash": "91530f3b9017",
+  "take": 1,
   "duration": 4.36
  },
  {
@@ -2077,6 +2284,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.earth.mp3",
   "hash": "8b5407b4e364",
+  "take": 1,
   "duration": 4.75
  },
  {
@@ -2087,6 +2295,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.mars.mp3",
   "hash": "92d9d5a961ce",
+  "take": 1,
   "duration": 4.73
  },
  {
@@ -2096,8 +2305,10 @@
   "text": "مش هنا. المشتري مكانه في حتة تانية، جربي تاني!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.jupiter.mp3",
-  "hash": "2c6e37906295",
-  "duration": 4.78
+  "hash": "1738c359792b",
+  "synthText": "مش هنا. المُشْتَرِي مكانه في حتة تانية، جربي تاني!",
+  "take": 2,
+  "duration": 4.47
  },
  {
   "id": "games.order.wrong.saturn",
@@ -2107,6 +2318,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.saturn.mp3",
   "hash": "097ed126c715",
+  "take": 1,
   "duration": 4.65
  },
  {
@@ -2117,6 +2329,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.uranus.mp3",
   "hash": "a71eacd8e643",
+  "take": 1,
   "duration": 4.86
  },
  {
@@ -2127,6 +2340,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.wrong.neptune.mp3",
   "hash": "78356fd9f400",
+  "take": 1,
   "duration": 4.7
  },
  {
@@ -2137,6 +2351,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.hint.mp3",
   "hash": "12eea99df1eb",
+  "take": 1,
   "duration": 2.53
  },
  {
@@ -2147,6 +2362,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.order.pick.mp3",
   "hash": "492bcff18fe9",
+  "take": 1,
   "duration": 3.84
  },
  {
@@ -2157,6 +2373,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.order.done.mp3",
   "hash": "cfc09b8c476a",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -2167,6 +2384,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.intro.mp3",
   "hash": "21c80cee8ad3",
+  "take": 1,
   "duration": 7.63
  },
  {
@@ -2177,6 +2395,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.day.mp3",
   "hash": "0ea4a16c3ede",
+  "take": 1,
   "duration": 4.13
  },
  {
@@ -2187,6 +2406,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.dayNight.night.mp3",
   "hash": "028ed34d625d",
+  "take": 1,
   "duration": 5.22
  },
  {
@@ -2197,6 +2417,7 @@
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/games/games.dayNight.explain.mp3",
   "hash": "46f246c1814e",
+  "take": 1,
   "duration": 8.18
  },
  {
@@ -2207,6 +2428,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.explorer.intro.mp3",
   "hash": "e9ce0e780fc0",
+  "take": 1,
   "duration": 7.24
  },
  {
@@ -2217,6 +2439,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.explorer.sun.mp3",
   "hash": "02a7485de368",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -2227,6 +2450,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.explorer.allStars.mp3",
   "hash": "461164c83627",
+  "take": 1,
   "duration": 3.47
  },
  {
@@ -2237,6 +2461,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/games/games.explorer.allPlanets.mp3",
   "hash": "25b22b166786",
+  "take": 1,
   "duration": 3.76
  },
  {
@@ -2247,6 +2472,7 @@
   "emotion": "surprised",
   "file": "audio/ar-EG/zizo/reactions/reactions.sun.mp3",
   "hash": "161c639f043f",
+  "take": 1,
   "duration": 3.37
  },
  {
@@ -2257,6 +2483,7 @@
   "emotion": "surprised",
   "file": "audio/ar-EG/zizo/reactions/reactions.saturn.mp3",
   "hash": "87edb93ff51a",
+  "take": 1,
   "duration": 2.12
  },
  {
@@ -2267,6 +2494,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.correct.mp3",
   "hash": "2e6e3c7cecb4",
+  "take": 1,
   "duration": 2.85
  },
  {
@@ -2277,6 +2505,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.journey.mp3",
   "hash": "91999c2addc7",
+  "take": 1,
   "duration": 3.68
  },
  {
@@ -2287,6 +2516,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.moonFlag.mp3",
   "hash": "4b0878a2524f",
+  "take": 1,
   "duration": 3.06
  },
  {
@@ -2297,6 +2527,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/reactions.rover.mp3",
   "hash": "b75c784e894e",
+  "take": 1,
   "duration": 2.43
  },
  {
@@ -2307,6 +2538,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.mission.mp3",
   "hash": "779acd4a9a3d",
+  "take": 1,
   "duration": 1.93
  },
  {
@@ -2317,6 +2549,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/reactions/reactions.alien.mp3",
   "hash": "f4b877f46ff8",
+  "take": 1,
   "duration": 3.66
  },
  {
@@ -2327,6 +2560,7 @@
   "emotion": "laughing",
   "file": "audio/ar-EG/zizo/reactions/reactions.bigHelmet.mp3",
   "hash": "7ef775bd608d",
+  "take": 1,
   "duration": 2.06
  },
  {
@@ -2337,6 +2571,7 @@
   "emotion": "silly",
   "file": "audio/ar-EG/zizo/reactions/reactions.upsideDown.mp3",
   "hash": "1e836091990a",
+  "take": 1,
   "duration": 5.28
  },
  {
@@ -2347,6 +2582,7 @@
   "emotion": "celebrating",
   "file": "audio/ar-EG/zizo/reactions/reactions.sticker.mp3",
   "hash": "ea81294acdd4",
+  "take": 1,
   "duration": 2.19
  },
  {
@@ -2357,6 +2593,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/rewards/map.intro.mp3",
   "hash": "b8ec3c8e3c72",
+  "take": 1,
   "duration": 5.56
  },
  {
@@ -2367,6 +2604,7 @@
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/map.allVisited.mp3",
   "hash": "0ba1e5b4e9c0",
+  "take": 1,
   "duration": 5.77
  },
  {
@@ -2377,6 +2615,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/rewards/map.badge.mp3",
   "hash": "bd38415315b0",
+  "take": 1,
   "duration": 1.59
  },
  {
@@ -2387,6 +2626,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.0.mp3",
   "hash": "e82b4009b700",
+  "take": 1,
   "duration": 6.61
  },
  {
@@ -2397,6 +2637,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.1.mp3",
   "hash": "c7af27ea4c74",
+  "take": 1,
   "duration": 7.94
  },
  {
@@ -2407,6 +2648,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.start.2.mp3",
   "hash": "0cdad02cc93d",
+  "take": 1,
   "duration": 3.19
  },
  {
@@ -2417,6 +2659,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.start.3.mp3",
   "hash": "598a52c56bea",
+  "take": 1,
   "duration": 2.04
  },
  {
@@ -2427,6 +2670,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.start.3.done.mp3",
   "hash": "65f2bdf90fb6",
+  "take": 1,
   "duration": 5.02
  },
  {
@@ -2437,6 +2681,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.0.mp3",
   "hash": "fa0b541ea1d1",
+  "take": 1,
   "duration": 7.44
  },
  {
@@ -2447,6 +2692,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.sun.1.mp3",
   "hash": "8ab4ae098f7b",
+  "take": 1,
   "duration": 4.23
  },
  {
@@ -2457,6 +2703,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.2.mp3",
   "hash": "5bd246e9448d",
+  "take": 1,
   "duration": 5.85
  },
  {
@@ -2467,6 +2714,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.mp3",
   "hash": "59953f412872",
+  "take": 1,
   "duration": 3.97
  },
  {
@@ -2477,6 +2725,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.reply0.mp3",
   "hash": "512ed885a14d",
+  "take": 1,
   "duration": 4.86
  },
  {
@@ -2487,6 +2736,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.sun.3.reply1.mp3",
   "hash": "d11e2c39b32f",
+  "take": 1,
   "duration": 5.17
  },
  {
@@ -2497,6 +2747,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.0.mp3",
   "hash": "21c27b68c4cb",
+  "take": 1,
   "duration": 7.73
  },
  {
@@ -2507,6 +2758,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.1.mp3",
   "hash": "1b46add8fd90",
+  "take": 1,
   "duration": 5.77
  },
  {
@@ -2517,6 +2769,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mercury.2.mp3",
   "hash": "ae5fb9e2e4d6",
+  "take": 1,
   "duration": 2.48
  },
  {
@@ -2527,6 +2780,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.mercury.2.done.mp3",
   "hash": "1572096d7b37",
+  "take": 1,
   "duration": 6.92
  },
  {
@@ -2537,6 +2791,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.venus.0.mp3",
   "hash": "b81e2d491910",
+  "take": 1,
   "duration": 6.01
  },
  {
@@ -2547,6 +2802,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.venus.1.mp3",
   "hash": "8986063bce79",
+  "take": 1,
   "duration": 3.89
  },
  {
@@ -2557,6 +2813,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.mp3",
   "hash": "04a86d3501b1",
+  "take": 1,
   "duration": 6.16
  },
  {
@@ -2567,6 +2824,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.reply0.mp3",
   "hash": "a35522563569",
+  "take": 1,
   "duration": 5.75
  },
  {
@@ -2577,6 +2835,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.venus.2.reply1.mp3",
   "hash": "a3090e42f875",
+  "take": 1,
   "duration": 5.93
  },
  {
@@ -2587,6 +2846,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.0.mp3",
   "hash": "07faaba0fa61",
+  "take": 1,
   "duration": 6.24
  },
  {
@@ -2597,6 +2857,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.1.mp3",
   "hash": "34249ab55cbe",
+  "take": 1,
   "duration": 4.31
  },
  {
@@ -2607,6 +2868,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.earth.1.done.mp3",
   "hash": "c6593a24cbdf",
+  "take": 1,
   "duration": 5.96
  },
  {
@@ -2617,6 +2879,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.earth.2.mp3",
   "hash": "5ad841e3a482",
+  "take": 1,
   "duration": 6.95
  },
  {
@@ -2627,6 +2890,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.0.mp3",
   "hash": "6c8ade6bc824",
+  "take": 1,
   "duration": 5.15
  },
  {
@@ -2637,6 +2901,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.1.mp3",
   "hash": "556fde95cd28",
+  "take": 1,
   "duration": 5.22
  },
  {
@@ -2647,6 +2912,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.2.mp3",
   "hash": "d4de02399dcb",
+  "take": 1,
   "duration": 5.51
  },
  {
@@ -2657,6 +2923,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.mars.3.mp3",
   "hash": "460391196265",
+  "take": 1,
   "duration": 3.37
  },
  {
@@ -2667,6 +2934,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.mars.3.done.mp3",
   "hash": "36518ac5491c",
+  "take": 1,
   "duration": 6.56
  },
  {
@@ -2676,8 +2944,10 @@
   "text": "واو! قدامهم كوكب ضخم ضخم... ده المشتري، أكبر كوكب في المجموعة الشمسية!",
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.0.mp3",
-  "hash": "de49f543085d",
-  "duration": 7.99
+  "hash": "228d108563a3",
+  "synthText": "واو! قدامهم كوكب ضخم ضخم... ده المُشْتَرِي، أكبر كوكب في المجموعة الشمسية!",
+  "take": 2,
+  "duration": 9.06
  },
  {
   "id": "story.jupiter.1",
@@ -2687,6 +2957,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.jupiter.1.mp3",
   "hash": "e994aacfd65b",
+  "take": 1,
   "duration": 4.57
  },
  {
@@ -2697,6 +2968,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.2.mp3",
   "hash": "6631aa91a9f8",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -2707,6 +2979,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.jupiter.2.done.mp3",
   "hash": "87aad67a5f6b",
+  "take": 1,
   "duration": 7.37
  },
  {
@@ -2717,6 +2990,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.0.mp3",
   "hash": "c79aba2619b8",
+  "take": 1,
   "duration": 6.16
  },
  {
@@ -2727,7 +3001,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.1.mp3",
   "hash": "7c668eed1ac4",
-  "duration": 4.08
+  "take": 1
  },
  {
   "id": "story.saturn.2",
@@ -2737,7 +3011,8 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.mp3",
   "hash": "8c4fb8a458f1",
-  "duration": 4.7
+  "take": 2,
+  "duration": 6.03
  },
  {
   "id": "story.saturn.2.reply0",
@@ -2747,6 +3022,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.reply0.mp3",
   "hash": "f880a70803ea",
+  "take": 1,
   "duration": 5.88
  },
  {
@@ -2757,6 +3033,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.saturn.2.reply1.mp3",
   "hash": "25c1d40f85c1",
+  "take": 1,
   "duration": 5.46
  },
  {
@@ -2767,6 +3044,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.0.mp3",
   "hash": "433b7c6ce581",
+  "take": 1,
   "duration": 9.01
  },
  {
@@ -2777,6 +3055,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.1.mp3",
   "hash": "6afe5a4dd812",
+  "take": 1,
   "duration": 3.68
  },
  {
@@ -2787,6 +3066,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.uranus.2.mp3",
   "hash": "3a1b359faeaa",
+  "take": 1,
   "duration": 6.32
  },
  {
@@ -2797,6 +3077,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.uranus.2.done.mp3",
   "hash": "4cfa03dde633",
+  "take": 1,
   "duration": 6.32
  },
  {
@@ -2807,6 +3088,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.0.mp3",
   "hash": "edcacc5c259b",
+  "take": 1,
   "duration": 8.25
  },
  {
@@ -2817,6 +3099,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.1.mp3",
   "hash": "c92c068cda50",
+  "take": 1,
   "duration": 6.35
  },
  {
@@ -2827,6 +3110,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.neptune.2.mp3",
   "hash": "e84c7cf11ac9",
+  "take": 1,
   "duration": 3.94
  },
  {
@@ -2837,6 +3121,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.neptune.2.done.mp3",
   "hash": "76d453e432a7",
+  "take": 1,
   "duration": 5.72
  },
  {
@@ -2847,6 +3132,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.0.mp3",
   "hash": "16497c03c7f6",
+  "take": 1,
   "duration": 4.73
  },
  {
@@ -2857,6 +3143,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.1.mp3",
   "hash": "2aed2f22fe69",
+  "take": 1,
   "duration": 4.96
  },
  {
@@ -2867,6 +3154,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/stories/story.home.1.done.mp3",
   "hash": "f470c0060fb0",
+  "take": 1,
   "duration": 6.35
  },
  {
@@ -2877,6 +3165,7 @@
   "emotion": "playful",
   "file": "audio/ar-EG/zizo/stories/story.home.2.mp3",
   "hash": "52c1043fd608",
+  "take": 1,
   "duration": 4.08
  },
  {
@@ -2887,7 +3176,7 @@
   "emotion": "storytelling",
   "file": "audio/ar-EG/narrator/stories/story.home.3.mp3",
   "hash": "6d8431586cba",
-  "duration": 4.52
+  "take": 1
  },
  {
   "id": "common.thisIs.sun",
@@ -2897,7 +3186,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.sun.mp3",
   "hash": "78e81fb2ab1b",
-  "duration": 1.65
+  "take": 1
  },
  {
   "id": "common.thisIs.mercury",
@@ -2907,6 +3196,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.mercury.mp3",
   "hash": "078c362d9986",
+  "take": 1,
   "duration": 1.41
  },
  {
@@ -2917,6 +3207,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.venus.mp3",
   "hash": "610a456407ae",
+  "take": 1,
   "duration": 1.7
  },
  {
@@ -2927,6 +3218,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.earth.mp3",
   "hash": "ee6ec350a819",
+  "take": 1,
   "duration": 1.04
  },
  {
@@ -2937,6 +3229,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.moon.mp3",
   "hash": "39cdf4b78a0f",
+  "take": 1,
   "duration": 1.93
  },
  {
@@ -2947,6 +3240,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.mars.mp3",
   "hash": "095319fb8f54",
+  "take": 1,
   "duration": 2.04
  },
  {
@@ -2957,6 +3251,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.jupiter.mp3",
   "hash": "a639866a7a61",
+  "take": 1,
   "duration": 1.25
  },
  {
@@ -2967,6 +3262,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.saturn.mp3",
   "hash": "e7d75523d4ee",
+  "take": 1,
   "duration": 1.12
  },
  {
@@ -2977,6 +3273,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.uranus.mp3",
   "hash": "671001fbd7bc",
+  "take": 1,
   "duration": 1.33
  },
  {
@@ -2987,6 +3284,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.thisIs.neptune.mp3",
   "hash": "0ffa861e288d",
+  "take": 1,
   "duration": 1.15
  },
  {
@@ -2997,6 +3295,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.sun.mp3",
   "hash": "230bbf4e7b39",
+  "take": 1,
   "duration": 1.1
  },
  {
@@ -3007,6 +3306,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.mercury.mp3",
   "hash": "d8e8ba5bff57",
+  "take": 1,
   "duration": 1.18
  },
  {
@@ -3017,6 +3317,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.venus.mp3",
   "hash": "9802aaac601f",
+  "take": 1,
   "duration": 0.97
  },
  {
@@ -3027,6 +3328,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.earth.mp3",
   "hash": "b331baa38435",
+  "take": 1,
   "duration": 1.1
  },
  {
@@ -3037,6 +3339,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.moon.mp3",
   "hash": "b65ace15875f",
+  "take": 1,
   "duration": 1.2
  },
  {
@@ -3047,6 +3350,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.mars.mp3",
   "hash": "e786a0c65683",
+  "take": 1,
   "duration": 1.54
  },
  {
@@ -3057,6 +3361,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.jupiter.mp3",
   "hash": "0443ded85a3c",
+  "take": 1,
   "duration": 1.25
  },
  {
@@ -3067,6 +3372,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.saturn.mp3",
   "hash": "00c840611544",
+  "take": 1,
   "duration": 0.99
  },
  {
@@ -3077,6 +3383,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.uranus.mp3",
   "hash": "906e78d26459",
+  "take": 1,
   "duration": 1.28
  },
  {
@@ -3087,6 +3394,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.names.neptune.mp3",
   "hash": "5407e66861f9",
+  "take": 1,
   "duration": 1.1
  },
  {
@@ -3097,6 +3405,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.venus.mp3",
   "hash": "95189a9e9500",
+  "take": 1,
   "duration": 3.87
  },
  {
@@ -3107,6 +3416,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.earth.mp3",
   "hash": "8f8b0303544b",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -3117,6 +3427,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.jupiter.mp3",
   "hash": "c6eab3c1b6ed",
+  "take": 1,
   "duration": 3.19
  },
  {
@@ -3127,6 +3438,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.saturn.mp3",
   "hash": "e9e9fb959f86",
+  "take": 1,
   "duration": 3.27
  },
  {
@@ -3137,6 +3449,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.uranus.mp3",
   "hash": "b37a16647cb9",
+  "take": 1,
   "duration": 3.4
  },
  {
@@ -3147,6 +3460,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mercury.neptune.mp3",
   "hash": "8c3d9c6c137d",
+  "take": 1,
   "duration": 3.19
  },
  {
@@ -3157,6 +3471,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.mercury.mp3",
   "hash": "b5dacae99d8f",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -3167,6 +3482,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.mars.mp3",
   "hash": "94d9ea146a11",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -3177,6 +3493,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.jupiter.mp3",
   "hash": "cb3e01c3a65a",
+  "take": 1,
   "duration": 3.29
  },
  {
@@ -3187,6 +3504,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.saturn.mp3",
   "hash": "79591aa6cf42",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -3197,6 +3515,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.uranus.mp3",
   "hash": "11dc422e9360",
+  "take": 1,
   "duration": 3.37
  },
  {
@@ -3207,6 +3526,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.venus.neptune.mp3",
   "hash": "63642aad9bf2",
+  "take": 1,
   "duration": 3.19
  },
  {
@@ -3217,6 +3537,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.mercury.mp3",
   "hash": "3ff2d26f2336",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -3227,6 +3548,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.mars.mp3",
   "hash": "eba5bbd696ef",
+  "take": 1,
   "duration": 3.34
  },
  {
@@ -3237,6 +3559,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.jupiter.mp3",
   "hash": "d563fda0a2d5",
+  "take": 1,
   "duration": 3.24
  },
  {
@@ -3247,6 +3570,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.saturn.mp3",
   "hash": "7b4f3c030bba",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -3257,6 +3581,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.uranus.mp3",
   "hash": "9500c1da1222",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -3267,6 +3592,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.earth.neptune.mp3",
   "hash": "3dab2235230f",
+  "take": 1,
   "duration": 3.16
  },
  {
@@ -3277,6 +3603,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.venus.mp3",
   "hash": "252fba2d5e44",
+  "take": 1,
   "duration": 3.45
  },
  {
@@ -3287,6 +3614,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.earth.mp3",
   "hash": "4303e087313f",
+  "take": 1,
   "duration": 3.13
  },
  {
@@ -3297,6 +3625,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.jupiter.mp3",
   "hash": "a0e3ac86c552",
+  "take": 1,
   "duration": 3.11
  },
  {
@@ -3307,6 +3636,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.saturn.mp3",
   "hash": "2e63b0c5cdd0",
+  "take": 1,
   "duration": 2.82
  },
  {
@@ -3317,6 +3647,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.uranus.mp3",
   "hash": "0b3fd360401f",
+  "take": 1,
   "duration": 3.24
  },
  {
@@ -3327,6 +3658,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.mars.neptune.mp3",
   "hash": "908e3fa3c5b6",
+  "take": 1,
   "duration": 2.77
  },
  {
@@ -3337,6 +3669,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.mercury.mp3",
   "hash": "814e4418f8dd",
+  "take": 1,
   "duration": 3.29
  },
  {
@@ -3347,6 +3680,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.venus.mp3",
   "hash": "273e214fbabb",
+  "take": 1,
   "duration": 3
  },
  {
@@ -3356,8 +3690,10 @@
   "text": "مين أكبر: المشتري ولا الأرض؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.earth.mp3",
-  "hash": "9c5dee7ab5f9",
-  "duration": 3.79
+  "hash": "984161b486b4",
+  "synthText": "مين أكبر: المُشْتَرِي ولا الأرض؟",
+  "take": 2,
+  "duration": 3.45
  },
  {
   "id": "games.size.question.jupiter.mars",
@@ -3366,8 +3702,9 @@
   "text": "مين أكبر: المشتري ولا المريخ؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.mars.mp3",
-  "hash": "2c6e57c1be88",
-  "duration": 3.79
+  "hash": "ed0a7af86ffd",
+  "synthText": "مين أكبر: المُشْتَرِي ولا المريخ؟",
+  "take": 1
  },
  {
   "id": "games.size.question.jupiter.uranus",
@@ -3376,8 +3713,10 @@
   "text": "مين أكبر: المشتري ولا أورانوس؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.uranus.mp3",
-  "hash": "018f5c40b0f8",
-  "duration": 3.76
+  "hash": "a37f167c129c",
+  "synthText": "مين أكبر: المُشْتَرِي ولا أورانوس؟",
+  "take": 2,
+  "duration": 3.94
  },
  {
   "id": "games.size.question.jupiter.neptune",
@@ -3386,8 +3725,9 @@
   "text": "مين أكبر: المشتري ولا نبتون؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.jupiter.neptune.mp3",
-  "hash": "0b6922636075",
-  "duration": 3.58
+  "hash": "bc6744458c14",
+  "synthText": "مين أكبر: المُشْتَرِي ولا نبتون؟",
+  "take": 1
  },
  {
   "id": "games.size.question.saturn.mercury",
@@ -3397,6 +3737,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.mercury.mp3",
   "hash": "d92e00ddbaf3",
+  "take": 1,
   "duration": 3.37
  },
  {
@@ -3407,6 +3748,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.venus.mp3",
   "hash": "a10f73c61c1b",
+  "take": 1,
   "duration": 3.13
  },
  {
@@ -3417,6 +3759,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.earth.mp3",
   "hash": "3fd3018eec25",
+  "take": 1,
   "duration": 3.24
  },
  {
@@ -3427,6 +3770,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.mars.mp3",
   "hash": "02b824d5bdd8",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -3437,6 +3781,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.uranus.mp3",
   "hash": "f2283983bbad",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -3447,6 +3792,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.saturn.neptune.mp3",
   "hash": "458e19f82de0",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -3457,6 +3803,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.mercury.mp3",
   "hash": "49dc111c95c6",
+  "take": 1,
   "duration": 3.47
  },
  {
@@ -3467,6 +3814,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.venus.mp3",
   "hash": "66cf7dc15ef7",
+  "take": 1,
   "duration": 3.32
  },
  {
@@ -3477,6 +3825,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.earth.mp3",
   "hash": "17728b6f2790",
+  "take": 1,
   "duration": 3.37
  },
  {
@@ -3487,6 +3836,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.mars.mp3",
   "hash": "20b4016e8e03",
+  "take": 1,
   "duration": 3.47
  },
  {
@@ -3497,6 +3847,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.jupiter.mp3",
   "hash": "a89bd6e4e6da",
+  "take": 1,
   "duration": 3.42
  },
  {
@@ -3507,6 +3858,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.uranus.saturn.mp3",
   "hash": "1cb6bf93622f",
+  "take": 1,
   "duration": 3.29
  },
  {
@@ -3517,6 +3869,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.mercury.mp3",
   "hash": "2bb06880b03d",
+  "take": 1,
   "duration": 3.5
  },
  {
@@ -3527,6 +3880,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.venus.mp3",
   "hash": "b5d083a9945e",
+  "take": 1,
   "duration": 3.29
  },
  {
@@ -3537,6 +3891,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.earth.mp3",
   "hash": "f588dbc42ac6",
+  "take": 1,
   "duration": 3.27
  },
  {
@@ -3547,6 +3902,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.mars.mp3",
   "hash": "aa19f29eb38b",
+  "take": 1,
   "duration": 3.4
  },
  {
@@ -3557,6 +3913,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.jupiter.mp3",
   "hash": "700b047b70d9",
+  "take": 1,
   "duration": 3.21
  },
  {
@@ -3567,6 +3924,7 @@
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/games/games.size.question.neptune.saturn.mp3",
   "hash": "9986562bc6df",
+  "take": 1,
   "duration": 3.19
  }
 ]

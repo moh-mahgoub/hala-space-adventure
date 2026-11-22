@@ -126,7 +126,8 @@ async function main() {
     }
     const v = VOICES[batch[0].speaker]
     const mod = PROVIDERS[v.provider]
-    const lines = batch.map((e) => ({ id: e.id, speaker: e.speaker, emotion: e.emotion, text: e.text }))
+    // the voice gets the pronunciation spelling when there is one; captions keep the canonical text
+    const lines = batch.map((e) => ({ id: e.id, speaker: e.speaker, emotion: e.emotion, text: e.synthText ?? e.text }))
     const raw = new Map()
     if (batch.length > 1 && mod.batchTakes && !args.single) {
       try {
@@ -171,6 +172,7 @@ async function main() {
           }, l.id)
         }
         entry.duration = duration
+        entry.take = (entry.take ?? 0) + 1
         made++
         console.log(`✓ ${l.id} (${duration}s)`)
       } catch (e) {

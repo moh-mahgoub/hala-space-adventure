@@ -22,7 +22,36 @@ export interface ClipDef {
   speaker: Speaker
   /** canonical text, with the default name filled in (what the recording says) */
   text: string
+  /** pronunciation-only spelling sent to the voice (never shown on screen) */
+  synthText?: string
   emotion: string
+}
+
+/**
+ * Pronunciation help for the voice. Applied only to the listed clips (so
+ * recordings that already sound right are not re-recorded). Display text never changes.
+ */
+export const PRONUNCIATION: { from: string; to: string; ids: string[] }[] = [
+  {
+    // «المشتري» — guide the voice to el-moshtari
+    from: 'المشتري',
+    to: 'المُشْتَرِي',
+    ids: [
+      'games.find.correct.jupiter',
+      'games.order.wrong.jupiter',
+      'games.size.question.jupiter.earth',
+      'games.size.question.jupiter.mars',
+      'games.size.question.jupiter.uranus',
+      'games.size.question.jupiter.neptune',
+      'story.jupiter.0',
+    ],
+  },
+]
+
+export function synthTextFor(id: string, text: string): string | undefined {
+  let out = text
+  for (const p of PRONUNCIATION) if (p.ids.includes(id)) out = out.split(p.from).join(p.to)
+  return out === text ? undefined : out
 }
 
 /** One clip to play now, with its caption (filled with the CURRENT child's name). */
@@ -137,7 +166,10 @@ function staticScriptIds(): string[] {
 
 export function allClips(): ClipDef[] {
   const out: ClipDef[] = []
-  const add = (id: string, text: string, voiceId = id) => out.push({ id, text, ...voiceOf(voiceId) })
+  const add = (id: string, text: string, voiceId = id) => {
+    const synthText = synthTextFor(id, text)
+    out.push({ id, text, ...(synthText ? { synthText } : {}), ...voiceOf(voiceId) })
+  }
   for (const id of staticScriptIds()) {
     if (COMPOSED_ONLY.has(id)) continue
     const template = templateFor(id)
