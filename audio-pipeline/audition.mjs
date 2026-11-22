@@ -22,13 +22,14 @@ import * as gemini from './providers/gemini.mjs'
 import * as elevenlabs from './providers/elevenlabs.mjs'
 import * as azure from './providers/azure.mjs'
 import { buildAuditionPage } from './audition-page.mjs'
+import { splitTake } from './lib/split.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 export const OUT = path.join(ROOT, 'audition', 'out')
 export const PROVIDERS = { gemini, elevenlabs, azure }
 
 function parseArgs(argv) {
-  const a = { providers: Object.keys(PROVIDERS), character: null, only: null, dryRun: false, force: false }
+  const a = { providers: Object.keys(PROVIDERS), character: null, only: null, dryRun: false, force: false, tag: null }
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i]
     if (k === '--dry-run') a.dryRun = true
@@ -36,6 +37,7 @@ function parseArgs(argv) {
     else if (k === '--providers') a.providers = argv[++i].split(',')
     else if (k === '--character') a.character = argv[++i]
     else if (k === '--only') a.only = argv[++i].split(',')
+    else if (k === '--tag') a.tag = slug(argv[++i]) // e.g. model name, keeps takes side by side
   }
   return a
 }
@@ -94,8 +96,15 @@ async function withRetries(fn, label, tries = 6) {
   }
 }
 
+/** Direction for a multi-line take: character + each line's mood, in order. */
+export function batchDirectionFor(provider, lines) {
+  const ch = CHARACTERS[lines[0].speaker]
+  const moods = lines.map((l, i) => `${i + 1}. ${(EMOTION_HINT[l.emotion] ?? { en: l.emotion }).en}`).join('; ')
+  return `${ch.direction} The transcript has ${lines.length} separate lines: perform them in order, pausing for about two seconds between lines. Mood of each line: ${moods}.`
+}
+
 export function clipKey(provider, cand) {
-  return `${provider}-${slug(cand.voiceName ?? cand.voice)}${cand.fx && cand.fx !== 'none' ? `-${cand.fx}` : ''}`
+  return `${provider}-${slug(cand.voiceName ?? cand.voice)}${cand.tag ? `-${cand.tag}` : ''}${cand.fx && cand.fx !== 'none' ? `-${cand.fx}` : ''}`
 }
 
 async function main() {
@@ -133,7 +142,7 @@ async function main() {
         for (const v of voices) {
           for (const line of ALL_AUDITION_LINES.filter((l) => l.speaker === character)) {
             if (args.only && !args.only.includes(line.id)) continue
-            plan.push({ provider: p, character, cand: v, line })
+            plan.push({ provider: p, character, cand: args.tag ? { ...v, tag: args.tag } : v, line })
           }
         }
       }
@@ -154,58 +163,112 @@ async function main() {
     return
   }
 
-  // ── generate (sequential, paced per provider) ──
+  // ── generate ──
+  // Jobs are grouped into "takes": same provider + voice + character. Effect variants
+  // (e.g. zizo-light) reuse the take's audio, and providers with tight request quotas
+  // (Gemini free tier: 10/day) perform the whole take in ONE request, split afterwards.
   let made = 0
   let failed = 0
   const lastCall = {}
-  for (const j of plan) {
-    const key = clipKey(j.provider, j.cand)
-    const rel = path.join(j.character, key, `${j.line.id}.mp3`)
-    const file = path.join(OUT, rel)
-    const id = `${key}/${j.line.id}`
-    const text = j.line.synthText ?? j.line.text
+  const paced = async (provider, fn) => {
+    const gap = (PROVIDERS[provider].minIntervalMs ?? 0) - (Date.now() - (lastCall[provider] ?? 0))
+    if (gap > 0) await sleep(gap)
+    lastCall[provider] = Date.now()
+    return fn()
+  }
+  const needs = (j) => {
+    const id = `${clipKey(j.provider, j.cand)}/${j.line.id}`
+    const file = path.join(OUT, j.character, clipKey(j.provider, j.cand), `${j.line.id}.mp3`)
     const prev = results.clips[id]
-    const suspect = prev?.status === 'ok' && suspiciousDuration(prev.duration, text.length)
-    if (existsSync(file) && !args.force && !suspect) continue
-    if (suspect) console.log(`  ↻ ${id}: previous take was ${prev.duration}s — suspicious, redoing`)
-    try {
-      const mod = PROVIDERS[j.provider]
-      const { r, duration } = await withRetries(async () => {
-        const gap = (mod.minIntervalMs ?? 0) - (Date.now() - (lastCall[j.provider] ?? 0))
-        if (gap > 0) await sleep(gap)
-        lastCall[j.provider] = Date.now()
-        const r = await mod.synthesize({ text, voice: j.cand.voice, style: directionFor(j.provider, j.line), prosody: j.cand.prosody })
-        const { duration } = finishClip(r.audio, file, { fx: j.cand.fx ?? 'none' })
-        if (suspiciousDuration(duration, text.length)) throw new Error(`suspicious length ${duration}s for ${text.length} chars`)
-        return { r, duration }
-      }, id)
-      results.clips[id] = {
-        status: 'ok',
-        provider: j.provider,
-        model: r.model,
-        voice: j.cand.voiceName ?? j.cand.voice,
-        voiceId: j.cand.voice,
-        fx: j.cand.fx ?? 'none',
-        note: j.cand.note ?? '',
-        prosody: j.cand.prosody ?? null,
-        character: j.character,
-        lineId: j.line.id,
-        text: j.line.text,
-        synthText: j.line.synthText ?? null,
-        emotion: j.line.emotion,
-        file: rel,
-        duration,
-        chars: text.length,
-        generatedAt: new Date().toISOString(),
+    const suspect = prev?.status === 'ok' && suspiciousDuration(prev.duration, (j.line.synthText ?? j.line.text).length)
+    return args.force || suspect || !existsSync(file)
+  }
+  const takes = new Map()
+  for (const j of plan.filter(needs)) {
+    const g = `${j.provider}|${j.cand.voice}|${j.character}`
+    if (!takes.has(g)) takes.set(g, [])
+    takes.get(g).push(j)
+  }
+
+  for (const jobs of takes.values()) {
+    const { provider, cand } = jobs[0]
+    const mod = PROVIDERS[provider]
+    const lines = [...new Map(jobs.map((j) => [j.line.id, j.line])).values()]
+    const raw = new Map()
+    let model = null
+    const label = `${provider}:${cand.voiceName ?? cand.voice}`
+
+    if (mod.batchTakes && lines.length > 1) {
+      try {
+        const r = await withRetries(
+          () => paced(provider, () => mod.synthesize({ text: mod.batchText(lines.map((l) => l.synthText ?? l.text)), voice: cand.voice, style: batchDirectionFor(provider, lines) })),
+          `${label} take`,
+        )
+        const parts = splitTake(r.audio, lines.length)
+        if (parts) {
+          lines.forEach((l, i) => raw.set(l.id, parts[i]))
+          model = r.model
+          console.log(`  ✂ ${label}: one take → ${lines.length} clips`)
+        } else console.log(`  ! ${label}: couldn't find ${lines.length - 1} clear pauses — falling back to one request per line`)
+      } catch (e) {
+        console.log(`  ! ${label}: batch take failed (${String(e.message).slice(0, 120)})`)
+        if (/\b429\b/.test(e.message)) {
+          for (const j of jobs) {
+            failed++
+            const id = `${clipKey(j.provider, j.cand)}/${j.line.id}`
+            results.clips[id] = { status: 'failed', provider, voice: cand.voiceName ?? cand.voice, character: j.character, lineId: j.line.id, text: j.line.text, error: String(e.message).slice(0, 300) }
+          }
+          writeFileSync(resultsFile, JSON.stringify(results, null, 2))
+          continue // quota: don't burn more requests on per-line fallbacks
+        }
       }
-      made++
-      console.log(`✓ ${id} (${duration}s)`)
-    } catch (e) {
-      failed++
-      results.clips[id] = { status: 'failed', provider: j.provider, voice: j.cand.voiceName ?? j.cand.voice, character: j.character, lineId: j.line.id, text: j.line.text, error: String(e.message).slice(0, 300) }
-      console.log(`✖ ${id}: ${e.message}`)
     }
-    writeFileSync(resultsFile, JSON.stringify(results, null, 2))
+
+    for (const j of jobs) {
+      const key = clipKey(j.provider, j.cand)
+      const rel = path.join(j.character, key, `${j.line.id}.mp3`)
+      const file = path.join(OUT, rel)
+      const id = `${key}/${j.line.id}`
+      const text = j.line.synthText ?? j.line.text
+      try {
+        if (!raw.has(j.line.id)) {
+          const r = await withRetries(
+            () => paced(provider, () => mod.synthesize({ text, voice: cand.voice, style: directionFor(provider, j.line), prosody: cand.prosody })),
+            id,
+          )
+          raw.set(j.line.id, r.audio)
+          model = r.model
+        }
+        const { duration } = finishClip(raw.get(j.line.id), file, { fx: j.cand.fx ?? 'none' })
+        if (suspiciousDuration(duration, text.length)) throw new Error(`suspicious length ${duration}s for ${text.length} chars`)
+        results.clips[id] = {
+          status: 'ok',
+          provider,
+          model,
+          voice: j.cand.voiceName ?? j.cand.voice,
+          voiceId: j.cand.voice,
+          fx: j.cand.fx ?? 'none',
+          note: j.cand.note ?? '',
+          prosody: j.cand.prosody ?? null,
+          character: j.character,
+          lineId: j.line.id,
+          text: j.line.text,
+          synthText: j.line.synthText ?? null,
+          emotion: j.line.emotion,
+          file: rel,
+          duration,
+          chars: text.length,
+          generatedAt: new Date().toISOString(),
+        }
+        made++
+        console.log(`✓ ${id} (${duration}s)`)
+      } catch (e) {
+        failed++
+        results.clips[id] = { status: 'failed', provider, voice: j.cand.voiceName ?? j.cand.voice, character: j.character, lineId: j.line.id, text: j.line.text, error: String(e.message).slice(0, 300) }
+        console.log(`✖ ${id}: ${String(e.message).slice(0, 160)}`)
+      }
+      writeFileSync(resultsFile, JSON.stringify(results, null, 2))
+    }
   }
   results.generatedAt = new Date().toISOString()
   writeFileSync(resultsFile, JSON.stringify(results, null, 2))

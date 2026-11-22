@@ -18,6 +18,12 @@ export function buildPrompt(text, style) {
   return `${style}\n\nSpeak only the transcript below — do not read these directions aloud.\n\nTRANSCRIPT:\n${text}`
 }
 
+/** Free tier allows only 10 requests/day per model: perform a voice's lines in one take. */
+export const batchTakes = true
+export function batchText(texts) {
+  return texts.join('\n\n')
+}
+
 /** Free tier: 3 requests/minute per model → one request every ~21 s. */
 export const minIntervalMs = Number(process.env.GEMINI_MIN_INTERVAL_MS || 21000)
 

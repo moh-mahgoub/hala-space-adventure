@@ -10,6 +10,9 @@ import { pcmToWav, FX } from './lib/audio.mjs'
 // @ts-expect-error plain JS modules
 import { estimate } from './lib/cost.mjs'
 // @ts-expect-error plain JS modules
+import { chooseCuts, parseSilences, splitTake } from './lib/split.mjs'
+import { execFileSync, spawnSync } from 'node:child_process'
+// @ts-expect-error plain JS modules
 import { AUDITION_LINES, AUDITION_DIALOGUE, CANDIDATES } from './auditions.mjs'
 // @ts-expect-error plain JS modules
 import { clipKey, directionFor, slug, suspiciousDuration } from './audition.mjs'
@@ -75,6 +78,29 @@ describe('providers', () => {
     for (const p of ['azure', 'elevenlabs', 'gemini']) {
       expect(estimate(p, 20000).usd).toBeGreaterThan(estimate(p, 1000).usd)
     }
+  })
+})
+
+describe('splitting one take into clips', () => {
+  it('parses ffmpeg silencedetect output and cuts at the longest pauses', () => {
+    const log = 'silence_start: 0.1\nsilence_end: 0.3 | silence_duration: 0.2\n' +
+      'silence_start: 2.0\nsilence_end: 4.0 | silence_duration: 2\n' +
+      'silence_start: 5.0\nsilence_end: 5.7 | silence_duration: 0.7\n' +
+      'silence_start: 7.0\nsilence_end: 9.0 | silence_duration: 2\n'
+    const s = parseSilences(log)
+    expect(s).toHaveLength(4)
+    expect(chooseCuts(s, 3, 12)).toEqual([3, 8]) // the two 2-second pauses, not the short breath
+    expect(chooseCuts(s, 6, 12)).toBeNull() // not enough pauses → caller falls back
+  })
+
+  const hasFfmpeg = spawnSync('ffmpeg', ['-version']).status === 0
+  it.skipIf(!hasFfmpeg)('splits a real 3-line take into 3 clips', () => {
+    const wav = execFileSync('ffmpeg', ['-loglevel', 'error', '-f', 'lavfi', '-i',
+      'sine=f=300:d=1.2,apad=pad_dur=2[a];sine=f=500:d=0.8,apad=pad_dur=2[b];sine=f=700:d=1.5[c];[a][b][c]concat=n=3:v=0:a=1',
+      '-f', 'wav', '-'], { maxBuffer: 1e8 })
+    const parts = splitTake(wav, 3)
+    expect(parts).not.toBeNull()
+    expect(parts).toHaveLength(3)
   })
 })
 
