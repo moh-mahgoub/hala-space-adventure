@@ -112,11 +112,12 @@ describe('Find the planet game', () => {
     expect(screen.getByTestId('question')).toHaveTextContent(targetName)
 
     fireEvent.click(wrong)
-    expect(narrator.getState().text).toContain('يلا ندور تاني')
+    // composed: «ده/دي <chosen>.» then «يلا ندور تاني على <target>!»
+    expect(narrator.getState().text).toMatch(/^(ده|دي) .+\.$/)
     fireEvent.click(choices.filter((c) => c.dataset.target === 'no')[1])
     // after two wrong tries the correct planet glows
     expect(target.querySelector('.anim-pulse-glow')).not.toBeNull()
-    expect(narrator.getState().text).toContain('يلا ندور تاني')
+    expect(narrator.getState().text).toMatch(/^(ده|دي) /)
 
     fireEvent.click(target)
     expect(narrator.getState().text).toMatch(/شطورة|برافو|هايل|جميل/)

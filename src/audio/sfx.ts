@@ -209,6 +209,15 @@ export class SoundEngine {
     this.musicTimer = setTimeout(bell, 1500)
   }
 
+  private ducked = false
+  /** Lower the music while narration plays (speech stays intelligible). */
+  duck(on: boolean) {
+    if (on === this.ducked) return
+    this.ducked = on
+    if (!this.ctx || !this.musicGain) return
+    this.musicGain.gain.setTargetAtTime(on ? 0.05 : 0.18, this.ctx.currentTime, 0.25)
+  }
+
   private stopMusic() {
     if (this.musicTimer) clearTimeout(this.musicTimer)
     this.musicTimer = null

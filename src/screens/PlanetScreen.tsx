@@ -13,6 +13,10 @@ import { earn } from '../state/rewards'
 import { useSettings } from '../state/settings'
 import { react } from '../profile/reactions'
 
+/** Zizo's planet joke is a first-visit treat (per session), so it stays funny. */
+const zizoJoked = new Set<string>()
+let celebrateIdx = 0
+
 function KindBadge({ id }: { id: BodyId }) {
   const b = BODIES[id]
   const text =
@@ -68,15 +72,22 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
   const swipe = useRef<{ x: number; y: number } | null>(null)
   const activityDoneBefore = progress.stars.includes(`activity:${id}`)
 
-  const intro = () => {
-    const lines = [line(`planets.${id}.intro`), line(`planets.${id}.activity.prompt`)]
+  /** Storyteller introduces the planet; on the first visit Zizo chips in with a joke. */
+  const intro = (withZizo = false) => {
+    const lines = [line(`planets.${id}.intro`)]
+    if (withZizo) lines.push(line(`zizo.planets.${id}`))
+    lines.push(line(`planets.${id}.activity.prompt`))
     if (tour && id === 'sun') lines.unshift(line('space.tour'))
     return narrator.say(lines)
   }
 
   useEffect(() => {
     markVisited(id)
-    void intro()
+    const firstTime = !zizoJoked.has(id)
+    zizoJoked.add(id)
+    void intro(firstTime)
+    // likely next: the facts and the mission's ending
+    narrator.preload([...content.facts.map((_, i) => line(`planets.${id}.facts.${i}`)), line(`planets.${id}.activity.done`)])
     return () => narrator.stop()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
@@ -87,7 +98,8 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
     sfx('success')
     const doneLine = line(`planets.${id}.activity.done`)
     react('mission', { line: doneLine })
-    const lines = [doneLine]
+    // storyteller celebrates, then Zizo cheers (rotating lines)
+    const lines = [doneLine, line(`zizo.celebrate.${celebrateIdx++ % script.zizo.celebrate.length}`)]
     if (tour) lines.push(next ? line('space.tourNext') : react('journey'))
     void narrator.say(lines)
   }

@@ -5,7 +5,7 @@ import { HalaAvatar } from '../components/HalaAvatar'
 import { AstronautCharacter } from '../components/character/AstronautCharacter'
 import { SpaceshipPilot } from '../components/character/SpaceshipPilot'
 import { PlayIcon } from '../components/Icons'
-import { Nori } from '../components/Nori'
+import { Zizo } from '../components/Zizo'
 import { PlanetArt } from '../components/PlanetArt'
 import { TopBar } from '../components/TopBar'
 import { fill } from '../content/lines'
@@ -241,7 +241,7 @@ function StoryPlayer({ index }: { index: number }) {
               pose={chapter.id === 'home' && (phase === 'reply' || step >= chapter.steps.length - 2) ? 'dance' : 'wave'}
             />
           )}
-          <Nori size={chapter.backdrop === 'room' ? 86 : 70} wave={effect === 'wave'} mood={chapter.id === 'home' && step === chapter.steps.length - 1 ? 'sleepy' : 'happy'} />
+          <Zizo size={chapter.backdrop === 'room' ? 86 : 70} wave={effect === 'wave'} mood={chapter.id === 'home' && step === chapter.steps.length - 1 ? 'sleepy' : 'happy'} />
         </div>
 
         {/* counting row */}

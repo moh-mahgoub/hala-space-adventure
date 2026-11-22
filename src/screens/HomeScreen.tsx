@@ -3,7 +3,7 @@ import { narrator, say } from '../audio'
 import { RoundButton } from '../components/Button'
 import { HalaAvatar } from '../components/HalaAvatar'
 import { FullscreenIcon, SpeakerIcon, MuteIcon } from '../components/Icons'
-import { Nori } from '../components/Nori'
+import { Zizo } from '../components/Zizo'
 import { ParentGate } from '../components/ParentGate'
 import { PlanetArt } from '../components/PlanetArt'
 import { SettingsPanel } from '../components/SettingsPanel'
@@ -97,12 +97,12 @@ export function HomeScreen() {
       <div className="flex shrink-0 flex-col items-center gap-1 py-2 text-center sm:py-4">
         <button
           type="button"
-          aria-label="نوري بيتكلم"
+          aria-label="زيزو بيتكلم"
           onClick={() => void say('home.hello')}
           className="btn-pop flex items-end gap-1"
         >
           <HalaAvatar size={74} pose="float" />
-          <Nori size={74} className="anim-float" />
+          <Zizo size={74} className="anim-float" />
         </button>
         <h1 className="text-4xl font-extrabold text-yellow-200 text-shadow sm:text-6xl">رحلة {childName} في الفضاء</h1>
       </div>

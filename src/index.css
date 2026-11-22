@@ -474,3 +474,20 @@ html[data-motion='reduce'] *::after {
     transform: translateX(-60%);
   }
 }
+
+/* Zizo bounces while he is the one talking */
+@keyframes zizo-talk-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  30% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  60% {
+    transform: translateY(0) rotate(3deg);
+  }
+}
+.zizo-talking {
+  animation: zizo-talk-bounce 0.6s ease-in-out infinite;
+}

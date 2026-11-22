@@ -1,21 +1,22 @@
-import { say, sfx, unlockAudio } from '../audio'
+import { line, narrator, sfx, unlockAudio } from '../audio'
 import { HalaAvatar } from '../components/HalaAvatar'
 import { PlayIcon } from '../components/Icons'
-import { Nori } from '../components/Nori'
+import { Zizo } from '../components/Zizo'
 import { PlanetArt } from '../components/PlanetArt'
 import { ui } from '../content/ui'
 import { useSettings } from '../state/settings'
 
 /**
  * First screen: one giant button. The tap unlocks audio on iOS/Chrome
- * (no sound ever plays before this), then Nori says hello.
+ * (no sound ever plays before this), then the storyteller and Zizo say hello.
  */
 export function StartScreen({ onStart }: { onStart: () => void }) {
   const { childName } = useSettings()
   const start = () => {
     unlockAudio()
     sfx('whoosh')
-    void say('start.welcome')
+    // the storyteller welcomes حلا, then Zizo introduces himself
+    void narrator.say([line('start.welcome'), line('zizo.intro')])
     onStart()
   }
   return (
@@ -28,7 +29,7 @@ export function StartScreen({ onStart }: { onStart: () => void }) {
       </div>
       <div className="relative flex items-end gap-2">
         <HalaAvatar size={120} pose="wave" className="anim-float" />
-        <Nori size={110} className="anim-float" talking={false} />
+        <Zizo size={110} className="anim-float" talking={false} />
       </div>
       <h1 className="relative text-5xl leading-tight font-extrabold text-yellow-200 text-shadow sm:text-7xl">
         رحلة {childName} في الفضاء

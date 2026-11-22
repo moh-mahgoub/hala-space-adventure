@@ -6,7 +6,8 @@
   "text": "واحد",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.0.mp3",
-  "hash": "9764b18e5e36"
+  "hash": "9764b18e5e36",
+  "duration": 1.12
  },
  {
   "id": "common.numbers.1",
@@ -15,7 +16,8 @@
   "text": "اتنين",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.1.mp3",
-  "hash": "5d32d7401c47"
+  "hash": "5d32d7401c47",
+  "duration": 1.1
  },
  {
   "id": "common.numbers.2",
@@ -24,7 +26,8 @@
   "text": "تلاتة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.2.mp3",
-  "hash": "36a61066c0e4"
+  "hash": "36a61066c0e4",
+  "duration": 0.97
  },
  {
   "id": "common.numbers.3",
@@ -33,7 +36,8 @@
   "text": "أربعة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.3.mp3",
-  "hash": "bbbb1982c500"
+  "hash": "bbbb1982c500",
+  "duration": 0.99
  },
  {
   "id": "common.numbers.4",
@@ -42,7 +46,8 @@
   "text": "خمسة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.4.mp3",
-  "hash": "a8c4cfda9cbc"
+  "hash": "a8c4cfda9cbc",
+  "duration": 0.99
  },
  {
   "id": "common.numbers.5",
@@ -51,7 +56,8 @@
   "text": "ستة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.5.mp3",
-  "hash": "dcc0c09bdec9"
+  "hash": "dcc0c09bdec9",
+  "duration": 0.86
  },
  {
   "id": "common.numbers.6",
@@ -60,7 +66,8 @@
   "text": "سبعة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.6.mp3",
-  "hash": "1a843139ac78"
+  "hash": "1a843139ac78",
+  "duration": 0.89
  },
  {
   "id": "common.numbers.7",
@@ -69,7 +76,8 @@
   "text": "تمانية",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.7.mp3",
-  "hash": "3c01360968ec"
+  "hash": "3c01360968ec",
+  "duration": 0.86
  },
  {
   "id": "common.numbers.8",
@@ -78,7 +86,8 @@
   "text": "تسعة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.8.mp3",
-  "hash": "8a2c54e92b3a"
+  "hash": "8a2c54e92b3a",
+  "duration": 1.18
  },
  {
   "id": "common.numbers.9",
@@ -87,7 +96,8 @@
   "text": "عشرة",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/common/common.numbers.9.mp3",
-  "hash": "ad1f3eea52c8"
+  "hash": "ad1f3eea52c8",
+  "duration": 1.33
  },
  {
   "id": "common.praise.0",
@@ -96,7 +106,8 @@
   "text": "شطورة يا حلا!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.0.mp3",
-  "hash": "ba9fe764de2b"
+  "hash": "ba9fe764de2b",
+  "duration": 1.78
  },
  {
   "id": "common.praise.1",
@@ -105,7 +116,8 @@
   "text": "برافو عليكي!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.1.mp3",
-  "hash": "d122b04e2d4b"
+  "hash": "d122b04e2d4b",
+  "duration": 1.59
  },
  {
   "id": "common.praise.2",
@@ -114,7 +126,8 @@
   "text": "هايل! إنتي شاطرة قوي!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.2.mp3",
-  "hash": "6e93615c90fb"
+  "hash": "6e93615c90fb",
+  "duration": 2.64
  },
  {
   "id": "common.praise.3",
@@ -123,7 +136,8 @@
   "text": "جميل جداً يا حلا!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/rewards/common.praise.3.mp3",
-  "hash": "0bca86c91da4"
+  "hash": "0bca86c91da4",
+  "duration": 1.99
  },
  {
   "id": "common.tryAgain",
@@ -132,7 +146,8 @@
   "text": "ولا يهمك، نجرب تاني سوا!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.tryAgain.mp3",
-  "hash": "59dbe38ce38d"
+  "hash": "59dbe38ce38d",
+  "duration": 2.59
  },
  {
   "id": "common.star",
@@ -141,7 +156,8 @@
   "text": "كسبتي نجمة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/common/common.star.mp3",
-  "hash": "1acb79dcf9b8"
+  "hash": "1acb79dcf9b8",
+  "duration": 1.31
  },
  {
   "id": "start.welcome",
@@ -150,7 +166,8 @@
   "text": "أهلاً يا حلا! أنا مبسوطة أوي إنك معانا النهارده! جاهزة نركب سفينتنا ونكتشف الكواكب؟",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/welcome/start.welcome.mp3",
-  "hash": "2f633e0629dd"
+  "hash": "2f633e0629dd",
+  "duration": 3.84
  },
  {
   "id": "zizo.intro",
@@ -294,7 +311,8 @@
   "text": "يلا يا حلا نكتشف الفضاء! تحبي نعمل إيه؟",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.hello.mp3",
-  "hash": "34953c473f2b"
+  "hash": "34953c473f2b",
+  "duration": 7.5
  },
  {
   "id": "home.explore",
@@ -303,7 +321,8 @@
   "text": "يلا نستكشف المجموعة الشمسية!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.explore.mp3",
-  "hash": "dff6c13bd8b1"
+  "hash": "dff6c13bd8b1",
+  "duration": 5.46
  },
  {
   "id": "home.story",
@@ -312,7 +331,8 @@
   "text": "يلا نسمع حكاية حلوة عن الكواكب!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.story.mp3",
-  "hash": "56beaddd1bb3"
+  "hash": "56beaddd1bb3",
+  "duration": 2.04
  },
  {
   "id": "home.games",
@@ -321,7 +341,8 @@
   "text": "يلا نلعب ألعاب الفضاء!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.games.mp3",
-  "hash": "8c4be45685af"
+  "hash": "8c4be45685af",
+  "duration": 3.21
  },
  {
   "id": "home.map",
@@ -330,7 +351,8 @@
   "text": "تعالي نشوف خريطتك، والنجوم اللي جمعتيها!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/home.map.mp3",
-  "hash": "f46435ddd412"
+  "hash": "f46435ddd412",
+  "duration": 7.24
  },
  {
   "id": "space.intro",
@@ -339,7 +361,8 @@
   "text": "دي المجموعة الشمسية يا حلا! في النص الشمس، وحواليها تمن كواكب بيلفوا حواليها. دوسي على أي كوكب عشان نزوره!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.intro.mp3",
-  "hash": "3c1c5404873d"
+  "hash": "3c1c5404873d",
+  "duration": 2.69
  },
  {
   "id": "space.tour",
@@ -348,7 +371,8 @@
   "text": "يلا نعمل جولة! هنبدأ من الشمس، ونزور الكواكب واحد واحد.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.tour.mp3",
-  "hash": "0b70f8e94c94"
+  "hash": "0b70f8e94c94",
+  "duration": 5.56
  },
  {
   "id": "space.suggest.sun",
@@ -357,7 +381,8 @@
   "text": "تعالي نزور الشمس! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.sun.mp3",
-  "hash": "5829e85cd319"
+  "hash": "5829e85cd319",
+  "duration": 2.98
  },
  {
   "id": "space.suggest.mercury",
@@ -366,7 +391,8 @@
   "text": "تعالي نزور عطارد! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.mercury.mp3",
-  "hash": "1edb9f982b9c"
+  "hash": "1edb9f982b9c",
+  "duration": 3.11
  },
  {
   "id": "space.suggest.venus",
@@ -375,7 +401,8 @@
   "text": "تعالي نزور الزهرة! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.venus.mp3",
-  "hash": "f3765be49bf0"
+  "hash": "f3765be49bf0",
+  "duration": 2.95
  },
  {
   "id": "space.suggest.earth",
@@ -384,7 +411,8 @@
   "text": "تعالي نزور الأرض! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.earth.mp3",
-  "hash": "1c6ca58d4185"
+  "hash": "1c6ca58d4185",
+  "duration": 3.06
  },
  {
   "id": "space.suggest.moon",
@@ -393,7 +421,8 @@
   "text": "تعالي نزور القمر! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.moon.mp3",
-  "hash": "8c8db4717821"
+  "hash": "8c8db4717821",
+  "duration": 2.9
  },
  {
   "id": "space.suggest.mars",
@@ -402,7 +431,8 @@
   "text": "تعالي نزور المريخ! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.mars.mp3",
-  "hash": "47bd7c131df9"
+  "hash": "47bd7c131df9",
+  "duration": 3.16
  },
  {
   "id": "space.suggest.jupiter",
@@ -411,7 +441,8 @@
   "text": "تعالي نزور المشتري! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.jupiter.mp3",
-  "hash": "657b44f3759d"
+  "hash": "657b44f3759d",
+  "duration": 3.21
  },
  {
   "id": "space.suggest.saturn",
@@ -420,7 +451,8 @@
   "text": "تعالي نزور زحل! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.saturn.mp3",
-  "hash": "862814001a53"
+  "hash": "862814001a53",
+  "duration": 3
  },
  {
   "id": "space.suggest.uranus",
@@ -429,7 +461,8 @@
   "text": "تعالي نزور أورانوس! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.uranus.mp3",
-  "hash": "1c77ded98ec6"
+  "hash": "1c77ded98ec6",
+  "duration": 2.74
  },
  {
   "id": "space.suggest.neptune",
@@ -438,7 +471,8 @@
   "text": "تعالي نزور نبتون! دوسي عليه.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.suggest.neptune.mp3",
-  "hash": "3a67f1f23833"
+  "hash": "3a67f1f23833",
+  "duration": 2.74
  },
  {
   "id": "space.tourNext",
@@ -447,7 +481,8 @@
   "text": "يلا نروح للي بعده! دوسي على السهم.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/welcome/space.tourNext.mp3",
-  "hash": "f360d0de4e7f"
+  "hash": "f360d0de4e7f",
+  "duration": 2.61
  },
  {
   "id": "space.tourEnd",
@@ -456,7 +491,8 @@
   "text": "خلصنا الجولة! زرنا الشمس والكواكب التمانية والقمر. إنتي مستكشفة شاطرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/welcome/space.tourEnd.mp3",
-  "hash": "6f29a6c56446"
+  "hash": "6f29a6c56446",
+  "duration": 12.2
  },
  {
   "id": "planets.sun.intro",
@@ -465,7 +501,8 @@
   "text": "بصي يا حلا! دي الشمس. الشمس مش كوكب، الشمس نجمة! نجمة كبيرة قوي، وهي اللي بتنورلنا الدنيا وبتدفينا.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.intro.mp3",
-  "hash": "e24ec8f59152"
+  "hash": "e24ec8f59152",
+  "duration": 4.68
  },
  {
   "id": "planets.sun.facts.0",
@@ -474,7 +511,8 @@
   "text": "الشمس كبيرة قوي قوي! أكبر من الأرض بكتير خالص.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.0.mp3",
-  "hash": "aa8913f43c14"
+  "hash": "aa8913f43c14",
+  "duration": 1.96
  },
  {
   "id": "planets.sun.facts.1",
@@ -483,7 +521,8 @@
   "text": "كل النجوم اللي بنشوفها بالليل شموس، بس بعيدة جداً، عشان كده شكلها صغير.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.1.mp3",
-  "hash": "a14c8e481689"
+  "hash": "a14c8e481689",
+  "duration": 8.67
  },
  {
   "id": "planets.sun.facts.2",
@@ -492,7 +531,8 @@
   "text": "مينفعش أبداً نبص للشمس بعينينا، عشان نورها قوي قوي.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.sun.facts.2.mp3",
-  "hash": "8e7c28f49efb"
+  "hash": "8e7c28f49efb",
+  "duration": 4.55
  },
  {
   "id": "planets.sun.short",
@@ -501,7 +541,8 @@
   "text": "دي الشمس! نجمة كبيرة بتنورلنا الدنيا. نبص عليها من بعيد بس.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.sun.short.mp3",
-  "hash": "70341481c2b6"
+  "hash": "70341481c2b6",
+  "duration": 5.83
  },
  {
   "id": "planets.sun.activity.prompt",
@@ -510,7 +551,8 @@
   "text": "دوسي على الشمس تلات مرات، عشان نشوف نورها الجميل!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.prompt.mp3",
-  "hash": "7aade33e81f9"
+  "hash": "7aade33e81f9",
+  "duration": 3.81
  },
  {
   "id": "planets.sun.activity.steps.0",
@@ -519,7 +561,8 @@
   "text": "كمان مرة!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.steps.0.mp3",
-  "hash": "e56b3526aae1"
+  "hash": "e56b3526aae1",
+  "duration": 0.94
  },
  {
   "id": "planets.sun.activity.steps.1",
@@ -528,7 +571,8 @@
   "text": "كمان مرة كمان!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.steps.1.mp3",
-  "hash": "b08f34239a00"
+  "hash": "b08f34239a00",
+  "duration": 1.36
  },
  {
   "id": "planets.sun.activity.done",
@@ -537,7 +581,8 @@
   "text": "برافو! الشمس بتبعت نور ودفا لكل الكواكب اللي حواليها.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.sun.activity.done.mp3",
-  "hash": "959ffd5d2af4"
+  "hash": "959ffd5d2af4",
+  "duration": 5.07
  },
  {
   "id": "planets.mercury.intro",
@@ -546,7 +591,8 @@
   "text": "ده عطارد! عطارد أصغر كوكب، وهو أقرب كوكب للشمس.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.intro.mp3",
-  "hash": "cb1bf76c2162"
+  "hash": "cb1bf76c2162",
+  "duration": 5.22
  },
  {
   "id": "planets.mercury.facts.0",
@@ -555,7 +601,8 @@
   "text": "عطارد أسرع كوكب! بيلف حوالين الشمس بسرعة كبيرة.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.0.mp3",
-  "hash": "b57f0bc38ac1"
+  "hash": "b57f0bc38ac1",
+  "duration": 4.31
  },
  {
   "id": "planets.mercury.facts.1",
@@ -564,7 +611,8 @@
   "text": "عطارد مليان حفر كتير، اسمها فوهات.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.1.mp3",
-  "hash": "da71b8176a60"
+  "hash": "da71b8176a60",
+  "duration": 3.68
  },
  {
   "id": "planets.mercury.facts.2",
@@ -573,7 +621,8 @@
   "text": "عطارد بالنهار حر قوي، وبالليل برد قوي!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.facts.2.mp3",
-  "hash": "c81f2e1ab162"
+  "hash": "c81f2e1ab162",
+  "duration": 4.41
  },
  {
   "id": "planets.mercury.short",
@@ -582,7 +631,8 @@
   "text": "ده عطارد، أصغر كوكب وأقرب كوكب للشمس!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.short.mp3",
-  "hash": "232d4324ea9a"
+  "hash": "232d4324ea9a",
+  "duration": 4.26
  },
  {
   "id": "planets.mercury.activity.prompt",
@@ -591,7 +641,8 @@
   "text": "يلا نعد الحفر اللي على عطارد! دوسي على الدواير اللي بتنور.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.activity.prompt.mp3",
-  "hash": "05e4adf33fa1"
+  "hash": "05e4adf33fa1",
+  "duration": 4.13
  },
  {
   "id": "planets.mercury.activity.done",
@@ -600,7 +651,8 @@
   "text": "شطورة! عديتي خمس حفر على عطارد!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.mercury.activity.done.mp3",
-  "hash": "3522da83fcfc"
+  "hash": "3522da83fcfc",
+  "duration": 3.68
  },
  {
   "id": "planets.venus.intro",
@@ -609,7 +661,8 @@
   "text": "دي الزهرة! الزهرة كوكب ملفوف بسحاب تقيل كتير، ولونها أصفر فاتح.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.venus.intro.mp3",
-  "hash": "bba9c0238120"
+  "hash": "bba9c0238120",
+  "duration": 6.45
  },
  {
   "id": "planets.venus.facts.0",
@@ -618,7 +671,8 @@
   "text": "الزهرة أسخن كوكب في المجموعة الشمسية! أسخن من فرن المطبخ بكتير.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.0.mp3",
-  "hash": "f50b5b183b84"
+  "hash": "f50b5b183b84",
+  "duration": 5.8
  },
  {
   "id": "planets.venus.facts.1",
@@ -627,7 +681,8 @@
   "text": "ساعات بنشوف الزهرة في السما بتلمع جامد زي النجمة، بس هي كوكب، مش نجمة!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.1.mp3",
-  "hash": "a61c2561d164"
+  "hash": "a61c2561d164",
+  "duration": 5.75
  },
  {
   "id": "planets.venus.facts.2",
@@ -636,7 +691,8 @@
   "text": "الزهرة بتلف حوالين نفسها بالعكس، عكس معظم الكواكب!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.venus.facts.2.mp3",
-  "hash": "5c5f2eb51a79"
+  "hash": "5c5f2eb51a79",
+  "duration": 4.34
  },
  {
   "id": "planets.venus.short",
@@ -645,7 +701,8 @@
   "text": "دي الزهرة! أسخن كوكب، وملفوفة بالسحاب.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.venus.short.mp3",
-  "hash": "ab43e443d13a"
+  "hash": "ab43e443d13a",
+  "duration": 4.49
  },
  {
   "id": "planets.venus.activity.prompt",
@@ -654,7 +711,8 @@
   "text": "السحاب مغطي الزهرة! دوسي على السحاب عشان نشيله ونشوف تحته.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.venus.activity.prompt.mp3",
-  "hash": "55b7a8d55236"
+  "hash": "55b7a8d55236",
+  "duration": 4.88
  },
  {
   "id": "planets.venus.activity.done",
@@ -663,7 +721,8 @@
   "text": "شوفتي؟ تحت السحاب أرض صخرية سخنة قوي قوي!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.venus.activity.done.mp3",
-  "hash": "e4f5cebd7239"
+  "hash": "e4f5cebd7239",
+  "duration": 4.96
  },
  {
   "id": "planets.earth.intro",
@@ -672,7 +731,8 @@
   "text": "دي الأرض يا حلا! ده بيتنا الكبير! فيها بحر وأرض وشجر وحيوانات وناس!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.intro.mp3",
-  "hash": "91833bb00019"
+  "hash": "91833bb00019",
+  "duration": 7.24
  },
  {
   "id": "planets.earth.facts.0",
@@ -681,7 +741,8 @@
   "text": "معظم الأرض متغطية بالمية، عشان كده شكلها أزرق من الفضاء.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.0.mp3",
-  "hash": "32b49a32d8bd"
+  "hash": "32b49a32d8bd",
+  "duration": 5.02
  },
  {
   "id": "planets.earth.facts.1",
@@ -690,7 +751,8 @@
   "text": "الأرض بتلف حوالين نفسها، وده اللي بيعمل الليل والنهار.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.1.mp3",
-  "hash": "51b1284d1250"
+  "hash": "51b1284d1250",
+  "duration": 4.62
  },
  {
   "id": "planets.earth.facts.2",
@@ -699,7 +761,8 @@
   "text": "الأرض هي الكوكب الوحيد اللي نعرف إن فيه حياة: ناس وحيوانات وزرع.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.earth.facts.2.mp3",
-  "hash": "093619b24565"
+  "hash": "093619b24565",
+  "duration": 5.9
  },
  {
   "id": "planets.earth.short",
@@ -708,7 +771,8 @@
   "text": "دي الأرض، بيتنا الكبير! فيها مية وزرع وناس.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.earth.short.mp3",
-  "hash": "58f8f562457a"
+  "hash": "58f8f562457a",
+  "duration": 4.65
  },
  {
   "id": "planets.earth.activity.prompt",
@@ -717,7 +781,8 @@
   "text": "لفّي الأرض بصباعك يمين وشمال، ونشوف فيها إيه!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.prompt.mp3",
-  "hash": "beaafb60c632"
+  "hash": "beaafb60c632",
+  "duration": 4.7
  },
  {
   "id": "planets.earth.activity.steps.0",
@@ -726,7 +791,8 @@
   "text": "ده بحر كبير! فيه سمك وحيتان.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.0.mp3",
-  "hash": "01cebb3fcd5b"
+  "hash": "01cebb3fcd5b",
+  "duration": 3.47
  },
  {
   "id": "planets.earth.activity.steps.1",
@@ -735,7 +801,8 @@
   "text": "دي أرض خضرا! فيها شجر وحيوانات وناس.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.1.mp3",
-  "hash": "214f9079ce42"
+  "hash": "214f9079ce42",
+  "duration": 4.44
  },
  {
   "id": "planets.earth.activity.steps.2",
@@ -744,7 +811,8 @@
   "text": "دي صحرا! فيها رمل كتير وجمال.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.steps.2.mp3",
-  "hash": "28b4d877f914"
+  "hash": "28b4d877f914",
+  "duration": 3.6
  },
  {
   "id": "planets.earth.activity.done",
@@ -753,7 +821,8 @@
   "text": "الأرض لفّت لفّة كاملة! الأرض بتلف كده كل يوم، عشان كده عندنا نهار وليل.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.earth.activity.done.mp3",
-  "hash": "33e260a41c09"
+  "hash": "33e260a41c09",
+  "duration": 7.63
  },
  {
   "id": "planets.moon.intro",
@@ -762,7 +831,8 @@
   "text": "ده القمر! القمر مش كوكب. القمر بيلف حوالين الأرض، وهو دايماً جنبها.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.moon.intro.mp3",
-  "hash": "3867b362a1d5"
+  "hash": "3867b362a1d5",
+  "duration": 7.16
  },
  {
   "id": "planets.moon.facts.0",
@@ -771,7 +841,8 @@
   "text": "القمر مش بينوّر لوحده. هو بيعكس نور الشمس، عشان كده بنشوفه منوّر بالليل.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.0.mp3",
-  "hash": "2bf0b6ea4c9f"
+  "hash": "2bf0b6ea4c9f",
+  "duration": 6.5
  },
  {
   "id": "planets.moon.facts.1",
@@ -780,7 +851,8 @@
   "text": "رواد فضاء مشيوا على القمر، وسابوا آثار رجليهم هناك!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.1.mp3",
-  "hash": "2cfed222b153"
+  "hash": "2cfed222b153",
+  "duration": 4.73
  },
  {
   "id": "planets.moon.facts.2",
@@ -789,7 +861,8 @@
   "text": "القمر بياخد حوالي شهر عشان يلف لفّة كاملة حوالين الأرض.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.moon.facts.2.mp3",
-  "hash": "96f1cd8c4e7a"
+  "hash": "96f1cd8c4e7a",
+  "duration": 5.3
  },
  {
   "id": "planets.moon.short",
@@ -798,7 +871,8 @@
   "text": "ده القمر! بيلف حوالين الأرض.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.moon.short.mp3",
-  "hash": "549b16eccfa9"
+  "hash": "549b16eccfa9",
+  "duration": 3.11
  },
  {
   "id": "planets.moon.activity.prompt",
@@ -807,7 +881,8 @@
   "text": "امسكي القمر بصباعك، ولفّيه حوالين الأرض!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.prompt.mp3",
-  "hash": "327b43f64f07"
+  "hash": "327b43f64f07",
+  "duration": 3.84
  },
  {
   "id": "planets.moon.activity.steps.0",
@@ -816,7 +891,8 @@
   "text": "كمّلي! القمر لسه بيلف.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.steps.0.mp3",
-  "hash": "d6252394642c"
+  "hash": "d6252394642c",
+  "duration": 2.72
  },
  {
   "id": "planets.moon.activity.done",
@@ -825,7 +901,8 @@
   "text": "لفّة كاملة! كده القمر لف حوالين الأرض، زي ما بيعمل كل شهر.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.moon.activity.done.mp3",
-  "hash": "26cdb873b151"
+  "hash": "26cdb873b151",
+  "duration": 5.77
  },
  {
   "id": "planets.mars.intro",
@@ -834,7 +911,8 @@
   "text": "ده المريخ! اسمه الكوكب الأحمر، عشان لونه شبه لون الطوب الأحمر!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.intro.mp3",
-  "hash": "61919ff99295"
+  "hash": "61919ff99295",
+  "duration": 5.8
  },
  {
   "id": "planets.mars.facts.0",
@@ -843,7 +921,8 @@
   "text": "المريخ لونه أحمر عشان ترابه فيه صدا، زي الحديد لما يصدّي.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.0.mp3",
-  "hash": "a953302ec434"
+  "hash": "a953302ec434",
+  "duration": 5.15
  },
  {
   "id": "planets.mars.facts.1",
@@ -852,7 +931,8 @@
   "text": "على المريخ أعلى جبل في المجموعة الشمسية، وهو بركان ضخم!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.1.mp3",
-  "hash": "3ac27b34fdaa"
+  "hash": "3ac27b34fdaa",
+  "duration": 5.07
  },
  {
   "id": "planets.mars.facts.2",
@@ -861,7 +941,8 @@
   "text": "فيه عربيات روبوت صغيرة بتمشي على المريخ، وبتصوّره وبتدرس صخوره.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.mars.facts.2.mp3",
-  "hash": "498a85be0feb"
+  "hash": "498a85be0feb",
+  "duration": 6.37
  },
  {
   "id": "planets.mars.short",
@@ -870,7 +951,8 @@
   "text": "ده المريخ، الكوكب الأحمر!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mars.short.mp3",
-  "hash": "dd1c22ceaa5c"
+  "hash": "dd1c22ceaa5c",
+  "duration": 2.74
  },
  {
   "id": "planets.mars.activity.prompt",
@@ -879,7 +961,8 @@
   "text": "دي عربية المريخ! دوسي على الصخور، والعربية تروحلها وتفحصها.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.prompt.mp3",
-  "hash": "5c6f87ed0d0c"
+  "hash": "5c6f87ed0d0c",
+  "duration": 5.36
  },
  {
   "id": "planets.mars.activity.steps.0",
@@ -888,7 +971,8 @@
   "text": "صخرة حمرا من تراب المريخ!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.0.mp3",
-  "hash": "4d74d89d8532"
+  "hash": "4d74d89d8532",
+  "duration": 2.43
  },
  {
   "id": "planets.mars.activity.steps.1",
@@ -897,7 +981,8 @@
   "text": "العلماء بيدوروا هنا على علامات إن كان فيه مية زمان.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.1.mp3",
-  "hash": "c645f20106a8"
+  "hash": "c645f20106a8",
+  "duration": 4
  },
  {
   "id": "planets.mars.activity.steps.2",
@@ -906,7 +991,8 @@
   "text": "وده بركان كبير قوي بعيد هناك!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.steps.2.mp3",
-  "hash": "a870c84e923c"
+  "hash": "a870c84e923c",
+  "duration": 2.82
  },
  {
   "id": "planets.mars.activity.done",
@@ -915,7 +1001,8 @@
   "text": "شطورة! العربية فحصت كل الصخور. إنتي مستكشفة شاطرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.mars.activity.done.mp3",
-  "hash": "22501d6c9c0c"
+  "hash": "22501d6c9c0c",
+  "duration": 5.15
  },
  {
   "id": "planets.jupiter.intro",
@@ -924,7 +1011,8 @@
   "text": "ده المشتري! المشتري كوكب ضخم جداً! أكبر كوكب في مجموعتنا الشمسية!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.intro.mp3",
-  "hash": "14864b576dc9"
+  "hash": "14864b576dc9",
+  "duration": 6.06
  },
  {
   "id": "planets.jupiter.facts.0",
@@ -933,7 +1021,8 @@
   "text": "البقعة الحمرا اللي على المشتري دي عاصفة كبيرة قوي، أكبر من الأرض كلها!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.0.mp3",
-  "hash": "5cf162d2da0a"
+  "hash": "5cf162d2da0a",
+  "duration": 6.06
  },
  {
   "id": "planets.jupiter.facts.1",
@@ -942,7 +1031,8 @@
   "text": "المشتري كوكب من غاز، مفيهوش أرض نقف عليها.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.1.mp3",
-  "hash": "de945c001cff"
+  "hash": "de945c001cff",
+  "duration": 3.87
  },
  {
   "id": "planets.jupiter.facts.2",
@@ -951,7 +1041,8 @@
   "text": "المشتري عنده أقمار كتير قوي قوي!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.facts.2.mp3",
-  "hash": "e4d50af7db0a"
+  "hash": "e4d50af7db0a",
+  "duration": 3.32
  },
  {
   "id": "planets.jupiter.short",
@@ -960,7 +1051,8 @@
   "text": "ده المشتري، أكبر كوكب في المجموعة الشمسية!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.short.mp3",
-  "hash": "fa90df98b37a"
+  "hash": "fa90df98b37a",
+  "duration": 3.5
  },
  {
   "id": "planets.jupiter.activity.prompt",
@@ -969,7 +1061,8 @@
   "text": "تعالي نشوف المشتري أكبر من الأرض قد إيه! دوسي على الأرض الصغيرة، عشان نحطها جوه المشتري.",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.prompt.mp3",
-  "hash": "2378829df090"
+  "hash": "2378829df090",
+  "duration": 6.66
  },
  {
   "id": "planets.jupiter.activity.steps.0",
@@ -978,7 +1071,8 @@
   "text": "كمان أرض!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.steps.0.mp3",
-  "hash": "4c9b686dabb9"
+  "hash": "4c9b686dabb9",
+  "duration": 0.99
  },
  {
   "id": "planets.jupiter.activity.steps.1",
@@ -987,7 +1081,8 @@
   "text": "لسه فيه مكان كتير!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.steps.1.mp3",
-  "hash": "da39613d769a"
+  "hash": "da39613d769a",
+  "duration": 1.65
  },
  {
   "id": "planets.jupiter.activity.done",
@@ -996,7 +1091,8 @@
   "text": "المشتري كبير قوي قوي! ممكن يساع أكتر من ألف أرض جواه!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.jupiter.activity.done.mp3",
-  "hash": "6aef5e44775b"
+  "hash": "6aef5e44775b",
+  "duration": 5.02
  },
  {
   "id": "planets.saturn.intro",
@@ -1005,7 +1101,8 @@
   "text": "بصي يا حلا! ده كوكب زحل! زحل عنده حلقات كبيرة وجميلة حواليه!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.intro.mp3",
-  "hash": "1f622f3c4919"
+  "hash": "1f622f3c4919",
+  "duration": 7.39
  },
  {
   "id": "planets.saturn.facts.0",
@@ -1014,7 +1111,8 @@
   "text": "حلقات زحل معمولة من حتت تلج وصخور كتير قوي، بتلف حواليه.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.0.mp3",
-  "hash": "eb5d405a15c6"
+  "hash": "eb5d405a15c6",
+  "duration": 5.9
  },
  {
   "id": "planets.saturn.facts.1",
@@ -1023,7 +1121,8 @@
   "text": "زحل خفيف قوي! لو فيه حوض مية كبير كبير، زحل ممكن يعوم فيه!",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.1.mp3",
-  "hash": "d248965122ea"
+  "hash": "d248965122ea",
+  "duration": 6.37
  },
  {
   "id": "planets.saturn.facts.2",
@@ -1032,7 +1131,8 @@
   "text": "زحل تاني أكبر كوكب، بعد المشتري.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.facts.2.mp3",
-  "hash": "a03ae9eed6bf"
+  "hash": "a03ae9eed6bf",
+  "duration": 3.79
  },
  {
   "id": "planets.saturn.short",
@@ -1041,7 +1141,8 @@
   "text": "ده زحل، الكوكب اللي عنده حلقات جميلة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.short.mp3",
-  "hash": "172cb0a98421"
+  "hash": "172cb0a98421",
+  "duration": 3.53
  },
  {
   "id": "planets.saturn.activity.prompt",
@@ -1050,7 +1151,8 @@
   "text": "حركي صباعك لفوق ولتحت على زحل، عشان نشوف الحلقات من كل ناحية!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.prompt.mp3",
-  "hash": "1391e4a7a387"
+  "hash": "1391e4a7a387",
+  "duration": 5.88
  },
  {
   "id": "planets.saturn.activity.steps.0",
@@ -1059,7 +1161,8 @@
   "text": "دلوقتي دوسي على الحلقات، عشان نقرب ونشوفها معمولة من إيه!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.steps.0.mp3",
-  "hash": "e3014181bced"
+  "hash": "e3014181bced",
+  "duration": 4.83
  },
  {
   "id": "planets.saturn.activity.done",
@@ -1068,7 +1171,8 @@
   "text": "شوفتي؟ الحلقات دي حتت تلج وصخور، صغيرة وكبيرة!",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.saturn.activity.done.mp3",
-  "hash": "46be3ac8be8e"
+  "hash": "46be3ac8be8e",
+  "duration": 4.99
  },
  {
   "id": "planets.uranus.intro",
@@ -1077,7 +1181,8 @@
   "text": "ده أورانوس! لونه أزرق مخضر، وهو كوكب ساقع قوي.",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.intro.mp3",
-  "hash": "9d532a0efe79"
+  "hash": "9d532a0efe79",
+  "duration": 5.88
  },
  {
   "id": "planets.uranus.facts.0",
@@ -1086,7 +1191,8 @@
   "text": "أورانوس نايم على جنبه! وهو بيلف حوالين الشمس، بيتدحرج زي الكورة.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.0.mp3",
-  "hash": "a7ff6a8c2522"
+  "hash": "a7ff6a8c2522",
+  "duration": 6.19
  },
  {
   "id": "planets.uranus.facts.1",
@@ -1095,7 +1201,8 @@
   "text": "أورانوس من أبرد الكواكب، عشان كده بيسموه عملاق التلج.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.1.mp3",
-  "hash": "06fa71fe931c"
+  "hash": "06fa71fe931c",
+  "duration": 5.72
  },
  {
   "id": "planets.uranus.facts.2",
@@ -1104,7 +1211,8 @@
   "text": "أورانوس كمان عنده حلقات رفيعة، بس صعب نشوفها.",
   "emotion": "explaining",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.facts.2.mp3",
-  "hash": "dd5ab0e78fa6"
+  "hash": "dd5ab0e78fa6",
+  "duration": 4.26
  },
  {
   "id": "planets.uranus.short",
@@ -1113,7 +1221,8 @@
   "text": "ده أورانوس، الكوكب اللي نايم على جنبه!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.short.mp3",
-  "hash": "493489cef42f"
+  "hash": "493489cef42f",
+  "duration": 3.34
  },
  {
   "id": "planets.uranus.activity.prompt",
@@ -1122,7 +1231,8 @@
   "text": "دوسي على أورانوس عشان يتدحرج زي الكورة!",
   "emotion": "warm",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.prompt.mp3",
-  "hash": "5fee92b8aaa8"
+  "hash": "5fee92b8aaa8",
+  "duration": 3.13
  },
  {
   "id": "planets.uranus.activity.steps.0",
@@ -1131,7 +1241,8 @@
   "text": "هوب! كمان مرة!",
   "emotion": "excited",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.steps.0.mp3",
-  "hash": "c9c5f51ffde6"
+  "hash": "c9c5f51ffde6",
+  "duration": 1.85
  },
  {
   "id": "planets.uranus.activity.done",
@@ -1140,7 +1251,8 @@
   "text": "هيييه! أورانوس بيتدحرج على جنبه، وهو بيلف حوالين الشمس.",
   "emotion": "proud",
   "file": "audio/ar-EG/narrator/planets/planets.uranus.activity.done.mp3",
-  "hash": "df9ef8547727"
+  "hash": "df9ef8547727",
+  "duration": 5.51
  },
  {
   "id": "planets.neptune.intro",

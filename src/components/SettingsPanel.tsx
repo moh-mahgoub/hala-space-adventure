@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { narrator, say, useNarrator } from '../audio'
+import { recordedClipCount, say, totalClipCount } from '../audio'
 import { ILLUSTRATIVE_NOTE } from '../data/planets'
 import { resetProgress, useProgress } from '../state/progress'
 import { DEFAULT_SETTINGS, updateSettings, useSettings, type Settings } from '../state/settings'
@@ -75,7 +75,6 @@ export function SettingsPanel({ onClose, initialTab = 'settings' }: { onClose: (
   const [tab, setTab] = useState<'settings' | 'astronaut'>(initialTab)
   const s = useSettings()
   const progress = useProgress()
-  const { voiceName } = useNarrator()
   const [name, setName] = useState(s.childName)
   const [confirmReset, setConfirmReset] = useState(false)
 
@@ -198,13 +197,13 @@ export function SettingsPanel({ onClose, initialTab = 'settings' }: { onClose: (
               ]}
             />
           </Row>
-          <Row label="طريقة الاستكشاف" en="Guided (Nori suggests next) or free exploration">
+          <Row label="طريقة الاستكشاف" en="Guided (Zizo suggests next) or free exploration">
             <Segmented
               label="Exploration mode"
               value={s.mode}
               onChange={(mode) => updateSettings({ mode })}
               options={[
-                { v: 'guided', label: 'مع نوري' },
+                { v: 'guided', label: 'مع زيزو' },
                 { v: 'free', label: 'حر' },
               ]}
             />
@@ -237,12 +236,9 @@ export function SettingsPanel({ onClose, initialTab = 'settings' }: { onClose: (
           </Row>
           <div className="mt-4 space-y-2 rounded-2xl bg-white/5 p-4 text-sm leading-relaxed text-white/80" dir="ltr">
             <p>
-              <b>Voice:</b>{' '}
-              {voiceName
-                ? `Using “${voiceName}”.`
-                : narrator.speechSupported
-                  ? 'No Arabic voice found on this device — captions are shown instead. On iPad: Settings → Accessibility → Spoken Content → Voices → Arabic. Recorded narration can also be added (see README).'
-                  : 'Speech synthesis is not supported in this browser — captions are shown instead.'}
+              <b>Voices:</b> prerecorded Egyptian-Arabic narration (storyteller + Zizo), the same on every device —{' '}
+              {recordedClipCount()} of {totalClipCount()} clips available. The recordings say the name “حلا”; with another
+              name, captions show that name while the voice keeps saying حلا.
             </p>
             <p>
               <b>Note:</b> {ILLUSTRATIVE_NOTE}

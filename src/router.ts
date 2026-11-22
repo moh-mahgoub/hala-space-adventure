@@ -70,6 +70,12 @@ if (typeof window !== 'undefined') {
   })
 }
 
+/** Subscribe to every route change (hash change or in-app replace). */
+export function onRouteChange(fn: () => void): () => void {
+  listeners.add(fn)
+  return () => listeners.delete(fn)
+}
+
 export function navigate(r: Route, opts: { replace?: boolean } = {}) {
   const hash = routeToHash(r)
   if (opts.replace) {

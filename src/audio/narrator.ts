@@ -1,34 +1,32 @@
 /**
- * Narrator — one voice at a time, never overlapping.
+ * Narrator — plays the PRERECORDED Egyptian-Arabic clips (storyteller + Zizo),
+ * one at a time, never overlapping. No browser speech synthesis.
  *
- * Backends, tried in order for each line:
- *   1. recorded   — public/audio/narration/<id>.mp3 if listed in recordings.ts
- *   2. speech     — Web Speech API with the best available Arabic voice
- *   3. captions   — no audio; caption is shown for an estimated reading time
+ *  • `say(x)` (mode 'interrupt', default) stops whatever is playing, clears the
+ *    queue and starts x — the newest tap always wins.
+ *  • `say(x, { mode: 'queue' })` appends (dialogue sequences).
+ *  • A line can expand to several clips (e.g. «دي الأرض.» + «يلا ندور تاني على زحل!»).
+ *  • The returned promise resolves when the line finishes (true) or is cancelled (false).
+ *  • Missing / failing clip → the caption is shown for its reading time and the
+ *    problem is logged; the app never falls back to robotic speech.
+ *  • Nothing plays before `unlock()` (call it inside the first tap).
  *
- * Interruption policy:
- *   • `say(x)` (default mode 'interrupt') stops whatever is playing, clears the
- *     queue, and starts x. This suits taps: the newest tap always wins.
- *   • `say(x, { mode: 'queue' })` appends after the current line (story sequences).
- *   • The returned promise resolves when that line finishes OR is interrupted,
- *     with `true` if it completed.
- *
- * No sound is made before `unlock()` is called from a user gesture.
+ * Lifecycle events (`on('start' | 'pause' | 'resume' | 'complete' | 'cancel' | 'error')`)
+ * let animations follow the voice without knowing how audio is played.
  */
+import { clipsForLine, type ClipPlay, type Speaker } from '../content/clips'
+import type { Line } from '../content/lines'
 
-import { fill, isStaticTemplate, DEFAULT_CHILD_NAME, type Line } from '../content/lines'
-import { RECORDED_LINES, RECORDING_EXT } from '../content/recordings'
-import { pickArabicVoice } from './voices'
-
-export type Backend = 'recorded' | 'speech' | 'captions'
+export type Backend = 'recorded' | 'captions'
 
 export interface NarratorState {
   speaking: boolean
-  /** Caption text currently being narrated (already filled in) */
+  paused: boolean
+  /** caption currently shown (already filled with the child's name) */
   text: string | null
+  speaker: Speaker | null
+  clipId: string | null
   backend: Backend | null
-  /** Arabic voice name, or null if none was found */
-  voiceName: string | null
   unlocked: boolean
 }
 
@@ -39,68 +37,59 @@ export interface NarratorConfig {
   childName: string
 }
 
+export type NarratorEvent = 'start' | 'pause' | 'resume' | 'complete' | 'cancel' | 'error'
+export interface NarratorEventInfo {
+  clipId: string
+  speaker: Speaker
+}
+
+export interface ClipSource {
+  /** URL of a clip, or null if it hasn't been recorded */
+  url(id: string): string | null
+}
+
 export interface NarratorDeps {
   getConfig: () => NarratorConfig
-  synth?: SpeechSynthesis | null
-  Utterance?: typeof SpeechSynthesisUtterance | null
-  createAudio?: (src: string) => HTMLAudioElement
-  baseUrl?: string
-  recorded?: readonly string[]
-  /** override timers (tests) */
+  clips: ClipSource
+  createAudio?: () => HTMLAudioElement
   setTimeout?: (fn: () => void, ms: number) => unknown
   clearTimeout?: (t: unknown) => void
+  warn?: (msg: string) => void
 }
 
 interface QueueItem {
-  line: Line
-  resolve: (completed: boolean) => void
+  clip: ClipPlay
+  /** resolves the owning say() call when its LAST clip ends */
+  resolve?: (completed: boolean) => void
 }
+
+/** A tiny silent WAV used to unlock the audio element inside the first tap. */
+const SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA='
 
 export function estimateDurationMs(text: string, rate = 1): number {
   return Math.round((900 + text.length * 80) / Math.max(0.5, rate))
 }
 
 export class Narrator {
-  private deps: Required<Omit<NarratorDeps, 'synth' | 'Utterance'>> & {
-    synth: SpeechSynthesis | null
-    Utterance: typeof SpeechSynthesisUtterance | null
-  }
+  private deps: Required<NarratorDeps>
   private queue: QueueItem[] = []
   private current: QueueItem | null = null
   private token = 0
   private timers: unknown[] = []
-  private audio: HTMLAudioElement | null = null
-  private utterance: SpeechSynthesisUtterance | null = null
+  private el: HTMLAudioElement | null = null
   private listeners = new Set<() => void>()
-  private voice: SpeechSynthesisVoice | null = null
-  private lastCancel = -Infinity
-  private state: NarratorState = { speaking: false, text: null, backend: null, voiceName: null, unlocked: false }
+  private events = new Map<NarratorEvent, Set<(i: NarratorEventInfo) => void>>()
+  private warned = new Set<string>()
+  private preloaded = new Set<string>()
+  private state: NarratorState = { speaking: false, paused: false, text: null, speaker: null, clipId: null, backend: null, unlocked: false }
 
   constructor(deps: NarratorDeps) {
-    const g = globalThis as typeof globalThis & { speechSynthesis?: SpeechSynthesis }
     this.deps = {
-      getConfig: deps.getConfig,
-      synth: deps.synth !== undefined ? deps.synth : (g.speechSynthesis ?? null),
-      Utterance:
-        deps.Utterance !== undefined
-          ? deps.Utterance
-          : typeof SpeechSynthesisUtterance !== 'undefined'
-            ? SpeechSynthesisUtterance
-            : null,
-      createAudio: deps.createAudio ?? ((src) => new Audio(src)),
-      baseUrl: deps.baseUrl ?? '/',
-      recorded: deps.recorded ?? RECORDED_LINES,
-      setTimeout: deps.setTimeout ?? ((fn, ms) => globalThis.setTimeout(fn, ms)),
-      clearTimeout: deps.clearTimeout ?? ((t) => globalThis.clearTimeout(t as number)),
-    }
-    this.refreshVoice()
-    const synth = this.deps.synth
-    if (synth && 'addEventListener' in synth) {
-      try {
-        synth.addEventListener('voiceschanged', () => this.refreshVoice())
-      } catch {
-        /* old Safari */
-      }
+      createAudio: () => new Audio(),
+      setTimeout: (fn, ms) => globalThis.setTimeout(fn, ms),
+      clearTimeout: (t) => globalThis.clearTimeout(t as number),
+      warn: (m) => console.warn(m),
+      ...deps,
     }
   }
 
@@ -113,111 +102,117 @@ export class Narrator {
     return () => this.listeners.delete(fn)
   }
 
-  get hasArabicVoice(): boolean {
-    return this.voice != null
+  on(event: NarratorEvent, fn: (i: NarratorEventInfo) => void): () => void {
+    if (!this.events.has(event)) this.events.set(event, new Set())
+    this.events.get(event)!.add(fn)
+    return () => this.events.get(event)?.delete(fn)
   }
 
-  get voiceCount(): number {
-    try {
-      return this.deps.synth?.getVoices?.().length ?? 0
-    } catch {
-      return 0
-    }
-  }
-
-  get speechSupported(): boolean {
-    return this.deps.synth != null && this.deps.Utterance != null
-  }
-
-  /** Must be called from inside a user gesture (tap/click/key). */
+  /** Must be called inside a user gesture (first tap). */
   unlock(): void {
     if (this.state.unlocked) return
     this.setState({ unlocked: true })
-    // iOS Safari needs a speak() call inside the first gesture to allow later speech.
-    const { synth, Utterance } = this.deps
-    if (synth && Utterance) {
-      try {
-        const u = new Utterance(' ')
-        u.volume = 0
-        synth.speak(u)
-      } catch {
-        /* ignore */
-      }
-    }
-    this.refreshVoice()
-    // Safari may return an empty voice list at first and not fire 'voiceschanged'
-    for (const ms of [250, 750, 1500, 3000]) {
-      this.deps.setTimeout(() => {
-        if (!this.voice) this.refreshVoice()
-      }, ms)
+    try {
+      const el = this.element()
+      el.src = SILENT_WAV
+      const p = el.play()
+      if (p && typeof p.catch === 'function') p.catch(() => {})
+    } catch {
+      /* fine — captions still work */
     }
   }
 
   say(line: Line | Line[], opts: { mode?: 'interrupt' | 'queue' } = {}): Promise<boolean> {
     const lines = Array.isArray(line) ? line : [line]
     if (opts.mode !== 'queue') this.stop()
+    const name = this.deps.getConfig().childName
     const promises = lines.map(
       (l) =>
         new Promise<boolean>((resolve) => {
-          this.queue.push({ line: l, resolve })
+          const clips = clipsForLine(l, name)
+          clips.forEach((clip, i) => this.queue.push({ clip, resolve: i === clips.length - 1 ? resolve : undefined }))
+          if (!clips.length) resolve(true)
         }),
     )
     if (!this.current) this.next()
     return Promise.all(promises).then((r) => r.every(Boolean))
   }
 
-  /** Stop speaking and clear the queue. Pending promises resolve with false. */
+  /** Stop and clear everything. Pending say() promises resolve with false. */
   stop(): void {
     this.token++
     const pending = [...this.queue]
     this.queue = []
     const cur = this.current
     this.current = null
-    this.haltPlayback()
-    cur?.resolve(false)
-    pending.forEach((p) => p.resolve(false))
-    if (this.state.speaking || this.state.text) this.setState({ speaking: false, text: null, backend: null })
+    this.halt()
+    if (cur) this.emit('cancel', cur.clip)
+    cur?.resolve?.(false)
+    pending.forEach((p) => p.resolve?.(false))
+    if (this.state.speaking || this.state.text) this.setState({ speaking: false, paused: false, text: null, speaker: null, clipId: null, backend: null })
+  }
+
+  pause(): void {
+    if (!this.current || this.state.paused) return
+    this.el?.pause()
+    this.setState({ paused: true })
+    this.emit('pause', this.current.clip)
+  }
+
+  resume(): void {
+    if (!this.current || !this.state.paused) return
+    this.setState({ paused: false })
+    const p = this.el?.play()
+    if (p && typeof p.catch === 'function') p.catch(() => {})
+    this.emit('resume', this.current.clip)
+  }
+
+  /** Hint the browser to fetch clips likely to play next (e.g. a screen's facts). */
+  preload(lines: Line[]): void {
+    if (typeof document === 'undefined') return
+    const name = this.deps.getConfig().childName
+    for (const l of lines)
+      for (const c of clipsForLine(l, name)) {
+        const url = this.deps.clips.url(c.id)
+        if (!url || this.preloaded.has(url)) continue
+        this.preloaded.add(url)
+        const link = document.createElement('link')
+        link.rel = 'prefetch'
+        link.as = 'audio'
+        link.href = url
+        document.head.appendChild(link)
+      }
   }
 
   // ── internals ──────────────────────────────────────────────────────────
+
+  private element(): HTMLAudioElement {
+    if (!this.el) {
+      this.el = this.deps.createAudio()
+      this.el.preload = 'auto'
+      this.el.setAttribute?.('playsinline', '')
+    }
+    return this.el
+  }
 
   private setState(patch: Partial<NarratorState>) {
     this.state = { ...this.state, ...patch }
     this.listeners.forEach((l) => l())
   }
 
-  private refreshVoice() {
-    try {
-      const voices = this.deps.synth?.getVoices?.() ?? []
-      this.voice = pickArabicVoice(voices)
-    } catch {
-      this.voice = null
-    }
-    if (this.state.voiceName !== (this.voice?.name ?? null)) this.setState({ voiceName: this.voice?.name ?? null })
+  private emit(ev: NarratorEvent, clip: ClipPlay) {
+    this.events.get(ev)?.forEach((fn) => fn({ clipId: clip.id, speaker: clip.speaker }))
   }
 
-  private haltPlayback(cancelSpeech = true) {
+  private halt() {
     this.timers.forEach((t) => this.deps.clearTimeout(t))
     this.timers = []
-    if (this.audio) {
+    if (this.el) {
+      this.el.onended = this.el.onerror = null
       try {
-        this.audio.onended = this.audio.onerror = null
-        this.audio.pause()
+        this.el.pause()
       } catch {
         /* ignore */
-      }
-      this.audio = null
-    }
-    if (this.utterance) {
-      this.utterance.onend = this.utterance.onerror = null
-      this.utterance = null
-      if (cancelSpeech) {
-        try {
-          this.deps.synth?.cancel()
-          this.lastCancel = Date.now()
-        } catch {
-          /* ignore */
-        }
       }
     }
   }
@@ -226,172 +221,71 @@ export class Narrator {
     const item = this.queue.shift()
     if (!item) {
       this.current = null
-      this.setState({ speaking: false, text: null, backend: null })
+      this.setState({ speaking: false, paused: false, text: null, speaker: null, clipId: null, backend: null })
       return
     }
     this.current = item
-    const myToken = ++this.token
+    const my = ++this.token
     const cfg = this.deps.getConfig()
-    const text = fill(item.line.template, cfg.childName, item.line.params)
-    if (!text.trim()) {
-      this.finish(myToken, true)
+    const { clip } = item
+    const done = (completed: boolean) => this.finish(my, completed)
+    const url = clip.id ? this.deps.clips.url(clip.id) : null
+
+    if (url && cfg.enabled && cfg.volume > 0 && this.state.unlocked) {
+      const el = this.element()
+      el.onended = () => done(true)
+      el.onerror = () => {
+        if (my !== this.token) return
+        this.warnOnce(clip.id, `[narration] clip failed to play: ${clip.id}`)
+        this.emit('error', clip)
+        this.captionOnly(clip, cfg, done)
+      }
+      el.volume = cfg.volume
+      el.src = url
+      el.playbackRate = cfg.rate
+      this.setState({ speaking: true, paused: false, text: clip.caption, speaker: clip.speaker, clipId: clip.id, backend: 'recorded' })
+      this.emit('start', clip)
+      const p = el.play()
+      if (p && typeof p.catch === 'function')
+        p.catch(() => {
+          if (my !== this.token) return
+          this.emit('error', clip)
+          this.captionOnly(clip, cfg, done)
+        })
+      // safety net: if 'ended' never fires (backgrounded tab, broken file)
+      this.timers.push(this.deps.setTimeout(() => done(true), estimateDurationMs(clip.caption, cfg.rate) * 3 + 6000))
       return
     }
+    if (!url && clip.id) this.warnOnce(clip.id, `[narration] no recording for "${clip.id}" — showing captions`)
+    this.setState({ speaking: true, paused: false, text: clip.caption, speaker: clip.speaker, clipId: clip.id, backend: 'captions' })
+    this.emit('start', clip)
+    this.captionOnly(clip, cfg, done)
+  }
 
-    const done = (completed: boolean) => this.finish(myToken, completed)
-
-    if (cfg.enabled && this.state.unlocked && cfg.volume > 0) {
-      const rec = this.recordingFor(item.line, cfg.childName)
-      if (rec) {
-        this.playRecording(rec, text, cfg, myToken, done)
-        return
-      }
-      if (this.canSpeak()) {
-        this.speak(text, cfg, myToken, done)
-        return
-      }
-    }
-    this.captionOnly(text, cfg, done)
+  private captionOnly(clip: ClipPlay, cfg: NarratorConfig, done: (c: boolean) => void) {
+    this.setState({ backend: 'captions', text: clip.caption, speaker: clip.speaker })
+    this.timers.push(this.deps.setTimeout(() => done(true), estimateDurationMs(clip.caption, cfg.rate)))
   }
 
   private finish(token: number, completed: boolean) {
     if (token !== this.token || !this.current) return
     const item = this.current
-    // a line that ended by itself needs no cancel() (which also upsets Safari)
-    this.haltPlayback(!completed)
+    this.halt()
     this.current = null
-    item.resolve(completed)
-    // small gap between queued lines feels more natural
+    this.emit(completed ? 'complete' : 'cancel', item.clip)
+    item.resolve?.(completed)
     if (this.queue.length) {
-      const t = this.deps.setTimeout(() => {
-        if (token === this.token) this.next()
-      }, 250)
-      this.timers.push(t)
+      // a short, natural pause between clips / speakers
+      const pause = this.queue[0].clip.speaker !== item.clip.speaker ? 350 : 200
+      this.timers.push(this.deps.setTimeout(() => token === this.token && this.next(), pause))
     } else {
-      this.setState({ speaking: false, text: null, backend: null })
+      this.setState({ speaking: false, paused: false, text: null, speaker: null, clipId: null, backend: null })
     }
   }
 
-  private recordingFor(line: Line, childName: string): string | null {
-    if (!line.id || !this.deps.recorded.includes(line.id)) return null
-    if (!isStaticTemplate(line.template) || (line.params && Object.keys(line.params).length)) return null
-    if (line.template.includes('{name}') && childName !== DEFAULT_CHILD_NAME) return null
-    return `${this.deps.baseUrl}audio/narration/${line.id}.${RECORDING_EXT}`
-  }
-
-  private canSpeak(): boolean {
-    if (this.speechSupported && !this.voice) this.refreshVoice()
-    return this.speechSupported && this.voice != null
-  }
-
-  private playRecording(
-    src: string,
-    text: string,
-    cfg: NarratorConfig,
-    token: number,
-    done: (c: boolean) => void,
-  ) {
-    let audio: HTMLAudioElement
-    try {
-      audio = this.deps.createAudio(src)
-    } catch {
-      this.fallbackFromRecording(text, cfg, token, done)
-      return
-    }
-    this.audio = audio
-    audio.volume = cfg.volume
-    audio.onended = () => done(true)
-    audio.onerror = () => {
-      if (token === this.token) this.fallbackFromRecording(text, cfg, token, done)
-    }
-    this.setState({ speaking: true, text, backend: 'recorded' })
-    const p = audio.play()
-    if (p && typeof p.catch === 'function') {
-      p.catch(() => {
-        if (token === this.token) this.fallbackFromRecording(text, cfg, token, done)
-      })
-    }
-  }
-
-  private fallbackFromRecording(text: string, cfg: NarratorConfig, token: number, done: (c: boolean) => void) {
-    if (this.audio) {
-      this.audio.onended = this.audio.onerror = null
-      this.audio = null
-    }
-    if (this.canSpeak()) this.speak(text, cfg, token, done)
-    else this.captionOnly(text, cfg, done)
-  }
-
-  private speak(text: string, cfg: NarratorConfig, token: number, done: (c: boolean) => void) {
-    const { synth, Utterance } = this.deps
-    if (!synth || !Utterance) return this.captionOnly(text, cfg, done)
-    const u = new Utterance(text)
-    u.lang = this.voice?.lang || 'ar-EG'
-    if (this.voice) u.voice = this.voice
-    u.rate = cfg.rate
-    u.pitch = 1.1
-    u.volume = cfg.volume
-    let started = false
-    u.onstart = () => {
-      started = true
-    }
-    u.onend = () => done(true)
-    u.onerror = (e: SpeechSynthesisErrorEvent | Event) => {
-      const err = (e as SpeechSynthesisErrorEvent).error
-      if (err === 'interrupted' || err === 'canceled') return
-      // speech failed — show the caption for its reading time instead
-      if (token === this.token) {
-        this.utterance = null
-        this.captionOnly(text, cfg, done)
-      }
-    }
-    this.utterance = u
-    this.setState({ speaking: true, text, backend: 'speech' })
-    const start = () => {
-      if (token !== this.token) return
-      try {
-        // Chrome can get stuck "paused"; resume() is harmless elsewhere
-        synth.resume?.()
-        synth.speak(u)
-      } catch {
-        this.utterance = null
-        this.captionOnly(text, cfg, done)
-      }
-    }
-    // Safari silently drops a speak() issued right after cancel(): wait a moment
-    const sinceCancel = Date.now() - this.lastCancel
-    if (sinceCancel < 150) this.timers.push(this.deps.setTimeout(start, 150 - sinceCancel))
-    else start()
-    // Safety net: some engines never fire onend (or never start).
-    const est = estimateDurationMs(text, cfg.rate)
-    this.timers.push(
-      this.deps.setTimeout(() => {
-        // Only give up if the engine is truly idle: slow devices (older iPads loading a
-        // voice) can take a few seconds to start but report speaking/pending meanwhile.
-        const busy = (() => {
-          try {
-            return !!(synth.speaking || synth.pending)
-          } catch {
-            return false
-          }
-        })()
-        if (token === this.token && !started && !busy) {
-          // never started — engine is silent; degrade to captions for the remaining time
-          this.utterance = null
-          try {
-            synth.cancel()
-          } catch {
-            /* ignore */
-          }
-          this.captionOnly(text, cfg, done, est * 0.6)
-        }
-      }, 4000),
-    )
-    this.timers.push(this.deps.setTimeout(() => done(true), est * 2.5 + 4000))
-  }
-
-  private captionOnly(text: string, cfg: NarratorConfig, done: (c: boolean) => void, ms?: number) {
-    this.setState({ speaking: true, text, backend: 'captions' })
-    this.timers.push(this.deps.setTimeout(() => done(true), ms ?? estimateDurationMs(text, cfg.rate)))
+  private warnOnce(id: string, msg: string) {
+    if (this.warned.has(id)) return
+    this.warned.add(id)
+    this.deps.warn(msg)
   }
 }

@@ -1,10 +1,11 @@
 /**
- * Nori (نوري) — the friendly robot guide. Original character, self-drawn SVG.
- * Mouth animates while narration is playing.
+ * Zizo (زيزو) — the funny robot sidekick. Original character, self-drawn SVG.
+ * His mouth moves and he bounces only while ZIZO is the one speaking
+ * (driven by the narrator's speaker state, not by guesswork).
  */
 import { useNarrator } from '../audio'
 
-export function Nori({
+export function Zizo({
   size = 96,
   talking,
   mood = 'happy',
@@ -17,16 +18,24 @@ export function Nori({
   className?: string
   wave?: boolean
 }) {
-  const { speaking } = useNarrator()
-  const isTalking = talking ?? speaking
+  const { speaking, speaker, paused } = useNarrator()
+  const isTalking = talking ?? (speaking && !paused && speaker === 'zizo')
   return (
-    <svg viewBox="0 0 120 140" width={size} height={(size * 140) / 120} className={className} aria-hidden>
+    <svg
+      viewBox="0 0 120 140"
+      width={size}
+      height={(size * 140) / 120}
+      className={`${className} ${isTalking && talking === undefined ? 'zizo-talking' : ''}`}
+      aria-hidden
+      data-testid="zizo"
+      data-talking={isTalking ? 'yes' : 'no'}
+    >
       <defs>
-        <linearGradient id="nori-body" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="zizo-body" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#f4f6ff" />
           <stop offset="1" stopColor="#b9c3ec" />
         </linearGradient>
-        <linearGradient id="nori-screen" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="zizo-screen" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#23286b" />
           <stop offset="1" stopColor="#11143d" />
         </linearGradient>
@@ -40,12 +49,12 @@ export function Nori({
       </g>
       <rect x="98" y="82" width="16" height="30" rx="8" fill="#c9d1f3" />
       {/* body */}
-      <rect x="22" y="76" width="76" height="52" rx="22" fill="url(#nori-body)" />
+      <rect x="22" y="76" width="76" height="52" rx="22" fill="url(#zizo-body)" />
       <circle cx="60" cy="102" r="9" fill="#ff6fae" />
       <circle cx="60" cy="102" r="4" fill="#ffd1e6" />
       {/* head */}
-      <rect x="14" y="18" width="92" height="64" rx="28" fill="url(#nori-body)" />
-      <rect x="24" y="27" width="72" height="46" rx="20" fill="url(#nori-screen)" />
+      <rect x="14" y="18" width="92" height="64" rx="28" fill="url(#zizo-body)" />
+      <rect x="24" y="27" width="72" height="46" rx="20" fill="url(#zizo-screen)" />
       {/* eyes */}
       <g style={{ transformOrigin: '60px 46px', animation: 'blink 4.5s infinite' }}>
         {mood === 'sleepy' ? (

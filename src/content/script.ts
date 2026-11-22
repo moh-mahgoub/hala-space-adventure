@@ -7,9 +7,9 @@
  *  • `{name}` is replaced with the child's name from parent settings (default: حلا).
  *  • Other `{placeholders}` (e.g. {planet}) are filled in by the game code.
  *  • Every line has an ID = its dotted path, e.g. `planets.earth.intro` or
- *    `planets.earth.facts.1`. To use a recorded voice instead of the browser
- *    voice, drop `public/audio/narration/<id>.mp3` and list the id in
- *    `src/content/recordings.ts`. (See README → "Recorded narration".)
+ *    `planets.earth.facts.1`. Each line is PRERECORDED (storyteller or Zizo —
+ *    see src/content/clips.ts); after editing text here run
+ *    `npm run audio:generate` to re-record only the changed lines (docs/AUDIO.md).
  *
  *  Keep sentences short: they are spoken by speech synthesis and also shown
  *  as captions for when sound is off.

@@ -8,6 +8,8 @@ import { onReaction, type ReactionEvent } from '../../profile/reactions'
 import { useSettings } from '../../state/settings'
 import { AstronautCharacter } from './AstronautCharacter'
 import { ChildAvatar } from './ChildAvatar'
+import { Zizo } from '../Zizo'
+import { voiceOf } from '../../content/clips'
 
 const SHOW_MS = 3600
 
@@ -53,12 +55,15 @@ export function AvatarReaction() {
       <div key={ev.id} className="anim-pop">
         <AstronautCharacter size={110} pose={ev.pose} bigHelmet={helmetBig} upsideDown={ev.upsideDown} />
       </div>
-      <div
-        key={`b${ev.id}`}
-        className="anim-slide-up mb-16 max-w-56 rounded-3xl rounded-bl-none border-2 border-white/30 bg-white px-4 py-2 text-lg leading-snug font-extrabold text-night-900 shadow-2xl"
-        dir="rtl"
-      >
-        {text}
+      {/* the line is spoken by Zizo (unless it's the storyteller's line passed through) */}
+      <div key={`b${ev.id}`} className="anim-slide-up mb-10 flex items-end gap-1">
+        {voiceOf(ev.line.id ?? '').speaker === 'zizo' && <Zizo size={52} className="shrink-0" />}
+        <div
+          className="max-w-56 rounded-3xl rounded-bl-none border-2 border-white/30 bg-white px-4 py-2 text-lg leading-snug font-extrabold text-night-900 shadow-2xl"
+          dir="rtl"
+        >
+          {text}
+        </div>
       </div>
       {ev.sticker && (
         <div className="anim-pop absolute -top-28 left-10 rotate-[-8deg] rounded-[2rem] bg-white p-2 shadow-2xl" data-testid="face-sticker">

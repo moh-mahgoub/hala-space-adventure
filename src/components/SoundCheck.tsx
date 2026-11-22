@@ -1,18 +1,16 @@
 /**
- * Parent "Sound check": plays a chime + a spoken line, then explains in plain
- * words why there might be no sound on this particular device.
+ * Parent "Sound check": plays a chime and a recorded line, then explains in
+ * plain words why there might be no sound on this particular device.
  */
 import { useState } from 'react'
-import { narrator, say, sfx, sound, unlockAudio } from '../audio'
+import { narrator, recordedClipCount, say, sfx, sound, totalClipCount, unlockAudio } from '../audio'
 import { audioSessionMode } from '../audio/iosAudioSession'
 import { useSettings } from '../state/settings'
 
 interface Report {
   effects: string
   session: string
-  voices: number
-  arabicVoice: string | null
-  speechSupported: boolean
+  backend: string
 }
 
 export function SoundCheck() {
@@ -28,9 +26,7 @@ export function SoundCheck() {
         setReport({
           effects: sound.state,
           session: audioSessionMode(),
-          voices: narrator.voiceCount,
-          arabicVoice: narrator.getState().voiceName,
-          speechSupported: narrator.speechSupported,
+          backend: narrator.getState().backend ?? 'finished',
         }),
       1200,
     )
@@ -42,13 +38,8 @@ export function SoundCheck() {
   if (!s.sfx) tips.push('“Sound effects” is switched off above.')
   if (s.volume === 0) tips.push('The app volume slider is at 0.')
   if (report) {
-    if (!report.speechSupported) tips.push('This browser has no speech synthesis: captions are shown instead.')
-    else if (!report.arabicVoice)
-      tips.push(
-        report.voices === 0
-          ? 'The device reports no voices at all yet. Wait a few seconds and run the check again, or restart Safari.'
-          : 'No ARABIC voice is installed, so the app shows captions instead of reading Arabic with an English voice. iPad: Settings → Accessibility → Spoken Content → Voices → Arabic → download a voice (e.g. Majed), then reload the app.',
-      )
+    if (report.backend === 'captions')
+      tips.push('The recording could not be played, so only the caption was shown. Close the Safari tab, reopen the app and tap “Test sound” again.')
     if (report.effects !== 'running') tips.push(`Sound effects engine is “${report.effects}”. Tap the check again; if it persists, close the Safari tab and reopen the app.`)
     if (report.session === 'none') tips.push('If the iPad is in Silent Mode (bell icon in Control Center), turn it off — this iPad version can’t override it.')
   }
@@ -61,7 +52,7 @@ export function SoundCheck() {
           <div className="text-xl font-bold" dir="rtl">
             فحص الصوت
           </div>
-          <div className="text-sm text-white/60">Sound check — plays a chime and Nori says hello</div>
+          <div className="text-sm text-white/60">Sound check — plays a chime and the storyteller says hello</div>
         </div>
         <button type="button" onClick={run} className="rounded-xl bg-violet-500 px-4 py-2 font-bold" data-testid="sound-check-run">
           🔊 Test sound
@@ -73,8 +64,8 @@ export function SoundCheck() {
             Sound effects: <b>{report.effects}</b> · iPad silent-mode override: <b>{report.session === 'none' ? 'not available' : 'on'}</b>
           </li>
           <li>
-            Speech: <b>{report.speechSupported ? `${report.voices} voices` : 'not supported'}</b> · Arabic voice:{' '}
-            <b>{report.arabicVoice ?? 'none found'}</b>
+            Narration: <b>{report.backend === 'recorded' ? 'playing the recording' : report.backend === 'captions' ? 'captions only' : report.backend}</b> ·
+            recorded clips: <b>{recordedClipCount()} / {totalClipCount()}</b>
           </li>
         </ul>
       )}

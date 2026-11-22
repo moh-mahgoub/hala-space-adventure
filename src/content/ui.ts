@@ -15,7 +15,7 @@ export const ui = {
   story: 'الحكاية',
   games: 'الألعاب',
   map: 'خريطتي',
-  tour: 'جولة مع نوري',
+  tour: 'جولة مع زيزو',
   playAgain: 'نلعب تاني',
   stars: 'نجوم',
   chapters: 'الفصول',
