@@ -49,7 +49,7 @@ export function OrderGame() {
       setHintSlot(null)
       sfx('success')
       const ordinal = script.common.ordinals[slot]
-      const placedLine = line('games.order.placed', { planet: BODIES[id].nameAr, ordinal })
+      const placedLine = line('games.order.placed', { planet: BODIES[id].nameAr, ordinal, planetId: id })
       react('correct', { line: placedLine, allowSurprise: next.every(Boolean) })
       const spoken = narrator.say(placedLine)
       if (next.every(Boolean)) {
@@ -63,7 +63,7 @@ export function OrderGame() {
       sfx('gentle')
       const n = (misses[id] ?? 0) + 1
       setMisses({ ...misses, [id]: n })
-      const lines = [line('games.order.wrong', { planet: BODIES[id].nameAr })]
+      const lines = [line('games.order.wrong', { planet: BODIES[id].nameAr, planetId: id })]
       if (n >= 2 || level === 'easy') {
         setHintSlot(correctSlotFor(id))
         lines.push(line('games.order.hint'))
@@ -88,7 +88,7 @@ export function OrderGame() {
   const pick = (id: PlanetId) => {
     sfx('pop')
     setSelected(id)
-    void narrator.say([{ template: BODIES[id].nameAr }, line('games.order.pick')])
+    void narrator.say([{ id: 'common.names', template: '{planet}!', params: { planet: BODIES[id].nameAr, planetId: id } }, line('games.order.pick')])
   }
 
   const restart = () => {

@@ -19,7 +19,8 @@
     "audio:audition:dry": "node audio-pipeline/audition.mjs --dry-run",
     "audio:audition:serve": "node audio-pipeline/serve.mjs",
     "audio:voices": "node audio-pipeline/voices.mjs",
-    "audio:manifest:draft": "node --no-warnings audio-pipeline/build-manifest.mjs"
+    "audio:manifest": "tsx audio-pipeline/build-manifest.mjs",
+    "audio:generate": "tsx audio-pipeline/generate.mjs"
   },
   "dependencies": {
     "@fontsource/baloo-bhaijaan-2": "^5.3.0",
@@ -39,6 +40,7 @@
     "fake-indexeddb": "^6.2.8",
     "jsdom": "^31.0.1",
     "tailwindcss": "^4.3.5",
+    "tsx": "^4.23.15",
     "typescript": "5.9",
     "vite": "^8.3.8",
     "vitest": "^5.1.1"

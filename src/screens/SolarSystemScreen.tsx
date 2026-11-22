@@ -140,7 +140,7 @@ export function SolarSystemScreen() {
 
   useOnce(() => {
     void say('space.intro').then((completed) => {
-      if (completed && suggestion) void say('space.suggest', { planet: BODIES[suggestion].nameAr })
+      if (completed && suggestion) void say('space.suggest', { planet: BODIES[suggestion].nameAr, planetId: suggestion })
     })
   })
 

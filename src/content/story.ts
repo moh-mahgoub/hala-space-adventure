@@ -2,7 +2,7 @@
  * Interactive story: "{name} ورحلة الكواكب الثمانية"
  *
  * Each chapter is a list of steps. Step types:
- *   say    — Nori (the robot guide) narrates a line, then the story moves on
+ *   say    — the storyteller (or Zizo, with speaker: 'zizo') says a line, then the story moves on
  *   tap    — the child taps the glowing thing in the scene to continue
  *   choice — the child picks one of 2 big picture-buttons (no wrong answers)
  *   count  — the child taps each of the 8 planets to count them
@@ -15,7 +15,8 @@
 import type { BodyId } from '../data/planets'
 
 export type StoryStep =
-  | { type: 'say'; text: string }
+  /** speaker defaults to the storyteller; 'zizo' = the robot says it in his own voice */
+  | { type: 'say'; text: string; speaker?: 'zizo' }
   | { type: 'tap'; text: string; done: string; effect?: 'launch' | 'wave' | 'spin' | 'wind' | 'roll' | 'glow' }
   | {
       type: 'choice'
@@ -42,8 +43,8 @@ export const STORY: StoryChapter[] = [
     backdrop: 'room',
     steps: [
       { type: 'say', text: 'كان ياما كان، كان فيه بنوتة شاطرة اسمها {name}، بتحب تبص على النجوم من الشباك.' },
-      { type: 'say', text: 'وفي ليلة جميلة، نزلت سفينة فضاء صغيرة قدام البيت، وخرج منها روبوت لطيف اسمه نوري!' },
-      { type: 'say', text: 'قال نوري: أهلاً يا {name}! تيجي معايا نزور الكواكب التمانية؟' },
+      { type: 'say', text: 'وفي ليلة جميلة، نزلت سفينة فضاء صغيرة قدام البيت، وخرج منها روبوت لطيف ومضحك اسمه زيزو!' },
+      { type: 'say', speaker: 'zizo', text: 'أهلاً يا {name}! تيجي معايا نزور الكواكب التمانية؟' },
       {
         type: 'tap',
         text: 'دوسي على السفينة عشان نركب!',
@@ -59,7 +60,7 @@ export const STORY: StoryChapter[] = [
     backdrop: 'space',
     steps: [
       { type: 'say', text: 'أول حاجة شافتها {name} في الفضاء كانت الشمس! كبيرة ومنوّرة قوي.' },
-      { type: 'say', text: 'قال نوري: الشمس دي نجمة، وكل الكواكب بتلف حواليها.' },
+      { type: 'say', speaker: 'zizo', text: 'الشمس دي نجمة، وكل الكواكب بتلف حواليها.' },
       { type: 'say', text: 'والشمس بتدفي الأرض، وبتخلي الزرع يكبر، وبتنورلنا النهار.' },
       {
         type: 'choice',
@@ -94,13 +95,13 @@ export const STORY: StoryChapter[] = [
     backdrop: 'space',
     steps: [
       { type: 'say', text: 'وبعدين وصلوا للزهرة. الزهرة ملفوفة بسحاب أصفر تقيل.' },
-      { type: 'say', text: 'قال نوري: الزهرة أسخن كوكب، حتى أسخن من عطارد!' },
+      { type: 'say', speaker: 'zizo', text: 'الزهرة أسخن كوكب، حتى أسخن من عطارد!' },
       {
         type: 'choice',
         text: 'الزهرة سخنة قوي قوي! ننزل عليها، ولا نبص عليها من السفينة؟',
         options: [
           { icon: '🚀', label: 'نبص من السفينة', reply: 'اختيار ذكي! الزهرة أسخن كوكب، فنتفرج عليها من بعيد.' },
-          { icon: '🔥', label: 'ننزل عليها', reply: 'قال نوري: لأ يا {name}، الزهرة سخنة قوي. خلينا نتفرج عليها من السفينة أحسن!' },
+          { icon: '🔥', label: 'ننزل عليها', reply: 'لأ يا {name}، الزهرة سخنة قوي! خلينا نتفرج عليها من السفينة أحسن.' },
         ],
       },
     ],
@@ -145,7 +146,7 @@ export const STORY: StoryChapter[] = [
     backdrop: 'space',
     steps: [
       { type: 'say', text: 'واو! قدامهم كوكب ضخم ضخم... ده المشتري، أكبر كوكب في المجموعة الشمسية!' },
-      { type: 'say', text: 'قال نوري: المشتري كبير قوي، ممكن يساع جواه أكتر من ألف أرض!' },
+      { type: 'say', speaker: 'zizo', text: 'المشتري كبير قوي، ممكن يساع جواه أكتر من ألف أرض!' },
       {
         type: 'tap',
         text: 'شايفة البقعة الحمرا؟ دوسي على المشتري!',
@@ -215,7 +216,7 @@ export const STORY: StoryChapter[] = [
         text: 'تعالي نعد الكواكب اللي زرناها! دوسي على كل كوكب.',
         done: 'تمانية! زرنا تمن كواكب، بيلفوا كلهم حوالين الشمس!',
       },
-      { type: 'say', text: 'قال نوري: شكراً يا {name}، كانت أحلى رحلة! نتقابل تاني قريب.' },
+      { type: 'say', speaker: 'zizo', text: 'شكراً يا {name}، كانت أحلى رحلة! نتقابل تاني قريب.' },
       { type: 'say', text: 'ونامت {name} وهي بتحلم بالنجوم والكواكب. تصبحي على خير يا {name}!' },
     ],
   },

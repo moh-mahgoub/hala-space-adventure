@@ -28,8 +28,8 @@ function buildRounds(kind: ChoiceKind): ChoiceRound[] {
 
 function questionLine(kind: ChoiceKind, round: ChoiceRound) {
   if (kind === 'size')
-    return line('games.size.question', { a: BODIES[round.choices[0]].nameAr, b: BODIES[round.choices[1]].nameAr })
-  return line(`games.${kind}.question`, { planet: BODIES[round.target].nameAr })
+    return line('games.size.question', { a: BODIES[round.choices[0]].nameAr, b: BODIES[round.choices[1]].nameAr, aId: round.choices[0], bId: round.choices[1] })
+  return line(`games.${kind}.question`, { planet: BODIES[round.target].nameAr, planetId: round.target })
 }
 
 export function ChoiceGame({ kind }: { kind: ChoiceKind }) {
@@ -65,7 +65,7 @@ export function ChoiceGame({ kind }: { kind: ChoiceKind }) {
       void narrator
         .say([
           cheer,
-          line(`games.${kind}.correct`, { planet: BODIES[round.target].nameAr }),
+          line(`games.${kind}.correct`, { planet: BODIES[round.target].nameAr, planetId: round.target }),
         ])
         .then((completed) => {
           if (!completed) return
@@ -85,8 +85,8 @@ export function ChoiceGame({ kind }: { kind: ChoiceKind }) {
       window.setTimeout(() => setShake(null), 1000)
       const nextWrong = wrong.includes(id) ? wrong : [...wrong, id]
       setWrong(nextWrong)
-      const lines = [line(`games.${kind}.wrong`, { chosen: BODIES[id].nameAr, planet: BODIES[round.target].nameAr })]
-      if (shouldHint(nextWrong.length)) lines.push(line(`games.${kind}.hint`, { planet: BODIES[round.target].nameAr }))
+      const lines = [line(`games.${kind}.wrong`, { chosen: BODIES[id].nameAr, planet: BODIES[round.target].nameAr, chosenId: id, planetId: round.target })]
+      if (shouldHint(nextWrong.length)) lines.push(line(`games.${kind}.hint`, { planet: BODIES[round.target].nameAr, planetId: round.target }))
       void narrator.say(lines)
     }
   }

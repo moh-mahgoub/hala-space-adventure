@@ -54,6 +54,11 @@ export function classify(id: string): { speaker: Speaker; category: AudioCategor
   switch (root) {
     case 'reactions':
       return { speaker: 'zizo', category: 'reactions' }
+    case 'zizo':
+      return {
+        speaker: 'zizo',
+        category: sub === 'planets' ? 'jokes' : sub === 'celebrate' ? 'celebrations' : sub === 'neverMind' ? 'hints' : 'reactions',
+      }
     case 'planets':
       return { speaker: 'narrator', category: 'planets' }
     case 'story':

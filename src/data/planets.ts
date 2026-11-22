@@ -27,6 +27,8 @@ export interface Body {
   id: BodyId
   /** Arabic display name */
   nameAr: string
+  /** grammatical gender of the Arabic name: "دي الأرض" (f) vs "ده زحل" (m) */
+  genderAr: 'f' | 'm'
   /** English name (for adults / README / aria fallbacks) */
   nameEn: string
   kind: BodyKind
@@ -51,6 +53,7 @@ export const BODIES: Record<BodyId, Body> = {
   sun: {
     id: 'sun',
     nameAr: 'الشمس',
+    genderAr: 'f',
     nameEn: 'Sun',
     kind: 'star',
     diameterKm: 1_392_700,
@@ -60,6 +63,7 @@ export const BODIES: Record<BodyId, Body> = {
   mercury: {
     id: 'mercury',
     nameAr: 'عطارد',
+    genderAr: 'm',
     nameEn: 'Mercury',
     kind: 'planet',
     order: 1,
@@ -73,6 +77,7 @@ export const BODIES: Record<BodyId, Body> = {
   venus: {
     id: 'venus',
     nameAr: 'الزهرة',
+    genderAr: 'f',
     nameEn: 'Venus',
     kind: 'planet',
     order: 2,
@@ -86,6 +91,7 @@ export const BODIES: Record<BodyId, Body> = {
   earth: {
     id: 'earth',
     nameAr: 'الأرض',
+    genderAr: 'f',
     nameEn: 'Earth',
     kind: 'planet',
     order: 3,
@@ -99,6 +105,7 @@ export const BODIES: Record<BodyId, Body> = {
   moon: {
     id: 'moon',
     nameAr: 'القمر',
+    genderAr: 'm',
     nameEn: 'Moon',
     kind: 'moon',
     diameterKm: 3_475,
@@ -110,6 +117,7 @@ export const BODIES: Record<BodyId, Body> = {
   mars: {
     id: 'mars',
     nameAr: 'المريخ',
+    genderAr: 'm',
     nameEn: 'Mars',
     kind: 'planet',
     order: 4,
@@ -123,6 +131,7 @@ export const BODIES: Record<BodyId, Body> = {
   jupiter: {
     id: 'jupiter',
     nameAr: 'المشتري',
+    genderAr: 'm',
     nameEn: 'Jupiter',
     kind: 'planet',
     order: 5,
@@ -137,6 +146,7 @@ export const BODIES: Record<BodyId, Body> = {
   saturn: {
     id: 'saturn',
     nameAr: 'زحل',
+    genderAr: 'm',
     nameEn: 'Saturn',
     kind: 'planet',
     order: 6,
@@ -151,6 +161,7 @@ export const BODIES: Record<BodyId, Body> = {
   uranus: {
     id: 'uranus',
     nameAr: 'أورانوس',
+    genderAr: 'm',
     nameEn: 'Uranus',
     kind: 'planet',
     order: 7,
@@ -165,6 +176,7 @@ export const BODIES: Record<BodyId, Body> = {
   neptune: {
     id: 'neptune',
     nameAr: 'نبتون',
+    genderAr: 'm',
     nameEn: 'Neptune',
     kind: 'planet',
     order: 8,

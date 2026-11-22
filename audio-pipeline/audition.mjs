@@ -80,7 +80,7 @@ export function suspiciousDuration(duration, chars) {
 }
 
 /** Retry rate limits (429) and overload (503) with the server's suggested delay. */
-async function withRetries(fn, label, tries = 6) {
+export async function withRetries(fn, label, tries = 6) {
   for (let attempt = 1; ; attempt++) {
     try {
       return await fn()

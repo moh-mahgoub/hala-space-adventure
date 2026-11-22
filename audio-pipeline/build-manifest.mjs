@@ -1,51 +1,40 @@
 #!/usr/bin/env node
-// Builds a DRAFT manifest from today's scripts (src/content) to size the Stage B
-// library. Stage B turns this into the final, reviewed manifest.
-//   npm run audio:manifest:draft
+// Builds src/audio/manifest.json — every clip the app can play — from the clip
+// catalogue (src/content/clips.ts). Keeps the duration of clips whose content and
+// voice are unchanged, so only new or edited lines need regenerating.
+//   npm run audio:manifest
 import { createHash } from 'node:crypto'
-import { writeFileSync } from 'node:fs'
-import { script } from '../src/content/script.ts'
-import { STORY } from '../src/content/story.ts'
-import { audioFile, classify, needsRestructure } from '../src/audio/manifest.ts'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { allClips } from '../src/content/clips.ts'
+import { audioFile, classify } from '../src/audio/manifest.ts'
 import { estimate } from './lib/cost.mjs'
+import { VOICES } from './voices.config.mjs'
 
-const lines = []
-function walk(o, p) {
-  if (typeof o === 'string') lines.push([p.join('.'), o])
-  else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) walk(v, [...p, k])
+export const MANIFEST = 'src/audio/manifest.json'
+
+export function clipHash(c) {
+  const v = VOICES[c.speaker]
+  return createHash('sha1').update(`${v.provider}|${v.model}|${v.voice}|${v.fx}|${c.emotion}|${c.synthText ?? c.text}`).digest('hex').slice(0, 12)
 }
-walk(script, [])
-for (const c of STORY) {
-  c.steps.forEach((s, i) => {
-    lines.push([`story.${c.id}.${i}`, s.text])
-    if (s.done) lines.push([`story.${c.id}.${i}.done`, s.done])
-    if (s.options) s.options.forEach((o, j) => lines.push([`story.${c.id}.${i}.reply${j}`, o.reply]))
+
+export function buildManifest() {
+  const previous = existsSync(MANIFEST) ? Object.fromEntries(JSON.parse(readFileSync(MANIFEST, 'utf8')).map((e) => [e.id, e])) : {}
+  return allClips().map((c) => {
+    const { category } = classify(c.id)
+    const hash = clipHash(c)
+    const entry = { id: c.id, speaker: c.speaker, category, text: c.text, emotion: c.emotion, file: audioFile(c.speaker, category, c.id), hash }
+    const prev = previous[c.id]
+    if (prev && prev.hash === hash && prev.duration) entry.duration = prev.duration
+    return entry
   })
 }
-const spoken = lines.filter(([id]) => !id.includes('factIcons') && !id.startsWith('games.names'))
-const entries = spoken.map(([id, text]) => {
-  const { speaker, category } = classify(id)
-  const entry = {
-    id,
-    speaker,
-    category,
-    text,
-    emotion: 'auto',
-    file: audioFile(speaker, category, id),
-    hash: createHash('sha1').update(`${speaker}|${text}`).digest('hex').slice(0, 10),
-  }
-  if (needsRestructure(text)) entry.todo = 'game-time placeholders: split into composable clips in Stage B'
-  return entry
-})
-writeFileSync('audio-pipeline/manifest.draft.json', JSON.stringify(entries, null, 2))
 
-const chars = entries.reduce((s, e) => s + e.text.length, 0)
-const count = (sp) => entries.filter((e) => e.speaker === sp).length
-console.log(`Draft manifest: ${entries.length} clips (narrator ${count('narrator')}, zizo ${count('zizo')}), ${chars} characters`)
-console.log(`Needs restructuring (dynamic placeholders): ${entries.filter((e) => e.todo).length}`)
-for (const p of ['azure', 'elevenlabs', 'gemini']) {
-  const once = estimate(p, chars)
-  // +60% for new Zizo / dialogue lines and split clips, ×1.5 for retakes
-  const realistic = estimate(p, Math.round(chars * 1.6 * 1.5))
-  console.log(`  ${p}: one pass ≈ $${once.usd}; realistic total (new lines + retakes) ≈ $${realistic.usd}`)
+if (process.argv[1]?.endsWith('build-manifest.mjs')) {
+  const entries = buildManifest()
+  writeFileSync(MANIFEST, JSON.stringify(entries, null, 1) + '\n')
+  const chars = entries.reduce((s, e) => s + e.text.length, 0)
+  const count = (sp) => entries.filter((e) => e.speaker === sp).length
+  console.log(`Manifest: ${entries.length} clips (narrator ${count('narrator')}, zizo ${count('zizo')}), ${chars} characters`)
+  console.log(`Needing (re)generation: ${entries.filter((e) => !e.duration).length}`)
+  console.log(`Gemini estimate for a full pass: ≈ $${estimate('gemini', chars).usd} (list price)`)
 }
