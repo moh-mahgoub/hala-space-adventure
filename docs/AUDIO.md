@@ -1,7 +1,4 @@
-# Egyptian Arabic audio — architecture and workflow
-
-> **Status: Stage A (voice selection).** The live site still uses the previous audio
-> system. Nothing in this document changes production until Stage B is approved.
+# Egyptian Arabic narration — architecture and workflow
 
 ## 1. Overview
 
@@ -9,94 +6,86 @@ There are two separate worlds:
 
 | | Development time (your Mac / this repo) | Runtime (the website) |
 |---|---|---|
-| What | `audio-pipeline/` scripts call a TTS provider, post-process with ffmpeg, write MP3s | The app plays the **prerecorded** MP3s |
-| Needs | API key (in `.env.local`, never committed), Node 22+, ffmpeg | Nothing: no API key, no TTS service, no network beyond the site itself |
-| Output | `public/audio/ar-EG/…` (Stage B) + manifest | Same recordings on every device |
+| What | `audio-pipeline/` asks a TTS provider for each line, post-processes with ffmpeg, and writes MP3s + `src/audio/manifest.json` | The app plays the **prerecorded** MP3s from `public/audio/ar-EG/…` |
+| Needs | API key (never committed), Node 22+, ffmpeg | Nothing: no API key, no TTS service, no browser speech synthesis |
 
-The website never contacts a voice provider. A unit test enforces this.
+Every device (iPad, iPhone, Mac, Windows) hears exactly the same approved recordings.
 
-## 2. The two voices
+## 2. The two voices (approved after the Stage A audition)
 
-| Character | Role | Direction |
+| Character | Role | Voice |
 |---|---|---|
-| **الحكّاءة**, the storyteller | Welcomes حلا, explains planets, guides stories and games, gives gentle instructions | Warm, affectionate young Cairene woman telling a story to a 4-year-old; conversational, smiling, natural pauses. Not a newsreader, not formal Arabic (MSA), not a baby voice |
-| **زيزو الروبوت**, Zizo the robot | Funny reactions, surprises, celebrations, short jokes, occasional hints | Playful, energetic, slightly higher voice, comic timing, clear Egyptian pronunciation; a light robot shimmer at most |
+| **الحكّاءة**, the storyteller | Welcomes حلا; explains planets and science; guides games and the story | Gemini TTS **Sulafat**, directed as a warm Cairene storyteller |
+| **زيزو**, Zizo the robot | Jokes, reactions, celebrations, surprises; his own lines in the story | Gemini TTS **Puck** + a light robot shimmer (`zizo-light`: +5% pitch, tempo kept, faint echo) |
 
-The directions live in `audio-pipeline/characters.mjs`.
+Both use the model `gemini-3.1-flash-tts-preview`. The single source of truth is `audio-pipeline/voices.config.mjs`.
 
-## 3. Providers
+Zizo is deliberately occasional: 31 of the 357 clips. He says his planet joke only on the first visit in a session.
 
-| | Google Gemini TTS | ElevenLabs | Azure AI Speech |
-|---|---|---|---|
-| Egyptian Arabic | Listed as supported; style is steered with natural-language directions | Egyptian-accent voices in the shared Voice Library (e.g. Hoda, Yasmine, an Egyptian audiobook narrator) | Dedicated voices `ar-EG-SalmaNeural` (female) and `ar-EG-ShakirNeural` (male) |
-| Expressiveness | Directed in plain English ("warm, excited…") | v3+ inline tags (`[excited]`, `[laughs]`) | SSML prosody (rate/pitch); limited emotion |
-| Default model | `gemini-3.1-flash-tts-preview` (override with `GEMINI_TTS_MODEL`) | `eleven_v3` (override with `ELEVENLABS_MODEL`; a v4 exists) | neural |
-| Price (list, verify before paying) | ≈ $0.50–1/1M input tokens + $6–20/1M audio tokens; free tier | ≈ $0.08–0.10 per 1K characters; plans from $6/mo | ≈ $15–16 per 1M characters; 500K free each month |
-| Licensing for a public website | Generated output is yours to use under Google's API terms; preview models have no SLA. Check the current terms (e.g. for watermarking) | **Free plan: non-commercial and requires attribution.** Paid plans (Starter+) grant commercial rights. Library voices can carry extra terms from their creators | Allowed for content creation under Microsoft's Product Terms; don't use voices to impersonate real people |
+## 3. Runtime
 
-Listening quality is decided by the auditions, not by these tables.
+- **Player:** `src/audio/narrator.ts`.
+  - One reusable `<audio>` element, unlocked by the first tap ("يلا نبدأ!"). Nothing plays before that.
+  - **Queue with cancellation.** A new line stops the old one and drops anything queued, so voices never overlap. Changing screens always stops narration.
+  - **Sequences:** a line can expand into several clips (storyteller → Zizo exchanges, and composed game lines such as «دي الأرض.» + «يلا ندور تاني على زحل!»), with short natural pauses in between.
+  - **Lifecycle events** for animations: `narrator.on('start' | 'pause' | 'resume' | 'complete' | 'cancel' | 'error', fn)`. The state includes `speaker`. Zizo bounces and moves his mouth only while `speaker === 'zizo'`, and captions show the speaker.
+  - **Missing or failing clip:** the caption is shown for its reading time and the clip id is logged once. There is never a robotic fallback.
+  - **Settings:** mute and narration on/off stop the voice; the speed setting uses `playbackRate` with pitch kept.
+  - **Volume:** the volume setting works on desktop. iOS ignores media volume, so use the device buttons there.
+- **Music ducking:** ambient music drops while anyone speaks.
+- **Prefetch:** a planet screen hints its facts and ending clips to the browser.
+- **Offline:** the service worker caches each clip **whole** the first time it plays and answers the `<audio>` element's Range requests by slicing it, which Safari needs. Clips already heard replay offline; nothing is bulk-downloaded on first visit.
 
-## 4. Credentials
+## 4. Catalogue and manifest
 
-Create `.env.local` in the repo root (it is git-ignored):
+- `src/content/script.ts` and `src/content/story.ts` hold all the words, as before.
+- `src/content/clips.ts` decides which clip each line plays, who says it and with what emotion:
+  - **Static lines** are one clip whose id is the line id (e.g. `planets.saturn.intro`).
+  - **Game lines with blanks** are **pre-recorded per planet** (`games.find.question.saturn`) or **composed** from pieces (`common.thisIs.earth` + `games.find.tryAgain.saturn`). The pieces use the right grammar («دي الأرض», «ده زحل»).
+- `src/audio/manifest.json` (built by `npm run audio:manifest`) has one entry per clip: `id`, `speaker`, `category`, canonical `text`, `emotion`, `file`, `hash`, `duration`.
+  - The **hash** covers text + emotion + voice, so a clip is re-recorded only when one of those changes.
+- **Files:** `public/audio/ar-EG/<narrator|zizo>/<welcome|planets|stories|games|rewards|common|reactions|jokes|celebrations|hints>/<id>.mp3`
+- **Release gate:** `src/audio/library.test.ts` fails if any manifest clip is missing or implausible.
+
+## 5. Generating and editing narration
+
+Credentials go in `.env.local` (git-ignored):
 
 ```bash
-GEMINI_API_KEY=...            # aistudio.google.com → Get API key
-ELEVENLABS_API_KEY=...        # elevenlabs.io → Profile → API keys
-                              #   permissions needed: Text to Speech, Voices (read + write)
-AZURE_SPEECH_KEY=...          # Azure portal → Speech resource → Keys and Endpoint
-AZURE_SPEECH_REGION=westeurope
+GEMINI_API_KEY=...     # aistudio.google.com → Get API key; billing (prepaid credit) enabled
 ```
-
-In a Claude Code cloud session the keys are stored as environment **network secrets** instead, and Node needs `NODE_USE_ENV_PROXY=1` to use the session proxy.
-
-## 5. Auditions (Stage A)
 
 ```bash
-npm run audio:audition:dry          # plan + cost estimate, no API calls
-npm run audio:audition              # generate for every provider with a key
-npm run audio:audition -- --providers gemini --character zizo
-npm run audio:audition -- --only n2-saturn --force   # redo one line
-npm run audio:audition:serve        # listen: http://localhost:5050 (iPad: the LAN URL it prints)
-npm run audio:voices                # list ElevenLabs Egyptian voices (needs a key)
+npm run audio:generate -- --dry-run        # what would be recorded + estimated cost
+npm run audio:generate                     # record every missing or changed clip (default budget $5)
+npm run audio:generate -- --only planets.saturn.intro,zizo.planets.saturn --force   # redo specific phrases
+npm run audio:generate -- --budget 2       # hard stop at $2 (from the usage Google reports)
 ```
 
-- The scripts are in `audio-pipeline/auditions.mjs`: 5 narrator lines, 5 Zizo lines and a 3-line exchange, with identical text for every voice.
-- Clips go to `audition/out/<character>/<provider-voice>/<line>.mp3`. They are **git-ignored and never deployed**.
-- `audition/out/results.json` records the provider, model, voice, effect, text, duration and errors for every clip.
-- The page plays each line across voices, plays a whole voice set, plays the two-voice exchange with any pairing, lists failures, and saves ★ favourites on the device.
-- Only missing clips are generated unless you pass `--force`.
+- **Batching:** a voice's lines are recorded in batches of up to 8 as one take, split at the pauses (`lib/split.mjs`). Any doubtful cut is re-recorded on its own. A take far too long for its text (the model rambled) is rejected and retried.
+- **Post-processing** (`lib/audio.mjs`): trim silence, apply the voice's effect, loudness-normalise to −18 LUFS, MP3 mono 64 kbps.
+- **Reviewing:** `tsx audio-pipeline/build-library-review.mjs <out.html>` builds a single page with every clip and a "🔁 Redo" mark per clip. Send the marked ids back to `--only … --force`.
+- **Adding a line:** add the text to the script and call it from the app with `say('your.id')`. Then run `npm run audio:generate`. Zizo's lines go under `script.zizo` or `reactions` (see `voiceOf` in `clips.ts`).
+- **Another character:** add a `Speaker` in `src/content/clips.ts` and `src/audio/manifest.ts`, a voice in `voices.config.mjs`, a direction in `characters.mjs`, and a caption avatar in `Caption.tsx`. The player itself needs no change.
 
-## 6. Post-processing
+## 6. Auditions (Stage A tooling, kept for future voice changes)
 
-`audio-pipeline/lib/audio.mjs` (ffmpeg; on macOS `brew install ffmpeg`):
-- trim leading/trailing silence, keeping a natural breath;
-- optional character effect: `zizo-light` (+5% pitch, tempo kept, faint shimmer). Deliberately subtle so pronunciation survives;
-- loudness-normalise to **−18 LUFS** (true peak −1.5 dB) so both voices sit at the same level;
-- MP3, mono, 64 kbps (speech-transparent, about 8 KB per second).
+`npm run audio:audition` (scripts in `audition-page.mjs`/`auditions.mjs`) records the same test lines with candidate voices from Gemini, ElevenLabs or Azure. `audio-pipeline/build-review-page.mjs` builds a comparison page. Outputs stay in the git-ignored `audition/out/`.
 
-## 7. Manifest (foundation for Stage B)
+## 7. Costs and licensing
 
-`src/audio/manifest.ts` defines one entry per clip: `id`, `speaker`, canonical `text`, optional `synthText` (pronunciation-only), `emotion`, `file`, `category`, `duration`, `scene`, `animation`, `hash`.
+- The full library is about 13,000 characters. At Gemini list prices one complete pass is about **$0.55**, and only changed lines are re-recorded afterwards.
+- Gemini API output generated on a **paid** project may be used in your own app; Google's API terms apply. The recordings are generated speech, not anyone's real voice.
+- The ElevenLabs and Azure adapters remain available. ElevenLabs' free plan is non-commercial; its paid plans grant commercial use while subscribed.
 
-Files live at `audio/ar-EG/<speaker>/<category>/<id>.mp3`, where category is welcome, planets, stories, games or rewards for the narrator, and reactions, jokes, celebrations or hints for Zizo.
-
-Components will refer to clips by `id` only. `npm run audio:manifest:draft` sizes the library from today's scripts: 218 clips, about 9,400 characters. 12 lines contain game-time placeholders (`{planet}`…) and will be split into composable clips in Stage B.
-
-## 8. Stage B plan (after voice approval and a separate budget approval)
-
-1. Rewrite and extend the scripts: more natural Egyptian, Zizo's lines and short narrator↔Zizo exchanges, robot renamed نوري → زيزو, and pronunciation `synthText` where needed.
-2. Generate the full library with the approved voices (only changed or missing clips, cost estimate first, review page).
-3. Replace browser TTS with an asset player: sequential queue with cancellation, `onStart/onComplete/onCancel/onError` events for animations, preloading, music ducking, mute and volume. Missing clips show captions and are logged, never robotic fallback speech.
-4. Validation before deploy: every manifest id has a file; paths work under `/hala-space-adventure/`.
-5. Service-worker caching of narration as it is played (offline replay), with no bulk download on first visit.
-6. Regression tests, then deployment with your approval.
-
-## 9. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Fix |
 |---|---|
+| A line shows only a caption | Its clip is missing. Run `npm run audio:generate` and check the console for `[narration] no recording for "…"` |
 | `ffmpeg not found` | `brew install ffmpeg` |
-| ElevenLabs `missing the permission voices_read` | Edit the API key's permissions: Voices → read and write; Text to Speech → access |
+| `prepayment credits are depleted` / `402` | Add credit in AI Studio → Billing |
+| `429 … per day` | Free-tier quota; enable billing or continue tomorrow (the run stops cleanly) |
 | `fetch failed … ENOTFOUND` in a cloud session | Run with `NODE_USE_ENV_PROXY=1` |
-| A line sounds wrong | Add `synthText` (spelling or diacritics for pronunciation only) and regenerate with `--only <id> --force` |
+| A phrase sounds wrong | Mark it on the review page and run `npm run audio:generate -- --only <ids> --force`. For a mispronounced word, change its spelling in the script |
+| No sound on iPad | Parent settings → Sound check. Silent Mode is overridden on iPadOS 17+; otherwise check the volume buttons |

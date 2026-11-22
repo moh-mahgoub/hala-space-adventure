@@ -20,7 +20,7 @@ An interactive, Arabic-language (friendly Egyptian dialect) solar-system adventu
 
 ### Explore the solar system
 - **Animated orbit view**: the Sun, the 8 planets and the Moon orbit gently. Planets stop moving while a finger is on them, so they're easy to tap, and the tap targets are generous. A planet strip at the bottom also lists everything in order from the Sun (right to left, RTL).
-- **Guided mode** (default): Nori highlights the next place to visit. A **guided tour** (🚀 جولة مع نوري) goes from the Sun to Neptune with narration.
+- **Guided mode** (default): the app highlights the next place to visit. A **guided tour** (🚀 جولة مع زيزو) goes from the Sun to Neptune with narration.
 - **Ten discovery scenes** (Sun, 8 planets, Moon). Each one has a big animated body, its Arabic name, a "star / planet #N / moon" badge, 3 tappable spoken facts, an interactive activity, replay narration, and next/previous navigation (also swipeable).
 
 | Body | Activity |
@@ -45,7 +45,7 @@ An interactive, Arabic-language (friendly Egyptian dialect) solar-system adventu
 6. **مين الأكبر؟ (Which is bigger?)**: pick the bigger planet, then see the *true* relative sizes.
 
 ### Story: «حلا ورحلة الكواكب الثمانية»
-Eleven short narrated chapters (about 6–8 minutes). Hala and Nori fly from her bedroom past the Sun and all 8 planets and come back home. Along the way there are simple choices (sunglasses or close your eyes?), things to tap (launch the rocket, roll Uranus, blow Neptune's winds), counting the 8 planets, and a good-night ending. Any chapter can be replayed from the chapter menu.
+Eleven short narrated chapters (about 6–8 minutes). Hala and Zizo fly from her bedroom past the Sun and all 8 planets and come back home. Along the way there are simple choices (sunglasses or close your eyes?), things to tap (launch the rocket, roll Uranus, blow Neptune's winds), counting the 8 planets, and a good-night ending. Any chapter can be replayed from the chapter menu.
 
 ### Rewards (gentle and finite)
 - 37 stars, each earned once (visits, activities, games, story chapters), and 6 badges.
@@ -53,8 +53,8 @@ Eleven short narrated chapters (about 6–8 minutes). Hala and Nori fly from her
 - A one-time celebration after discovering all 8 planets.
 - No streaks, timers, rankings or loss of progress.
 
-### Nori (نوري), the robot guide
-An original SVG character whose mouth moves while it talks. Captions (subtitles) with Nori's face show every spoken line, so the app still works with sound off or when there is no Arabic voice.
+### Two voices: the storyteller (الحكّاءة) and Zizo (زيزو)
+All narration is **prerecorded Egyptian Arabic**, so every device hears the same voices: a warm storyteller explains, and Zizo, a funny robot sidekick (original SVG character), reacts, jokes and celebrates. He bounces and his mouth moves only while he is the one talking. Captions show every line and who says it, so the app still works with sound off or when there is no Arabic voice.
 
 ### حلا — the captain of her own adventure (personalisation)
 In **Parent settings → 👩‍🚀 Astronaut & photo**, a parent can:
@@ -104,7 +104,7 @@ Press and **hold the small ⚙︎ on the home screen for 3 seconds**. A quick ta
 |---|---|
 | UI | **React 19 + TypeScript**, **Vite 8**, **Tailwind CSS 4** |
 | Graphics | Procedural **SVG + CSS animation**, all self-drawn (no image assets, no copyrighted characters) |
-| Speech | **Web Speech API** with ranked Arabic voice selection, plus support for recorded audio files and a captions fallback |
+| Speech | **Prerecorded MP3 clips** (generated at development time with Google Gemini TTS: storyteller *Sulafat*, Zizo *Puck* + a light robot effect), one queue with cancellation, captions fallback. No browser speech synthesis. See [docs/AUDIO.md](docs/AUDIO.md) |
 | Sound | **Web Audio API**: synthesized effects and a soft ambient pad (no audio files) |
 | Font | Baloo Bhaijaan 2 (OFL), bundled locally via `@fontsource` |
 | Storage | `localStorage` only (settings + progress) |
@@ -131,7 +131,8 @@ npm run dev            # http://localhost:5173/hala-space-adventure/
 | `npm test` | Unit and component tests (Vitest) |
 | `npm run test:e2e` | Playwright end-to-end tests (needs a prior `npm run build`) |
 | `npm run test:all` | Everything |
-| `npm run list-lines` | Print every narration line id and its text (for recording) |
+| `npm run list-lines` | Print every narration line id and its text |
+| `npm run audio:generate` | Record new or changed narration lines (needs a Gemini key; see docs/AUDIO.md) |
 | `npm run icons` | Re-render the PNG app icons from `public/icon.svg` |
 
 The site is built for the GitHub Pages path `/hala-space-adventure/`. To host it at a domain root, build with `BASE_PATH=/ npm run build`.
@@ -155,7 +156,7 @@ src/
     script.ts       narration: home, planets (intro, facts, activities), games, map
     story.ts        the interactive story chapters
     ui.ts           short on-screen labels
-    recordings.ts   list of line ids that have recorded audio
+    clips.ts        which clip each line plays, speaker (storyteller / Zizo) and emotion
     lines.ts        id → text lookup, {name} filling
   data/planets.ts   real scientific data (sizes, order, distances, orbits)
   audio/
@@ -163,7 +164,7 @@ src/
     voices.ts       best Arabic voice picker
     sfx.ts          Web Audio sound effects + ambient music
   state/            settings, progress, stars/badges (localStorage)
-  components/       PlanetArt (procedural SVG planets), Nori, HalaAvatar, TopBar, Caption, ParentGate, SettingsPanel…
+  components/       PlanetArt (procedural SVG planets), Zizo, HalaAvatar, TopBar, Caption, ParentGate, SettingsPanel…
     character/      ChildAvatar (face), AstronautCharacter, SpaceshipPilot, AvatarReaction, MissionBadge,
                     PhotoCropEditor, PersonalizePanel, FriendlyAlien
   profile/          child look: profile.ts (central store), imageStore.ts (IndexedDB), crop.ts,
@@ -183,15 +184,15 @@ All narration is in **`src/content/script.ts`** and **`src/content/story.ts`**. 
 - Lines address the child with feminine forms (بصي، شاطرة، دوسي…).
 - `npm test` checks that every line resolves, that placeholders are valid, and that the name is never spelled هالة.
 
-## Replacing synthesized narration with recorded audio
+## Narration audio
 
-Browser Arabic voices vary. iPad usually has a Gulf/MSA voice ("Majed"/"Maged"); Edge offers Egyptian neural voices. For a natural Egyptian voice (e.g. a parent's):
+Every spoken line is a prerecorded clip in `public/audio/ar-EG/<speaker>/<category>/<id>.mp3`, listed in `src/audio/manifest.json`. To change what is said:
 
-1. Run `npm run list-lines` to get every line id and its text.
-2. Record each line and save it as `public/audio/narration/<line-id>.mp3`, e.g. `public/audio/narration/planets.earth.intro.mp3`.
-3. Add the ids to `RECORDED_LINES` in `src/content/recordings.ts`.
+1. Edit the text in `src/content/script.ts` or `src/content/story.ts`.
+2. Run `npm run audio:generate`. Only changed lines are re-recorded, with the approved voices.
+3. Listen, commit the new MP3s and the manifest.
 
-Recordings are used only for lines without dynamic placeholders. Lines that contain `{name}` use the recording only while the name is still حلا. If a file is missing or fails to play, the app falls back to speech, and then to captions.
+The full workflow (voices, costs, redoing one phrase, adding a character) is in **[docs/AUDIO.md](docs/AUDIO.md)**. If a clip is missing, the app shows its caption instead and logs the clip id. It never falls back to a robotic voice.
 
 ## Adding a game or a story chapter
 
@@ -215,8 +216,8 @@ Recordings are used only for lines without dynamic placeholders. Lines that cont
 
 ## Known limitations
 
-- **Voice quality depends on the device.** Speech synthesis rarely speaks Egyptian dialect; iPad typically reads the Egyptian text with an MSA/Gulf voice. Recorded narration (above) is the real fix.
-- If a device has **no Arabic voice**, the app shows captions and stays silent rather than mispronouncing Arabic with an English voice. On iPad: Settings → Accessibility → Spoken Content → Voices → Arabic.
+- **The recordings say «حلا».** With a different child's name, captions show that name but the voice still says حلا.
+- On iPad/iPhone the app volume slider can't change the recordings' loudness (Safari ignores it); use the device volume buttons. Mute and narration on/off work everywhere.
 - The scripts use feminine address forms. A different child's name is supported, but masculine forms are not (yet).
 - Fullscreen: iPhone Safari has no Fullscreen API. Use "Add to Home Screen" instead.
 - Offline support kicks in after the first full online visit.

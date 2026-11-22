@@ -85,7 +85,8 @@ test('find the planet: correct answer is praised', async ({ page }) => {
   await start(page, '#/game/find')
   const target = page.locator('[data-target=yes]')
   await press(page, page.locator('[data-target=no]').first())
-  await expect(page.getByTestId('caption')).toContainText('يلا ندور تاني')
+  // «ده/دي <planet>.» then «يلا ندور تاني على …!»
+  await expect(page.getByTestId('caption')).toContainText(/^(ده|دي) |يلا ندور تاني/)
   await press(page, target)
   await expect(page.getByTestId('next-round')).toBeVisible()
 })
