@@ -254,11 +254,41 @@ test('parent sound check reports the audio state and gives advice', async ({ pag
   await start(page)
   const gate = page.getByTestId('parent-gate')
   await gate.dispatchEvent('pointerdown', { pointerId: 1 })
-  await page.waitForTimeout(3300)
+  await page.waitForTimeout(2300)
   await gate.dispatchEvent('pointerup', { pointerId: 1 })
   await page.getByTestId('sound-check-run').click()
   await expect(page.getByTestId('sound-report')).toContainText('Sound effects: running')
   await expect(page.getByTestId('sound-report')).toContainText('recorded clips:')
   await expect(page.getByTestId('sound-tips')).toContainText('volume')
   expect(errors).toEqual([])
+})
+
+test('parent gate on a touch screen: a quick tap shows the hint; a wobbly 2-second hold opens settings', async ({ page }) => {
+  await start(page)
+  const gate = page.getByTestId('parent-gate')
+  await expect(gate).toContainText('للكبار')
+  const box = (await gate.boundingBox())!
+  const at = (dx: number, dy: number) => ({
+    pointerId: 7,
+    pointerType: 'touch',
+    isPrimary: true,
+    clientX: box.x + box.width / 2 + dx,
+    clientY: box.y + box.height / 2 + dy,
+  })
+  // a child's quick tap: only a written note for grown-ups
+  await gate.dispatchEvent('pointerdown', at(0, 0))
+  await page.waitForTimeout(150)
+  await gate.dispatchEvent('pointerup', at(0, 0))
+  await expect(page.getByTestId('parent-gate-hint')).toHaveText('للكبار: اضغط مطوّلاً ثانيتين')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+
+  // a real finger wobbles a little while holding — that must not cancel it
+  await gate.dispatchEvent('pointerdown', at(0, 0))
+  for (const [dx, dy] of [[4, -3], [-9, 6], [12, 10], [-6, -14], [3, 2]]) {
+    await page.waitForTimeout(350)
+    await gate.dispatchEvent('pointermove', at(dx, dy))
+  }
+  await expect(page.getByRole('dialog')).toBeVisible({ timeout: 1500 })
+  await gate.dispatchEvent('pointerup', at(3, 2)).catch(() => {})
+  await expect(page.getByTestId('parent-gate-hint')).toHaveCount(0)
 })

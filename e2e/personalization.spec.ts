@@ -28,7 +28,7 @@ async function openAstronautPanel(page: Page) {
   }
   const gate = page.getByTestId('parent-gate')
   await gate.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', isPrimary: true })
-  await page.waitForTimeout(3300)
+  await page.waitForTimeout(2300)
   await gate.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', isPrimary: true })
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.getByTestId('tab-astronaut').click()

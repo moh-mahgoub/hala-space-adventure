@@ -136,18 +136,19 @@ describe('Find the planet game', () => {
 })
 
 describe('parent settings', () => {
-  it('opens only after a 3-second hold, and saves the name', () => {
+  it('opens only after a 2-second hold, and saves the name', () => {
     vi.useFakeTimers()
     render(<HomeScreen />)
     const gate = screen.getByTestId('parent-gate')
+    expect(gate).toHaveTextContent('للكبار')
     fireEvent.pointerDown(gate)
     act(() => void vi.advanceTimersByTime(1000))
-    fireEvent.pointerUp(gate) // a quick tap does nothing
-    act(() => void vi.advanceTimersByTime(3000))
+    fireEvent.pointerUp(gate) // a quick tap opens nothing…
+    act(() => void vi.advanceTimersByTime(2000))
     expect(screen.queryByRole('dialog')).toBeNull()
 
     fireEvent.pointerDown(gate)
-    act(() => void vi.advanceTimersByTime(3100))
+    act(() => void vi.advanceTimersByTime(2100))
     const dialog = screen.getByRole('dialog')
     const input = within(dialog).getByLabelText(/Child's name/)
     expect(input).toHaveValue('حلا')
@@ -157,6 +158,47 @@ describe('parent settings', () => {
     fireEvent.click(within(dialog).getByRole('switch', { name: /Ambient music/ }))
     expect(settingsStore.get().music).toBe(true)
     vi.useRealTimers()
+  })
+
+  it('a quick tap shows a written hint for grown-ups (and nothing is spoken)', () => {
+    vi.useFakeTimers()
+    const say = vi.spyOn(narrator, 'say')
+    render(<HomeScreen />)
+    say.mockClear()
+    const gate = screen.getByTestId('parent-gate')
+    fireEvent.pointerDown(gate)
+    fireEvent.pointerUp(gate)
+    expect(screen.getByTestId('parent-gate-hint')).toHaveTextContent('للكبار: اضغط مطوّلاً ثانيتين')
+    expect(say).not.toHaveBeenCalled()
+    act(() => void vi.advanceTimersByTime(4000))
+    expect(screen.queryByTestId('parent-gate-hint')).toBeNull()
+    say.mockRestore()
+    vi.useRealTimers()
+  })
+
+  it('a little finger wobble does not cancel the hold; moving away does', () => {
+    vi.useFakeTimers()
+    render(<HomeScreen />)
+    const gate = screen.getByTestId('parent-gate')
+    fireEvent.pointerDown(gate, { clientX: 100, clientY: 100 })
+    fireEvent.pointerMove(gate, { clientX: 112, clientY: 92 })
+    fireEvent.pointerMove(gate, { clientX: 90, clientY: 108 })
+    act(() => void vi.advanceTimersByTime(2100))
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'إغلاق (Close)' }))
+
+    fireEvent.pointerDown(gate, { clientX: 100, clientY: 100 })
+    fireEvent.pointerMove(gate, { clientX: 100, clientY: 160 })
+    act(() => void vi.advanceTimersByTime(2100))
+    expect(screen.queryByRole('dialog')).toBeNull()
+    vi.useRealTimers()
+  })
+
+  it('opts out of the iPad gestures that used to steal the long press', () => {
+    render(<HomeScreen />)
+    const gate = screen.getByTestId('parent-gate')
+    expect(gate.style.touchAction).toBe('none')
+    expect(gate.style.getPropertyValue('-webkit-touch-callout') || (gate.style as unknown as Record<string, string>).WebkitTouchCallout).toBe('none')
   })
 })
 

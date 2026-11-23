@@ -89,7 +89,7 @@ Where her character appears: the welcome screen (waving), home (floating), the s
 - In private browsing, where IndexedDB may be blocked, the photo works until the tab closes and the panel says so.
 
 ### Parent settings (hidden)
-Press and **hold the small ⚙︎ on the home screen for 3 seconds**. A quick tap does nothing.
+Press and **hold the ⚙︎ «للكبار» button on the home screen for 2 seconds** (a yellow ring fills up while you hold). A quick tap opens nothing; it only shows a short written reminder for grown-ups.
 - Child's name (default **حلا**; used in every line and title)
 - Narration, captions, sound effects, ambient music, volume, speech speed (with a test button)
 - Motion: follow the device / reduce / full
