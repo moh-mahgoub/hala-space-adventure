@@ -1,10 +1,28 @@
 name: Test & deploy to GitHub Pages
 
+# Release gate (audit finding A002-01):
+#   build ──► e2e ──► deploy
+# The site is built ONCE. The e2e job tests that exact Pages artifact (it
+# downloads it; it never rebuilds), and deploy publishes the same artifact only
+# after BOTH unit tests (in build) and e2e have passed. If e2e fails or is
+# cancelled, deploy does not run.
+#
+# Pushes to main deploy. Pull requests and manual runs on other branches run
+# the same build + e2e but never deploy; on those, the `release-gate-rehearsal`
+# job stands in for deploy (same `needs`), so the gate can be demonstrated
+# without touching the live site. A manual run on a non-main branch can also
+# force an e2e failure (input `rehearse_e2e_failure`) to show the gate blocking.
+
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      rehearse_e2e_failure:
+        description: 'Non-main branches only: make the e2e job fail on purpose, to show it blocks release'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -18,6 +36,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      site-sha256: ${{ steps.digest.outputs.sha256 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,6 +49,12 @@ jobs:
         run: npm test
       - name: Build (base path /hala-space-adventure/)
         run: npm run build
+      - name: Fingerprint the built site
+        id: digest
+        run: |
+          sum=$(cd dist && find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          echo "sha256=$sum" >> "$GITHUB_OUTPUT"
+          echo "Built site fingerprint: $sum"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -44,21 +70,49 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run build
-      - name: End-to-end tests (iPad, iPhone, desktop viewports)
+      - name: Download the exact site that will be published
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/pages
+      - name: Unpack it into dist/ (no rebuild)
+        run: |
+          rm -rf dist && mkdir dist
+          tar -xf "${{ runner.temp }}/pages/artifact.tar" -C dist
+      - name: Check it is the artifact the build job produced
+        run: |
+          sum=$(cd dist && find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          echo "Tested site fingerprint: $sum"
+          test "$sum" = "${{ needs.build.outputs.site-sha256 }}"
+      - name: Rehearsal only — fail on purpose to show the gate blocks release
+        if: github.event_name == 'workflow_dispatch' && inputs.rehearse_e2e_failure && github.ref != 'refs/heads/main'
+        run: |
+          echo "Deliberate e2e failure requested (rehearsal on a non-main branch)."
+          exit 1
+      - name: End-to-end tests (iPad, iPhone, desktop viewports) against that artifact
         run: npx playwright test --trace off
         env:
           CI: '1'
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, e2e]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Publishing the tested artifact
+        run: echo "Deploying site fingerprint ${{ needs.build.outputs.site-sha256 }} (tested by e2e)"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Stand-in for deploy on non-main runs: same dependencies, publishes nothing.
+  release-gate-rehearsal:
+    if: github.ref != 'refs/heads/main'
+    needs: [build, e2e]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Release gate passed — on main, deploy would now publish site fingerprint ${{ needs.build.outputs.site-sha256 }} (the one e2e tested)."
