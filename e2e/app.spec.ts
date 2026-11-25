@@ -292,3 +292,57 @@ test('parent gate on a touch screen: a quick tap shows the hint; a wobbly 2-seco
   await gate.dispatchEvent('pointerup', at(3, 2)).catch(() => {})
   await expect(page.getByTestId('parent-gate-hint')).toHaveCount(0)
 })
+
+test('service worker answers audio Range requests correctly, online and offline (A002-02)', async ({ page, context, browserName }, info) => {
+  test.skip(info.project.name !== 'desktop' || browserName !== 'chromium', 'service worker check on desktop Chromium')
+  const clip = 'audio/ar-EG/narrator/planets/planets.saturn.intro.mp3'
+  await page.goto('./')
+  await page.evaluate(async () => void (await navigator.serviceWorker.ready))
+  await page.reload() // the worker now controls the page
+  await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true)
+
+  // the real recording, straight from the server, for comparison
+  const whole = await (await page.request.get(clip)).body()
+  const N = whole.length
+  expect(N).toBeGreaterThan(1000)
+
+  const ask = (range: string | null) =>
+    page.evaluate(
+      async ({ url, range }) => {
+        const r = await fetch(url, range ? { headers: { Range: range } } : {})
+        const b = new Uint8Array(await r.arrayBuffer())
+        return { status: r.status, contentRange: r.headers.get('Content-Range'), length: b.length, first: Array.from(b.slice(0, 4)), last: Array.from(b.slice(-4)) }
+      },
+      { url: clip, range },
+    )
+  const edges = (start: number, end: number) => ({ first: [...whole.subarray(start, Math.min(start + 4, end + 1))], last: [...whole.subarray(Math.max(start, end - 3), end + 1)] })
+
+  const check = async () => {
+    expect(await ask('bytes=0-99')).toEqual({ status: 206, contentRange: `bytes 0-99/${N}`, length: 100, ...edges(0, 99) })
+    expect(await ask('bytes=-500')).toEqual({ status: 206, contentRange: `bytes ${N - 500}-${N - 1}/${N}`, length: 500, ...edges(N - 500, N - 1) })
+    expect(await ask(`bytes=-${N * 2}`)).toMatchObject({ status: 206, contentRange: `bytes 0-${N - 1}/${N}`, length: N })
+    expect(await ask(`bytes=${N - 10}-`)).toEqual({ status: 206, contentRange: `bytes ${N - 10}-${N - 1}/${N}`, length: 10, ...edges(N - 10, N - 1) })
+    expect(await ask('bytes=500-100')).toMatchObject({ status: 416, contentRange: `bytes */${N}`, length: 0 })
+    expect(await ask(`bytes=${N}-`)).toMatchObject({ status: 416, contentRange: `bytes */${N}`, length: 0 })
+    expect(await ask('bytes=abc')).toMatchObject({ status: 200, contentRange: null, length: N })
+    expect(await ask('bytes=0-1,5-6')).toMatchObject({ status: 200, contentRange: null, length: N })
+  }
+  await check()
+
+  // offline: the same answers from the cached copy, and the clip still plays
+  await context.setOffline(true)
+  await check()
+  const played = await page.evaluate(async (url) => {
+    const a = new Audio(url)
+    a.muted = true
+    try {
+      await a.play()
+      await new Promise((r) => setTimeout(r, 400))
+      return a.currentTime > 0 && !a.error
+    } catch {
+      return false
+    }
+  }, clip)
+  expect(played).toBe(true)
+  await context.setOffline(false)
+})
