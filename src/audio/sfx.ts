@@ -209,6 +209,18 @@ export class SoundEngine {
     this.musicTimer = setTimeout(bell, 1500)
   }
 
+  /** The app went to the background: music off and the audio engine paused. */
+  sleep(): void {
+    this.stopMusic()
+    if (this.ctx && this.ctx.state === 'running') void this.ctx.suspend().catch(() => {})
+  }
+
+  /** Back in the app: resume the engine; music comes back only if it is switched on. */
+  wake(): void {
+    if (this.ctx && this.ctx.state !== 'running' && this.ctx.state !== 'closed') void this.ctx.resume().catch(() => {})
+    this.applyConfig()
+  }
+
   private ducked = false
   /** Lower the music while narration plays (speech stays intelligible). */
   duck(on: boolean) {

@@ -55,6 +55,8 @@ export interface NarratorDeps {
   setTimeout?: (fn: () => void, ms: number) => unknown
   clearTimeout?: (t: unknown) => void
   warn?: (msg: string) => void
+  /** true while the app is in the background: nothing new may start speaking */
+  isAway?: () => boolean
 }
 
 interface QueueItem {
@@ -89,6 +91,7 @@ export class Narrator {
       setTimeout: (fn, ms) => globalThis.setTimeout(fn, ms),
       clearTimeout: (t) => globalThis.clearTimeout(t as number),
       warn: (m) => console.warn(m),
+      isAway: () => false,
       ...deps,
     }
   }
@@ -124,6 +127,8 @@ export class Narrator {
 
   say(line: Line | Line[], opts: { mode?: 'interrupt' | 'queue' } = {}): Promise<boolean> {
     const lines = Array.isArray(line) ? line : [line]
+    // the child has left the app: never start talking in the background
+    if (this.deps.isAway()) return Promise.resolve(false)
     if (opts.mode !== 'queue') this.stop()
     const name = this.deps.getConfig().childName
     const promises = lines.map(

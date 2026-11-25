@@ -115,3 +115,41 @@ test('secret mission: Neptune invites her to Pluto, she finds the heart and earn
   await page.evaluate(() => (location.hash = '#/map'))
   await expect(page.getByTestId('badge-pluto')).toHaveAttribute('data-earned', 'yes')
 })
+
+test('leaving the app stops the narration; coming back, the old lines do not resume', async ({ page }) => {
+  test.setTimeout(60_000)
+  const audio = await instrument(page)
+  await page.addInitScript(() => {
+    const w = window as unknown as { __plays: string[] }
+    w.__plays = []
+    const play = HTMLMediaElement.prototype.play
+    HTMLMediaElement.prototype.play = function () {
+      if (this.src && !this.src.startsWith('data:')) w.__plays.push(this.src.split('/').pop()!)
+      return play.call(this)
+    }
+  })
+  const setVisibility = (state: 'hidden' | 'visible') =>
+    page.evaluate((s) => {
+      Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => s })
+      document.dispatchEvent(new Event('visibilitychange'))
+    }, state)
+
+  await start(page)
+  await page.evaluate(() => (location.hash = '#/planet/saturn'))
+  await expect(page.getByTestId('caption')).toContainText('زحل')
+  await expect.poll(() => audio.some((a) => a.url.endsWith('/planets.saturn.intro.mp3'))).toBe(true)
+
+  await setVisibility('hidden') // e.g. she pressed the home button
+  await expect(page.getByTestId('caption')).toHaveCount(0)
+  const playsWhenLeft = await page.evaluate(() => (window as unknown as { __plays: string[] }).__plays.length)
+  await page.waitForTimeout(12_000) // the intro + Zizo's joke would have played by now
+  await setVisibility('visible')
+  await page.waitForTimeout(6_000)
+  // nothing more was played: no Zizo joke, no activity prompt
+  const plays = await page.evaluate(() => (window as unknown as { __plays: string[] }).__plays)
+  expect(plays.slice(playsWhenLeft)).toEqual([])
+  await expect(page.getByTestId('caption')).toHaveCount(0)
+  // and the screen's replay button still works
+  await page.getByRole('button', { name: 'اسمعي تاني' }).click()
+  await expect(page.getByTestId('caption')).toContainText('زحل')
+})

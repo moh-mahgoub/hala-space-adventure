@@ -24,6 +24,7 @@ export const narrator = new Narrator({
       return file ? `${import.meta.env.BASE_URL}${file}` : null
     },
   },
+  isAway: () => typeof document !== 'undefined' && document.visibilityState === 'hidden',
 })
 
 export const sound = new SoundEngine(() => {
@@ -36,6 +37,25 @@ narrator.subscribe(() => sound.duck(narrator.getState().speaking))
 
 // A new screen never inherits the previous screen's narration
 onRouteChange(() => narrator.stop())
+
+/**
+ * Leaving the app (home button, another app, another tab, locking the iPad):
+ * stop the narration AND forget what was queued, and silence the music.
+ * Coming back is quiet until she taps something — the screen's replay
+ * button repeats its line. (Without this, iPadOS paused the voice and the
+ * old lines carried on when she returned.)
+ */
+export function leaveApp() {
+  narrator.stop()
+  sound.sleep()
+}
+export function returnToApp() {
+  sound.wake()
+}
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => (document.visibilityState === 'hidden' ? leaveApp() : returnToApp()))
+  window.addEventListener('pagehide', leaveApp)
+}
 
 let wasAudible = true
 settingsStore.subscribe(() => {
