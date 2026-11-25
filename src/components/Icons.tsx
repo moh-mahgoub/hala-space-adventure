@@ -62,10 +62,10 @@ export const StarIcon = (p: P) => (
     />
   </svg>
 )
+/** A solid cog (square teeth + hole) — clearly "settings", not a sun with rays. */
 export const GearIcon = (p: P) => (
-  <svg {...base({ strokeWidth: 3.5, ...p })}>
-    <circle cx="24" cy="24" r="6" />
-    <path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.6 10.6l4.2 4.2M33.2 33.2l4.2 4.2M10.6 37.4l4.2-4.2M33.2 14.8l4.2-4.2" />
+  <svg {...base({ stroke: 'none', fill: 'currentColor', ...p })}>
+    <path fillRule="evenodd" d="M20.40 8.41 L20.82 2.74 L27.18 2.74 L27.60 8.41 A16 16 0 0 1 32.48 10.43 L36.79 6.72 L41.28 11.21 L37.57 15.52 A16 16 0 0 1 39.59 20.40 L45.26 20.82 L45.26 27.18 L39.59 27.60 A16 16 0 0 1 37.57 32.48 L41.28 36.79 L36.79 41.28 L32.48 37.57 A16 16 0 0 1 27.60 39.59 L27.18 45.26 L20.82 45.26 L20.40 39.59 A16 16 0 0 1 15.52 37.57 L11.21 41.28 L6.72 36.79 L10.43 32.48 A16 16 0 0 1 8.41 27.60 L2.74 27.18 L2.74 20.82 L8.41 20.40 A16 16 0 0 1 10.43 15.52 L6.72 11.21 L11.21 6.72 L15.52 10.43 A16 16 0 0 1 20.40 8.41 Z M30.5 24 A6.5 6.5 0 1 0 17.5 24 A6.5 6.5 0 1 0 30.5 24 Z" />
   </svg>
 )
 export const FullscreenIcon = (p: P) => (
