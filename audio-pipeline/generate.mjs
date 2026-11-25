@@ -19,7 +19,7 @@ import { estimate, PRICING } from './lib/cost.mjs'
 import { loadEnv } from './lib/env.mjs'
 import { plausibleDuration, splitTake } from './lib/split.mjs'
 import { PROVIDERS, batchDirectionFor, directionFor, suspiciousDuration, withRetries } from './audition.mjs'
-import { buildManifest, MANIFEST } from './build-manifest.mjs'
+import { audioDigest, buildManifest, MANIFEST } from './build-manifest.mjs'
 import { VOICES } from './voices.config.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -173,6 +173,7 @@ async function main() {
         }
         entry.duration = duration
         entry.take = (entry.take ?? 0) + 1
+        entry.audioSha = audioDigest(entry.file) // new recording → new address for the app
         made++
         console.log(`✓ ${l.id} (${duration}s)`)
       } catch (e) {

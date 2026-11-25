@@ -5,62 +5,35 @@
  * at it. A synthetic 1000-byte "clip" stands in for a recording (no real audio,
  * no Gemini calls).
  */
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import vm from 'node:vm'
+import { SCOPE, loadWorker as loadSW } from './swHarness'
 
-const SCOPE = 'https://hala.test/hala-space-adventure/'
 const CLIP = `${SCOPE}audio/ar-EG/narrator/planets/planets.saturn.intro.mp3`
-const SOURCE = readFileSync(resolve(__dirname, '../../public/sw.js'), 'utf8')
-
 const bytes = (n: number) => Uint8Array.from({ length: n }, (_, i) => i % 251)
 
-/** Load sw.js with a fake network serving `body` for the clip. */
+/** The worker, with a fake network serving `body` for the clip (unversioned address). */
 function loadWorker(body: Uint8Array, headers: Record<string, string> = {}) {
-  const store = new Map<string, Response>()
-  const network = { up: true, calls: 0, status: 200 }
-  const listeners: Record<string, (e: unknown) => void> = {}
-  const cache = {
-    match: async (k: string) => store.get(k)?.clone(),
-    put: async (k: string, r: Response) => void store.set(k, r),
-    addAll: async () => {},
-  }
-  const sandbox: Record<string, unknown> = {
-    self: {
-      registration: { scope: SCOPE },
-      location: { origin: 'https://hala.test' },
-      addEventListener: (t: string, fn: (e: unknown) => void) => (listeners[t] = fn),
-      skipWaiting: () => Promise.resolve(),
-      clients: { claim: () => Promise.resolve() },
+  const net = { status: 200 }
+  const w = loadSW((url) =>
+    url === CLIP ? new Response(body.slice(), { status: net.status, headers: { 'Content-Type': 'audio/mpeg', ...headers } }) : undefined,
+  )
+  const network = {
+    get up() {
+      return w.network.up
     },
-    caches: { open: async () => cache, keys: async () => [], delete: async () => true, match: async () => undefined },
-    fetch: async (url: string) => {
-      network.calls++
-      if (!network.up) throw new TypeError('offline')
-      if (url !== CLIP) return new Response('nope', { status: 404 })
-      return new Response(body.slice(), {
-        status: network.status,
-        headers: { 'Content-Type': 'audio/mpeg', ...headers },
-      })
+    set up(v: boolean) {
+      w.network.up = v
     },
-    Response,
-    Request,
-    Headers,
-    URL,
+    get calls() {
+      return w.network.calls.length
+    },
+    get status() {
+      return net.status
+    },
+    set status(v: number) {
+      net.status = v
+    },
   }
-  vm.runInNewContext(SOURCE, sandbox)
-
-  /** Fire a fetch event at the worker and return its response. */
-  async function get(reqHeaders: Record<string, string> = {}, url = CLIP): Promise<Response> {
-    let responded: Promise<Response> | undefined
-    listeners.fetch({
-      request: new Request(url, { headers: reqHeaders }),
-      respondWith: (p: Promise<Response>) => (responded = p),
-    })
-    if (!responded) throw new Error('the worker did not answer')
-    return responded
-  }
-  return { get, network, byteRange: sandbox.byteRange as (h: string | null, n: number) => unknown }
+  return { get: (h: Record<string, string> = {}) => w.get(CLIP, h), network }
 }
 
 const N = 1000

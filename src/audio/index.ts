@@ -8,8 +8,17 @@ import { enablePlaybackAudio } from './iosAudioSession'
 import manifest from './manifest.json'
 import { onRouteChange } from '../router'
 
-/** Clips that have actually been recorded (the generator records their duration). */
-const recorded = new Map((manifest as { id: string; file: string; duration?: number }[]).filter((e) => e.duration).map((e) => [e.id, e.file]))
+type Entry = { id: string; file: string; duration?: number; audioSha?: string }
+/**
+ * Clips that have actually been recorded (the generator records their duration),
+ * addressed by content: `…/clip.mp3?v=<audioSha>`. A re-recorded clip gets a new
+ * address, so neither the offline cache nor the browser can keep the old take
+ * (audit finding A002-03).
+ */
+export function clipAddress(e: Entry, base = import.meta.env.BASE_URL): string {
+  return e.audioSha ? `${base}${e.file}?v=${e.audioSha}` : `${base}${e.file}`
+}
+const recorded = new Map((manifest as Entry[]).filter((e) => e.duration).map((e) => [e.id, clipAddress(e)]))
 export const recordedClipCount = () => recorded.size
 export const totalClipCount = () => (manifest as unknown[]).length
 
@@ -20,8 +29,7 @@ export const narrator = new Narrator({
   },
   clips: {
     url: (id) => {
-      const file = recorded.get(id)
-      return file ? `${import.meta.env.BASE_URL}${file}` : null
+      return recorded.get(id) ?? null
     },
   },
 })

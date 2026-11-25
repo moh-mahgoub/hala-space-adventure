@@ -1,7 +1,8 @@
 /* Offline support for رحلة حلا في الفضاء.
  * Strategy: precache the app shell on install; then cache-first for same-origin
  * GET requests (hashed assets never change), network-first for navigations.
- * Bump VERSION to invalidate old caches. */
+ * Bump VERSION to invalidate old caches (narration clips don't need it: they
+ * are content-addressed, see serveAudio). */
 const VERSION = 'v2'
 const CACHE = `hala-space-${VERSION}`
 const SCOPE = self.registration.scope
@@ -121,19 +122,73 @@ function ifRangeMatches(value, cached) {
   return !!lastModified && lastModified === v
 }
 
+/** First 12 hex digits of the SHA-256 of a response body (the app's ?v= fingerprint). */
+async function fingerprint(res) {
+  const digest = await crypto.subtle.digest('SHA-256', await res.clone().arrayBuffer())
+  return Array.from(new Uint8Array(digest).slice(0, 6), (b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+/** Other cached copies of the same clip (same path, another ?v= or none — older takes). */
+async function otherTakes(cache, url) {
+  const keys = await cache.keys()
+  return keys.filter((k) => {
+    const u = new URL(k.url)
+    return u.pathname === url.pathname && u.href !== url.href
+  })
+}
+
+/**
+ * Narration clips are content-addressed (audit finding A002-03): the app asks for
+ * …/clip.mp3?v=<fingerprint of the recording>, so a re-recorded clip has a new
+ * address and is never answered from an old take.
+ *   • cached under that exact address → served from the cache (offline too)
+ *   • an older copy of the clip whose bytes match the fingerprint → re-filed under
+ *     the new address, no download (an update keeps working offline)
+ *   • otherwise → downloaded once; kept only if its bytes match the fingerprint;
+ *     older takes of that clip are then deleted
+ *   • offline and the new take was never downloaded → the older take is played
+ *     (better than silence) and the new one is fetched next time online
+ */
+async function obtainClip(cache, key) {
+  const url = new URL(key)
+  const version = url.searchParams.get('v')
+  const versioned = !!version && /^[0-9a-f]{12}$/.test(version)
+  const older = await otherTakes(cache, url)
+  if (versioned) {
+    for (const k of older) {
+      const copy = await cache.match(k)
+      if (copy && (await fingerprint(copy)) === version) {
+        await cache.put(key, copy.clone())
+        await Promise.all(older.map((o) => cache.delete(o)))
+        return copy
+      }
+    }
+  }
+  let res
+  try {
+    res = await fetch(key) // no Range header: the complete file
+  } catch {
+    for (const k of older) {
+      const copy = await cache.match(k)
+      if (copy) return copy
+    }
+    return Response.error()
+  }
+  if (res.status !== 200) return res
+  if (!versioned || (await fingerprint(res)) === version) {
+    await cache.put(key, res.clone())
+    await Promise.all(older.map((o) => cache.delete(o)))
+  }
+  return res
+}
+
 async function serveAudio(req) {
   const key = req.url.split('#')[0]
   const cache = await caches.open(CACHE)
   let full = await cache.match(key)
   if (!full) {
-    try {
-      const res = await fetch(key) // no Range header: the complete file
-      if (res.status !== 200) return res
-      await cache.put(key, res.clone())
-      full = res
-    } catch {
-      return Response.error()
-    }
+    full = await obtainClip(cache, key)
+    if (full.type === 'error' || full.status !== 200) return full
   }
   const header = req.headers.get('range')
   if (header == null || !ifRangeMatches(req.headers.get('if-range'), full)) return full

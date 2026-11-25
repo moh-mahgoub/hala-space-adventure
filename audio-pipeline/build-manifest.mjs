@@ -5,12 +5,25 @@
 //   npm run audio:manifest
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 import { allClips } from '../src/content/clips.ts'
 import { audioFile, classify } from '../src/audio/manifest.ts'
 import { estimate } from './lib/cost.mjs'
 import { VOICES } from './voices.config.mjs'
 
 export const MANIFEST = 'src/audio/manifest.json'
+
+/**
+ * Fingerprint of the recording itself (first 12 hex of SHA-256 of the MP3 bytes).
+ * The app puts it in each clip's address (…/clip.mp3?v=<audioSha>), so a
+ * re-recorded clip gets a new address and the offline cache can't keep the old
+ * take (audit finding A002-03). Not to be confused with `hash`, which only
+ * describes the TEXT and voice settings and stays the same for a re-take.
+ */
+export function audioDigest(file) {
+  const p = path.join('public', file)
+  return existsSync(p) ? createHash('sha256').update(readFileSync(p)).digest('hex').slice(0, 12) : undefined
+}
 
 export function clipHash(c) {
   const v = VOICES[c.speaker]
@@ -27,6 +40,10 @@ export function buildManifest() {
     const prev = previous[c.id]
     if (prev?.take) entry.take = prev.take // how many times this clip has been recorded
     if (prev && prev.hash === hash && prev.duration) entry.duration = prev.duration
+    if (entry.duration) {
+      const sha = audioDigest(entry.file)
+      if (sha) entry.audioSha = sha
+    }
     return entry
   })
 }

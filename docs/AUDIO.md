@@ -35,6 +35,7 @@ Zizo is deliberately occasional: 31 of the 357 clips. He says his planet joke on
 - **Music ducking:** ambient music drops while anyone speaks.
 - **Prefetch:** a planet screen hints its facts and ending clips to the browser.
 - **Offline:** the service worker caches each clip **whole** the first time it plays and answers the `<audio>` element's Range requests by slicing it, which Safari needs. Clips already heard replay offline; nothing is bulk-downloaded on first visit.
+- **Re-recorded clips are never served stale:** each clip is addressed by a fingerprint of its MP3 (`…/clip.mp3?v=<audioSha>`, the first 12 hex digits of its SHA-256, stored in `src/audio/manifest.json`). A new take means a new address, so the offline cache and the browser fetch it fresh; the service worker then deletes older takes of that clip. Unchanged clips are re-filed from an older cache without downloading. `npm run audio:generate` and `npm run audio:manifest` keep `audioSha` up to date; if an MP3 is replaced by hand without running `npm run audio:manifest`, a unit test fails and the release is blocked.
 
 ## 4. Catalogue and manifest
 

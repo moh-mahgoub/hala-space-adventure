@@ -18,7 +18,9 @@ async function instrument(page: Page) {
   })
   const audio: { url: string; status: number }[] = []
   page.on('response', (r) => {
-    if (r.url().endsWith('.mp3')) audio.push({ url: r.url(), status: r.status() })
+    // clips are content-addressed (…/clip.mp3?v=<fingerprint>); compare by path
+    const u = new URL(r.url())
+    if (u.pathname.endsWith('.mp3')) audio.push({ url: u.origin + u.pathname, status: r.status() })
   })
   return audio
 }
@@ -114,4 +116,54 @@ test('secret mission: Neptune invites her to Pluto, she finds the heart and earn
   await page.getByRole('button', { name: /هيييه/ }).click()
   await page.evaluate(() => (location.hash = '#/map'))
   await expect(page.getByTestId('badge-pluto')).toHaveAttribute('data-earned', 'yes')
+})
+
+test('an old cached take is replaced by the re-recording at the same path, online and offline (A002-03)', async ({ page, context, browserName }, info) => {
+  test.skip(info.project.name !== 'desktop' || browserName !== 'chromium', 'service worker check on desktop Chromium')
+  test.setTimeout(60_000)
+  const PATH = 'audio/ar-EG/narrator/planets/planets.saturn.intro.mp3'
+  const real = await (await page.request.get(PATH)).body()
+
+  await page.goto('./')
+  await page.evaluate(async () => void (await navigator.serviceWorker.ready))
+  await page.reload()
+  await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true)
+
+  // seed an "old installation": the previous release cached a different take at the plain path
+  const plain = new URL(PATH, page.url()).href
+  await page.evaluate(async (url) => {
+    const c = await caches.open('hala-space-v2')
+    await c.put(url, new Response(new TextEncoder().encode('OLD-TAKE-'.repeat(50)), { headers: { 'Content-Type': 'audio/mpeg' } }))
+  }, plain)
+
+  // the app asks for the clip by its fingerprinted address
+  const asked: string[] = []
+  page.on('request', (r) => r.url().includes('planets.saturn.intro.mp3') && asked.push(r.url()))
+  await page.getByRole('button', { name: 'يلا نبدأ!' }).click()
+  await page.evaluate(() => (location.hash = '#/planet/saturn'))
+  await expect.poll(() => asked.length, { timeout: 10_000 }).toBeGreaterThan(0)
+  const address = asked[0]
+  expect(address).toMatch(/planets\.saturn\.intro\.mp3\?v=[0-9a-f]{12}$/)
+
+  const read = (url: string) =>
+    page.evaluate(async (u) => {
+      const r = await fetch(u)
+      return { status: r.status, bytes: Array.from(new Uint8Array(await r.arrayBuffer())) }
+    }, url)
+  const cachedPaths = () =>
+    page.evaluate(async (path) => (await (await caches.open('hala-space-v2')).keys()).map((k) => k.url).filter((u) => u.includes(path)), PATH)
+
+  const online = await read(address)
+  expect(online.status).toBe(200)
+  expect(online.bytes).toEqual([...real]) // the real recording, not the seeded old take
+  await expect.poll(cachedPaths).toEqual([address]) // the old take was removed
+
+  await context.setOffline(true)
+  expect((await read(address)).bytes).toEqual([...real])
+  // narration still replays offline, and a new screen still cancels it
+  await page.getByRole('button', { name: 'اسمعي تاني' }).click()
+  await expect(page.getByTestId('caption')).toContainText('زحل')
+  await page.evaluate(() => (location.hash = '#/games'))
+  await expect(page.getByTestId('caption')).not.toContainText('زحل')
+  await context.setOffline(false)
 })
