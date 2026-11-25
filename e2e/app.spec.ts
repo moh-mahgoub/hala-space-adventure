@@ -164,6 +164,8 @@ test('story: start, continue, make a choice', async ({ page }) => {
   await expect(page.getByTestId('story-chapter-start')).toBeVisible()
   for (let i = 0; i < 3; i++) await press(page, page.getByTestId('story-next'))
   await press(page, page.getByTestId('story-target'))
+  // the chapter ends and waits for her: she presses the next-chapter button
+  await press(page, page.getByTestId('next-chapter'))
   await expect(page.getByTestId('story-chapter-sun')).toBeVisible({ timeout: 15_000 })
   // tap "continue" through the narrated lines until the choice appears
   for (let i = 0; i < 6 && !(await page.getByTestId('choices').isVisible()); i++) {
@@ -345,4 +347,27 @@ test('service worker answers audio Range requests correctly, online and offline 
   }, clip)
   expect(played).toBe(true)
   await context.setOffline(false)
+})
+
+test('story: at the end of a chapter it waits for her — no automatic move, no spoken prompt', async ({ page }) => {
+  test.setTimeout(60_000)
+  await start(page, '#/story')
+  await press(page, page.getByTestId('story-start'))
+  await expect(page.getByTestId('story-chapter-start')).toBeVisible()
+  for (let i = 0; i < 3; i++) await press(page, page.getByTestId('story-next'))
+  await press(page, page.getByTestId('story-target'))
+
+  const next = page.getByTestId('next-chapter')
+  await expect(next).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByTestId('next-chapter-pulse')).toBeAttached() // the silent visual cue
+  // let the chapter's last line finish, then note what (if anything) is being said
+  await expect(page.getByTestId('caption')).toHaveCount(0, { timeout: 15_000 })
+
+  await page.waitForTimeout(6_000) // the old code moved on after 1.8 s
+  await expect(page.getByTestId('story-chapter-start')).toBeVisible()
+  await expect(next).toBeVisible()
+  await expect(page.getByTestId('caption')).toHaveCount(0) // nothing was said while waiting
+
+  await press(page, next)
+  await expect(page.getByTestId('story-chapter-sun')).toBeVisible()
 })

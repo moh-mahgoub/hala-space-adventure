@@ -97,12 +97,9 @@ function StoryPlayer({ index }: { index: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, step])
 
-  // auto-continue to next chapter
-  useEffect(() => {
-    if (!chapterDone || theEnd) return
-    const t = window.setTimeout(() => navigate({ name: 'story', chapter: index + 1 }, { replace: true }), 1800)
-    return () => clearTimeout(t)
-  }, [chapterDone, theEnd, index])
+  // At the end of a chapter the story WAITS for her to press the next-chapter
+  // button (it used to move on by itself after 1.8 s). No spoken prompt: the
+  // chapter already ends on a spoken line, and the pulsing button is the cue.
 
   const replyThen = (sub: string) => {
     const my = ++token.current
@@ -301,9 +298,15 @@ function StoryPlayer({ index }: { index: number }) {
             <button
               type="button"
               onClick={() => navigate({ name: 'story', chapter: index + 1 }, { replace: true })}
-              className="btn-pop anim-pop rounded-full bg-gradient-to-b from-amber-300 to-orange-500 px-8 py-4 text-3xl font-extrabold text-night-900"
+              className="btn-pop anim-pop relative rounded-full bg-gradient-to-b from-amber-300 to-orange-500 px-8 py-4 text-3xl font-extrabold text-night-900"
               data-testid="next-chapter"
             >
+              {/* a gentle pulsing ring (the ring pulses, not the button, so it stays easy to hit) */}
+              <span
+                aria-hidden
+                data-testid="next-chapter-pulse"
+                className="anim-pulse-glow pointer-events-none absolute inset-[-8px] rounded-full border-4 border-yellow-200"
+              />
               {STORY[index + 1].title} ←
             </button>
           </div>
