@@ -132,3 +132,16 @@ describe('3. counting says the last number before the congratulations', () => {
     expect(ids.indexOf('common.numbers.7')).toBeLessThan(ids.findIndex((x) => x?.endsWith('.done')))
   })
 })
+
+describe('4. «خلصتي!» is a status label, not something that looks tappable', () => {
+  it('is not a button and ignores taps; «نلعب تاني» is the only button there', async () => {
+    vi.spyOn(narrator, 'say').mockResolvedValue(true)
+    await finishSun()
+    const label = screen.getByTestId('activity-done-label')
+    expect(label).toHaveTextContent('خلصتي!')
+    expect(label.closest('button')).toBeNull()
+    expect(label.className).toContain('pointer-events-none')
+    expect(label.className).not.toMatch(/rounded-full bg-|px-4 py-2/) // no pill shape
+    expect(screen.getByRole('button', { name: /نلعب تاني/ })).toBeInTheDocument()
+  })
+})

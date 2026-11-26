@@ -178,8 +178,15 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
           {invite && <PlutoInvite tour={tour} onClose={() => setInvite(false)} />}
           {done && (
             <div className="anim-pop absolute top-3 right-3 flex items-center gap-2">
-              <span className="flex items-center gap-1 rounded-full bg-emerald-400 px-4 py-2 text-xl font-extrabold text-night-900 shadow-lg">
-                <CheckIcon /> {ui.activityDone}
+              {/* a status label, deliberately NOT shaped like a button: plain text with a small ✓ */}
+              <span
+                data-testid="activity-done-label"
+                className="pointer-events-none flex items-center gap-1.5 text-xl font-extrabold text-emerald-300 text-shadow select-none"
+              >
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-400 text-base text-night-900" aria-hidden>
+                  <CheckIcon />
+                </span>
+                {ui.activityDone}
               </span>
               <button
                 type="button"
