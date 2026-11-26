@@ -17,7 +17,7 @@ import type { BodyId } from '../data/planets'
 export type StoryStep =
   /** speaker defaults to the storyteller; 'zizo' = the robot says it in his own voice */
   | { type: 'say'; text: string; speaker?: 'zizo' }
-  | { type: 'tap'; text: string; done: string; effect?: 'launch' | 'wave' | 'spin' | 'wind' | 'roll' | 'glow' }
+  | { type: 'tap'; text: string; done: string; effect?: 'launch' | 'wave' | 'rover' | 'spin' | 'wind' | 'roll' | 'glow' }
   | {
       type: 'choice'
       text: string
@@ -135,7 +135,7 @@ export const STORY: StoryChapter[] = [
         type: 'tap',
         text: 'دوسي على المريخ، نسلم على العربية الروبوت!',
         done: 'العربية رفعت دراعها وقالت: أهلاً يا {name}! أنا بدرس صخور المريخ.',
-        effect: 'wave',
+        effect: 'rover', // the robot car appears on Mars and waves back
       },
     ],
   },

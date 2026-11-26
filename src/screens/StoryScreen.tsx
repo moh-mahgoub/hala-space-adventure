@@ -4,6 +4,7 @@ import { Celebration } from '../components/Celebration'
 import { HalaAvatar } from '../components/HalaAvatar'
 import { AstronautCharacter } from '../components/character/AstronautCharacter'
 import { LAUNCH_MS, SpaceshipPilot } from '../components/character/SpaceshipPilot'
+import { MarsRover } from '../components/MarsRover'
 import { PlayIcon } from '../components/Icons'
 import { Zizo } from '../components/Zizo'
 import { PlanetArt } from '../components/PlanetArt'
@@ -134,6 +135,11 @@ function StoryPlayer({ index }: { index: number }) {
     sfx(current.effect === 'wind' ? 'whoosh' : 'success')
     setEffect(current.effect ?? 'glow')
     replyThen('done')
+    // the Mars rover drives in, then waves with a little "beep-boop"
+    if (current.effect === 'rover') {
+      const my = token.current
+      window.setTimeout(() => my === token.current && sfx('beep'), ROVER_ARRIVES_MS)
+    }
   }
 
   const onChoice = (i: number) => {
@@ -205,6 +211,7 @@ function StoryPlayer({ index }: { index: number }) {
                   <PlanetArt id={body} spin rays={body === 'sun'} />
                 </div>
               )}
+              {effect === 'rover' && <StoryRover />}
               {body === 'earth' && (
                 <div className="absolute -bottom-2 left-[-14%] w-[22%]" aria-hidden>
                   <PlanetArt id="moon" />
@@ -226,7 +233,7 @@ function StoryPlayer({ index }: { index: number }) {
           <div className="anim-float absolute top-[14%] right-[4%] h-[46%]" aria-hidden>
             {/* she flies the ship — except at Saturn, where she floats outside by the rings */}
             <SpaceshipPilot pilot={chapter.id !== 'saturn'} />
-            {effect === 'wave' && chapter.id !== 'saturn' && (
+            {(effect === 'wave' || effect === 'rover') && chapter.id !== 'saturn' && (
               <div className="anim-pop absolute top-[30%] -left-[70%] w-[90%]" data-testid="story-astronaut-wave">
                 <AstronautCharacter size="100%" pose="wave" />
               </div>
@@ -258,7 +265,7 @@ function StoryPlayer({ index }: { index: number }) {
               pose={chapter.id === 'home' && (phase === 'reply' || step >= chapter.steps.length - 2) ? 'dance' : 'wave'}
             />
           )}
-          <Zizo size={chapter.backdrop === 'room' ? 86 : 70} wave={effect === 'wave'} mood={chapter.id === 'home' && step === chapter.steps.length - 1 ? 'sleepy' : 'happy'} />
+          <Zizo size={chapter.backdrop === 'room' ? 86 : 70} wave={effect === 'wave' || effect === 'rover'} mood={chapter.id === 'home' && step === chapter.steps.length - 1 ? 'sleepy' : 'happy'} />
         </div>
 
         {/* counting row */}
@@ -388,6 +395,32 @@ function StoryMenu() {
           ))}
         </ol>
       </div>
+    </div>
+  )
+}
+
+/** How long the rover takes to drive in before it waves. */
+const ROVER_ARRIVES_MS = 900
+
+/** The robot car on Mars: drives onto the surface, then waves back with a 👋 bubble. */
+function StoryRover() {
+  return (
+    <div
+      className="pointer-events-none absolute bottom-[-2%] left-[4%] w-[40%]"
+      style={{ animation: `rover-drive-in ${ROVER_ARRIVES_MS}ms ease-out both` }}
+      data-testid="story-rover"
+      aria-hidden
+    >
+      <div className="aspect-[120/92]">
+        <MarsRover driver={false} waving />
+      </div>
+      <span
+        className="anim-pop absolute -top-[40%] -right-[6%] rounded-full bg-white px-2 py-1 text-2xl shadow-lg"
+        style={{ animationDelay: `${ROVER_ARRIVES_MS}ms` }}
+        data-testid="story-rover-hello"
+      >
+        👋
+      </span>
     </div>
   )
 }

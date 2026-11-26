@@ -394,3 +394,18 @@ test('story: the rocket is still on the ground until the countdown «...انطل
   await expect.poll(rocketTop, { timeout: 5_000 }).toBeLessThan(0)
   await expect(page.getByTestId('next-chapter')).toBeVisible({ timeout: 5_000 })
 })
+
+test('story: on Mars the robot car drives in and waves back', async ({ page }) => {
+  await start(page, '#/story/5')
+  await expect(page.getByTestId('story-chapter-mars')).toBeVisible()
+  for (let i = 0; i < 6 && !(await page.getByTestId('story-target').isVisible()); i++) {
+    await press(page, page.getByTestId('story-next'))
+    await page.waitForTimeout(150)
+  }
+  await expect(page.getByTestId('story-rover')).toHaveCount(0)
+  await press(page, page.getByTestId('story-target'))
+  await expect(page.getByTestId('story-rover')).toBeVisible()
+  await expect(page.getByTestId('mars-rover')).toHaveAttribute('data-waving', 'yes')
+  await expect(page.getByTestId('story-rover-hello')).toBeVisible()
+  await expect(page.getByTestId('caption')).toContainText('العربية رفعت دراعها')
+})

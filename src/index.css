@@ -491,3 +491,24 @@ html[data-motion='reduce'] *::after {
 .zizo-talking {
   animation: zizo-talk-bounce 0.6s ease-in-out infinite;
 }
+
+/* the Mars rover waving hello (story) — its arm swings up and down */
+@keyframes rover-wave {
+  from {
+    transform: rotate(-20deg);
+  }
+  to {
+    transform: rotate(-65deg);
+  }
+}
+/* the rover drives in from the side */
+@keyframes rover-drive-in {
+  from {
+    transform: translateX(70%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

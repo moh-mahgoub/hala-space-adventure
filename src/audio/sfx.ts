@@ -4,7 +4,7 @@
  * Everything is soft: there are deliberately no "wrong answer" buzzers.
  */
 
-export type Sfx = 'tap' | 'pop' | 'success' | 'gentle' | 'star' | 'whoosh' | 'celebrate' | 'launch' | 'chime'
+export type Sfx = 'tap' | 'pop' | 'success' | 'gentle' | 'star' | 'whoosh' | 'celebrate' | 'launch' | 'chime' | 'beep'
 
 type Ctx = AudioContext
 
@@ -95,6 +95,11 @@ export class SoundEngine {
           break
         case 'whoosh':
           this.noise(t, 0.5, 400, 3000, 0.18)
+          break
+        case 'beep':
+          // a little robot "beep-boop" (the Mars rover saying hi)
+          this.tone(1318.5, t, 0.11, 'square', 0.06)
+          this.tone(880, t + 0.14, 0.16, 'square', 0.06)
           break
         case 'launch':
           this.noise(t, 1.4, 150, 2500, 0.25)

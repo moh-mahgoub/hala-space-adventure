@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { line, narrator, sfx } from '../audio'
-import { ChildFace } from '../components/character/ChildAvatar'
+import { MarsRover as Rover } from '../components/MarsRover'
 import { react } from '../profile/reactions'
 import { useTimeouts } from '../hooks'
 import { ProgressDots, type ActivityProps } from './common'
@@ -11,40 +11,6 @@ const TARGETS = [
   { x: 52, label: 'صخرة بطبقات', kind: 'layers' as const },
   { x: 80, label: 'البركان', kind: 'volcano' as const },
 ]
-
-function Rover({ scanning }: { scanning: boolean }) {
-  return (
-    <svg viewBox="0 -12 120 92" className="h-full w-full overflow-visible" aria-hidden>
-      {/* bubble cockpit with the driver */}
-      <circle cx="46" cy="8" r="17" fill="rgba(170,215,255,0.35)" stroke="#e8eeff" strokeWidth="3" />
-      <ChildFace cx={46} cy={8} r={13} />
-      {/* mast + camera */}
-      <rect x="78" y="4" width="6" height="30" rx="3" fill="#d9dde8" />
-      <rect x="70" y="0" width="22" height="12" rx="4" fill="#f4f6ff" />
-      <circle cx="76" cy="6" r="3" fill="#5ecbff" />
-      <circle cx="86" cy="6" r="3" fill="#5ecbff" />
-      {/* body */}
-      <rect x="18" y="30" width="80" height="22" rx="6" fill="#f2f2f5" />
-      <rect x="24" y="24" width="50" height="10" rx="3" fill="#3b4a8a" />
-      <rect x="28" y="26" width="10" height="6" fill="#5b6fd0" />
-      <rect x="42" y="26" width="10" height="6" fill="#5b6fd0" />
-      <rect x="56" y="26" width="10" height="6" fill="#5b6fd0" />
-      {/* arm */}
-      <g style={{ transformOrigin: '98px 40px', transform: scanning ? 'rotate(35deg)' : 'rotate(0deg)', transition: 'transform .4s' }}>
-        <rect x="96" y="38" width="20" height="5" rx="2" fill="#d9dde8" />
-        <circle cx="116" cy="40" r="4" fill="#ffd84a" />
-      </g>
-      {/* wheels */}
-      {[28, 58, 88].map((x) => (
-        <g key={x}>
-          <circle cx={x} cy={64} r={11} fill="#3b3b46" />
-          <circle cx={x} cy={64} r={4} fill="#9aa0b5" />
-        </g>
-      ))}
-      <rect x="22" y="50" width="72" height="6" rx="3" fill="#bfc4d6" />
-    </svg>
-  )
-}
 
 export function MarsActivity({ onDone }: ActivityProps) {
   const [roverX, setRoverX] = useState(8)
