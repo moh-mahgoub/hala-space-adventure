@@ -1,11 +1,14 @@
-import { useMemo, useRef, useState } from 'react'
-import { line, narrator, sfx } from '../audio'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { line, narrator, sfx, useNarrator } from '../audio'
 import { AstronautCharacter } from '../components/character/AstronautCharacter'
 import { react } from '../profile/reactions'
 import { surprises } from '../profile/surprises'
 import { PlanetArt } from '../components/PlanetArt'
 import { Stage, TapHint, type ActivityProps } from './common'
 import { useTimeouts } from '../hooks'
+
+/** How long the magnifier stays after the explanation has been said. */
+export const MAGNIFIER_LINGER_MS = 2500
 
 /** Stage 1: drag up/down to view the rings from above and below. Stage 2: tap the rings to zoom in. */
 export function SaturnActivity({ onDone }: ActivityProps) {
@@ -14,6 +17,14 @@ export function SaturnActivity({ onDone }: ActivityProps) {
   const [stage, setStage] = useState<'look' | 'tap' | 'zoom'>('look')
   const [upside, setUpside] = useState(false)
   const later = useTimeouts()
+  /** the ring magnifier is open (it closes once the explanation has been said) */
+  const [magnify, setMagnify] = useState(false)
+  const { speaking } = useNarrator()
+  useEffect(() => {
+    if (!magnify || speaking) return
+    const t = window.setTimeout(() => setMagnify(false), MAGNIFIER_LINGER_MS)
+    return () => window.clearTimeout(t)
+  }, [magnify, speaking])
   const drag = useRef<{ y: number; tilt: number } | null>(null)
   const box = useRef<HTMLDivElement>(null)
 
@@ -88,8 +99,16 @@ export function SaturnActivity({ onDone }: ActivityProps) {
             data-testid="saturn-rings"
             aria-label="دوسي على الحلقات"
             onClick={() => {
-              if (stage === 'zoom') return
+              if (stage === 'zoom') {
+                // look again: re-open the magnifier and hear what the rings are made of
+                if (magnify) return
+                setMagnify(true)
+                sfx('whoosh')
+                void narrator.say(line('planets.saturn.activity.done'))
+                return
+              }
               setStage('zoom')
+              setMagnify(true)
               sfx('whoosh')
               onDone()
               // rare surprise: she drifts upside down — no "up" in floating space
@@ -125,7 +144,7 @@ export function SaturnActivity({ onDone }: ActivityProps) {
           {seen.below ? '✓' : '○'} من تحت
         </span>
       </div>
-      {stage === 'zoom' && (
+      {stage === 'zoom' && magnify && (
         <div
           className="anim-zoom absolute top-[6%] left-[6%] aspect-square w-[44%] overflow-hidden rounded-full border-8 border-white/80 bg-night-950 shadow-2xl"
           data-testid="ring-zoom"

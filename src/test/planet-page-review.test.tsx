@@ -145,3 +145,54 @@ describe('4. «خلصتي!» is a status label, not something that looks tappabl
     expect(screen.getByRole('button', { name: /نلعب تاني/ })).toBeInTheDocument()
   })
 })
+
+describe('5. Saturn: the ring magnifier closes after the explanation, and opens again on a tap', async () => {
+  const { SaturnActivity, MAGNIFIER_LINGER_MS } = await import('../activities/SaturnActivity')
+  it('opens, closes once nothing is being said, re-opens (with the explanation) when the rings are tapped again', async () => {
+    vi.useFakeTimers()
+    const say = vi.spyOn(narrator, 'say').mockResolvedValue(true)
+    const onDone = vi.fn()
+    render(<SaturnActivity onDone={onDone} />)
+    // look from above and below, then the rings become tappable
+    for (const n of ['من فوق', 'من فوق', 'من تحت', 'من تحت', 'من تحت', 'من تحت', 'من تحت', 'من تحت']) {
+      const b = screen.queryByRole('button', { name: n })
+      if (!b) break // the tilt buttons go away once the rings are ready to tap
+      await act(async () => void fireEvent.click(b))
+    }
+    await act(async () => void fireEvent.click(screen.getByTestId('saturn-rings')))
+    expect(onDone).toHaveBeenCalledTimes(1)
+    expect(screen.getByTestId('ring-zoom')).toBeInTheDocument()
+    await act(async () => void vi.advanceTimersByTime(MAGNIFIER_LINGER_MS + 100))
+    expect(screen.queryByTestId('ring-zoom')).toBeNull()
+
+    say.mockClear()
+    await act(async () => void fireEvent.click(screen.getByTestId('saturn-rings')))
+    expect(screen.getByTestId('ring-zoom')).toBeInTheDocument()
+    expect(said(say)).toEqual(['planets.saturn.activity.done'])
+    expect(onDone).toHaveBeenCalledTimes(1) // not "finished" again
+  })
+})
+
+describe('6. Pluto: a clear way out at the end of the journey', () => {
+  it('Pluto has an end button to the solar system (Neptune keeps its next button)', async () => {
+    vi.spyOn(narrator, 'say').mockResolvedValue(true)
+    const { unmount } = render(<PlanetScreen id="pluto" tour={false} />)
+    expect(screen.queryByTestId('nav-next')).toBeNull()
+    await act(async () => void fireEvent.click(screen.getByTestId('nav-end')))
+    expect(location.hash).toBe('#/space')
+    unmount()
+    render(<PlanetScreen id="neptune" tour={false} />)
+    expect(screen.getByTestId('nav-next')).toBeInTheDocument()
+    expect(screen.queryByTestId('nav-end')).toBeNull()
+  })
+
+  it('the end button glows only after Pluto\'s heart and facts', async () => {
+    vi.spyOn(narrator, 'say').mockResolvedValue(true)
+    render(<PlanetScreen id="pluto" tour={false} />)
+    expect(screen.getByTestId('nav-end')).toHaveAttribute('data-pulse', 'no')
+    await act(async () => void fireEvent.click(screen.getByTestId('pluto-heart')))
+    expect(screen.getByTestId('nav-end')).toHaveAttribute('data-pulse', 'no')
+    for (let i = 0; i < 3; i++) await act(async () => void fireEvent.click(screen.getByTestId(`fact-${i}`)))
+    expect(screen.getByTestId('nav-end')).toHaveAttribute('data-pulse', 'yes')
+  })
+})

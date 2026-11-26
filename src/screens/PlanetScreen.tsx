@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { line, narrator, say, sfx } from '../audio'
+import { line, narrator, say, sfx, useNarrator } from '../audio'
 import { ACTIVITIES } from '../activities'
 import { CheckIcon, NextIcon, BackIcon } from '../components/Icons'
 import { PlanetArt } from '../components/PlanetArt'
@@ -39,6 +39,29 @@ function KindBadge({ id }: { id: BodyId }) {
       <span aria-hidden>{icon}</span>
       {text}
     </span>
+  )
+}
+
+/** The last stop (Pluto): a clear way out of the journey, back to the solar system. */
+function EndButton({ pulse }: { pulse?: boolean }) {
+  return (
+    <button
+      type="button"
+      data-testid="nav-end"
+      data-pulse={pulse ? 'yes' : 'no'}
+      aria-label="المجموعة الشمسية"
+      onClick={() => {
+        sfx('whoosh')
+        navigate({ name: 'space' })
+      }}
+      className={`btn-pop glass relative flex h-16 items-center gap-2 rounded-full px-4 text-xl font-bold ${pulse ? 'ring-4 ring-yellow-300' : ''}`}
+    >
+      {pulse && <span className="anim-pulse-glow absolute inset-[-6px] rounded-full border-4 border-yellow-300" aria-hidden />}
+      <span className="text-3xl" aria-hidden>
+        🌌
+      </span>
+      <span>المجموعة الشمسية</span>
+    </button>
   )
 }
 
@@ -95,6 +118,21 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
   const allFactsHeard = content.facts.every((_, i) => heard.includes(i))
   const suggestedFact = guiding && done ? content.facts.findIndex((_, i) => !heard.includes(i)) : -1
 
+  /**
+   * Neptune → the secret mission to Pluto: the card and the invitation come only
+   * once the activity is done AND all of Neptune's facts have been heard (and
+   * nothing is being said), so the facts are never skipped. Pluto stays
+   * reachable from the next-planet button at any time.
+   */
+  const { speaking } = useNarrator()
+  const invited = useRef(false)
+  useEffect(() => {
+    if (id !== 'neptune' || !done || !allFactsHeard || speaking || invited.current) return
+    invited.current = true
+    setInvite(true)
+    void narrator.say([line('planets.neptune.invite'), line('zizo.pluto.jacket')])
+  }, [id, done, allFactsHeard, speaking])
+
   /** Storyteller introduces the planet; on the first visit Zizo chips in with a joke. */
   const intro = (withZizo = false, withPrompt = true) => {
     const lines = [line(`planets.${id}.intro`)]
@@ -125,9 +163,8 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
     const zizoCheer = line(`zizo.celebrate.${celebrateIdx++ % script.zizo.celebrate.length}`)
 
     if (id === 'neptune') {
-      // the last planet: storyteller invites her onward, Zizo grabs his jacket
-      setInvite(true)
-      void narrator.say([doneLine, line('planets.neptune.invite'), line('zizo.pluto.jacket')])
+      // the last planet: the invitation to Pluto waits until her facts are heard (see below)
+      void narrator.say(doneLine)
       return
     }
     if (id === 'pluto') {
@@ -194,6 +231,7 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
                 onClick={() => {
                   setDone(false)
                   setInvite(false)
+                  invited.current = false
                   setRound((r) => r + 1)
                   void say(`planets.${id}.activity.prompt`)
                 }}
@@ -255,7 +293,11 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
           </ul>
           <div className="mt-auto flex items-center justify-between gap-2 pt-2">
             <NavButton id={prev} dir="prev" tour={tour} />
-            <NavButton id={next} dir="next" tour={tour} pulse={guiding && done && allFactsHeard} />
+            {next ? (
+              <NavButton id={next} dir="next" tour={tour} pulse={guiding && done && allFactsHeard} />
+            ) : (
+              <EndButton pulse={guiding && done && allFactsHeard} />
+            )}
           </div>
         </aside>
       </div>

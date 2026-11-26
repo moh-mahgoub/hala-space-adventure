@@ -99,7 +99,11 @@ test('secret mission: Neptune invites her to Pluto, she finds the heart and earn
   await page.evaluate(() => (location.hash = '#/planet/neptune'))
   for (let i = 0; i < 3; i++) await page.getByTestId('activity-target').click()
   const invite = page.getByTestId('pluto-invite')
-  await expect(invite).toBeVisible()
+  // the invitation waits until Neptune's facts have been heard
+  await expect(page.getByTestId('fact-0')).toHaveAttribute('data-suggested', 'yes')
+  await expect(invite).toHaveCount(0)
+  for (let i = 0; i < 3; i++) await page.getByTestId(`fact-${i}`).click()
+  await expect(invite).toBeVisible({ timeout: 30_000 })
   await expect(page.getByTestId('caption')).toContainText('آخر كوكب من الكواكب التمانية', { timeout: 20_000 })
   // Zizo puts his winter gear on when he says he's getting his jacket
   await expect(invite.getByTestId('zizo-winter')).toBeAttached({ timeout: 20_000 })

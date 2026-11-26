@@ -121,13 +121,17 @@ describe('Zizo dresses for the cold', () => {
 describe('Neptune → the secret mission', () => {
   beforeEach(() => resetProgress())
 
-  it('finishing Neptune invites her to Pluto (narrator, then Zizo with his jacket)', async () => {
+  it('finishing Neptune AND hearing its facts invites her to Pluto (narrator, then Zizo with his jacket)', async () => {
     const say = vi.spyOn(narrator, 'say').mockResolvedValue(true)
     navigate({ name: 'planet', id: 'neptune', tour: false }, { replace: true })
     render(<PlanetScreen id="neptune" tour={false} />)
     expect(screen.queryByTestId('pluto-invite')).not.toBeInTheDocument()
     // Neptune's activity: tap Neptune three times for the wind
     for (let i = 0; i < 3; i++) await act(async () => void fireEvent.click(screen.getByTestId('activity-target')))
+    // not yet: her facts come first
+    expect(screen.queryByTestId('pluto-invite')).not.toBeInTheDocument()
+    expect(saidIds(say)).not.toContain('planets.neptune.invite')
+    for (let i = 0; i < 3; i++) await act(async () => void fireEvent.click(screen.getByTestId(`fact-${i}`)))
     await screen.findByTestId('pluto-invite')
     expect(saidIds(say)).toEqual(expect.arrayContaining(['planets.neptune.activity.done', 'planets.neptune.invite', 'zizo.pluto.jacket']))
     expect(screen.getByRole('button', { name: /يلا نكتشف بلوتو/ })).toBeInTheDocument()
