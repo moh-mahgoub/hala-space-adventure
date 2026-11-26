@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { say, sfx } from '../audio'
+import { useAlive } from '../hooks'
 import { PlanetArt } from '../components/PlanetArt'
 import { ProgressDots, Stage, toArabicDigits, type ActivityProps } from './common'
 
@@ -13,13 +14,14 @@ const SPOTS = [
 
 export function MercuryActivity({ onDone }: ActivityProps) {
   const [found, setFound] = useState<number[]>([])
+  const alive = useAlive()
   const tap = (i: number) => {
     if (found.includes(i)) return
     const next = [...found, i]
     setFound(next)
     sfx('pop')
-    if (next.length < SPOTS.length) void say(`common.numbers.${next.length - 1}`)
-    else onDone()
+    const counted = say(`common.numbers.${next.length - 1}`) // «واحد» … «خمسة» — the last one too
+    if (next.length === SPOTS.length) void counted.then(() => alive.current && onDone())
   }
   return (
     <Stage>

@@ -79,10 +79,12 @@ describe('reactions follow real actions', () => {
     off()
   })
 
-  it('finishing an activity → mission dance', () => {
+  it('finishing an activity → mission dance', async () => {
     const { seen, off } = captureReactions()
+    const say = vi.spyOn(narrator, 'say').mockResolvedValue(true) // the activity ends once «خمسة» is said
     render(<PlanetScreen id="mercury" tour={false} />)
-    for (let i = 0; i < 5; i++) fireEvent.click(screen.getByTestId(`crater-${i}`))
+    for (let i = 0; i < 5; i++) await act(async () => void fireEvent.click(screen.getByTestId(`crater-${i}`)))
+    say.mockRestore()
     expect(seen.at(-1)!.kind).toBe('mission')
     expect(seen.at(-1)!.pose).toBe('dance')
     off()

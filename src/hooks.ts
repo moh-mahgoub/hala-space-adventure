@@ -54,3 +54,13 @@ export function useTimeouts() {
     ids.current.push(window.setTimeout(fn, ms))
   }
 }
+
+/** A ref that is true while the component is mounted (to skip work after leaving a screen). */
+export function useAlive() {
+  const alive = useRef(true)
+  useEffect(() => {
+    alive.current = true
+    return () => void (alive.current = false)
+  }, [])
+  return alive
+}

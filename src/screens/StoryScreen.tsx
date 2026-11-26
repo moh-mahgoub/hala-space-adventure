@@ -154,7 +154,12 @@ function StoryPlayer({ index }: { index: number }) {
     const n = counted + 1
     setCounted(n)
     if (n < PLANET_IDS.length) void narrator.say(line(`common.numbers.${n - 1}`))
-    else replyThen('done')
+    else {
+      // say «تمانية» too, then the ending
+      setPhase('reply')
+      const my = ++token.current
+      void narrator.say(line(`common.numbers.${n - 1}`)).then(() => my === token.current && replyThen('done'))
+    }
   }
 
   const skip = () => {

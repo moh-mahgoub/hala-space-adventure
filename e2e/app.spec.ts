@@ -409,3 +409,26 @@ test('story: on Mars the robot car drives in and waves back', async ({ page }) =
   await expect(page.getByTestId('story-rover-hello')).toBeVisible()
   await expect(page.getByTestId('caption')).toContainText('العربية رفعت دراعها')
 })
+
+test('planet page: «خمسة» is said, the glow goes to the facts first, and «اسمعي تاني» skips the finished instruction', async ({ page }) => {
+  test.setTimeout(60_000)
+  await start(page, '#/planet/mercury')
+  await expect(page.getByTestId('planet-screen-mercury')).toBeVisible()
+  for (let i = 0; i < 4; i++) {
+    await press(page, page.getByTestId(`crater-${i}`))
+    await page.waitForTimeout(250)
+  }
+  await press(page, page.getByTestId('crater-4'))
+  await expect(page.getByTestId('caption')).toContainText('خمسة')
+  await expect(page.getByText('خلصتي!')).toBeVisible({ timeout: 10_000 })
+
+  // the glow suggests the first fact, not the next planet
+  await expect(page.getByTestId('fact-0')).toHaveAttribute('data-suggested', 'yes')
+  await expect(page.getByTestId('nav-next')).toHaveAttribute('data-pulse', 'no')
+
+  // «اسمعي تاني» now only re-introduces the planet
+  await press(page, page.getByRole('button', { name: 'اسمعي تاني' }))
+  await expect(page.getByTestId('caption')).toBeVisible()
+  await page.waitForTimeout(400)
+  await expect(page.getByTestId('caption')).not.toContainText('دوسي')
+})

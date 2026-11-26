@@ -76,9 +76,12 @@ describe('planet scenes', () => {
     expect(screen.getByTestId('kind-badge')).toHaveTextContent('قمر')
   })
 
-  it('Mercury activity: counting five craters completes it and earns a star', () => {
+  it('Mercury activity: counting five craters completes it and earns a star', async () => {
+    // the activity finishes once «خمسة» has been said
+    const say = vi.spyOn(narrator, 'say').mockResolvedValue(true)
     render(<PlanetScreen id="mercury" tour={false} />)
-    for (let i = 0; i < 5; i++) fireEvent.click(screen.getByTestId(`crater-${i}`))
+    for (let i = 0; i < 5; i++) await act(async () => void fireEvent.click(screen.getByTestId(`crater-${i}`)))
+    say.mockRestore()
     expect(screen.getByText('خلصتي!')).toBeInTheDocument()
     expect(progressStore.get().stars).toContain('activity:mercury')
   })

@@ -48,6 +48,7 @@ function NavButton({ id, dir, pulse, tour }: { id?: BodyId; dir: 'prev' | 'next'
     <button
       type="button"
       data-testid={`nav-${dir}`}
+      data-pulse={pulse ? 'yes' : 'no'}
       aria-label={`${dir === 'next' ? ui.next : ui.prev}: ${BODIES[id].nameAr}`}
       onClick={() => {
         sfx('whoosh')
@@ -85,12 +86,21 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
     return () => void (mounted.current = false)
   }, [])
   const activityDoneBefore = progress.stars.includes(`activity:${id}`)
+  /**
+   * What gently glows (guided mode / tour): after the activity, the first fact she
+   * hasn't heard yet — one at a time — and only once every fact has been heard,
+   * the next-planet button. Nothing is ever blocked; the glow only suggests.
+   */
+  const guiding = tour || mode === 'guided'
+  const allFactsHeard = content.facts.every((_, i) => heard.includes(i))
+  const suggestedFact = guiding && done ? content.facts.findIndex((_, i) => !heard.includes(i)) : -1
 
   /** Storyteller introduces the planet; on the first visit Zizo chips in with a joke. */
-  const intro = (withZizo = false) => {
+  const intro = (withZizo = false, withPrompt = true) => {
     const lines = [line(`planets.${id}.intro`)]
     if (withZizo) lines.push(line(`zizo.planets.${id}`))
-    lines.push(line(`planets.${id}.activity.prompt`))
+    // once the activity is finished, don't ask her to do it again («نلعب تاني» restarts it)
+    if (withPrompt) lines.push(line(`planets.${id}.activity.prompt`))
     if (tour && id === 'sun') lines.unshift(line('space.tour'))
     return narrator.say(lines)
   }
@@ -154,7 +164,7 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
       <TopBar
         back={{ name: 'space' }}
         title={<span data-testid="planet-name">{body.nameAr}</span>}
-        onReplay={() => void intro()}
+        onReplay={() => void intro(false, !done)}
       />
 
       <div className="flex min-h-0 flex-1 flex-col gap-3 pt-2 pb-[4.5rem] landscape:flex-row">
@@ -215,15 +225,19 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
                 <button
                   type="button"
                   data-testid={`fact-${i}`}
+                  data-suggested={suggestedFact === i ? 'yes' : 'no'}
                   onClick={() => {
                     sfx('pop')
                     setHeard((h) => (h.includes(i) ? h : [...h, i]))
                     void say(`planets.${id}.facts.${i}`)
                   }}
-                  className={`btn-pop flex w-full items-center gap-3 rounded-3xl border-2 p-3 text-right transition-colors ${
+                  className={`btn-pop relative flex w-full items-center gap-3 rounded-3xl border-2 p-3 text-right transition-colors ${
                     heard.includes(i) ? 'border-emerald-300/60 bg-emerald-400/15' : 'border-white/15 bg-white/10'
                   }`}
                 >
+                  {suggestedFact === i && (
+                    <span className="anim-pulse-glow pointer-events-none absolute inset-[-5px] rounded-3xl border-4 border-yellow-300" aria-hidden />
+                  )}
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 text-3xl" aria-hidden>
                     {content.factIcons[i]}
                   </span>
@@ -234,7 +248,7 @@ export function PlanetScreen({ id, tour }: { id: BodyId; tour: boolean }) {
           </ul>
           <div className="mt-auto flex items-center justify-between gap-2 pt-2">
             <NavButton id={prev} dir="prev" tour={tour} />
-            <NavButton id={next} dir="next" tour={tour} pulse={(tour || mode === 'guided') && done} />
+            <NavButton id={next} dir="next" tour={tour} pulse={guiding && done && allFactsHeard} />
           </div>
         </aside>
       </div>

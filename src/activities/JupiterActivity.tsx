@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { say, sfx } from '../audio'
+import { useAlive } from '../hooks'
 import { PlanetArt } from '../components/PlanetArt'
 import { relativeToEarth } from '../data/planets'
 import { Stage, TapHint, toArabicDigits, type ActivityProps } from './common'
@@ -9,6 +10,7 @@ const GOAL = 10
 /** Drop Earths into Jupiter. Earth here is drawn at the REAL size ratio (~1:11). */
 export function JupiterActivity({ onDone }: ActivityProps) {
   const [count, setCount] = useState(0)
+  const alive = useAlive()
   const ratio = 1 / relativeToEarth('jupiter') // ≈ 0.089
   const spots = useMemo(() => {
     // pack positions inside the disk (golden-angle spiral)
@@ -23,8 +25,9 @@ export function JupiterActivity({ onDone }: ActivityProps) {
     const n = count + 1
     setCount(n)
     sfx('pop')
-    if (n < GOAL) void say(`common.numbers.${n - 1}`)
-    else if (n === GOAL) onDone()
+    if (n > GOAL) return
+    const counted = say(`common.numbers.${n - 1}`) // «واحد» … «عشرة» — the last one too
+    if (n === GOAL) void counted.then(() => alive.current && onDone())
   }
 
   return (
