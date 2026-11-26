@@ -1,8 +1,12 @@
 /**
  * The spaceship with the child's face looking out of the cockpit window.
- * `wobble` gently shakes it (takeoff); `launching` flies it up and away.
+ * `wobble` gently shakes it (getting ready, for as long as it is set);
+ * `launching` flies it up and away straight away (LAUNCH_MS).
  */
 import { ChildFace } from './ChildAvatar'
+
+/** How long the fly-away takes once `launching` is set. */
+export const LAUNCH_MS = 2200
 
 export function SpaceshipPilot({
   launching,
@@ -24,7 +28,7 @@ export function SpaceshipPilot({
 }) {
   const art = (
     <svg viewBox="0 0 100 160" style={{ height, overflow: 'visible' }} aria-hidden data-testid="spaceship-pilot">
-      <g style={wobble ? { transformOrigin: '50px 130px', transformBox: 'view-box', animation: 'ship-wobble 0.6s ease-in-out 3' } : undefined}>
+      <g style={wobble ? { transformOrigin: '50px 130px', transformBox: 'view-box', animation: 'ship-wobble 0.6s ease-in-out infinite' } : undefined}>
         <path d="M50,4 C78,30 80,80 72,118 L28,118 C20,80 22,30 50,4 Z" fill="#f4f6ff" />
         <path d="M50,4 C62,14 70,28 74,44 L26,44 C30,28 38,14 50,4 Z" fill="#ff6fae" />
         <circle cx={50} cy={70} r={19} fill="#23286b" />
@@ -38,7 +42,7 @@ export function SpaceshipPilot({
       </g>
     </svg>
   )
-  const style = launching ? { animation: 'launch 2.2s 1.2s ease-in forwards' } : undefined
+  const style = launching ? { animation: `launch ${LAUNCH_MS}ms ease-in forwards` } : undefined
   if (onTap) {
     return (
       <button type="button" onClick={onTap} aria-label="سفينة الفضاء" data-testid="story-target" className={`relative h-full ${className}`} style={style}>

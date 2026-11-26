@@ -371,3 +371,26 @@ test('story: at the end of a chapter it waits for her — no automatic move, no 
   await press(page, next)
   await expect(page.getByTestId('story-chapter-sun')).toBeVisible()
 })
+
+test('story: the rocket is still on the ground until the countdown «...انطلاق!» has been said', async ({ page }) => {
+  test.setTimeout(60_000)
+  await start(page, '#/story')
+  await press(page, page.getByTestId('story-start'))
+  await expect(page.getByTestId('story-chapter-start')).toBeVisible()
+  for (let i = 0; i < 3; i++) await press(page, page.getByTestId('story-next'))
+  const vh = page.viewportSize()!.height
+  const rocketTop = async () => (await page.getByTestId('spaceship-pilot').boundingBox())?.y ?? -9999
+  const before = await rocketTop()
+
+  await press(page, page.getByTestId('story-target'))
+  await expect(page.getByTestId('caption')).toContainText('انطلاق')
+  // the old animation had the rocket off-screen 3.4 s after the tap, while the line was still at «واحد»
+  await page.waitForTimeout(3_600)
+  await expect(page.getByTestId('caption')).toContainText('انطلاق') // the countdown is still being said
+  expect(Math.abs((await rocketTop()) - before)).toBeLessThan(vh * 0.1) // …and the rocket is still on the ground
+
+  // when the line ends it lifts off and leaves; then the chapter ends
+  await expect(page.getByTestId('caption')).toHaveCount(0, { timeout: 10_000 })
+  await expect.poll(rocketTop, { timeout: 5_000 }).toBeLessThan(0)
+  await expect(page.getByTestId('next-chapter')).toBeVisible({ timeout: 5_000 })
+})

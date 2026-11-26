@@ -3,7 +3,7 @@ import { line, narrator, sfx } from '../audio'
 import { Celebration } from '../components/Celebration'
 import { HalaAvatar } from '../components/HalaAvatar'
 import { AstronautCharacter } from '../components/character/AstronautCharacter'
-import { SpaceshipPilot } from '../components/character/SpaceshipPilot'
+import { LAUNCH_MS, SpaceshipPilot } from '../components/character/SpaceshipPilot'
 import { PlayIcon } from '../components/Icons'
 import { Zizo } from '../components/Zizo'
 import { PlanetArt } from '../components/PlanetArt'
@@ -109,9 +109,29 @@ function StoryPlayer({ index }: { index: number }) {
     })
   }
 
+  /**
+   * The rocket: she boards and it shakes on the ground while the storyteller
+   * counts down; it lifts off (with its roar) only when «...انطلاق!» has been
+   * said, so picture and words stay together at any narration speed (and with
+   * captions only). The chapter ends once it has flown away.
+   */
+  const launch = () => {
+    const my = ++token.current
+    setPhase('reply')
+    setEffect('countdown')
+    sfx('tap')
+    void narrator.say(line(lineId(chapter, step, 'done'))).then(() => {
+      if (my !== token.current) return
+      setEffect('launch')
+      sfx('launch')
+      window.setTimeout(() => my === token.current && advance(), LAUNCH_MS + 200)
+    })
+  }
+
   const onTarget = () => {
     if (!current || current.type !== 'tap' || phase !== 'wait') return
-    sfx(current.effect === 'launch' ? 'launch' : current.effect === 'wind' ? 'whoosh' : 'success')
+    if (current.effect === 'launch') return launch()
+    sfx(current.effect === 'wind' ? 'whoosh' : 'success')
     setEffect(current.effect ?? 'glow')
     replyThen('done')
   }
@@ -222,8 +242,8 @@ function StoryPlayer({ index }: { index: number }) {
           <div className="absolute right-[44%] bottom-[8%] h-[52%]">
             {/* a gentle wobble at takeoff, then whoosh */}
             <SpaceshipPilot
-              pilot={effect === 'launch'}
-              wobble={effect === 'launch'}
+              pilot={effect === 'countdown' || effect === 'launch'}
+              wobble={effect === 'countdown' || effect === 'launch'}
               launching={effect === 'launch'}
               glow={waitingTap}
               onTap={waitingTap ? onTarget : undefined}
@@ -231,7 +251,7 @@ function StoryPlayer({ index }: { index: number }) {
           </div>
         )}
         <div className="absolute right-[4%] bottom-[6%] flex items-end gap-1" aria-hidden>
-          {chapter.backdrop === 'room' && effect !== 'launch' && (
+          {chapter.backdrop === 'room' && effect !== 'launch' && effect !== 'countdown' && (
             <HalaAvatar
               size={86}
               helmet={chapter.id !== 'home'}
